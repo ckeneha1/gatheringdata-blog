@@ -179,12 +179,43 @@ A static site is essentially infinitely scalable for traffic — Netlify's CDN h
 
 ---
 
+## Design Direction
+
+**Aesthetic reference:** Lenny's Newsletter (lennysnewsletter.com) — editorial, content-first, generous whitespace, clean serif typography. Simple, not sparse.
+
+**Font:** Spectral (Google Fonts) — the same serif family Lenny's uses. Conveys authority without being stuffy. Body text in regular weight, headings in semibold.
+
+**Color palette:**
+- Background: `#ffffff`
+- Body text: `#363737`
+- Secondary text: `#868787`
+- Accent (replaces Lenny's orange): `#b2d4e5` — used for links, highlights, interactive elements, subtle backgrounds
+- Borders/dividers: `#dddddd`
+
+**Layout:** Single-column, content width ~680px, centered. Generous vertical spacing between sections. Navigation minimal — logo left, links right.
+
+**Post list:** Title, date, short description. No cover images initially (add in Phase 2 if desired). Clean, scannable.
+
+---
+
+## First Post
+
+**"About Me"** — an outward-facing version of `working_with_me.md`. Not a resume, not a bio — a genuine explanation of who Connor is, how he thinks, what he's building, and why this site exists. Sets the tone for the whole publication.
+
+Subsequent posts will be project-driven: each project in the portfolio generates one or more writeups as it gets built.
+
+---
+
+## WordPress.com Migration Notes
+
+Connor is on the **free plan** — no subscription to cancel, no cost to walk away from. Steps:
+1. Add `gatheringdata.blog` as custom domain in Netlify
+2. Update DNS in DreamHost to point to Netlify's servers
+3. Verify SSL auto-provisions (Netlify + Let's Encrypt, automatic)
+4. WordPress.com free site will continue to exist at a `*.wordpress.com` subdomain indefinitely — no action needed
+
+---
+
 ## Open Questions
 
-1. **Design aesthetic:** Minimal/technical (think monospace font, sparse layout — common in developer blogs) vs. more visual (custom illustrations, richer layouts)? No wrong answer, but it shapes theme selection.
-
-2. **First post topic:** "Why I rebuilt this site" is a natural first post and documents the decisions we're making now. Worth confirming this feels right before Phase 3.
-
-3. **WordPress.com plan:** What plan is the current site on? Knowing this determines whether there are any sunk costs to consider before cancelling.
-
-4. **Astro starter vs. custom theme:** The official Astro blog starter is minimal and good for learning the structure from scratch. Community themes (e.g. AstroPaper) are more polished out of the box but add abstraction. Recommendation: start with the official starter in Phase 1 to understand the structure, then layer in design in Phase 2. Open to discussion.
+None — all resolved. Ready to build Phase 1.
