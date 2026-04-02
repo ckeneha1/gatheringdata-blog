@@ -1,0 +1,10 @@
+# uv environment
+.venv/
+
+# Downloaded data cache (large files, don't commit)
+*.json
+*.zip
+
+# Python
+__pycache__/
+*.pyc

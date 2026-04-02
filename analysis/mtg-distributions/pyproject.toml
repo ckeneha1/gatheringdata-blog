@@ -1,0 +1,14 @@
+[project]
+name = "mtg-distributions"
+version = "0.1.0"
+description = "Analysis for 'Thirty Years of Magic Cards, Measured'"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
