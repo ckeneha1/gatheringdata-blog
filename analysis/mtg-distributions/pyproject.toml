@@ -9,6 +9,3 @@ dependencies = [
     "matplotlib>=3.8",
 ]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
