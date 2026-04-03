@@ -2,7 +2,7 @@
 .venv/
 
 # Downloaded data cache (large files, don't commit)
-*.json
+.cache/
 *.zip
 
 # Python

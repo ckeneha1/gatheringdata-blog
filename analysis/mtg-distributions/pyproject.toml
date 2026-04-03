@@ -7,5 +7,6 @@ dependencies = [
     "requests>=2.31",
     "pandas>=2.0",
     "matplotlib>=3.8",
+    "ijson>=3.2",
 ]
 
