@@ -80,6 +80,8 @@ One thing visible in the type chart: Planeswalkers, introduced in 2007, appear a
 
 ### The legendary explosion
 
+This trend has been noticed before — [Draftsim](https://draftsim.com/mtg-fewer-legendary-creatures/) has tracked legendary creature counts by era, and [sjschmitt's MTG Set Analysis](https://sjschmitt.github.io/MTG_Set_Analysis/) charts legendary percentage per set using Scryfall data. What the reprint-corrected methodology adds is a cleaner signal: by counting only the year a design *first appeared*, the jump is attributable to new creative output rather than reprints of old legends cycling into new products.
+
 Perhaps the starkest finding of any of these analyses:
 
 ![Dual-axis chart showing legendary card count and percentage over time](/images/mtg-distributions/legendary_over_time.png)
@@ -92,7 +94,7 @@ The driver is Commander. The format, which builds decks around a specific legend
 
 ## Cards have also gotten harder to read
 
-The volume and composition shifts are structural. There's also a per-card complexity trend running underneath them.
+The volume and composition shifts are structural. There's also a per-card complexity trend running underneath them — one that others have measured before. [SumNeuron at Commander's Herald](https://commandersherald.com/a-basic-metric-of-complexity-creep/) did a Scryfall-based complexity analysis in 2021, and Wizards itself [acknowledged internally](https://magic.wizards.com/en/news/card-preview/word-heist-theros-beyond-death-caper-2020-01-07) that Throne of Eldraine was pushing word-count records. The finding isn't new — but the time series below covers the full game history and uses median rather than mean, which is more robust to the increasingly long-tail of rules-heavy cards.
 
 ![Median card text length in characters by year, excluding lands](/images/mtg-distributions/complexity_creep.png)
 
