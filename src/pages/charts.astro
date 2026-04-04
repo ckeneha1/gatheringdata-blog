@@ -1,0 +1,149 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import chartUpdates from '../data/chart-updates.json';
+
+const mtg = chartUpdates['mtg-distributions'];
+const updatedAt = mtg ? new Date(mtg.updated_at) : null;
+const formattedDate = updatedAt
+  ? updatedAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  : null;
+
+const charts = [
+  {
+    src: '/images/live/mtg-distributions/set_size_distribution.png',
+    alt: 'Distribution of Magic set sizes',
+    caption: 'Distribution of Magic: The Gathering set sizes (all sets, 1993–present)',
+  },
+  {
+    src: '/images/live/mtg-distributions/net_new_vs_canonical.png',
+    alt: 'Net-new card designs vs. oracle canonical count per year',
+    caption: 'Net-new card designs vs. oracle canonical count per year',
+  },
+  {
+    src: '/images/live/mtg-distributions/cards_per_year.png',
+    alt: 'Net-new Magic card designs per year',
+    caption: 'Net-new Magic card designs per year, 1993–present',
+  },
+  {
+    src: '/images/live/mtg-distributions/color_complexity_over_time.png',
+    alt: 'Color complexity of new card designs over time',
+    caption: 'Share of new card designs by color complexity (mono / multi / colorless) over time',
+  },
+  {
+    src: '/images/live/mtg-distributions/type_breakdown_over_time.png',
+    alt: 'Card type composition of new designs over time',
+    caption: 'Card type composition of new designs over time',
+  },
+  {
+    src: '/images/live/mtg-distributions/legendary_over_time.png',
+    alt: 'Legendary card count and percentage over time',
+    caption: 'Legendary card count and share of new designs over time',
+  },
+  {
+    src: '/images/live/mtg-distributions/complexity_creep.png',
+    alt: 'Median card text length by year',
+    caption: 'Median oracle text length (characters) per year, excluding lands',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Live Charts" description="Auto-updating charts from gatheringdata.blog analyses." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="page-header">
+        <h1>Live Charts</h1>
+        <p class="subtitle">
+          These charts update automatically every Monday from the latest Scryfall data.
+          The versions in the <a href="/blog/mtg-distributions/">MTG distributions post</a> are
+          frozen at publication time; this page shows the current state.
+        </p>
+      </section>
+
+      <section class="chart-group">
+        <div class="group-header">
+          <h2>Magic: The Gathering card distributions</h2>
+          {formattedDate && (
+            <span class="updated-at">Updated {formattedDate}</span>
+          )}
+        </div>
+        <div class="charts">
+          {charts.map((chart) => (
+            <figure>
+              <img src={chart.src} alt={chart.alt} loading="lazy" />
+              <figcaption>{chart.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .page-header {
+    margin-bottom: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header h1 {
+    font-size: 2em;
+    margin-bottom: 0.4em;
+  }
+  .subtitle {
+    font-size: 1em;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 60ch;
+  }
+  .chart-group {
+    margin-bottom: 4em;
+  }
+  .group-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25em;
+    margin-bottom: 2em;
+    padding-bottom: 0.75em;
+    border-bottom: 1px solid var(--border);
+  }
+  .group-header h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+  }
+  .updated-at {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .charts {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+  }
+  figure {
+    margin: 0;
+  }
+  figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  figcaption {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-top: 0.6em;
+    line-height: 1.4;
+  }
+</style>

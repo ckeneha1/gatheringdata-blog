@@ -1,0 +1,108 @@
+name: Run Scheduled Tasks
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 6am UTC
+  workflow_dispatch:       # Manual trigger — useful for testing or forcing a refresh
+
+jobs:
+  # Step 1: Parse scheduler.yml into a job matrix
+  load-tasks:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.parse.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse scheduler config
+        id: parse
+        run: |
+          pip install pyyaml -q
+          matrix=$(python3 -c "
+          import yaml, json
+          with open('scheduler.yml') as f:
+              tasks = yaml.safe_load(f)['tasks']
+          # Only include tasks scheduled for this workflow's cadence (weekly)
+          weekly = [t for t in tasks if t.get('schedule') == 'weekly']
+          print(json.dumps({'include': weekly}))
+          ")
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+  # Step 2: Run each task in parallel, commit outputs
+  run-task:
+    needs: load-tasks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix: ${{ fromJson(needs.load-tasks.outputs.matrix) }}
+      # Don't cancel other tasks if one fails
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      # Cache Scryfall bulk downloads between runs.
+      # Our script handles its own invalidation (keyed on Scryfall's updated_at),
+      # so we use a stable restore key — the cache persists across runs and the
+      # script re-downloads only when Scryfall has actually updated.
+      - name: Cache Scryfall bulk data
+        uses: actions/cache@v4
+        with:
+          path: ${{ matrix.working_dir }}/.cache
+          key: scryfall-${{ matrix.name }}-${{ runner.os }}-v1
+          restore-keys: |
+            scryfall-${{ matrix.name }}-${{ runner.os }}-
+
+      - name: Create output directory
+        run: mkdir -p ${{ matrix.output_dir }}
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.working_dir }}
+        run: uv sync
+
+      - name: Run task
+        working-directory: ${{ matrix.working_dir }}
+        run: |
+          ${{ matrix.command }} --output-dir $GITHUB_WORKSPACE/${{ matrix.output_dir }}
+
+      - name: Write chart metadata
+        run: |
+          pip install pyyaml -q
+          python3 -c "
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          meta_path = Path('src/data/chart-updates.json')
+          meta_path.parent.mkdir(parents=True, exist_ok=True)
+
+          try:
+              data = json.loads(meta_path.read_text())
+          except FileNotFoundError:
+              data = {}
+
+          data['${{ matrix.name }}'] = {
+              'updated_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+              'description': '${{ matrix.description }}'
+          }
+
+          meta_path.write_text(json.dumps(data, indent=2) + '\n')
+          print(f'Updated metadata for ${{ matrix.name }}')
+          "
+
+      - name: Commit and push updated charts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ${{ matrix.output_dir }} src/data/chart-updates.json
+          # Only commit if something actually changed
+          git diff --staged --quiet && echo "No changes to commit" || (
+            git commit -m "chore: update live charts (${{ matrix.name }}) [skip ci]" &&
+            git push
+          )

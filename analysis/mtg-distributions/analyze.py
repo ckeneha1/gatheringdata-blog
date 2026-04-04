@@ -15,6 +15,7 @@ Why two sources?
 Outputs: PNG charts to ../../public/images/mtg-distributions/
 """
 
+import argparse
 import json
 from pathlib import Path
 
@@ -26,8 +27,9 @@ import requests
 
 # --- Config ---
 
-OUTPUT_DIR = Path(__file__).parent.parent.parent / "public" / "images" / "mtg-distributions"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+# OUTPUT_DIR is set in main() from CLI args. Default keeps backward compat for local runs.
+_DEFAULT_OUTPUT_DIR = Path(__file__).parent.parent.parent / "public" / "images" / "mtg-distributions"
+OUTPUT_DIR: Path  # set in main()
 
 CACHE_DIR = Path(__file__).parent / ".cache"
 CACHE_DIR.mkdir(exist_ok=True)
@@ -516,7 +518,24 @@ def print_summary(df: pd.DataFrame):
 
 # --- Main ---
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate MTG distribution charts")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=_DEFAULT_OUTPUT_DIR,
+        help="Directory to write chart PNGs (default: public/images/mtg-distributions/)",
+    )
+    return parser.parse_args()
+
+
 def main():
+    global OUTPUT_DIR
+    args = parse_args()
+    OUTPUT_DIR = args.output_dir
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Output directory: {OUTPUT_DIR}")
+
     # Fetch oracle_cards (card properties)
     oracle_path = fetch_bulk_file("oracle_cards")
     print("Loading oracle_cards...")

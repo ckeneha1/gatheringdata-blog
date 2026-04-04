@@ -1,0 +1,21 @@
+# Scheduled task registry for gatheringdata.blog
+#
+# Each entry here registers a recurring analysis task. The GitHub Actions
+# workflow (.github/workflows/run-scheduled-tasks.yml) reads this file,
+# runs each task on its declared schedule, and commits the outputs.
+#
+# To add a task:
+#   1. Add an entry below
+#   2. Ensure the script exists at working_dir/command
+#   3. The output_dir will be created automatically if it doesn't exist
+#
+# schedule options: weekly (runs every Monday 6am UTC)
+# More schedules (daily, monthly) can be added to the workflow as needed.
+
+tasks:
+  - name: mtg-distributions
+    description: "MTG card distribution charts (Scryfall oracle_cards + all_cards)"
+    schedule: weekly
+    working_dir: analysis/mtg-distributions
+    command: uv run python analyze.py
+    output_dir: public/images/live/mtg-distributions
