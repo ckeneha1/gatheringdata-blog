@@ -1,16 +1,18 @@
 ---
 title: "Thirty Years of Magic Cards, Measured"
-description: "What does 33 years of card printing actually look like as data? The numbers are stranger than you'd expect."
-pubDate: "2026-04-02"
+description: "How do 33 years of card printing look as data? Stranger than you'd expect."
+pubDate: "2026-04-03"
 ---
 
-I've been playing Magic: The Gathering on and off since college. Over that time I've had a persistent, background sense that things have changed — more sets, more mechanics, harder to keep up. This is a common feeling among long-time players, but feelings aren't measurements. I wanted to see what the data actually says.
+In the '00s my brother, cousins, and I played as much Magic: The Gathering as the next tween. I stopped in high school, wrongly deciding to spend my free time elsewhere. My brother reintroduced me to The Beautiful Game during covid. As I re-learned Magic's actual rules, and un-learned some truly inspired kitchen table ones, I got into the game all over again for the same reasons many do. There's no other game which blends such an elegant ruleset with choose-your-own-adventure pace of play: despite a well-earned reputation for intricacy, the feel of Magic's many formats ranges from pickup basketball to speed chess. I won't even bother describing the somatic experience of cracking open a new pack of cards. If you're among the initiated, it goes without saying.
+
+As I came to appreciate what this game has always been, I also felt how much it has changed: more sets, more mechanics, harder to keep up. However, feelings aren't measurements. I wanted to see what the data actually said.
 
 So I pulled the full card catalog from [Scryfall](https://scryfall.com) — which maintains a daily-updated database of every Magic card ever printed — and started asking questions.
 
 ## The scale is larger than you think
 
-The game has been running since 1993. As of this analysis (April 2026), Scryfall contains **33,998 unique card designs** across **377 sets**.
+Magic has been running since 1993. As of this analysis (April 2026), Scryfall contains **33,998 unique card designs** across **377 sets**.
 
 The unique card count is probably higher than your intuition suggested. Mine had it somewhere around 15,000 before I looked. The reason the true number is hard to estimate is that most players see only a slice of the card pool at any given time — the sets that were legal when they played, the cards their friends owned, the ones that showed up in tournaments they followed.
 
@@ -44,7 +46,7 @@ Here's what the naive count and the corrected count look like side by side:
 
 ![Two-line chart comparing net-new card designs vs. oracle canonical count per year](/images/mtg-distributions/net_new_vs_canonical.png)
 
-The gap matters. In 2024, a naive count would attribute 3,660 unique cards to that year. The true net-new figure — new designs appearing for the first time — is **2,538**. The difference is ~1,100 cards, representing old designs being reprinted into new products. That gap has widened significantly since 2017, which is itself a finding: reprints are not just increasing in absolute terms, they're growing as a share of what gets released each year.
+The gap matters. In 2024, a naive count would attribute 3,660 unique cards to that year. The true net-new figure — new designs appearing for the first time — is **2,538**. The difference representing old designs being reprinted into new products is **~1,100 cards. A 44% difference!** That gap has widened significantly since 2017, which is itself a finding: reprints are not just increasing in absolute terms, they're growing as a share of what gets released each year.
 
 Using the corrected numbers:
 
@@ -112,6 +114,4 @@ There are now ~34,000 unique Magic card designs. Roughly 2,400–2,600 new ones 
 
 For anyone trying to evaluate Magic cards — players, deck builders, competitive analysts — this volume poses an obvious problem: which of those cards are actually worth caring about? Scryfall can tell us what cards *exist*, but it can't tell us which ones are *good*.
 
-That question requires a different dataset: tournament results. Which cards show up in winning decks? How does a card's play rate shift as formats rotate? Can we predict, from a card's properties alone, whether it will see competitive play?
-
-That's the next analysis. The cards above are the universe. The question now is what separates the ones that matter from the ones that don't.
+Per my brother's feedback on my early decks, neither can I, but in subsequent posts I'll certainly try!
