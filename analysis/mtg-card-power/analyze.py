@@ -61,10 +61,12 @@ BORDER = "#dddddd"
 # ---------------------------------------------------------------------------
 # Semantic layer: regex classification
 #
-# Layer 1 (keywords field) already captures named keyword abilities:
-# flying, trample, deathtouch, hexproof, indestructible, ward, etc.
+# Layer 1 (keywords field) captures named keyword abilities:
+#   flying, trample, deathtouch, hexproof, indestructible, ward, etc.
 # Layer 2 (this section) captures oracle-text abilities that aren't keywords.
-# The two layers don't overlap — Layer 2 never re-classifies named keywords.
+# The two layers don't overlap — we strip keyword names from oracle text
+# before running regex so abilities like "Flying" in oracle text aren't
+# double-counted against the keywords field.
 # ---------------------------------------------------------------------------
 
 # Each entry: (category_name, list_of_compiled_patterns)
@@ -120,13 +122,28 @@ _PATTERNS: list[tuple[str, list[re.Pattern]]] = [
         re.compile(r"from your graveyard", re.I),
         re.compile(r"exile .{0,30} from .{0,20} (?:your |a |the )?graveyard", re.I),
     ]),
-    ("disruption", [
-        re.compile(r"counter target", re.I),
+    # disruption split into three distinct categories:
+    ("counterspell", [
+        re.compile(r"counter target spell", re.I),
+        re.compile(r"counter target .{0,40} spell", re.I),
         re.compile(r"counter that spell", re.I),
-        re.compile(r"discards? .{0,20} card", re.I),
-        re.compile(r"each opponent discards", re.I),
+        re.compile(r"counter target activated", re.I),
+        re.compile(r"counter target triggered", re.I),
+        re.compile(r"counters? .{0,20} spell unless", re.I),
+    ]),
+    ("discard", [
+        re.compile(r"(?:target player|that player|opponent|each player|each opponent) discards?", re.I),
+        re.compile(r"discards? .{0,20} card[s]? (?:at random|of your choice|from hand)", re.I),
+        re.compile(r"discards? their hand", re.I),
+        re.compile(r"discards? a card", re.I),
+    ]),
+    ("stax", [
         re.compile(r"(?:can't|cannot) cast spells", re.I),
+        re.compile(r"(?:can't|cannot) cast .{0,40} spells", re.I),
         re.compile(r"(?:can't|cannot) activate abilities", re.I),
+        re.compile(r"(?:can't|cannot) attack", re.I),
+        re.compile(r"spells? .{0,30} (?:can't|cannot) be cast", re.I),
+        re.compile(r"(?:players?|opponents?) (?:can't|cannot) .{0,30} (?:more than|unless)", re.I),
     ]),
     ("tutor", [
         re.compile(r"search your library for .{0,60} card", re.I),
@@ -144,19 +161,55 @@ _PATTERNS: list[tuple[str, list[re.Pattern]]] = [
         re.compile(r"gets? \+\d/\+X", re.I),
         re.compile(r"gets? \+X/\+X", re.I),
         re.compile(r"base power and toughness", re.I),
+        re.compile(r"creatures? you control get \+", re.I),
+    ]),
+    ("steal", [
+        re.compile(r"gain control of target", re.I),
+        re.compile(r"gain control of .{0,40} target", re.I),
+        re.compile(r"gains? control of (?:target|all|each|that)", re.I),
+        re.compile(r"exchange control", re.I),
+    ]),
+    ("copy", [
+        re.compile(r"copy target spell", re.I),
+        re.compile(r"copy of target", re.I),
+        re.compile(r"copy of .{0,40} spell", re.I),
+        re.compile(r"becomes? a copy of", re.I),
+        re.compile(r"create[s]? a token that.s a copy", re.I),
+    ]),
+    ("blink", [
+        re.compile(r"exile target .{0,60} you control.{0,20} return it", re.I),
+        re.compile(r"exile .{0,40} then return .{0,40} to the battlefield", re.I),
+        re.compile(r"phases? out", re.I),
     ]),
 ]
 
 
-def classify_with_regex(stripped_text: str) -> list[str]:
+def strip_keyword_names(text: str, keywords: list[str]) -> str:
     """
-    Return a list of ability category tags matched by regex against oracle text.
-    Returns ["other"] if no patterns match on a card with non-empty oracle text.
-    Returns [] for blank oracle text.
+    Remove named keyword strings from oracle text before Layer 2 regex.
+
+    Prevents double-counting abilities already captured by the keywords field.
+    E.g., a card with Flying in its keywords field may also have "Flying" at
+    the start of its oracle text — stripping it avoids counting it twice.
     """
-    if not stripped_text.strip():
+    for kw in keywords:
+        text = re.sub(rf'\b{re.escape(kw)}\b', '', text, flags=re.I)
+    # Clean up leftover punctuation/whitespace artifacts
+    text = re.sub(r',\s*,', ',', text)
+    text = re.sub(r'^[\s,;]+|[\s,;]+$', '', text)
+    text = re.sub(r'\s{2,}', ' ', text)
+    return text.strip()
+
+
+def classify_with_regex(text_after_keyword_strip: str) -> list[str]:
+    """
+    Return ability category tags matched by regex against oracle text.
+    Returns ["other"] if no patterns match but text is non-empty.
+    Returns [] for blank oracle text (e.g. vanilla creatures, lands).
+    """
+    if not text_after_keyword_strip.strip():
         return []
-    matched = [cat for cat, patterns in _PATTERNS if any(p.search(stripped_text) for p in patterns)]
+    matched = [cat for cat, patterns in _PATTERNS if any(p.search(text_after_keyword_strip) for p in patterns)]
     return matched if matched else ["other"]
 
 
@@ -338,8 +391,10 @@ def build_dataframe(
         keywords = card.get("keywords") or []
         keyword_count = len(keywords)
 
-        # Layer 2: oracle-text abilities via regex (excludes named keywords)
-        categories = [] if is_land else classify_with_regex(stripped_text)
+        # Layer 2: oracle-text abilities via regex
+        # Strip keyword names first so Layer 1 and Layer 2 don't overlap
+        text_for_regex = strip_keyword_names(stripped_text, keywords)
+        categories = [] if is_land else classify_with_regex(text_for_regex)
         semantic_count = len([c for c in categories if c != "other"])
         # "other" counts as 1 only if the card has text we couldn't classify
         if categories == ["other"]:
@@ -685,6 +740,204 @@ def output_exemplar_table(df: pd.DataFrame):
 
 
 # ---------------------------------------------------------------------------
+# "Other" bucket exploration
+# ---------------------------------------------------------------------------
+
+# Words to ignore in the word cloud / phrase analysis
+_STOPWORDS = {
+    "a", "an", "the", "of", "to", "in", "is", "it", "its", "that", "this",
+    "and", "or", "you", "your", "may", "not", "no", "at", "on", "by", "be",
+    "for", "from", "as", "with", "any", "each", "all", "one", "if", "when",
+    "than", "have", "has", "until", "end", "turn", "put", "get", "gets",
+    "are", "were", "was", "would", "those", "then", "they", "them", "their",
+    "which", "who", "that", "into", "onto", "can", "do", "up", "out", "so",
+    "also", "only", "more", "other", "another", "same", "under", "over",
+}
+
+
+def _ngrams(words: list[str], n: int) -> list[str]:
+    return [" ".join(words[i:i+n]) for i in range(len(words) - n + 1)]
+
+
+def _tokenize(text: str) -> list[str]:
+    return [w for w in re.findall(r"[a-z']+", text.lower()) if w not in _STOPWORDS and len(w) > 2]
+
+
+def explore_other_bucket(df: pd.DataFrame, oracle_cards_raw: list[dict]):
+    """
+    Diagnostic charts for cards landing in the 'other' category.
+    Goal: understand what abilities we're not capturing so we can improve patterns.
+    """
+    from collections import Counter
+    from wordcloud import WordCloud
+
+    other_ids = set(
+        df[(df["categories"].apply(lambda c: c == ["other"])) & ~df["is_land"]]["oracle_id"]
+    )
+    other_df = df[df["oracle_id"].isin(other_ids)].copy()
+    all_nonland = df[~df["is_land"] & (df["cmc"] > 0)]
+
+    print(f"\n--- Other bucket: {len(other_df):,} cards ({len(other_df)/len(all_nonland)*100:.0f}% of non-land) ---")
+
+    # Pull oracle text for other cards (after keyword stripping, use raw stripped text)
+    id_to_raw = {c.get("oracle_id"): c for c in oracle_cards_raw}
+    other_texts = []
+    for oid in other_ids:
+        card = id_to_raw.get(oid)
+        if not card:
+            continue
+        text, _ = _get_oracle_text_and_mana(card)
+        stripped = strip_reminder_text(text)
+        kws = card.get("keywords") or []
+        cleaned = strip_keyword_names(stripped, kws)
+        if cleaned.strip():
+            other_texts.append(cleaned)
+
+    all_other_text = " ".join(other_texts)
+    all_words = _tokenize(all_other_text)
+    word_freq = Counter(all_words)
+
+    # --- Trigrams (most actionable for pattern-writing) ---
+    all_trigrams = Counter()
+    for text in other_texts:
+        words = _tokenize(text)
+        all_trigrams.update(_ngrams(words, 3))
+    top_trigrams = all_trigrams.most_common(30)
+
+    # --- Fig 1: Top trigrams bar chart ---
+    fig, ax = plt.subplots(figsize=(10, 8))
+    phrases, counts = zip(*top_trigrams) if top_trigrams else ([], [])
+    y = range(len(phrases))
+    ax.barh(list(y), list(counts), color=ACCENT_DARK, alpha=0.8)
+    ax.set_yticks(list(y))
+    ax.set_yticklabels(list(phrases), fontsize=9)
+    ax.invert_yaxis()
+    apply_blog_style(ax, title='Most common 3-word phrases in "other" oracle text',
+                     xlabel="Occurrences", ylabel="")
+    ax.yaxis.label.set_visible(False)
+    fig.tight_layout()
+    save(fig, "other_top_trigrams.png")
+
+    # --- Fig 2: Word cloud ---
+    if word_freq:
+        wc = WordCloud(
+            width=1200, height=600, background_color="white",
+            colormap="Blues", max_words=150,
+            prefer_horizontal=0.9,
+        ).generate_from_frequencies(word_freq)
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.imshow(wc, interpolation="bilinear")
+        ax.axis("off")
+        ax.set_title('Word cloud: "other" oracle text', color=TEXT,
+                     fontsize=13, fontweight="bold", pad=12)
+        fig.tight_layout()
+        save(fig, "other_word_cloud.png")
+
+    # --- Fig 3: Card type breakdown — other vs. all ---
+    def get_main_type(type_line: str) -> str:
+        for t in ["Creature", "Instant", "Sorcery", "Enchantment", "Artifact",
+                  "Planeswalker", "Land", "Battle"]:
+            if t in type_line:
+                return t
+        return "Other"
+
+    other_types = other_df["type_line"].apply(get_main_type).value_counts(normalize=True) * 100
+    all_types   = all_nonland["type_line"].apply(get_main_type).value_counts(normalize=True) * 100
+    type_index  = other_types.index.union(all_types.index)
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    x = range(len(type_index))
+    w = 0.4
+    ax.bar([i - w/2 for i in x], [other_types.get(t, 0) for t in type_index],
+           width=w, color=ACCENT_DARK, alpha=0.85, label='"other" cards')
+    ax.bar([i + w/2 for i in x], [all_types.get(t, 0) for t in type_index],
+           width=w, color="#e08080", alpha=0.7, label="all non-land cards")
+    ax.set_xticks(list(x))
+    ax.set_xticklabels(list(type_index), fontsize=10)
+    ax.legend(fontsize=10, frameon=False)
+    apply_blog_style(ax, title='Card types: "other" vs. all non-land cards',
+                     xlabel="Card type", ylabel="% of cards")
+    ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
+    fig.tight_layout()
+    save(fig, "other_types.png")
+
+    # --- Fig 4: Color breakdown — other vs. all ---
+    def get_color(card_row) -> str:
+        # Use type_line as proxy; actual colors need the raw data
+        return "Unknown"
+
+    # Pull colors from raw data for other cards
+    color_map = {"W": "White", "U": "Blue", "B": "Black", "R": "Red", "G": "Green"}
+
+    def card_color_cat(raw_card: dict) -> str:
+        colors = raw_card.get("colors") or []
+        if len(colors) >= 2:
+            return "Multicolor"
+        if len(colors) == 1:
+            return color_map.get(colors[0], "Colorless")
+        return "Colorless"
+
+    other_color_counts: Counter = Counter()
+    all_color_counts: Counter = Counter()
+    for card in oracle_cards_raw:
+        oid = card.get("oracle_id", "")
+        cat = card_color_cat(card)
+        all_color_counts[cat] += 1
+        if oid in other_ids:
+            other_color_counts[cat] += 1
+
+    color_order = ["White", "Blue", "Black", "Red", "Green", "Multicolor", "Colorless"]
+    color_palette = {
+        "White": "#f5e6c8", "Blue": "#a8c8e8", "Black": "#9a8fa0",
+        "Red": "#e8a090", "Green": "#90c890", "Multicolor": "#e8d080", "Colorless": "#c0c0c0",
+    }
+    o_total = sum(other_color_counts.values()) or 1
+    a_total = sum(all_color_counts.values()) or 1
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    x = range(len(color_order))
+    w = 0.4
+    ax.bar([i - w/2 for i in x],
+           [other_color_counts.get(c, 0) / o_total * 100 for c in color_order],
+           width=w, color=[color_palette[c] for c in color_order],
+           edgecolor=ACCENT_DARK, linewidth=0.8, label='"other" cards')
+    ax.bar([i + w/2 for i in x],
+           [all_color_counts.get(c, 0) / a_total * 100 for c in color_order],
+           width=w, color=[color_palette[c] for c in color_order],
+           edgecolor="#e08080", linewidth=0.8, alpha=0.5, label="all cards")
+    ax.set_xticks(list(x))
+    ax.set_xticklabels(color_order, fontsize=10)
+    ax.legend(fontsize=10, frameon=False)
+    apply_blog_style(ax, title='Color identity: "other" vs. all cards',
+                     xlabel="Color", ylabel="% of cards")
+    ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
+    fig.tight_layout()
+    save(fig, "other_colors.png")
+
+    # --- Fig 5: First-print year — other vs. all ---
+    other_years = other_df[other_df["first_print_year"] < CURRENT_YEAR]["first_print_year"].value_counts().sort_index()
+    all_years   = all_nonland[all_nonland["first_print_year"] < CURRENT_YEAR]["first_print_year"].value_counts().sort_index()
+    other_pct   = (other_years / all_years * 100).dropna()
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    ax1.bar(other_years.index, other_years.values, color=ACCENT_DARK, alpha=0.8, width=0.8)
+    apply_blog_style(ax1, title='Cards in "other" by first-print year', ylabel="Card count")
+    ax2.plot(other_pct.index, _smooth(other_pct), color=ACCENT_DARK, linewidth=2)
+    ax2.fill_between(other_pct.index, _smooth(other_pct), alpha=0.15, color=ACCENT)
+    apply_blog_style(ax2, title='% of each year\'s cards landing in "other"',
+                     xlabel="Year", ylabel="% of year's cards")
+    ax2.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
+    ax2.set_xlim(1992.5, other_pct.index.max() + 0.5)
+    fig.tight_layout()
+    save(fig, "other_by_year.png")
+
+    # Print top trigrams to console for pattern-writing reference
+    print("\nTop trigrams in 'other' oracle text (use these to write new patterns):")
+    for phrase, count in top_trigrams:
+        print(f"  {count:>5}  {phrase}")
+
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 
@@ -701,7 +954,7 @@ def print_summary(df: pd.DataFrame):
 
     print("\nTop oracle-text categories:")
     all_cats: list[str] = [c for cats in df["categories"] for c in cats]
-    for cat, n in Counter(all_cats).most_common(12):
+    for cat, n in Counter(all_cats).most_common(20):
         print(f"  {cat}: {n:,}")
 
 
@@ -744,6 +997,7 @@ def main():
     chart_creep_by_ability_type(df)
     chart_distribution_shift(df)
     output_exemplar_table(df)
+    explore_other_bucket(df, oracle_cards)
     print_summary(df)
 
 
