@@ -4,23 +4,25 @@ MTG ability-to-cost ratio analysis for gatheringdata.blog post:
 
 Two analysis layers:
   1. Keyword layer:  Scryfall's `keywords` array — structured, no NLP needed.
-     Captures named keyword abilities: flying, trample, deathtouch, hexproof, etc.
   2. Semantic layer: Regex patterns against stripped oracle text.
-     Captures oracle-text abilities that aren't named keywords:
-     draw a card, create a token, counter target spell, deal damage, etc.
+     Captures oracle-text abilities that aren't named keywords.
 
 Cost dimensions:
-  - CMC: primary cost axis (Scryfall's computed value; X treated as 0)
-  - x_count: number of X symbols (XX costs 2x as much as X at parity)
+  - CMC: primary cost axis (X treated as 0, matching Scryfall)
+  - x_count: number of X symbols (XX costs 2x as much as X)
   - Oracle costs: equip/activated ability mana costs, additional casting costs
-  - Alternative casting costs (Force of Will pattern): parsed and flagged
+  - Alternative casting costs (Force of Will pattern): flagged for Post 3
 
 Data: Scryfall bulk data, reused from Post 1 cache by default.
+      Classified DataFrame cached to .cache/*.parquet for fast re-runs.
 
-Usage:
-    cd analysis/mtg-card-power
-    uv run python analyze.py
-    uv run python analyze.py --scryfall-cache-dir ../mtg-distributions/.cache
+Subcommands:
+    uv run python analyze.py build                  # fetch + classify → parquet
+    uv run python analyze.py charts                 # parquet → all PNGs
+    uv run python analyze.py charts keywords total  # specific charts only
+    uv run python analyze.py export                 # parquet → CSVs
+    uv run python analyze.py explore-other          # other-bucket diagnostics
+    uv run python analyze.py                        # all of the above
 """
 
 import argparse
@@ -33,15 +35,25 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import pandas as pd
 import requests
+from gatheringdata.charts import (
+    ACCENT,
+    ACCENT_DARK,
+    BORDER,
+    TEXT,
+    TEXT_SECONDARY,
+    apply_blog_style,
+    save,
+    smooth,
+)
 
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
 
-_DEFAULT_OUTPUT_DIR = Path(__file__).parent.parent.parent / "public" / "images" / "mtg-card-power"
+_DEFAULT_OUTPUT_DIR    = Path(__file__).parent.parent.parent / "public" / "images" / "mtg-card-power"
 _DEFAULT_SCRYFALL_CACHE = Path(__file__).parent.parent / "mtg-distributions" / ".cache"
 
-OUTPUT_DIR: Path       # set in main()
+OUTPUT_DIR: Path        # set in main()
 SCRYFALL_CACHE_DIR: Path  # set in main()
 
 LOCAL_CACHE_DIR = Path(__file__).parent / ".cache"
@@ -50,27 +62,15 @@ LOCAL_CACHE_DIR.mkdir(exist_ok=True)
 CURRENT_YEAR = pd.Timestamp.now().year
 EXCLUDED_LAYOUTS = {"token", "emblem", "art_series", "reversible_card"}
 
-# Blog accent colors (matches global.css)
-ACCENT = "#b2d4e5"
-ACCENT_DARK = "#7aafc9"
-TEXT = "#363737"
-TEXT_SECONDARY = "#868787"
-BORDER = "#dddddd"
-
 
 # ---------------------------------------------------------------------------
 # Semantic layer: regex classification
 #
-# Layer 1 (keywords field) captures named keyword abilities:
-#   flying, trample, deathtouch, hexproof, indestructible, ward, etc.
+# Layer 1 (keywords field) captures named keyword abilities.
 # Layer 2 (this section) captures oracle-text abilities that aren't keywords.
-# The two layers don't overlap — we strip keyword names from oracle text
-# before running regex so abilities like "Flying" in oracle text aren't
-# double-counted against the keywords field.
+# We strip keyword names from oracle text before running regex so the two
+# layers don't double-count (e.g. "Flying" listed in oracle text AND keywords).
 # ---------------------------------------------------------------------------
-
-# Each entry: (category_name, list_of_compiled_patterns)
-# A card gets a category if ANY pattern matches its stripped oracle text.
 
 _PATTERNS: list[tuple[str, list[re.Pattern]]] = [
     ("card_advantage", [
@@ -122,7 +122,6 @@ _PATTERNS: list[tuple[str, list[re.Pattern]]] = [
         re.compile(r"from your graveyard", re.I),
         re.compile(r"exile .{0,30} from .{0,20} (?:your |a |the )?graveyard", re.I),
     ]),
-    # disruption split into three distinct categories:
     ("counterspell", [
         re.compile(r"counter target spell", re.I),
         re.compile(r"counter target .{0,40} spell", re.I),
@@ -187,29 +186,25 @@ _PATTERNS: list[tuple[str, list[re.Pattern]]] = [
 def strip_keyword_names(text: str, keywords: list[str]) -> str:
     """
     Remove named keyword strings from oracle text before Layer 2 regex.
-
     Prevents double-counting abilities already captured by the keywords field.
-    E.g., a card with Flying in its keywords field may also have "Flying" at
-    the start of its oracle text — stripping it avoids counting it twice.
     """
     for kw in keywords:
         text = re.sub(rf'\b{re.escape(kw)}\b', '', text, flags=re.I)
-    # Clean up leftover punctuation/whitespace artifacts
     text = re.sub(r',\s*,', ',', text)
     text = re.sub(r'^[\s,;]+|[\s,;]+$', '', text)
     text = re.sub(r'\s{2,}', ' ', text)
     return text.strip()
 
 
-def classify_with_regex(text_after_keyword_strip: str) -> list[str]:
+def classify_with_regex(text: str) -> list[str]:
     """
-    Return ability category tags matched by regex against oracle text.
-    Returns ["other"] if no patterns match but text is non-empty.
-    Returns [] for blank oracle text (e.g. vanilla creatures, lands).
+    Return ability category tags matched against oracle text (post-keyword-strip).
+    Returns ["other"] for non-empty text with no pattern match.
+    Returns [] for blank text (vanilla creatures, lands).
     """
-    if not text_after_keyword_strip.strip():
+    if not text.strip():
         return []
-    matched = [cat for cat, patterns in _PATTERNS if any(p.search(text_after_keyword_strip) for p in patterns)]
+    matched = [cat for cat, patterns in _PATTERNS if any(p.search(text) for p in patterns)]
     return matched if matched else ["other"]
 
 
@@ -217,13 +212,10 @@ def classify_with_regex(text_after_keyword_strip: str) -> list[str]:
 # Mana / oracle cost parsing
 # ---------------------------------------------------------------------------
 
-_REMINDER_RE = re.compile(r'\([^)]+\)')
-_MANA_SYM_RE = re.compile(r'\{([^}]+)\}')
-_ALT_COST_RE = re.compile(
-    r'(?:rather than pay[^,.]*cost|you may (?:cast|play) .{0,40} without paying)',
-    re.I,
-)
-_ADDITIONAL_COST_RE = re.compile(r'[Aa]s an additional cost to cast (?:this spell|it)', re.I)
+_REMINDER_RE    = re.compile(r'\([^)]+\)')
+_MANA_SYM_RE    = re.compile(r'\{([^}]+)\}')
+_ALT_COST_RE    = re.compile(r'(?:rather than pay[^,.]*cost|you may (?:cast|play) .{0,40} without paying)', re.I)
+_ADDITIONAL_RE  = re.compile(r'[Aa]s an additional cost to cast (?:this spell|it)', re.I)
 
 
 def strip_reminder_text(text: str) -> str:
@@ -236,13 +228,11 @@ def _mana_symbol_value(sym: str) -> float:
         return float(sym)
     if sym.upper() in ('X', 'Y', 'Z'):
         return 0.0
-    if '/' in sym:
-        return 1.0  # hybrid / phyrexian
-    return 1.0
+    return 1.0  # colored pip or hybrid
 
 
 def parse_mana_cost_string(mana_cost: str | None) -> tuple[float, int]:
-    """Returns (cmc, x_count). CMC treats X as 0, matching Scryfall's convention."""
+    """Returns (cmc, x_count). CMC treats X as 0, matching Scryfall."""
     if not mana_cost:
         return 0.0, 0
     symbols = _MANA_SYM_RE.findall(mana_cost)
@@ -252,20 +242,19 @@ def parse_mana_cost_string(mana_cost: str | None) -> tuple[float, int]:
 
 
 def parse_activated_ability_mana_costs(oracle_text: str) -> list[float]:
-    """Extract mana values from activated ability cost portions (text before ':' on each line)."""
+    """Extract mana values from activated ability costs (text before ':' on each line)."""
     costs = []
     for line in oracle_text.split('\n'):
         colon_idx = line.find(':')
         if colon_idx == -1 or '{' not in line[:colon_idx]:
             continue
         symbols = _MANA_SYM_RE.findall(line[:colon_idx])
-        mana_sum = sum(_mana_symbol_value(s) for s in symbols if s.strip().upper() not in ('T', 'Q'))
-        costs.append(mana_sum)
+        costs.append(sum(_mana_symbol_value(s) for s in symbols if s.strip().upper() not in ('T', 'Q')))
     return costs
 
 
 # ---------------------------------------------------------------------------
-# Scryfall bulk data (mirrors Post 1 — uses shared cache by default)
+# Scryfall I/O (reuses Post 1 cache by default)
 # ---------------------------------------------------------------------------
 
 def _get_bulk_index() -> list[dict]:
@@ -279,10 +268,8 @@ def _get_bulk_index() -> list[dict]:
 
 
 def _download_to_file(url: str, dest: Path) -> None:
-    resp = requests.get(
-        url, headers={"User-Agent": "gatheringdata-blog-analysis/1.0"},
-        timeout=300, stream=True,
-    )
+    resp = requests.get(url, headers={"User-Agent": "gatheringdata-blog-analysis/1.0"},
+                        timeout=300, stream=True)
     resp.raise_for_status()
     total = 0
     with open(dest, "wb") as f:
@@ -300,14 +287,12 @@ def fetch_bulk_file(bulk_type: str) -> Path:
     entry = next(f for f in index if f["type"] == bulk_type)
     cache_key = entry["updated_at"][:19].replace(":", "-")
 
-    # Check shared Post 1 cache first
     for search_dir in [SCRYFALL_CACHE_DIR, LOCAL_CACHE_DIR]:
         candidate = search_dir / f"{bulk_type}--{cache_key}.json"
         if candidate.exists():
-            print(f"  Cache hit: {candidate}")
+            print(f"  Cache hit: {candidate.name}")
             return candidate
 
-    # Stale — remove old local copies and download fresh
     for stale in LOCAL_CACHE_DIR.glob(f"{bulk_type}--*.json"):
         stale.unlink()
 
@@ -328,8 +313,7 @@ def compute_first_print_years(all_cards_path: Path) -> dict[str, int]:
     first_prints: dict[str, str] = {}
     with open(all_cards_path, "rb") as f:
         for card in ijson.items(f, "item"):
-            oid = card.get("oracle_id")
-            released = card.get("released_at")
+            oid, released = card.get("oracle_id"), card.get("released_at")
             if oid and released:
                 if oid not in first_prints or released < first_prints[oid]:
                     first_prints[oid] = released
@@ -347,7 +331,7 @@ def compute_first_print_years(all_cards_path: Path) -> dict[str, int]:
 
 def _get_oracle_text_and_mana(card: dict) -> tuple[str, str]:
     """Extract oracle text and mana cost, using front face for double-faced cards."""
-    mana_cost = card.get("mana_cost", "") or ""
+    mana_cost   = card.get("mana_cost", "") or ""
     oracle_text = card.get("oracle_text", "") or ""
     faces = card.get("card_faces")
     if faces:
@@ -359,10 +343,7 @@ def _get_oracle_text_and_mana(card: dict) -> tuple[str, str]:
     return oracle_text, mana_cost
 
 
-def build_dataframe(
-    oracle_cards: list[dict],
-    first_print_years: dict[str, int],
-) -> pd.DataFrame:
+def build_dataframe(oracle_cards: list[dict], first_print_years: dict[str, int]) -> pd.DataFrame:
     rows = []
     for card in oracle_cards:
         if card.get("layout") in EXCLUDED_LAYOUTS:
@@ -370,7 +351,7 @@ def build_dataframe(
 
         oracle_id = card.get("oracle_id", "")
         type_line = card.get("type_line", "")
-        is_land = "Land" in type_line and "Artifact" not in type_line
+        is_land   = "Land" in type_line and "Artifact" not in type_line
 
         first_year = first_print_years.get(oracle_id)
         if not first_year:
@@ -384,94 +365,107 @@ def build_dataframe(
         _, x_count = parse_mana_cost_string(mana_cost)
 
         activated_costs = parse_activated_ability_mana_costs(stripped_text)
-        alt_cost = bool(_ALT_COST_RE.search(oracle_text))
-        additional_cost = bool(_ADDITIONAL_COST_RE.search(oracle_text))
+        alt_cost        = bool(_ALT_COST_RE.search(oracle_text))
+        additional_cost = bool(_ADDITIONAL_RE.search(oracle_text))
 
-        # Layer 1: named keyword abilities
-        keywords = card.get("keywords") or []
+        keywords      = card.get("keywords") or []
         keyword_count = len(keywords)
 
-        # Layer 2: oracle-text abilities via regex
-        # Strip keyword names first so Layer 1 and Layer 2 don't overlap
         text_for_regex = strip_keyword_names(stripped_text, keywords)
-        categories = [] if is_land else classify_with_regex(text_for_regex)
+        categories     = [] if is_land else classify_with_regex(text_for_regex)
+
         semantic_count = len([c for c in categories if c != "other"])
-        # "other" counts as 1 only if the card has text we couldn't classify
         if categories == ["other"]:
             semantic_count = 1
 
         total_ability_count = keyword_count + semantic_count
 
         rows.append({
-            "name": card.get("name"),
-            "oracle_id": oracle_id,
-            "first_print_year": first_year,
-            "type_line": type_line,
-            "is_land": is_land,
-            "mana_cost": mana_cost,
-            "cmc": cmc,
-            "x_count": x_count,
-            "has_x": x_count > 0,
-            "has_alt_cost": alt_cost,
+            "name":               card.get("name"),
+            "oracle_id":          oracle_id,
+            "first_print_year":   first_year,
+            "type_line":          type_line,
+            "is_land":            is_land,
+            "mana_cost":          mana_cost,
+            "cmc":                cmc,
+            "x_count":            x_count,
+            "has_x":              x_count > 0,
+            "has_alt_cost":       alt_cost,
             "has_additional_cost": additional_cost,
-            "activated_costs": activated_costs,
-            "keywords": keywords,
-            "keyword_count": keyword_count,
-            "categories": categories,
-            "semantic_count": semantic_count,
+            "activated_costs":    activated_costs,
+            "keywords":           keywords,
+            "keyword_count":      keyword_count,
+            "oracle_text":        oracle_text,        # raw — for display in CSVs
+            "text_for_regex":     text_for_regex,     # stripped+cleaned — for exploration
+            "categories":         categories,
+            "semantic_count":     semantic_count,
             "total_ability_count": total_ability_count,
         })
 
     df = pd.DataFrame(rows)
-    df["keywords_per_cmc"] = df.apply(
-        lambda r: r["keyword_count"] / r["cmc"] if r["cmc"] > 0 else None, axis=1
-    )
-    df["semantic_per_cmc"] = df.apply(
-        lambda r: r["semantic_count"] / r["cmc"] if r["cmc"] > 0 else None, axis=1
-    )
-    df["abilities_per_cmc"] = df.apply(
-        lambda r: r["total_ability_count"] / r["cmc"] if r["cmc"] > 0 else None, axis=1
-    )
+    df["keywords_per_cmc"]  = df.apply(lambda r: r["keyword_count"]      / r["cmc"] if r["cmc"] > 0 else None, axis=1)
+    df["semantic_per_cmc"]  = df.apply(lambda r: r["semantic_count"]      / r["cmc"] if r["cmc"] > 0 else None, axis=1)
+    df["abilities_per_cmc"] = df.apply(lambda r: r["total_ability_count"] / r["cmc"] if r["cmc"] > 0 else None, axis=1)
 
     print(f"DataFrame: {len(df):,} cards, years {df['first_print_year'].min()}–{df['first_print_year'].max()}")
     return df
 
 
 # ---------------------------------------------------------------------------
-# Chart helpers
+# Parquet cache
+#
+# Keyed on the Scryfall oracle_cards file timestamp so the cache auto-invalidates
+# when Scryfall updates. All downstream subcommands load from parquet — no need
+# to re-parse the 37K-entry JSON or re-run classification.
 # ---------------------------------------------------------------------------
 
-def apply_blog_style(ax, title=None, xlabel=None, ylabel=None):
-    ax.set_facecolor("white")
-    ax.figure.set_facecolor("white")
-    for spine in ax.spines.values():
-        spine.set_edgecolor(BORDER)
-    ax.tick_params(colors=TEXT_SECONDARY, labelsize=10)
-    ax.xaxis.label.set_color(TEXT_SECONDARY)
-    ax.yaxis.label.set_color(TEXT_SECONDARY)
-    if title:
-        ax.set_title(title, color=TEXT, fontsize=13, fontweight="bold", pad=12)
-    if xlabel:
-        ax.set_xlabel(xlabel, labelpad=8)
-    if ylabel:
-        ax.set_ylabel(ylabel, labelpad=8)
-    ax.grid(axis="y", color=BORDER, linewidth=0.8, linestyle="-")
-    ax.set_axisbelow(True)
+def _oracle_key_from_path(oracle_path: Path) -> str:
+    """e.g. 'oracle_cards--2026-04-05T21-20-14.json' → '2026-04-05T21-20-14'"""
+    return oracle_path.stem.split("--", 1)[1]
 
 
-def save(fig, filename: str):
-    path = OUTPUT_DIR / filename
-    fig.savefig(path, dpi=150, bbox_inches="tight", facecolor="white")
-    print(f"Saved: {path}")
-    plt.close(fig)
+def _parquet_path(oracle_key: str) -> Path:
+    return LOCAL_CACHE_DIR / f"cards--{oracle_key}.parquet"
 
 
-def _smooth(series: pd.Series, window: int = 3) -> pd.Series:
-    return series.rolling(window, center=True, min_periods=1).mean()
+def _save_df(df: pd.DataFrame, oracle_key: str) -> None:
+    path = _parquet_path(oracle_key)
+    df.to_parquet(path, index=False)
+    print(f"  DataFrame cached → {path.name}")
+
+
+def _load_df(oracle_key: str) -> pd.DataFrame | None:
+    path = _parquet_path(oracle_key)
+    if path.exists():
+        print(f"  DataFrame cache hit: {path.name}")
+        return pd.read_parquet(path)
+    return None
+
+
+def _require_df(oracle_path: Path) -> pd.DataFrame:
+    """
+    Load the classified DataFrame from parquet if available, otherwise build it.
+    Always fast on re-runs; slow only on first run or after a Scryfall update.
+    """
+    oracle_key = _oracle_key_from_path(oracle_path)
+    df = _load_df(oracle_key)
+    if df is not None:
+        return df
+
+    print("No cached DataFrame found — building from Scryfall data...")
+    with open(oracle_path) as f:
+        oracle_cards = json.load(f)
+    print(f"  {len(oracle_cards):,} entries")
+
+    all_cards_path    = fetch_bulk_file("all_cards")
+    first_print_years = compute_first_print_years(all_cards_path)
+    df = build_dataframe(oracle_cards, first_print_years)
+    _save_df(df, oracle_key)
+    return df
 
 
 # ---------------------------------------------------------------------------
-# Chart 1: Keywords per mana value over time
+# Chart functions
 # ---------------------------------------------------------------------------
 
 def chart_keywords_per_cmc(df: pd.DataFrame):
@@ -481,18 +475,18 @@ def chart_keywords_per_cmc(df: pd.DataFrame):
         .reset_index().rename(columns={"first_print_year": "year", "keywords_per_cmc": "mean"})
         .sort_values("year")
     )
-    d["smoothed"] = _smooth(d["mean"])
+    d["smoothed"] = smooth(d["mean"])
 
     fig, ax = plt.subplots(figsize=(9, 4.5))
     ax.fill_between(d["year"], d["mean"], alpha=0.15, color=ACCENT)
-    ax.plot(d["year"], d["mean"], color=ACCENT, linewidth=1, alpha=0.5, label="Annual avg")
+    ax.plot(d["year"], d["mean"],     color=ACCENT,      linewidth=1,   alpha=0.5, label="Annual avg")
     ax.plot(d["year"], d["smoothed"], color=ACCENT_DARK, linewidth=2.5, label="3-year rolling avg")
     ax.legend(fontsize=10, frameon=False)
     apply_blog_style(ax, title="Keywords per mana value, 1993–present",
                      xlabel="Year", ylabel="Avg keyword count ÷ CMC")
     ax.set_xlim(1992.5, d["year"].max() + 0.5)
     fig.tight_layout()
-    save(fig, "keywords_per_cmc.png")
+    save(fig, OUTPUT_DIR / "keywords_per_cmc.png")
 
     print("\nKeywords per CMC (selected years):")
     for yr in [1993, 2000, 2010, 2020, CURRENT_YEAR - 1]:
@@ -501,10 +495,6 @@ def chart_keywords_per_cmc(df: pd.DataFrame):
             print(f"  {yr}: {row['mean'].values[0]:.3f}")
 
 
-# ---------------------------------------------------------------------------
-# Chart 2: Semantic ability categories per mana value over time
-# ---------------------------------------------------------------------------
-
 def chart_semantic_per_cmc(df: pd.DataFrame):
     d = (
         df[~df["is_land"] & (df["cmc"] > 0) & (df["first_print_year"] < CURRENT_YEAR)]
@@ -512,23 +502,19 @@ def chart_semantic_per_cmc(df: pd.DataFrame):
         .reset_index().rename(columns={"first_print_year": "year", "semantic_per_cmc": "mean"})
         .sort_values("year")
     )
-    d["smoothed"] = _smooth(d["mean"])
+    d["smoothed"] = smooth(d["mean"])
 
     fig, ax = plt.subplots(figsize=(9, 4.5))
     ax.fill_between(d["year"], d["mean"], alpha=0.15, color=ACCENT)
-    ax.plot(d["year"], d["mean"], color=ACCENT, linewidth=1, alpha=0.5, label="Annual avg")
+    ax.plot(d["year"], d["mean"],     color=ACCENT,      linewidth=1,   alpha=0.5, label="Annual avg")
     ax.plot(d["year"], d["smoothed"], color=ACCENT_DARK, linewidth=2.5, label="3-year rolling avg")
     ax.legend(fontsize=10, frameon=False)
     apply_blog_style(ax, title="Oracle-text ability categories per mana value, 1993–present",
                      xlabel="Year", ylabel="Avg category count ÷ CMC")
     ax.set_xlim(1992.5, d["year"].max() + 0.5)
     fig.tight_layout()
-    save(fig, "semantic_per_cmc.png")
+    save(fig, OUTPUT_DIR / "semantic_per_cmc.png")
 
-
-# ---------------------------------------------------------------------------
-# Chart 3: Total abilities per mana value — the headline chart
-# ---------------------------------------------------------------------------
 
 def chart_total_abilities_per_cmc(df: pd.DataFrame):
     base = df[~df["is_land"] & (df["cmc"] > 0) & ~df["has_x"] & (df["first_print_year"] < CURRENT_YEAR)]
@@ -538,7 +524,7 @@ def chart_total_abilities_per_cmc(df: pd.DataFrame):
         .reset_index().rename(columns={"first_print_year": "year", "abilities_per_cmc": "mean"})
         .sort_values("year")
     )
-    overall["smoothed"] = _smooth(overall["mean"])
+    overall["smoothed"] = smooth(overall["mean"])
 
     cmc_colors = {2: "#e08080", 3: "#80a0e0", 4: "#80c080"}
     cmc_data = {}
@@ -549,13 +535,13 @@ def chart_total_abilities_per_cmc(df: pd.DataFrame):
             .reset_index().rename(columns={"first_print_year": "year", "total_ability_count": "mean"})
             .sort_values("year")
         )
-        d["smoothed"] = _smooth(d["mean"])
+        d["smoothed"] = smooth(d["mean"])
         cmc_data[cmc_val] = d
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
     ax1.fill_between(overall["year"], overall["mean"], alpha=0.15, color=ACCENT)
-    ax1.plot(overall["year"], overall["mean"], color=ACCENT, linewidth=1, alpha=0.5)
+    ax1.plot(overall["year"], overall["mean"],     color=ACCENT,      linewidth=1, alpha=0.5)
     ax1.plot(overall["year"], overall["smoothed"], color=ACCENT_DARK, linewidth=2.5)
     apply_blog_style(ax1, title="Total abilities per mana value (all cards)",
                      xlabel="Year", ylabel="Avg (keywords + categories) ÷ CMC")
@@ -570,7 +556,7 @@ def chart_total_abilities_per_cmc(df: pd.DataFrame):
     ax2.set_xlim(1992.5, max(d["year"].max() for d in cmc_data.values()) + 0.5)
 
     fig.tight_layout()
-    save(fig, "total_abilities_per_cmc.png")
+    save(fig, OUTPUT_DIR / "total_abilities_per_cmc.png")
 
     print("\nTotal ability count at CMC=3 (selected years):")
     d3 = cmc_data[3]
@@ -580,19 +566,10 @@ def chart_total_abilities_per_cmc(df: pd.DataFrame):
             print(f"  {yr}: {row['smoothed'].values[0]:.2f}")
 
 
-# ---------------------------------------------------------------------------
-# Chart 4: Power creep by ability type
-# ---------------------------------------------------------------------------
-
 def chart_creep_by_ability_type(df: pd.DataFrame):
-    """
-    Small multiples: for each oracle-text ability category, how has the average
-    CMC of cards carrying that ability changed over time?
-    Downward trend = that ability type got cheaper = power creep.
-    """
     base = df[
         ~df["is_land"] & (df["cmc"] > 0) & (df["first_print_year"] < CURRENT_YEAR)
-        & df["categories"].apply(lambda c: bool(c) and c != ["other"])
+        & df["categories"].apply(lambda c: len(c) > 0 and list(c) != ["other"])
     ].copy()
 
     records = [
@@ -605,25 +582,17 @@ def chart_creep_by_ability_type(df: pd.DataFrame):
         print("No data for creep-by-ability-type chart")
         return
 
-    long_df = pd.DataFrame(records)
-    top_cats = (
-        long_df.groupby("category").size().sort_values(ascending=False)
-        .head(12).index.tolist()
-    )
+    long_df  = pd.DataFrame(records)
+    top_cats = long_df.groupby("category").size().sort_values(ascending=False).head(12).index.tolist()
 
-    nrows, ncols = 3, 4
-    fig, axes = plt.subplots(nrows, ncols, figsize=(16, 9), sharex=True)
-    axes_flat = axes.flatten()
-
+    fig, axes = plt.subplots(3, 4, figsize=(16, 9), sharex=True)
     for i, cat in enumerate(top_cats):
-        ax = axes_flat[i]
-        d = (
-            long_df[long_df["category"] == cat]
-            .groupby("year")["cmc"].mean().reset_index().sort_values("year")
-        )
-        d["smoothed"] = _smooth(d["cmc"])
+        ax = axes.flatten()[i]
+        d = (long_df[long_df["category"] == cat]
+             .groupby("year")["cmc"].mean().reset_index().sort_values("year"))
+        d["smoothed"] = smooth(d["cmc"])
         ax.fill_between(d["year"], d["cmc"], alpha=0.1, color=ACCENT)
-        ax.plot(d["year"], d["cmc"], color=ACCENT, linewidth=0.8, alpha=0.4)
+        ax.plot(d["year"], d["cmc"],      color=ACCENT,      linewidth=0.8, alpha=0.4)
         ax.plot(d["year"], d["smoothed"], color=ACCENT_DARK, linewidth=2)
         ax.set_title(cat, color=TEXT, fontsize=10, fontweight="bold")
         ax.set_facecolor("white")
@@ -634,71 +603,65 @@ def chart_creep_by_ability_type(df: pd.DataFrame):
         ax.set_axisbelow(True)
         ax.set_xlim(1992.5, d["year"].max() + 0.5)
 
-    for j in range(len(top_cats), len(axes_flat)):
-        axes_flat[j].set_visible(False)
+    for j in range(len(top_cats), 12):
+        axes.flatten()[j].set_visible(False)
 
     fig.suptitle(
         "Average CMC of cards carrying each oracle-text ability, 1993–present\n"
-        "(downward trend = that ability type got cheaper over time)",
+        "(downward trend = ability got cheaper over time)",
         color=TEXT, fontsize=12, fontweight="bold", y=1.01,
     )
-    fig.text(0.5, -0.01, "Year", ha="center", color=TEXT_SECONDARY, fontsize=11)
-    fig.text(-0.01, 0.5, "Average CMC", va="center", rotation="vertical",
-             color=TEXT_SECONDARY, fontsize=11)
+    fig.text(0.5, -0.01, "Year",       ha="center", color=TEXT_SECONDARY, fontsize=11)
+    fig.text(-0.01, 0.5, "Average CMC", va="center", rotation="vertical", color=TEXT_SECONDARY, fontsize=11)
     fig.tight_layout()
-    save(fig, "creep_by_ability_type.png")
+    save(fig, OUTPUT_DIR / "creep_by_ability_type.png")
 
-    print("\nTop oracle-text categories by card count:")
-    for cat, count in long_df.groupby("category").size().sort_values(ascending=False).head(12).items():
-        print(f"  {cat}: {count:,}")
-
-
-# ---------------------------------------------------------------------------
-# Chart 5: Distribution shift at fixed CMC
-# ---------------------------------------------------------------------------
 
 def chart_distribution_shift(df: pd.DataFrame):
-    """
-    For CMC=2 and CMC=3 cards, compare the distribution of total ability counts
-    in 1993–2000 vs 2015–2025. Are newer cards at the same cost more ability-rich?
-    """
-    base = df[~df["is_land"] & df["cmc"].isin([2.0, 3.0]) & ~df["has_x"] & df["first_print_year"].notna()]
+    base   = df[~df["is_land"] & df["cmc"].isin([2.0, 3.0]) & ~df["has_x"] & df["first_print_year"].notna()]
     early  = base[base["first_print_year"].between(1993, 2000)]
     recent = base[base["first_print_year"].between(2015, 2025)]
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-
     for i, cmc_val in enumerate([2, 3]):
         ax = axes[i]
-        e = early[early["cmc"] == cmc_val]["total_ability_count"]
-        r = recent[recent["cmc"] == cmc_val]["total_ability_count"]
+        e  = early[early["cmc"]  == cmc_val]["total_ability_count"]
+        r  = recent[recent["cmc"] == cmc_val]["total_ability_count"]
         max_val = max(e.max() if len(e) else 0, r.max() if len(r) else 0)
         bins = range(0, int(max_val) + 3)
-
         ax.hist(e, bins=bins, density=True, alpha=0.65, color=ACCENT_DARK,
                 label=f"1993–2000 (n={len(e):,})", width=0.4, align="left")
         ax.hist(r, bins=bins, density=True, alpha=0.65, color="#e08080",
                 label=f"2015–2025 (n={len(r):,})", width=0.4, align="mid")
         ax.axvline(e.mean(), color=ACCENT_DARK, linewidth=1.5, linestyle="--", alpha=0.9)
-        ax.axvline(r.mean(), color="#e08080", linewidth=1.5, linestyle="--", alpha=0.9)
+        ax.axvline(r.mean(), color="#e08080",   linewidth=1.5, linestyle="--", alpha=0.9)
         ax.legend(fontsize=9, frameon=False)
         apply_blog_style(ax, title=f"CMC = {cmc_val}: ability count distribution by era",
                          xlabel="Total ability count", ylabel="Density")
-
         print(f"\nCMC={cmc_val} distribution shift:")
         print(f"  1993–2000: mean={e.mean():.2f}, median={e.median():.1f} (n={len(e):,})")
         print(f"  2015–2025: mean={r.mean():.2f}, median={r.median():.1f} (n={len(r):,})")
 
     fig.tight_layout()
-    save(fig, "distribution_shift.png")
+    save(fig, OUTPUT_DIR / "distribution_shift.png")
+
+
+# Lookup table for chart subcommand
+_CHART_FNS: dict[str, callable] = {
+    "keywords":     chart_keywords_per_cmc,
+    "semantic":     chart_semantic_per_cmc,
+    "total":        chart_total_abilities_per_cmc,
+    "creep":        chart_creep_by_ability_type,
+    "distribution": chart_distribution_shift,
+}
 
 
 # ---------------------------------------------------------------------------
-# Exemplar output
+# Export functions
 # ---------------------------------------------------------------------------
 
 EXEMPLAR_PAIRS = [
-    ("Lightning Bolt",     "Shock",             "Direct damage: same cost, less effect over time"),
+    ("Lightning Bolt",     "Shock",             "Direct damage: same cost, less effect"),
     ("Counterspell",       "Mana Leak",          "Disruption: similar effect, lower cost"),
     ("Serra Angel",        "Baneslayer Angel",   "Combat: same cost (CMC 5), far more abilities"),
     ("Terror",             "Go for the Throat",  "Removal: same cost, fewer restrictions"),
@@ -707,43 +670,49 @@ EXEMPLAR_PAIRS = [
     ("Wrath of God",       "Day of Judgment",    "Mass removal: same CMC, same effect"),
     ("Ancestral Recall",   "Ponder",             "Card advantage: different cost-to-draw ratio"),
 ]
-EXEMPLAR_NAMES = {name for pair in EXEMPLAR_PAIRS for name in pair[:2]}
+_EXEMPLAR_NAMES = {name for pair in EXEMPLAR_PAIRS for name in pair[:2]}
 
 
-def output_exemplar_table(df: pd.DataFrame):
-    cols = ["name", "first_print_year", "cmc", "x_count", "keywords",
-            "keyword_count", "categories", "semantic_count", "total_ability_count"]
-    exemplars = df[df["name"].isin(EXEMPLAR_NAMES)][cols].copy()
-    exemplars["keywords"]   = exemplars["keywords"].apply(lambda x: ", ".join(x) if x else "")
-    exemplars["categories"] = exemplars["categories"].apply(lambda x: ", ".join(x) if x else "")
-    exemplars = exemplars.sort_values("name")
-
-    csv_path = OUTPUT_DIR / "exemplar_profiles.csv"
-    exemplars.to_csv(csv_path, index=False)
-    print(f"\nExemplar profiles → {csv_path}")
-    print(exemplars.to_string(index=False))
+def export_exemplar_table(df: pd.DataFrame):
+    cols = ["name", "first_print_year", "cmc", "x_count",
+            "keywords", "keyword_count", "categories", "semantic_count", "total_ability_count"]
+    ex = df[df["name"].isin(_EXEMPLAR_NAMES)][cols].copy()
+    ex["keywords"]   = ex["keywords"].apply(lambda x: ", ".join(x) if len(x) > 0 else "")
+    ex["categories"] = ex["categories"].apply(lambda x: ", ".join(x) if len(x) > 0 else "")
+    ex = ex.sort_values("name")
+    path = OUTPUT_DIR / "exemplar_profiles.csv"
+    ex.to_csv(path, index=False)
+    print(f"\nExemplar profiles → {path}")
 
     print("\nExemplar pairs (Δ CMC, Δ abilities):")
     for early_name, late_name, theme in EXEMPLAR_PAIRS:
-        e = exemplars[exemplars["name"] == early_name]
-        l = exemplars[exemplars["name"] == late_name]
+        e = ex[ex["name"] == early_name]
+        l = ex[ex["name"] == late_name]
         if e.empty or l.empty:
             print(f"  {theme}: card not found")
             continue
         er, lr = e.iloc[0], l.iloc[0]
         print(f"  {theme}")
-        print(f"    {er['name']} ({int(er['first_print_year'])}, CMC={er['cmc']:.0f}, "
-              f"abilities={int(er['total_ability_count'])})")
-        print(f"    {lr['name']} ({int(lr['first_print_year'])}, CMC={lr['cmc']:.0f}, "
-              f"abilities={int(lr['total_ability_count'])})")
+        print(f"    {er['name']} ({int(er['first_print_year'])}, CMC={er['cmc']:.0f}, abilities={int(er['total_ability_count'])})")
+        print(f"    {lr['name']} ({int(lr['first_print_year'])}, CMC={lr['cmc']:.0f}, abilities={int(lr['total_ability_count'])})")
         print(f"    Δ CMC={lr['cmc']-er['cmc']:+.0f}, Δ abilities={int(lr['total_ability_count'])-int(er['total_ability_count']):+d}")
 
 
+def export_dataset_csv(df: pd.DataFrame):
+    """Full classified dataset as CSV — one row per card."""
+    out = df.copy()
+    out["keywords"]        = out["keywords"].apply(lambda x: ", ".join(x) if len(x) > 0 else "")
+    out["categories"]      = out["categories"].apply(lambda x: ", ".join(x) if len(x) > 0 else "")
+    out["activated_costs"] = out["activated_costs"].apply(lambda x: ", ".join(str(c) for c in x) if len(x) > 0 else "")
+    path = OUTPUT_DIR / "cards_classified.csv"
+    out.drop(columns=["text_for_regex"]).to_csv(path, index=False)
+    print(f"\nFull dataset → {path} ({len(out):,} rows)")
+
+
 # ---------------------------------------------------------------------------
-# "Other" bucket exploration
+# Other-bucket exploration
 # ---------------------------------------------------------------------------
 
-# Words to ignore in the word cloud / phrase analysis
 _STOPWORDS = {
     "a", "an", "the", "of", "to", "in", "is", "it", "its", "that", "this",
     "and", "or", "you", "your", "may", "not", "no", "at", "on", "by", "be",
@@ -763,48 +732,29 @@ def _tokenize(text: str) -> list[str]:
     return [w for w in re.findall(r"[a-z']+", text.lower()) if w not in _STOPWORDS and len(w) > 2]
 
 
-def explore_other_bucket(df: pd.DataFrame, oracle_cards_raw: list[dict]):
+def explore_other_bucket(df: pd.DataFrame):
     """
-    Diagnostic charts for cards landing in the 'other' category.
-    Goal: understand what abilities we're not capturing so we can improve patterns.
+    Diagnostic charts and CSV for cards landing in the 'other' category.
+    Uses oracle_text and text_for_regex columns stored in the DataFrame —
+    no need to reload the Scryfall JSON.
     """
     from collections import Counter
     from wordcloud import WordCloud
 
-    other_ids = set(
-        df[(df["categories"].apply(lambda c: c == ["other"])) & ~df["is_land"]]["oracle_id"]
-    )
-    other_df = df[df["oracle_id"].isin(other_ids)].copy()
+    other_df  = df[(df["categories"].apply(lambda c: list(c) == ["other"])) & ~df["is_land"]]
     all_nonland = df[~df["is_land"] & (df["cmc"] > 0)]
-
     print(f"\n--- Other bucket: {len(other_df):,} cards ({len(other_df)/len(all_nonland)*100:.0f}% of non-land) ---")
 
-    # Pull oracle text for other cards (after keyword stripping, use raw stripped text)
-    id_to_raw = {c.get("oracle_id"): c for c in oracle_cards_raw}
-    other_texts = []
-    for oid in other_ids:
-        card = id_to_raw.get(oid)
-        if not card:
-            continue
-        text, _ = _get_oracle_text_and_mana(card)
-        stripped = strip_reminder_text(text)
-        kws = card.get("keywords") or []
-        cleaned = strip_keyword_names(stripped, kws)
-        if cleaned.strip():
-            other_texts.append(cleaned)
+    texts      = other_df["text_for_regex"].dropna().tolist()
+    all_words  = _tokenize(" ".join(texts))
+    word_freq  = Counter(all_words)
 
-    all_other_text = " ".join(other_texts)
-    all_words = _tokenize(all_other_text)
-    word_freq = Counter(all_words)
-
-    # --- Trigrams (most actionable for pattern-writing) ---
-    all_trigrams = Counter()
-    for text in other_texts:
-        words = _tokenize(text)
-        all_trigrams.update(_ngrams(words, 3))
+    all_trigrams: Counter = Counter()
+    for text in texts:
+        all_trigrams.update(_ngrams(_tokenize(text), 3))
     top_trigrams = all_trigrams.most_common(30)
 
-    # --- Fig 1: Top trigrams bar chart ---
+    # --- Top trigrams bar chart ---
     fig, ax = plt.subplots(figsize=(10, 8))
     phrases, counts = zip(*top_trigrams) if top_trigrams else ([], [])
     y = range(len(phrases))
@@ -812,109 +762,85 @@ def explore_other_bucket(df: pd.DataFrame, oracle_cards_raw: list[dict]):
     ax.set_yticks(list(y))
     ax.set_yticklabels(list(phrases), fontsize=9)
     ax.invert_yaxis()
-    apply_blog_style(ax, title='Most common 3-word phrases in "other" oracle text',
-                     xlabel="Occurrences", ylabel="")
+    apply_blog_style(ax, title='Most common 3-word phrases in "other" oracle text', xlabel="Occurrences")
     ax.yaxis.label.set_visible(False)
     fig.tight_layout()
-    save(fig, "other_top_trigrams.png")
+    save(fig, OUTPUT_DIR / "other_top_trigrams.png")
 
-    # --- Fig 2: Word cloud ---
+    # --- Word cloud ---
     if word_freq:
-        wc = WordCloud(
-            width=1200, height=600, background_color="white",
-            colormap="Blues", max_words=150,
-            prefer_horizontal=0.9,
-        ).generate_from_frequencies(word_freq)
+        wc = WordCloud(width=1200, height=600, background_color="white",
+                       colormap="Blues", max_words=150, prefer_horizontal=0.9
+                       ).generate_from_frequencies(word_freq)
         fig, ax = plt.subplots(figsize=(12, 6))
         ax.imshow(wc, interpolation="bilinear")
         ax.axis("off")
-        ax.set_title('Word cloud: "other" oracle text', color=TEXT,
-                     fontsize=13, fontweight="bold", pad=12)
+        ax.set_title('Word cloud: "other" oracle text', color=TEXT, fontsize=13, fontweight="bold", pad=12)
         fig.tight_layout()
-        save(fig, "other_word_cloud.png")
+        save(fig, OUTPUT_DIR / "other_word_cloud.png")
 
-    # --- Fig 3: Card type breakdown — other vs. all ---
-    def get_main_type(type_line: str) -> str:
-        for t in ["Creature", "Instant", "Sorcery", "Enchantment", "Artifact",
-                  "Planeswalker", "Land", "Battle"]:
+    # --- Card type breakdown ---
+    def _main_type(type_line: str) -> str:
+        for t in ["Creature", "Instant", "Sorcery", "Enchantment", "Artifact", "Planeswalker", "Battle"]:
             if t in type_line:
                 return t
         return "Other"
 
-    other_types = other_df["type_line"].apply(get_main_type).value_counts(normalize=True) * 100
-    all_types   = all_nonland["type_line"].apply(get_main_type).value_counts(normalize=True) * 100
+    other_types = other_df["type_line"].apply(_main_type).value_counts(normalize=True) * 100
+    all_types   = all_nonland["type_line"].apply(_main_type).value_counts(normalize=True) * 100
     type_index  = other_types.index.union(all_types.index)
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    x = range(len(type_index))
-    w = 0.4
+    x, w = range(len(type_index)), 0.4
     ax.bar([i - w/2 for i in x], [other_types.get(t, 0) for t in type_index],
            width=w, color=ACCENT_DARK, alpha=0.85, label='"other" cards')
     ax.bar([i + w/2 for i in x], [all_types.get(t, 0) for t in type_index],
-           width=w, color="#e08080", alpha=0.7, label="all non-land cards")
+           width=w, color="#e08080", alpha=0.7, label="all non-land")
     ax.set_xticks(list(x))
     ax.set_xticklabels(list(type_index), fontsize=10)
     ax.legend(fontsize=10, frameon=False)
-    apply_blog_style(ax, title='Card types: "other" vs. all non-land cards',
-                     xlabel="Card type", ylabel="% of cards")
+    apply_blog_style(ax, title='Card types: "other" vs. all non-land', xlabel="Card type", ylabel="% of cards")
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
     fig.tight_layout()
-    save(fig, "other_types.png")
+    save(fig, OUTPUT_DIR / "other_types.png")
 
-    # --- Fig 4: Color breakdown — other vs. all ---
-    def get_color(card_row) -> str:
-        # Use type_line as proxy; actual colors need the raw data
-        return "Unknown"
-
-    # Pull colors from raw data for other cards
-    color_map = {"W": "White", "U": "Blue", "B": "Black", "R": "Red", "G": "Green"}
-
-    def card_color_cat(raw_card: dict) -> str:
-        colors = raw_card.get("colors") or []
-        if len(colors) >= 2:
+    # --- Color breakdown (from type_line proxy via colors in df if stored, else skip) ---
+    # oracle_text starts with color indicator — use mana_cost as proxy instead
+    def _color_cat(mana_cost: str) -> str:
+        if not mana_cost:
+            return "Colorless"
+        pips = set(re.findall(r'\{([WUBRG])\}', mana_cost))
+        if len(pips) >= 2:
             return "Multicolor"
-        if len(colors) == 1:
-            return color_map.get(colors[0], "Colorless")
+        if len(pips) == 1:
+            return {"W": "White", "U": "Blue", "B": "Black", "R": "Red", "G": "Green"}[next(iter(pips))]
         return "Colorless"
-
-    other_color_counts: Counter = Counter()
-    all_color_counts: Counter = Counter()
-    for card in oracle_cards_raw:
-        oid = card.get("oracle_id", "")
-        cat = card_color_cat(card)
-        all_color_counts[cat] += 1
-        if oid in other_ids:
-            other_color_counts[cat] += 1
 
     color_order = ["White", "Blue", "Black", "Red", "Green", "Multicolor", "Colorless"]
     color_palette = {
         "White": "#f5e6c8", "Blue": "#a8c8e8", "Black": "#9a8fa0",
         "Red": "#e8a090", "Green": "#90c890", "Multicolor": "#e8d080", "Colorless": "#c0c0c0",
     }
-    o_total = sum(other_color_counts.values()) or 1
-    a_total = sum(all_color_counts.values()) or 1
+    other_colors = other_df["mana_cost"].apply(_color_cat).value_counts(normalize=True) * 100
+    all_colors   = all_nonland["mana_cost"].apply(_color_cat).value_counts(normalize=True) * 100
 
     fig, ax = plt.subplots(figsize=(10, 5))
     x = range(len(color_order))
-    w = 0.4
-    ax.bar([i - w/2 for i in x],
-           [other_color_counts.get(c, 0) / o_total * 100 for c in color_order],
+    ax.bar([i - w/2 for i in x], [other_colors.get(c, 0) for c in color_order],
            width=w, color=[color_palette[c] for c in color_order],
            edgecolor=ACCENT_DARK, linewidth=0.8, label='"other" cards')
-    ax.bar([i + w/2 for i in x],
-           [all_color_counts.get(c, 0) / a_total * 100 for c in color_order],
+    ax.bar([i + w/2 for i in x], [all_colors.get(c, 0) for c in color_order],
            width=w, color=[color_palette[c] for c in color_order],
            edgecolor="#e08080", linewidth=0.8, alpha=0.5, label="all cards")
     ax.set_xticks(list(x))
     ax.set_xticklabels(color_order, fontsize=10)
     ax.legend(fontsize=10, frameon=False)
-    apply_blog_style(ax, title='Color identity: "other" vs. all cards',
-                     xlabel="Color", ylabel="% of cards")
+    apply_blog_style(ax, title='Color identity: "other" vs. all cards', xlabel="Color", ylabel="% of cards")
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
     fig.tight_layout()
-    save(fig, "other_colors.png")
+    save(fig, OUTPUT_DIR / "other_colors.png")
 
-    # --- Fig 5: First-print year — other vs. all ---
+    # --- Year distribution ---
     other_years = other_df[other_df["first_print_year"] < CURRENT_YEAR]["first_print_year"].value_counts().sort_index()
     all_years   = all_nonland[all_nonland["first_print_year"] < CURRENT_YEAR]["first_print_year"].value_counts().sort_index()
     other_pct   = (other_years / all_years * 100).dropna()
@@ -922,19 +848,33 @@ def explore_other_bucket(df: pd.DataFrame, oracle_cards_raw: list[dict]):
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
     ax1.bar(other_years.index, other_years.values, color=ACCENT_DARK, alpha=0.8, width=0.8)
     apply_blog_style(ax1, title='Cards in "other" by first-print year', ylabel="Card count")
-    ax2.plot(other_pct.index, _smooth(other_pct), color=ACCENT_DARK, linewidth=2)
-    ax2.fill_between(other_pct.index, _smooth(other_pct), alpha=0.15, color=ACCENT)
-    apply_blog_style(ax2, title='% of each year\'s cards landing in "other"',
-                     xlabel="Year", ylabel="% of year's cards")
+    ax2.plot(other_pct.index, smooth(other_pct), color=ACCENT_DARK, linewidth=2)
+    ax2.fill_between(other_pct.index, smooth(other_pct), alpha=0.15, color=ACCENT)
+    apply_blog_style(ax2, title='% of each year\'s cards landing in "other"', xlabel="Year", ylabel="% of year's cards")
     ax2.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: f"{v:.0f}%"))
     ax2.set_xlim(1992.5, other_pct.index.max() + 0.5)
     fig.tight_layout()
-    save(fig, "other_by_year.png")
+    save(fig, OUTPUT_DIR / "other_by_year.png")
 
-    # Print top trigrams to console for pattern-writing reference
-    print("\nTop trigrams in 'other' oracle text (use these to write new patterns):")
+    # --- Trigram console output ---
+    print("\nTop trigrams in 'other' oracle text:")
     for phrase, count in top_trigrams:
         print(f"  {count:>5}  {phrase}")
+
+    # --- Trigram CSV: one row per (card, trigram) ---
+    rows = []
+    for _, row in other_df.iterrows():
+        trigrams = _ngrams(_tokenize(row["text_for_regex"] or ""), 3)
+        if not trigrams:
+            rows.append({"name": row["name"], "oracle_text": row["oracle_text"], "trigram": ""})
+        else:
+            for tg in trigrams:
+                rows.append({"name": row["name"], "oracle_text": row["oracle_text"], "trigram": tg})
+
+    csv_df = pd.DataFrame(rows).sort_values(["trigram", "name"])
+    path   = OUTPUT_DIR / "other_bucket_trigrams.csv"
+    csv_df.to_csv(path, index=False)
+    print(f"\nOther-bucket CSV → {path} ({len(csv_df):,} rows, {csv_df['name'].nunique():,} unique cards)")
 
 
 # ---------------------------------------------------------------------------
@@ -946,12 +886,11 @@ def print_summary(df: pd.DataFrame):
     print("\n--- Summary ---")
     nl = df[~df["is_land"] & (df["cmc"] > 0)]
     print(f"Total cards: {len(df):,}  |  Non-land, non-zero-CMC: {len(nl):,}")
-    print(f"  With ≥1 keyword:       {(nl['keyword_count'] > 0).sum():,} ({(nl['keyword_count'] > 0).mean()*100:.0f}%)")
+    print(f"  With ≥1 keyword:         {(nl['keyword_count'] > 0).sum():,} ({(nl['keyword_count'] > 0).mean()*100:.0f}%)")
     print(f"  With ≥1 oracle-text cat: {(nl['semantic_count'] > 0).sum():,} ({(nl['semantic_count'] > 0).mean()*100:.0f}%)")
-    print(f"  Has X in cost:         {nl['has_x'].sum():,}")
-    print(f"  Has alt cost:          {nl['has_alt_cost'].sum():,}")
-    print(f"  Has additional cost:   {nl['has_additional_cost'].sum():,}")
-
+    print(f"  Has X in cost:           {nl['has_x'].sum():,}")
+    print(f"  Has alt cost:            {nl['has_alt_cost'].sum():,}")
+    print(f"  Has additional cost:     {nl['has_additional_cost'].sum():,}")
     print("\nTop oracle-text categories:")
     all_cats: list[str] = [c for cats in df["categories"] for c in cats]
     for cat, n in Counter(all_cats).most_common(20):
@@ -959,46 +898,77 @@ def print_summary(df: pd.DataFrame):
 
 
 # ---------------------------------------------------------------------------
-# Main
+# CLI — subcommands
 # ---------------------------------------------------------------------------
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="MTG ability-to-cost ratio analysis")
-    p.add_argument("--output-dir", type=Path, default=_DEFAULT_OUTPUT_DIR)
+    p = argparse.ArgumentParser(
+        description="MTG ability-to-cost ratio analysis",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+subcommands:
+  build            fetch Scryfall data, classify, cache DataFrame to parquet
+  charts [names]   generate charts (all by default; names: keywords semantic total creep distribution)
+  export           export full classified dataset + exemplar profiles as CSV
+  explore-other    other-bucket diagnostic charts and trigram CSV
+  (none)           run all of the above
+        """,
+    )
+    p.add_argument("--output-dir",        type=Path, default=_DEFAULT_OUTPUT_DIR)
     p.add_argument("--scryfall-cache-dir", type=Path, default=_DEFAULT_SCRYFALL_CACHE)
+
+    sub = p.add_subparsers(dest="command")
+    sub.add_parser("build", help="Warm the parquet cache")
+
+    charts_p = sub.add_parser("charts", help="Generate charts")
+    charts_p.add_argument("names", nargs="*", choices=list(_CHART_FNS), metavar="name",
+                          help=f"Chart names: {', '.join(_CHART_FNS)} (default: all)")
+
+    sub.add_parser("export",        help="Export CSVs")
+    sub.add_parser("explore-other", help="Other-bucket diagnostics")
+
     return p.parse_args()
 
 
 def main():
     global OUTPUT_DIR, SCRYFALL_CACHE_DIR
     args = parse_args()
+
     OUTPUT_DIR = args.output_dir
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     SCRYFALL_CACHE_DIR = args.scryfall_cache_dir
     if not SCRYFALL_CACHE_DIR.exists():
         print(f"  Scryfall cache dir not found ({SCRYFALL_CACHE_DIR}); will download fresh")
         SCRYFALL_CACHE_DIR = LOCAL_CACHE_DIR
 
     oracle_path = fetch_bulk_file("oracle_cards")
-    print("Loading oracle_cards...")
-    with open(oracle_path) as f:
-        oracle_cards: list[dict] = json.load(f)
-    print(f"  {len(oracle_cards):,} entries")
+    df = _require_df(oracle_path)
 
-    all_cards_path = fetch_bulk_file("all_cards")
-    first_print_years = compute_first_print_years(all_cards_path)
+    command = args.command
 
-    df = build_dataframe(oracle_cards, first_print_years)
+    if command == "build":
+        print_summary(df)
 
-    print("\nGenerating charts...")
-    chart_keywords_per_cmc(df)
-    chart_semantic_per_cmc(df)
-    chart_total_abilities_per_cmc(df)
-    chart_creep_by_ability_type(df)
-    chart_distribution_shift(df)
-    output_exemplar_table(df)
-    explore_other_bucket(df, oracle_cards)
-    print_summary(df)
+    elif command == "charts":
+        names = args.names or list(_CHART_FNS)
+        for name in names:
+            _CHART_FNS[name](df)
+
+    elif command == "export":
+        export_exemplar_table(df)
+        export_dataset_csv(df)
+
+    elif command == "explore-other":
+        explore_other_bucket(df)
+
+    else:  # no subcommand → run everything
+        for fn in _CHART_FNS.values():
+            fn(df)
+        export_exemplar_table(df)
+        export_dataset_csv(df)
+        explore_other_bucket(df)
+        print_summary(df)
 
 
 if __name__ == "__main__":

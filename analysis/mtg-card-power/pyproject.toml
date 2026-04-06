@@ -4,9 +4,14 @@ version = "0.1.0"
 description = "Analysis for 'What Does a Mana Cost Buy You?' — MTG ability-to-cost ratio and power creep"
 requires-python = ">=3.11"
 dependencies = [
+    "gatheringdata",
     "requests>=2.31",
     "pandas>=2.0",
+    "pyarrow>=15.0",
     "matplotlib>=3.8",
     "ijson>=3.2",
     "wordcloud>=1.9",
 ]
+
+[tool.uv.sources]
+gatheringdata = { path = "../../../toolkit/python", editable = true }
