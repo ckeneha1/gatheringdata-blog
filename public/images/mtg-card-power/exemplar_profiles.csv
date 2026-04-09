@@ -1,0 +1,17 @@
+name,first_print_year,cmc,x_count,keywords,keyword_count,categories,semantic_count,total_ability_count
+Ancestral Recall,1993,1.0,0,,0,card_advantage,1,1
+Baneslayer Angel,2009,5.0,0,"Flying, Lifelink, First strike, Protection",4,,0,4
+Counterspell,1993,2.0,0,,0,counterspell,1,1
+Day of Judgment,2009,4.0,0,,0,removal,1,1
+Force of Negation,2019,3.0,0,,0,counterspell,1,1
+Force of Will,1996,5.0,0,,0,counterspell,1,1
+Garruk's Companion,2010,2.0,0,Trample,1,,0,1
+Go for the Throat,2011,2.0,0,,0,removal,1,1
+Grizzly Bears,1993,2.0,0,,0,,0,0
+Lightning Bolt,1993,1.0,0,,0,direct_damage,1,1
+Mana Leak,1998,2.0,0,,0,counterspell,1,1
+Ponder,2007,1.0,0,,0,card_advantage,1,1
+Serra Angel,1993,5.0,0,"Flying, Vigilance",2,,0,2
+Shock,1998,1.0,0,,0,direct_damage,1,1
+Terror,1993,2.0,0,,0,removal,1,1
+Wrath of God,1993,4.0,0,,0,removal,1,1
