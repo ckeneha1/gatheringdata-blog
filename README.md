@@ -1,62 +1,98 @@
-# Astro Starter Kit: Blog
+# gatheringdata.blog
+
+A data science blog by Connor Kenehan. Quantitative analyses of topics worth measuring — currently focused on Magic: The Gathering, with more to come.
+
+Live at **[gatheringdata.blog](https://gatheringdata.blog)**.
+
+---
+
+## What's here
+
+```
+├── analysis/               # Self-contained Python analysis projects
+│   ├── mtg-distributions/  # Post 1: card supply over time
+│   ├── mtg-card-power/     # Post 2: ability-to-cost ratio and power creep
+│   └── tobins-q/           # In progress
+├── public/
+│   └── images/             # Chart exports (committed, not generated at build time)
+├── src/
+│   ├── content/blog/       # Markdown post files — one per post
+│   ├── components/
+│   ├── layouts/
+│   └── pages/
+├── SPEC.md                 # Site architecture and design spec
+└── scheduler.yml           # Automated chart update workflow config
+```
+
+---
+
+## Blog
+
+Posts are Markdown files in `src/content/blog/`. Each post is written against the completed analysis; charts are static PNGs committed to `public/images/<post-slug>/`.
+
+| Post | Status | Branch |
+|---|---|---|
+| [Thirty Years of Magic Cards, Measured](https://gatheringdata.blog/blog/mtg-distributions) | Published | `main` |
+| What Does a Mana Cost Buy You? | In review | `analysis/mtg-card-power` |
+| Tobin's Q (working title) | In progress | `analysis/tobins-q-post1` |
+
+---
+
+## Analysis projects
+
+Each analysis lives in `analysis/<name>/` as an independent Python project managed with [uv](https://docs.astral.sh/uv/).
+
+### Common setup
 
 ```sh
-npm create astro@latest -- --template blog
+cd analysis/<name>
+uv sync          # install dependencies into project venv
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### mtg-distributions (Post 1)
 
-Features:
+Pulls Scryfall bulk data and measures card supply, set cadence, and word count trends across the full 33,998-card catalog.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```sh
+uv run python analyze.py          # full pipeline
+uv run python analyze.py charts   # regenerate charts only
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### mtg-card-power (Post 2)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Measures ability count per mana cost for every non-land card, 1993–present, to quantify power creep.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Two classification layers:
+1. Scryfall `keywords` field — named keyword abilities, already structured
+2. Regex patterns against oracle text — 18 ability categories (card advantage, removal, ramp, etc.)
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+uv run python analyze.py                                      # full pipeline
+uv run python analyze.py charts keywords semantic total creep distribution
+uv run python analyze.py debug other_trigrams                 # diagnose unclassified cards
+```
 
-## 🧞 Commands
+The pipeline caches intermediate results to `.cache/` (parquet, keyed on Scryfall file mtime). Delete `.cache/cards--*.parquet` after changing classification patterns to force a rebuild.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Site development
 
-## 👀 Want to learn more?
+Built with [Astro](https://astro.build), deployed to [Netlify](https://netlify.com) on push to `main`.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```sh
+npm install       # install dependencies
+npm run dev       # dev server at localhost:4321
+npm run build     # production build to ./dist/
+npm run preview   # preview production build locally
+```
 
-## Credit
+Every PR gets a Netlify deploy preview. The build must pass before merging to `main`.
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+---
+
+## Workflow
+
+- Analysis and post writing happens on feature branches
+- Charts are generated locally, committed to `public/images/`, and reviewed in deploy previews
+- No database, no CMS — the repo is the source of truth
