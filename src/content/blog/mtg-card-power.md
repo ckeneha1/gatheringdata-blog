@@ -90,6 +90,96 @@ Or compare **Grizzly Bears** (1993, CMC=2) with **Garruk's Companion** (2010, CM
 
 These aren't cherry-picked outliers. They're representative of the direction and magnitude of the trend measured at scale across all 34,000 cards.
 
+## The leaderboard
+
+The heuristic exists, so let's use it. These are the top cards by abilities-per-CMC at each mana cost — "best one-drop," "best two-drop," and so on. Ranking within CMC brackets is fairer than a single global list, because a 1-mana card with 3 abilities doesn't compete with a 3-mana card with 3 abilities on the same terms.
+
+Two caveats before the tables. First, X-cost cards are excluded — their floor CMC understates the real investment, so ranking them against fixed-cost cards isn't meaningful. Second, the top slots at each CMC are heavily occupied by cards from Universes Beyond crossover sets (Fallout, Doctor Who, Avatar, Final Fantasy). Those sets tend to pack multiple set-specific named keywords — Stimpak, RadAway, Check Map — onto individual cards. Under equal weighting, those keywords count the same as Flying or Deathtouch. That's a real limitation: the methodology correctly identifies mechanical complexity but doesn't distinguish between a keyword that does something generically powerful and one that does something specific to one set's flavor. Both caveats are already flagged in the methodology notes; the leaderboard just makes them concrete.
+
+### Best one-mana cards
+
+| Card | Year | Abilities | Ratio | Keywords + categories |
+|---|---|---|---|---|
+| Three Steps Ahead | 2024 | 6 | 6.0 | Spree; card advantage, tokens, counterspell, copy |
+| Cling to Dust | 2020 | 5 | 5.0 | Escape; card advantage, removal, graveyard, life |
+| Ocelot Pride | 2024 | 5 | 5.0 | Lifelink, Ascend, First strike; tokens, copy |
+| Deathrite Shaman | 2012 | 4 | 4.0 | removal, ramp, graveyard, life |
+| Mausoleum Wanderer | 2016 | 3 | 3.0 | Flying; counterspell |
+
+The crossover cards dominate the raw top of the CMC=1 list, but once you look past them, the methodology converges on cards experienced players already know are strong. Deathrite Shaman was banned in both Modern and Legacy — the consensus view is that it does too much for one mana. The heuristic independently scores it among the highest non-crossover one-drops. Three Steps Ahead is a Spree spell (multiple selectable modes on a single card) that sees play in competitive formats. Mausoleum Wanderer is a one-mana flying creature that can counter spells and scales with your board — a card that briefly warped Standard. The methodology didn't know any of that.
+
+### Best two-mana cards
+
+| Card | Year | Abilities | Ratio | Keywords + categories |
+|---|---|---|---|---|
+| Old Fogey | 2004 | 11 | 5.5 | Landwalk, Flanking, Fading, Protection, Banding, Plainswalk, Rampage, Phasing, Echo, Cumulative upkeep |
+| Everything Pizza | 2026 | 7 | 3.5 | card advantage, direct damage, counters, ramp, discard, tutor, life |
+| Dennick, Pious Apprentice | 2021 | 6 | 3.0 | Flying, Lifelink, Investigate, Transform, Disturb |
+| Charming Scoundrel | 2023 | 6 | 3.0 | Role token, Treasure, Haste; card advantage, tokens, discard |
+| Path to the World Tree | 2021 | 6 | 3.0 | card advantage, direct damage, tokens, ramp, tutor, life |
+
+Old Fogey is the most useful result on this table. It's a parody card — printed in Unhinged specifically to parody the keyword-inflation era — that deliberately packs every old-school keyword ability onto one body. The methodology scores it first among all two-drops not because it's a good card (it isn't; most of those abilities actively hurt you) but because it was designed to illustrate exactly the phenomenon being measured. If the methodology didn't score Old Fogey highly, something would be wrong with the methodology. That the player consensus is that it's unplayable points directly at the equal-weighting problem: keywords aren't equivalent, and some of Old Fogey's are actively negative. This is the footnote 2 problem made visible.
+
+Everything Pizza matches seven of the 18 oracle-text categories at CMC=2. That's the power creep story in one data point.
+
+### Best three-mana cards
+
+| Card | Year | Abilities | Ratio | Keywords + categories |
+|---|---|---|---|---|
+| Odric, Blood-Cursed | 2021 | 11 | 3.67 | Deathtouch, Lifelink, Reach, Indestructible, Hexproof, First strike, Haste, Trample, Menace, Double strike; tokens |
+| Blast from the Past | 2004 | 7 | 2.33 | Madness, Buyback, Flashback, Cycling, Kicker; direct damage, tokens |
+| Graveyard Trespasser | 2021 | 6 | 2.0 | Daybound, Ward, Nightbound; graveyard, discard, life |
+| Sword of Once and Future | 2023 | 6 | 2.0 | Surveil, Equip; ramp, graveyard, pump, protection |
+| Jace, Mirror Mage | 2020 | 6 | 2.0 | Scry, Kicker; card advantage, tokens, counters, copy |
+
+Odric ranks first because his oracle text lists keywords as conditions — "create a token for each keyword ability among creatures you control" — and the methodology counts those listed keyword names as the card's own abilities. That's a genuine classification edge case. The card is strong, but not for the reasons the score implies.
+
+Blast from the Past is more interesting: it has five different alternate casting mechanics plus deals damage and makes a token, all at three mana. It's a deliberately absurdist Un-set design, but its score here reflects exactly what's being measured. A player from 1993 comparing it to a contemporary three-mana spell would be confused by what they were looking at.
+
+Graveyard Trespasser and Sword of Once and Future are legitimate competitive cards. Both saw or see play in Standard and Pioneer. Getting them right at this CMC is the methodology working as intended.
+
+### Best four-mana cards
+
+| Card | Year | Abilities | Ratio | Keywords + categories |
+|---|---|---|---|---|
+| Elusen, the Giving | 2023 | 8 | 2.0 | Flying, Lifelink, Vigilance, Treasure, Haste; card advantage, tokens, life |
+| Nahiri, the Unforgiving | 2023 | 7 | 1.75 | Compleated; card advantage, removal, tokens, graveyard, discard, copy |
+| Life of the Party | 2022 | 7 | 1.75 | Goad, First strike, Haste, Trample; tokens, pump, copy |
+| Eradicator Valkyrie | 2021 | 6 | 1.5 | Flying, Lifelink, Hexproof, Boast |
+| The Legend of Kuruk | 2025 | 6 | 1.5 | Transform, Exhaust, Waterbend, Scry; card advantage, blink |
+
+Nahiri is a legitimately strong planeswalker that sees Pioneer play. The methodology gives her second at CMC=4 — behind Elusen, a Commander-facing group-hug card that does a lot but in a slower, less competitive context. The ordering is imperfect, but it gets the direction right: both are modern cards that do substantially more than four-mana cards from earlier eras.
+
+### Best five-or-more-mana cards
+
+| Card | Year | CMC | Abilities | Ratio | Keywords + categories |
+|---|---|---|---|---|---|
+| Tamiyo, Compleated Sage | 2022 | 5 | 8 | 1.60 | Compleated; card advantage, removal, tokens, ramp, graveyard, stax, copy |
+| Chromanticore | 2014 | 5 | 7 | 1.40 | Flying, Lifelink, Vigilance, First strike, Trample, Bestow; pump |
+| Loot, the Pathfinder | 2025 | 5 | 7 | 1.40 | Vigilance, Haste, Double strike; card advantage, direct damage, ramp |
+| Lunar Hatchling | 2023 | 6 | 8 | 1.33 | Flying, Landcycling, Trample, Basic landcycling, Escape, Typecycling, Cycling; graveyard |
+| Cosmic Spider-Man | 2025 | 5 | 6 | 1.20 | Flying, Lifelink, First strike, Haste, Trample |
+
+Tamiyo, Compleated Sage is the clearest validation in the dataset. When she was printed in 2022, the competitive consensus was that she was too powerful — she draws cards, creates tokens, and ultimately generates an emblem letting you cast spells for free from your graveyard. She was actively discussed as a potential ban candidate in Pioneer. The methodology gives her the top score among all five-drops, with eight distinct abilities at ratio 1.60. It doesn't know any of that. It just counts.
+
+### By color and card type
+
+**Color leaders** (highest abilities-per-CMC):
+
+White: Ocelot Pride (2024, CMC=1, ratio 5.0). Blue: Three Steps Ahead (2024, CMC=1, ratio 6.0). Black: Cling to Dust (2020, CMC=1, ratio 5.0). Red: Reckless Lackey (2024, CMC=1, ratio 5.0 — first strike, haste; card advantage, tokens). Green: for competitive purposes, Deathrite Shaman (2012, CMC=1, ratio 4.0) — the actual #1 green card by this metric is HONK!, a Doctor Who novelty instant, which tells you something about the crossover-card problem.
+
+**Card type leaders:**
+
+Creature: Odric, Blood-Cursed (CMC=3, ratio 3.67, with the classification caveat above). Instant: Three Steps Ahead (CMC=1, ratio 6.0). Sorcery: Shamble Back (2016, CMC=1, ratio 4.0 — removal, tokens, graveyard, life). Enchantment: Three-way tie between Sentinel's Eyes, Escape Velocity, and Mogis's Favor — all 2020 Escape enchantments at CMC=1, ratio 4.0. Planeswalker: Jace, Mirror Mage and Ob Nixilis, the Adversary tied at CMC=3, ratio 2.0.
+
+### The full dataset
+
+Every non-land card in the catalog, ranked by abilities-per-CMC, with color, card type, keywords, oracle-text categories, and score:
+
+**[Download: mtg-card-power-rankings.csv (27,743 cards)](/data/mtg-card-power-rankings.csv)**
+
+Filter it, sort it, disagree with it. That's the point.
+
 ## What this sets up
 
 The ability-to-cost ratio gives us a principled, data-grounded definition of "efficient" — one that's agnostic to format, meta, and the subjective judgments of any particular player or era. By that definition, Magic cards have gotten significantly more efficient over the past thirty years.

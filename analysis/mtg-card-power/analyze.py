@@ -59,6 +59,8 @@ SCRYFALL_CACHE_DIR: Path  # set in main()
 LOCAL_CACHE_DIR = Path(__file__).parent / ".cache"
 LOCAL_CACHE_DIR.mkdir(exist_ok=True)
 
+_PUBLIC_DATA_DIR = Path(__file__).parent.parent.parent / "public" / "data"
+
 CURRENT_YEAR = pd.Timestamp.now().year
 EXCLUDED_LAYOUTS = {"token", "emblem", "art_series", "reversible_card"}
 
@@ -878,6 +880,134 @@ def export_dataset_csv(df: pd.DataFrame):
 
 
 # ---------------------------------------------------------------------------
+# Rankings export
+# ---------------------------------------------------------------------------
+
+def _color_cat(mana_cost: str) -> str:
+    """Single-color / Multicolor / Colorless label from a mana cost string."""
+    if not mana_cost:
+        return "Colorless"
+    pips = set(re.findall(r'\{([WUBRG])\}', mana_cost))
+    if len(pips) >= 2:
+        return "Multicolor"
+    if len(pips) == 1:
+        return {"W": "White", "U": "Blue", "B": "Black", "R": "Red", "G": "Green"}[next(iter(pips))]
+    return "Colorless"
+
+
+def _main_type(type_line: str) -> str:
+    """Primary card type from a type line string."""
+    for t in ["Creature", "Instant", "Sorcery", "Enchantment", "Artifact", "Planeswalker", "Battle"]:
+        if t in type_line:
+            return t
+    return "Other"
+
+
+def export_rankings(df: pd.DataFrame):
+    """
+    Generate the reader-facing ranked CSV and print leaderboard tables.
+
+    Ranking: abilities_per_cmc descending, ties broken by total_ability_count.
+
+    Excluded from ranking:
+      - Lands
+      - X-cost cards (CMC floor understates true cost)
+      - CMC = 0
+      - Cards with no identified abilities: categories == ["other"] AND keyword_count == 0
+        (these have 1 phantom semantic point from unclassified oracle text but no
+        confirmed keyword or category — their score isn't meaningful)
+    """
+    _PUBLIC_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    def _cats_list(c) -> list:
+        return list(c) if not isinstance(c, list) else c
+
+    rankable = df[
+        ~df["is_land"]
+        & (df["cmc"] > 0)
+        & ~df["has_x"]
+        & ~(
+            df["categories"].apply(lambda c: _cats_list(c) == ["other"])
+            & (df["keyword_count"] == 0)
+        )
+    ].copy()
+
+    rankable["color"]     = rankable["mana_cost"].apply(_color_cat)
+    rankable["card_type"] = rankable["type_line"].apply(_main_type)
+    rankable = rankable.sort_values(
+        ["abilities_per_cmc", "total_ability_count"], ascending=[False, False]
+    ).reset_index(drop=True)
+    rankable["rank"] = rankable.index + 1
+
+    # ── Public CSV ────────────────────────────────────────────────────────────
+    out = rankable[[
+        "rank", "name", "first_print_year", "cmc", "color", "card_type",
+        "keywords", "keyword_count", "categories", "semantic_count",
+        "total_ability_count", "abilities_per_cmc",
+    ]].copy()
+    out["keywords"]   = out["keywords"].apply(
+        lambda x: ", ".join(x) if isinstance(x, list) else x)
+    out["categories"] = out["categories"].apply(
+        lambda x: ", ".join(c for c in x if c != "other") if isinstance(x, list) else x)
+    out.to_csv(_PUBLIC_DATA_DIR / "mtg-card-power-rankings.csv", index=False)
+    print(f"\nRankings CSV → {_PUBLIC_DATA_DIR / 'mtg-card-power-rankings.csv'} ({len(out):,} cards)")
+
+    def _fmt_row(r) -> str:
+        cats = ", ".join(c for c in _cats_list(r["categories"]) if c != "other")
+        kws  = ", ".join(_cats_list(r["keywords"]))
+        return (
+            f"  {r['name']:<42} {int(r['first_print_year'])}  "
+            f"CMC={int(r['cmc'])}  abilities={int(r['total_ability_count'])}  "
+            f"ratio={r['abilities_per_cmc']:.2f}  kw=[{kws}]  cat=[{cats}]"
+        )
+
+    # ── Top 10 by CMC bucket ──────────────────────────────────────────────────
+    print("\n=== Top 10 by CMC bucket (abilities_per_cmc desc) ===")
+    for label, mask in [
+        ("CMC 1",  rankable["cmc"] == 1),
+        ("CMC 2",  rankable["cmc"] == 2),
+        ("CMC 3",  rankable["cmc"] == 3),
+        ("CMC 4",  rankable["cmc"] == 4),
+        ("CMC 5+", rankable["cmc"] >= 5),
+    ]:
+        print(f"\n{label}:")
+        for _, r in rankable[mask].head(10).iterrows():
+            print(_fmt_row(r))
+
+    # ── Top 5 by color ────────────────────────────────────────────────────────
+    print("\n=== Top 5 by color ===")
+    for color in ["White", "Blue", "Black", "Red", "Green", "Multicolor", "Colorless"]:
+        bucket = rankable[rankable["color"] == color].head(5)
+        if bucket.empty:
+            continue
+        print(f"\n{color}:")
+        for _, r in bucket.iterrows():
+            print(_fmt_row(r))
+
+    # ── Top 5 by card type ────────────────────────────────────────────────────
+    print("\n=== Top 5 by card type ===")
+    for ctype in ["Creature", "Instant", "Sorcery", "Enchantment", "Artifact", "Planeswalker"]:
+        bucket = rankable[rankable["card_type"] == ctype].head(5)
+        if bucket.empty:
+            continue
+        print(f"\n{ctype}:")
+        for _, r in bucket.iterrows():
+            print(_fmt_row(r))
+
+    # ── Top 3 by ability category ─────────────────────────────────────────────
+    print("\n=== Top 3 by ability category ===")
+    for cat, _ in _PATTERNS:
+        bucket = rankable[
+            rankable["categories"].apply(lambda c: cat in _cats_list(c))
+        ].head(3)
+        if bucket.empty:
+            continue
+        print(f"\n{cat}:")
+        for _, r in bucket.iterrows():
+            print(_fmt_row(r))
+
+
+# ---------------------------------------------------------------------------
 # Other-bucket exploration
 # ---------------------------------------------------------------------------
 
@@ -1077,7 +1207,8 @@ def parse_args() -> argparse.Namespace:
 subcommands:
   build            fetch Scryfall data, classify, cache DataFrame to parquet
   charts [names]   generate charts (all by default; names: keywords semantic total creep distribution)
-  export           export full classified dataset + exemplar profiles as CSV
+  export           export full classified dataset + exemplar profiles + reader-facing rankings CSV
+  rankings         export reader-facing ranked CSV + print leaderboard tables
   explore-other    other-bucket diagnostic charts and trigram CSV
   (none)           run all of the above
         """,
@@ -1092,7 +1223,8 @@ subcommands:
     charts_p.add_argument("names", nargs="*", choices=list(_CHART_FNS), metavar="name",
                           help=f"Chart names: {', '.join(_CHART_FNS)} (default: all)")
 
-    sub.add_parser("export",        help="Export CSVs")
+    sub.add_parser("export",        help="Export CSVs (dataset + exemplars + rankings)")
+    sub.add_parser("rankings",      help="Reader-facing ranked CSV + leaderboard tables")
     sub.add_parser("explore-other", help="Other-bucket diagnostics")
 
     return p.parse_args()
@@ -1126,6 +1258,10 @@ def main():
     elif command == "export":
         export_exemplar_table(df)
         export_dataset_csv(df)
+        export_rankings(df)
+
+    elif command == "rankings":
+        export_rankings(df)
 
     elif command == "explore-other":
         explore_other_bucket(df)
@@ -1135,6 +1271,7 @@ def main():
             fn(df)
         export_exemplar_table(df)
         export_dataset_csv(df)
+        export_rankings(df)
         explore_other_bucket(df)
         print_summary(df)
 
