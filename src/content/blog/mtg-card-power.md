@@ -1,6 +1,6 @@
 ---
-title: "What Does a Mana Cost Buy You?"
-description: "Building a data-driven definition of 'good' — and finding thirty years of power creep hiding in plain sight."
+title: "What Does Your Mana Buy You?"
+description: "Building a data-driven definition of 'good' Magic cards."
 pubDate: "2026-04-13"
 ---
 
