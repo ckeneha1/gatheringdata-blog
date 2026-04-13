@@ -1,0 +1,36 @@
+{
+  "name": "Butterfly Wing",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Butterfly_Wing",
+  "game_id": "000727e0",
+  "value": "3",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Barter",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Lingering Damage Stamina",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Magicka",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Pale": 4,
+    "Hjaalmarch": 2,
+    "Whiterun Hold": 2,
+    "Eastmarch": 2
+  },
+  "total_spawn_count": 10
+}

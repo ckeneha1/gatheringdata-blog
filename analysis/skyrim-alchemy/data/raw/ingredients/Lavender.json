@@ -1,0 +1,36 @@
+{
+  "name": "Lavender",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Lavender",
+  "game_id": "00045c28",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Resist Magic",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Ravage Magicka",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Conjuration",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 14,
+    "Whiterun Hold": 114,
+    "Hjaalmarch": 37,
+    "The Pale": 17
+  },
+  "total_spawn_count": 182
+}

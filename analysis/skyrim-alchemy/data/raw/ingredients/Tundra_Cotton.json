@@ -1,0 +1,37 @@
+{
+  "name": "Tundra Cotton",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Tundra_Cotton",
+  "game_id": "0003f7f8",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Resist Magic",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Block",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Barter",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 20,
+    "Whiterun Hold": 194,
+    "Falkreath Hold": 32,
+    "The Pale": 31,
+    "Hjaalmarch": 23
+  },
+  "total_spawn_count": 300
+}

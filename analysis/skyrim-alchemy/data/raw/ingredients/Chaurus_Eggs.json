@@ -1,0 +1,36 @@
+{
+  "name": "Chaurus Eggs",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Chaurus_Eggs",
+  "game_id": "0003ad56",
+  "value": "10",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Weakness to Poison",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Magicka",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Invisibility (effect)",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Winterhold": 13,
+    "The Rift": 11,
+    "The Pale": 10,
+    "Whiterun Hold": 10
+  },
+  "total_spawn_count": 44
+}

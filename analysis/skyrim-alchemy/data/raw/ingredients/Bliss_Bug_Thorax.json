@@ -1,0 +1,31 @@
+{
+  "name": "Bliss Bug Thorax",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Bliss_Bug_Thorax",
+  "game_id": "xx059155",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Resist Fire",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Heavy Armor",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Illusion",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

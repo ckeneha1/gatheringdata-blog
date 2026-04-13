@@ -1,0 +1,31 @@
+{
+  "name": "Blind Watcher's Eye",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Blind_Watcher's_Eye",
+  "game_id": "FExxx822",
+  "value": "9",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Light",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Alteration",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Spell Absorption",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

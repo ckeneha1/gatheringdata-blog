@@ -1,0 +1,31 @@
+{
+  "name": "Daedroth Teeth",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Daedroth_Teeth",
+  "game_id": "FExxx826",
+  "value": "50",
+  "weight": "0.5",
+  "effects": [
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Light",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Stamina",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

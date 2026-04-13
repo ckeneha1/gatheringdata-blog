@@ -1,0 +1,31 @@
+{
+  "name": "Small Antlers",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Small_Antlers",
+  "game_id": "0006bc0b",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Weakness to Poison",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Restoration",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Lingering Damage Stamina",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

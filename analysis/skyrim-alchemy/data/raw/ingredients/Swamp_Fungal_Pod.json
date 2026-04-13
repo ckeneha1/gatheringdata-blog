@@ -1,0 +1,37 @@
+{
+  "name": "Swamp Fungal Pod",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Swamp_Fungal_Pod",
+  "game_id": "0007e8b7",
+  "value": "5",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Resist Shock",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Lingering Damage Magicka",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Pale": 3,
+    "The Rift": 6,
+    "Haafingar": 2,
+    "The Reach": 2,
+    "Hjaalmarch": 109
+  },
+  "total_spawn_count": 122
+}

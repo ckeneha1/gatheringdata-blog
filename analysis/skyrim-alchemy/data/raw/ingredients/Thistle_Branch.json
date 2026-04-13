@@ -1,0 +1,38 @@
+{
+  "name": "Thistle Branch",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Thistle_Branch",
+  "game_id": "000134aa",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Stamina",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Heavy Armor",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Whiterun Hold": 46,
+    "Haafingar": 6,
+    "The Pale": 2,
+    "The Reach": 2,
+    "Falkreath Hold": 130,
+    "Eastmarch": 34
+  },
+  "total_spawn_count": 220
+}

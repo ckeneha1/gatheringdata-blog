@@ -1,0 +1,31 @@
+{
+  "name": "Bear Claws",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Bear_Claws",
+  "game_id": "0006bc02",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Health",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify One-handed",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

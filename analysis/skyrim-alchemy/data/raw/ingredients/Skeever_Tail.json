@@ -1,0 +1,38 @@
+{
+  "name": "Skeever Tail",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Skeever_Tail",
+  "game_id": "0003ad6f",
+  "value": "3",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Health",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Light Armor",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Pale": 12,
+    "Whiterun Hold": 8,
+    "The Reach": 4,
+    "Haafingar": 7,
+    "Falkreath Hold": 16,
+    "The Rift": 3
+  },
+  "total_spawn_count": 50
+}

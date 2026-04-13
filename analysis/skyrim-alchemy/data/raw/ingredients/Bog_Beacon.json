@@ -1,0 +1,31 @@
+{
+  "name": "Bog Beacon",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Bog_Beacon",
+  "game_id": "FExxxD6C",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Heavy Armor",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fear (effect)",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Stamina",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

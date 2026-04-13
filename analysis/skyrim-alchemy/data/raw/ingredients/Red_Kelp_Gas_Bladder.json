@@ -1,0 +1,31 @@
+{
+  "name": "Red Kelp Gas Bladder",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Red_Kelp_Gas_Bladder",
+  "game_id": "FExxx817",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Regenerate Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Waterbreathing (effect)",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Cure Disease",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

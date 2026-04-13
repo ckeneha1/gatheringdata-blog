@@ -1,0 +1,31 @@
+{
+  "name": "Dreugh Wax",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Dreugh_Wax",
+  "game_id": "FExxx827",
+  "value": "25",
+  "weight": "1",
+  "effects": [
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Frenzy (effect)",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Enchanting",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Smithing",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

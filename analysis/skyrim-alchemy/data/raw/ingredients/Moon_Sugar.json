@@ -1,0 +1,35 @@
+{
+  "name": "Moon Sugar",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Moon_Sugar",
+  "game_id": "000d8e3f",
+  "value": "50",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 6,
+    "Eastmarch": 2,
+    "Falkreath Hold": 1
+  },
+  "total_spawn_count": 9
+}

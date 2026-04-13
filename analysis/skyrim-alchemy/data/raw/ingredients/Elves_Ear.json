@@ -1,0 +1,40 @@
+{
+  "name": "Elves Ear",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Elves_Ear",
+  "game_id": "00034d31",
+  "value": "10",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Marksman",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Weakness to Frost",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Resist Fire",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Reach": 13,
+    "Haafingar": 32,
+    "Eastmarch": 3,
+    "Falkreath Hold": 3,
+    "Winterhold": 3,
+    "The Pale": 6,
+    "Whiterun Hold": 18,
+    "The Rift": 14
+  },
+  "total_spawn_count": 92
+}

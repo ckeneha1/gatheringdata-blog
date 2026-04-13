@@ -1,0 +1,36 @@
+{
+  "name": "Vampire Dust",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Vampire_Dust",
+  "game_id": "0003ad76",
+  "value": "25",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Invisibility (effect)",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Cure Disease",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 4,
+    "Whiterun Hold": 2,
+    "Eastmarch": 2,
+    "The Pale": 4
+  },
+  "total_spawn_count": 12
+}

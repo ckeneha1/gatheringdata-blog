@@ -1,0 +1,36 @@
+{
+  "name": "Ectoplasm",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Ectoplasm",
+  "game_id": "0003ad63",
+  "value": "25",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Destruction",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Pale": 4,
+    "Hjaalmarch": 2,
+    "Eastmarch": 2,
+    "Winterhold": 2
+  },
+  "total_spawn_count": 10
+}

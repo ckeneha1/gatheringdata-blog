@@ -1,0 +1,36 @@
+{
+  "name": "Juniper Berries",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Juniper_Berries",
+  "game_id": "0005076e",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Archery",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Reach": 304,
+    "Falkreath Hold": 3,
+    "Haafingar": 4,
+    "The Rift": 2
+  },
+  "total_spawn_count": 313
+}

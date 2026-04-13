@@ -1,0 +1,31 @@
+{
+  "name": "Emperor Parasol Moss",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Emperor_Parasol_Moss",
+  "game_id": "xx01ff75",
+  "value": "1",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Two-handed",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

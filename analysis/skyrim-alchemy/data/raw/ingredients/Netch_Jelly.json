@@ -1,0 +1,31 @@
+{
+  "name": "Netch Jelly",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Netch_Jelly",
+  "game_id": "xx01cd72",
+  "value": "20",
+  "weight": "0.5",
+  "effects": [
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Carry Weight",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fear (effect)",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

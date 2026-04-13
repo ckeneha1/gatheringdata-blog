@@ -1,0 +1,31 @@
+{
+  "name": "Harrada",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Harrada",
+  "game_id": "0B024C11",
+  "value": "25",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Damage Magicka",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

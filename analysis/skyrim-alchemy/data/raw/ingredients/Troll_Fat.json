@@ -1,0 +1,39 @@
+{
+  "name": "Troll Fat",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Troll_Fat",
+  "game_id": "0003ad72",
+  "value": "15",
+  "weight": "1",
+  "effects": [
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Two-handed",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Frenzy (effect)",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Eastmarch": 6,
+    "The Rift": 2,
+    "Whiterun Hold": 2,
+    "Falkreath Hold": 2,
+    "The Pale": 4,
+    "Haafingar": 2,
+    "The Reach": 4
+  },
+  "total_spawn_count": 22
+}

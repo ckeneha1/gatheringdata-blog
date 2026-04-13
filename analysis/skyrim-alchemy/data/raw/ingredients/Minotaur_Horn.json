@@ -1,0 +1,31 @@
+{
+  "name": "Minotaur Horn",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Minotaur_Horn",
+  "game_id": "FExxx815",
+  "value": "55",
+  "weight": "5",
+  "effects": [
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

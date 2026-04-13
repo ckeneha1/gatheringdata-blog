@@ -1,0 +1,143 @@
+---
+title: "Where Should You Forage in Skyrim? I Built a Linear Program to Find Out."
+description: "Using UESP spawn data and a linear programming model to optimize alchemy ingredient collection by character build."
+pubDate: "2026-04-13"
+---
+
+import SkyrimAlchemyOptimizer from "../../components/SkyrimAlchemyOptimizer.jsx";
+
+*[Connor's personal hook goes here — the thing that made this feel worth doing, probably the first time you realized you were mentally optimizing foraging routes and wanted to know if math agreed with your instinct.]*
+
+The alchemy system in Skyrim has a structure most players sense but never formalize. Ingredients grow in different regions. Potions require specific combinations. Different builds care about completely different potions. And you have finite time — or at least finite patience — before you need to get back to doing something that actually advances the main quest.
+
+The implicit question every Skyrim player has faced: **which regions are actually worth your time, given how you play?**
+
+I wanted a real answer. So I built a linear programming model.
+
+---
+
+## Getting the data right first
+
+The obvious approach — just make up yield rates for each region — is what the first prototype of this model did. I'd call Deathbell "abundant in Hjaalmarch" and assign it a yield rate of 4.0, then work backward from the story I wanted to tell.
+
+That's not analysis. That's illustration.
+
+Before any model, I needed verifiably correct ingredient data. The [Unofficial Elder Scrolls Pages (UESP)](https://en.uesp.net) maintains a comprehensive wiki of Skyrim game content — including every ingredient, its exact four alchemy effects, and its spawn locations by hold, with specific counts. It's authoritative. It's auditable. Anyone can check any number.
+
+I scraped it. Every ingredient's page exposes a wikitext template (`{{Ingredient Summary}}`) with the four effects, and location sections (`==Plants==`, `==Ingredients==`) listing bullet-pointed spawn entries in the format `* N in [[Location]] ([[Hold]])`. The scraper parses those counts, aggregates them by hold, and caches each ingredient as a JSON file. 191 ingredients total (base game plus all DLC), 0.6 seconds between requests to be polite.
+
+From there: aggregate Skyrim's nine holds into six foraging regions, scale spawn counts to a 0–4 yield rate (raw spawn count ÷ max spawn count in any region, times 4), derive potion recipes by finding ingredient pairs that share alchemy effects, and define build profiles from the major character archetypes.
+
+The model now has a data lineage you can follow all the way back to the game itself.
+
+---
+
+## The optimization problem
+
+**What you control:** how many hours to spend in each region.
+
+**What you want to maximize:** weighted potion output — where the weights reflect how useful each potion type is for your specific build.
+
+The decision variables are:
+- `x[r]` — hours spent foraging in region `r`
+- `z[p]` — batches of potion `p` you can craft from what you collect
+
+The objective: maximize `Σ weight[p] × z[p]` — the sum of priority-weighted craftable potions.
+
+### The constraint that makes it interesting
+
+You can only craft as many batches of a potion as your *bottleneck* ingredient allows. If a recipe calls for Charred Skeever Hide and Vampire Dust, and you only collect enough Charred Skeever Hide for 30 batches but enough Vampire Dust for 60, you're capped at 30.
+
+In math, `batches = min(supply[i] / qty[i])` over all ingredients `i`. That `min()` is nonlinear, which would be a problem. The fix is a standard LP trick: introduce `z[p]` as a free variable, then constrain it from above by each ingredient separately:
+
+```
+z[p] ≤ Σ_r x[r] · yield[r][i]   for each ingredient i in recipe[p]
+```
+
+The solver will automatically tighten to the binding constraint — the bottleneck ingredient. The `min()` is gone, no approximation needed. It's a standard LP, solvable to global optimality.
+
+The only other constraint is the time budget: `Σ x[r] ≤ T`.
+
+---
+
+## Six builds, six strategies
+
+I ran the model at a 20-hour foraging budget for six character archetypes. The results are more differentiated than I expected.
+
+### The Rift is good for almost everyone
+
+The Rift (Riften's surrounding territory) shows up as a major allocation for every build except the Necromancer. It has an unusually broad ingredient profile: Glowing Mushroom, Charred Skeever Hide, Vampire Dust, Purple Mountain Flower, Red Mountain Flower, Beehive Husk, and Bleeding Crown all reach near-maximum yield there. If you don't have a specific priority that anchors you elsewhere, The Rift is where the LP sends you.
+
+![Region allocation bar chart showing hours per region for each of the six builds](/images/skyrim-alchemy/region_allocation.png)
+
+### Two builds go all-in on one region
+
+The Paladin and the Necromancer both hit a corner solution — the LP allocates all 20 hours to a single region. For the Paladin, that's The Rift: Cure Disease (Charred Skeever Hide + Vampire Dust) and Fortify Restoration (Salt Pile + Small Pearl) both peak there. For the Necromancer, it's The Reach / Haafingar: Fortify Conjuration (Bone Meal + Frost Salts) and Poison of Frenzy (Fly Amanita + Troll Fat) share the same region optimum.
+
+This isn't a modeling artifact — it means those builds' priority potions happen to share a geographic concentration. If you're playing Necromancer, The Reach is genuinely your one-stop shop.
+
+### The Stealth Archer spreads the most
+
+The Stealth Archer's top potions — Invisibility (Chaurus Eggs + Vampire Dust), Fortify Sneak (Human Flesh + Purple Mountain Flower), Fortify Marksman (Elves Ear + Spider Egg) — pull in different directions. Chaurus Eggs are abundant in Winterhold / Eastmarch. Human Flesh and Vampire Dust concentrate in The Rift and Hjaalmarch. Spider Egg peaks in The Reach. The LP spreads hours across four regions to balance these competing demands.
+
+This is the build that most resembles the "tour of Skyrim" style of play where you spend time all over the map.
+
+### More time doesn't always help equally
+
+![Sensitivity curve: weighted potion output vs. foraging hours for three builds](/images/skyrim-alchemy/sensitivity_curve.png)
+
+The slope of each curve is the shadow price of the time constraint — how much additional objective value you gain per additional hour. All three builds show roughly linear returns up to ~20 hours, then the curves start bending as the model runs into ingredient scarcity that more time can't fix. At that point, you're not time-constrained; you're ingredient-constrained, and adding more foraging hours doesn't help.
+
+### What if you could only go to one place?
+
+For the Heavy Armor Warrior (the build with the most region-specific priority potions), here's what you'd get if forced to spend all 20 hours in one region:
+
+![Single-region counterfactual for Heavy Armor Warrior](/images/skyrim-alchemy/single_region_heavy_armor_warrior.png)
+
+The Rift and Hjaalmarch compete for first place. The spread between top and bottom is about 3:1 — going to the worst region instead of the best roughly triples your deficit. The lesson: region choice matters more than most players probably think.
+
+---
+
+## What the ingredient geography actually looks like
+
+Before this project, I had only impressionistic knowledge of where ingredients grow. The heatmap makes it concrete:
+
+![Ingredient yield heatmap: 6 regions × top 20 ingredients](/images/skyrim-alchemy/ingredient_heatmap.png)
+
+A few things jump out:
+- **Deathbell** is almost entirely Hjaalmarch / The Pale. 66% of all UESP-documented spawns are there. It's one of the most geographically concentrated ingredients in the game.
+- **Human Flesh** has unusually high yield in multiple regions (it spawns in necromancer dungeons, which are distributed across Skyrim). This makes it useful as a reliable ingredient for multiple build types.
+- **Falkreath** has a sparse profile overall, but Hagraven Claw, River Betty, and Skeever Tail all peak there — niche ingredients that make Falkreath specifically valuable for certain builds.
+- **Winterhold / Eastmarch** is the leanest region for most ingredient types, which matches the in-game geography of frozen tundra.
+
+---
+
+## The interactive model
+
+The tool below runs the same LP in your browser using an inline simplex implementation. Adjust the time budget or swap to a custom build to see how the optimal allocation changes in real time.
+
+<SkyrimAlchemyOptimizer client:load />
+
+---
+
+## What the model doesn't know
+
+This model is useful and I believe its directional conclusions, but three simplifications are worth naming:
+
+**One recipe per potion.** For each potion, I selected one canonical ingredient pair — the combination with the highest combined yield across all regions. Skyrim actually allows many combinations per potion type (any two ingredients sharing an effect). A more complex model could optimize over all pairs, but it would be harder to explain and the difference in practical advice is likely small.
+
+**Spawn counts ≠ farming rates.** Yield rates are proportional to UESP spawn counts. A region with 100 plants has twice the yield rate of a region with 50. This treats all spawn locations equivalently — a dungeon with a placed ingredient is worth the same as an outdoor harvestable plant. In practice, harvesting outdoor respawning plants is usually faster than clearing dungeons. Monster drops (Troll Fat, Giant's Toe, Chaurus Eggs) are especially overrepresented relative to actual farming rate since they appear in the UESP spawn lists at documented encounter locations but require combat.
+
+**No travel time.** The model doesn't account for the time it takes to travel between regions. In practice, spreading across four regions has a real cost that doesn't appear in these numbers. If you account for fast-travel as essentially free, the multi-region allocations are valid. If you're playing without fast travel, the single-region corner solutions become more attractive.
+
+---
+
+## How it was built
+
+- **Scraper:** Python + BeautifulSoup + UESP MediaWiki API. Ingredient pages parsed for the `{{Ingredient Summary}}` template (effects) and location sections (spawn counts). ~2 minutes for all 191 ingredients with rate limiting.
+- **Dataset:** Hold spawn counts aggregated to 6 model regions, yield rates normalized, potion recipes derived from shared effects.
+- **LP model:** `scipy.optimize.linprog` with HiGHS backend. 6 region variables + up to 25 active potion variables per solve. Runs in milliseconds.
+- **Interactive component:** Inline simplex solver (no external LP library) in a React component. All data embedded — no backend needed.
+- **Data source:** [UESP](https://en.uesp.net) (Unofficial Elder Scrolls Pages). Spawn counts verified against the game wiki for spot-checked ingredients.
+
+Everything is [auditable](https://github.com/ckeneha1/gatheringdata-blog) — the scraper, the build scripts, and the dataset.

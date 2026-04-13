@@ -1,0 +1,33 @@
+{
+  "name": "Eye of Sabre Cat",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Eye_of_Sabre_Cat",
+  "game_id": "0006bc07",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Health",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Magicka",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 1
+  },
+  "total_spawn_count": 1
+}

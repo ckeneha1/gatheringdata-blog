@@ -1,0 +1,31 @@
+{
+  "name": "Blister Pod Cap",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Blister_Pod_Cap",
+  "game_id": "FExxxD6A",
+  "value": "25",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Night Eye (effect)",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Invisibility (effect)",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

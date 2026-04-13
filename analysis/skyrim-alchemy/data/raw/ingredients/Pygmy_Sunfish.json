@@ -1,0 +1,31 @@
+{
+  "name": "Pygmy Sunfish",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Pygmy_Sunfish",
+  "game_id": "xx0008ED",
+  "value": "2",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Lingering Damage Magicka",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Restoration",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

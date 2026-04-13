@@ -1,0 +1,37 @@
+{
+  "name": "Falmer Ear",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Falmer_Ear",
+  "game_id": "0003ad5d",
+  "value": "10",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Frenzy (effect)",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Lockpicking",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Winterhold": 7,
+    "The Rift": 13,
+    "The Pale": 7,
+    "The Reach": 3,
+    "Eastmarch": 2
+  },
+  "total_spawn_count": 32
+}

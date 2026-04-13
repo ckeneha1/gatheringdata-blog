@@ -1,0 +1,36 @@
+{
+  "name": "Torchbug Thorax",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Torchbug_Thorax",
+  "game_id": "0004da73",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Lingering Damage Magicka",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Winterhold": 9,
+    "The Pale": 9,
+    "Haafingar": 3,
+    "Eastmarch": 4
+  },
+  "total_spawn_count": 25
+}

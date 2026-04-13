@@ -1,0 +1,38 @@
+{
+  "name": "Nirnroot",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Nirnroot",
+  "game_id": "00059b86",
+  "value": "10",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Damage Stamina",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Invisibility (effect)",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Resist Magic",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 30,
+    "The Rift": 14,
+    "The Reach": 7,
+    "Falkreath Hold": 4,
+    "Winterhold": 3,
+    "Whiterun Hold": 6
+  },
+  "total_spawn_count": 64
+}

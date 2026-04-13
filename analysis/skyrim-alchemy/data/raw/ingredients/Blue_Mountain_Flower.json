@@ -1,0 +1,39 @@
+{
+  "name": "Blue Mountain Flower",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Mountain_Flower",
+  "game_id": "00077e1c",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Conjuration",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 11,
+    "The Pale": 4,
+    "Whiterun Hold": 52,
+    "Hjaalmarch": 26,
+    "The Rift": 112,
+    "The Reach": 18,
+    "Falkreath Hold": 36
+  },
+  "total_spawn_count": 259
+}

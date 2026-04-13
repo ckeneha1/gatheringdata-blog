@@ -1,0 +1,37 @@
+{
+  "name": "Taproot",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Taproot",
+  "game_id": "0003ad71",
+  "value": "15",
+  "weight": "0.5",
+  "effects": [
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Illusion",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Eastmarch": 2,
+    "Haafingar": 4,
+    "Hjaalmarch": 2,
+    "The Rift": 2,
+    "The Pale": 2
+  },
+  "total_spawn_count": 12
+}

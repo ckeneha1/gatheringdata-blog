@@ -1,0 +1,36 @@
+{
+  "name": "Giant's Toe",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Giant's_Toe",
+  "game_id": "0003ad64",
+  "value": "20",
+  "weight": "1",
+  "effects": [
+    {
+      "effect": "Damage Stamina",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Health",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Carry Weight",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Pale": 5,
+    "Eastmarch": 2,
+    "Haafingar": 6,
+    "The Rift": 2
+  },
+  "total_spawn_count": 15
+}

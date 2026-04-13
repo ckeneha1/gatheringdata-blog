@@ -1,0 +1,31 @@
+{
+  "name": "Boar Tusk",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Boar_Tusk",
+  "game_id": "xx01cd6f",
+  "value": "20",
+  "weight": "0.5",
+  "effects": [
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Health",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Block",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Frenzy (effect)",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

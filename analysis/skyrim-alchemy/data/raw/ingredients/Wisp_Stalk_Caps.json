@@ -1,0 +1,31 @@
+{
+  "name": "Wisp Stalk Caps",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Wisp_Stalk_Caps",
+  "game_id": "FExxx823",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Weakness to Poison",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Frenzy (effect)",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Stamina",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

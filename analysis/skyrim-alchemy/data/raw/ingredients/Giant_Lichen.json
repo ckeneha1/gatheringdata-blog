@@ -1,0 +1,38 @@
+{
+  "name": "Giant Lichen",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Giant_Lichen",
+  "game_id": "0007e8c1",
+  "value": "5",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Weakness to Shock",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Health",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Weakness to Poison",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 5,
+    "The Pale": 6,
+    "The Reach": 2,
+    "The Rift": 2,
+    "Eastmarch": 2,
+    "Hjaalmarch": 99
+  },
+  "total_spawn_count": 116
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Congealed Putrescence",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Congealed_Putrescence",
+  "game_id": "FExxx807",
+  "value": "9",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Ravage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Conjuration",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

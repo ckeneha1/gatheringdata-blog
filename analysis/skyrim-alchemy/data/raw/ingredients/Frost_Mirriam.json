@@ -1,0 +1,36 @@
+{
+  "name": "Frost Mirriam",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Mirriam",
+  "game_id": "00034d32",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Sneak",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Ravage Magicka",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 11,
+    "Whiterun Hold": 2,
+    "Falkreath Hold": 2,
+    "The Reach": 10
+  },
+  "total_spawn_count": 25
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Deathbell",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Deathbell",
+  "game_id": "000516c8",
+  "value": "4",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Stamina",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Slow",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Weakness to Poison",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 21,
+    "Haafingar": 17,
+    "Whiterun Hold": 13,
+    "The Pale": 7,
+    "Falkreath Hold": 6,
+    "Eastmarch": 4,
+    "Hjaalmarch": 134
+  },
+  "total_spawn_count": 202
+}

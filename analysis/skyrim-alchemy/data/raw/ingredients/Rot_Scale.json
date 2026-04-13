@@ -1,0 +1,31 @@
+{
+  "name": "Rot Scale",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Rot_Scale",
+  "game_id": "0100306D",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Slow",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Fear (effect)",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Watcher's Eye",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Watcher's_Eye",
+  "game_id": "FExxx821",
+  "value": "9",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Night Eye (effect)",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Illusion",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Spell Absorption",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Imp Stool",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Imp_Stool",
+  "game_id": "0004da23",
+  "value": "0",
+  "weight": "0.3",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Haafingar": 2,
+    "Hjaalmarch": 70,
+    "The Reach": 25,
+    "The Rift": 31,
+    "Falkreath Hold": 23,
+    "Whiterun Hold": 19,
+    "The Pale": 14
+  },
+  "total_spawn_count": 184
+}

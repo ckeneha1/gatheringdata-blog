@@ -1,0 +1,31 @@
+{
+  "name": "Imp Gall",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Imp_Gall",
+  "game_id": "FExxx80F",
+  "value": "15",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Barter",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Cure Poison",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

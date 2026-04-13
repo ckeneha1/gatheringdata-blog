@@ -1,0 +1,31 @@
+{
+  "name": "Ironwood Fruit",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Ironwood_Fruit",
+  "game_id": "FExxxF0F",
+  "value": "5",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Resist Fire",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Stamina",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

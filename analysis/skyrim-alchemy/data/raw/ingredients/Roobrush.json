@@ -1,0 +1,31 @@
+{
+  "name": "Roobrush",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Roobrush",
+  "game_id": "FExxx819",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Sneak",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Cure Poison",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

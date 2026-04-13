@@ -1,0 +1,31 @@
+{
+  "name": "Spadefish",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Spadefish",
+  "game_id": "xx0008F3",
+  "value": "15",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Lockpicking",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Pickpocket",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Cure Disease",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

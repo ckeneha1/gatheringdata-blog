@@ -1,0 +1,31 @@
+{
+  "name": "Large Antlers",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Large_Antlers",
+  "game_id": "0006bc0a",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Slow",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

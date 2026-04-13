@@ -1,0 +1,31 @@
+{
+  "name": "Angler Larvae",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Angler_Larvae",
+  "game_id": "xx0008F0",
+  "value": "1",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Regenerate Stamina",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Waterbreathing (effect)",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Two-handed",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

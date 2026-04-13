@@ -1,0 +1,39 @@
+{
+  "name": "Namira's Rot",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Namira's_Rot",
+  "game_id": "0004da24",
+  "value": "0",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Damage Magicka",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Lockpicking",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Fear (effect)",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 29,
+    "Winterhold": 11,
+    "Haafingar": 2,
+    "Hjaalmarch": 65,
+    "The Pale": 14,
+    "Falkreath Hold": 21,
+    "The Reach": 26
+  },
+  "total_spawn_count": 168
+}

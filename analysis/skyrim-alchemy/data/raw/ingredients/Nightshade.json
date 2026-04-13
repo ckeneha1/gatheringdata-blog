@@ -1,0 +1,40 @@
+{
+  "name": "Nightshade",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Nightshade",
+  "game_id": "0002f44c",
+  "value": "8",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Lingering Damage Stamina",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Destruction",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Eastmarch": 15,
+    "Falkreath Hold": 23,
+    "The Pale": 3,
+    "The Reach": 3,
+    "Haafingar": 11,
+    "Hjaalmarch": 24,
+    "Whiterun Hold": 20,
+    "The Rift": 8
+  },
+  "total_spawn_count": 107
+}

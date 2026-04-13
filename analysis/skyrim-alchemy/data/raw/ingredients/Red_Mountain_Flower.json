@@ -1,0 +1,39 @@
+{
+  "name": "Red Mountain Flower",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Red_Mountain_Flower",
+  "game_id": "00077e1d",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Ravage Magicka",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Damage Health",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Winterhold": 16,
+    "The Reach": 29,
+    "Haafingar": 41,
+    "The Rift": 111,
+    "Falkreath Hold": 26,
+    "Eastmarch": 43,
+    "Whiterun Hold": 21
+  },
+  "total_spawn_count": 287
+}

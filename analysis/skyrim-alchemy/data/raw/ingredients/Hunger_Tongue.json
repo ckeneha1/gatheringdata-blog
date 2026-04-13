@@ -1,0 +1,31 @@
+{
+  "name": "Hunger Tongue",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Hunger_Tongue",
+  "game_id": "FExxx80C",
+  "value": "10",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Cure Disease",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Cure Poison",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

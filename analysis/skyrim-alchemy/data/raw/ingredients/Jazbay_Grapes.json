@@ -1,0 +1,36 @@
+{
+  "name": "Jazbay Grapes",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Jazbay_Grapes",
+  "game_id": "0006ac4a",
+  "value": "1",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Magicka",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Ravage Health",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Reach": 15,
+    "Whiterun Hold": 4,
+    "The Rift": 4,
+    "Eastmarch": 319
+  },
+  "total_spawn_count": 342
+}

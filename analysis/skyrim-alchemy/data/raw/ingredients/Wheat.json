@@ -1,0 +1,38 @@
+{
+  "name": "Wheat",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Wheat",
+  "game_id": "0004b0ba",
+  "value": "5",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Health",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Lingering Damage Magicka",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Whiterun Hold": 17,
+    "Eastmarch": 35,
+    "The Reach": 10,
+    "The Rift": 13,
+    "The Pale": 6,
+    "Haafingar": 3
+  },
+  "total_spawn_count": 84
+}

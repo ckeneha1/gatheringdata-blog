@@ -1,0 +1,31 @@
+{
+  "name": "Thorn Hook",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Thorn_Hook",
+  "game_id": "0100306F",
+  "value": "20",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

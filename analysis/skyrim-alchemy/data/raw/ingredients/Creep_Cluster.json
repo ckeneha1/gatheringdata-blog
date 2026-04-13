@@ -1,0 +1,37 @@
+{
+  "name": "Creep Cluster",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Creep_Cluster",
+  "game_id": "000b2183",
+  "value": "1",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Damage Stamina Regen",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Fortify Carry Weight",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Weakness to Magic",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Whiterun Hold": 5,
+    "The Pale": 4,
+    "The Reach": 2,
+    "Winterhold": 2,
+    "Eastmarch": 233
+  },
+  "total_spawn_count": 246
+}

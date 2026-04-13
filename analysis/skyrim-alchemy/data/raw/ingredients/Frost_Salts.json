@@ -1,0 +1,38 @@
+{
+  "name": "Frost Salts",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Salts",
+  "game_id": "0003ad5f",
+  "value": "100",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Weakness to Fire",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Restore Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Conjuration",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Falkreath Hold": 5,
+    "The Rift": 5,
+    "Eastmarch": 2,
+    "The Reach": 4,
+    "Haafingar": 2,
+    "The Pale": 2
+  },
+  "total_spawn_count": 20
+}

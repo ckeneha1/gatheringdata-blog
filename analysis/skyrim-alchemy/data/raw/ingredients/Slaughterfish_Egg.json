@@ -1,0 +1,37 @@
+{
+  "name": "Slaughterfish Egg",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Slaughterfish_Egg",
+  "game_id": "0007e8c5",
+  "value": "3",
+  "weight": "0.2",
+  "effects": [
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Pickpocket",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Lingering Damage Health",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Whiterun Hold": 7,
+    "Eastmarch": 7,
+    "The Rift": 6,
+    "The Reach": 10,
+    "The Pale": 5
+  },
+  "total_spawn_count": 35
+}

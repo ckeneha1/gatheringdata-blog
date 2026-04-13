@@ -1,0 +1,31 @@
+{
+  "name": "Daedra Silk",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Daedra_Silk",
+  "game_id": "FExxx80A",
+  "value": "50",
+  "weight": "0.5",
+  "effects": [
+    {
+      "effect": "Lingering Damage Stamina",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Paralysis",
+      "polarity": "negative",
+      "slot": 2
+    },
+    {
+      "effect": "Night Eye (effect)",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Invisibility (effect)",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

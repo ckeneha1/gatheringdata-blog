@@ -1,0 +1,34 @@
+{
+  "name": "Blue Butterfly Wing",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Butterfly_Wing",
+  "game_id": "000727de",
+  "value": "2",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Damage Stamina",
+      "polarity": "negative",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Conjuration",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Damage Magicka Regen",
+      "polarity": "negative",
+      "slot": 3
+    },
+    {
+      "effect": "Fortify Enchanting",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Hjaalmarch": 2,
+    "Eastmarch": 2
+  },
+  "total_spawn_count": 4
+}

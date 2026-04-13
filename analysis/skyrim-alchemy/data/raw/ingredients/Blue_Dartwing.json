@@ -1,0 +1,36 @@
+{
+  "name": "Blue Dartwing",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Dartwing",
+  "game_id": "000e4f0c",
+  "value": "1",
+  "weight": "0.1",
+  "effects": [
+    {
+      "effect": "Resist Shock",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Pickpocket",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Restore Health",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Fear (effect)",
+      "polarity": "negative",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "Whiterun Hold": 6,
+    "Eastmarch": 1,
+    "The Reach": 2,
+    "Winterhold": 1
+  },
+  "total_spawn_count": 10
+}

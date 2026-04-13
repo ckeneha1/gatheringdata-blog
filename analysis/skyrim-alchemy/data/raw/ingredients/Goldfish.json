@@ -1,0 +1,31 @@
+{
+  "name": "Goldfish",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Goldfish",
+  "game_id": "xx0008EF",
+  "value": "10",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Restore Stamina",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Heavy Armor",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Waterbreathing (effect)",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Resist Frost",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {},
+  "total_spawn_count": 0
+}

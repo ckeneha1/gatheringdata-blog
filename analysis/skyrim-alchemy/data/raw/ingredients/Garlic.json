@@ -1,0 +1,36 @@
+{
+  "name": "Garlic",
+  "source_url": "https://en.uesp.net/wiki/Skyrim:Garlic",
+  "game_id": "00034d22",
+  "value": "1",
+  "weight": "0.25",
+  "effects": [
+    {
+      "effect": "Resist Poison",
+      "polarity": "positive",
+      "slot": 1
+    },
+    {
+      "effect": "Fortify Stamina",
+      "polarity": "positive",
+      "slot": 2
+    },
+    {
+      "effect": "Regenerate Magicka",
+      "polarity": "positive",
+      "slot": 3
+    },
+    {
+      "effect": "Regenerate Health",
+      "polarity": "positive",
+      "slot": 4
+    }
+  ],
+  "hold_counts": {
+    "The Rift": 23,
+    "Whiterun Hold": 11,
+    "Haafingar": 45,
+    "The Pale": 7
+  },
+  "total_spawn_count": 86
+}
