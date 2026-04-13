@@ -4,7 +4,7 @@ description: "Building a data-driven definition of 'good' Magic cards."
 pubDate: "2026-04-13"
 ---
 
-[Post 1](./mtg-distributions) established that the supply side of Magic: the Gathering is vast: as of early 2026, the total catalog sits at just under 34,000 unique designs. Which of those cards are actually worth caring about? Which are *good*?
+[Post 1](./mtg-distributions) established that the supply side of Magic: the Gathering is vast. As of early 2026, the total catalog sits at just under 34,000 unique designs. Which of those cards are actually worth caring about? Which are *good*?
 
 ## "Good" is a moving target
 
