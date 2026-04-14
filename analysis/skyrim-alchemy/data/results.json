@@ -3,147 +3,147 @@
     "build_name": "Heavy Armor Warrior",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 906.0918,
-    "shadow_price_time": 45.3046,
+    "objective_value": 180.2731,
+    "shadow_price_time": 9.0137,
     "region_hours": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.8512,
-      "The Reach / Haafingar (West)": 4.1529,
-      "The Rift (Southeast)": 10.8555,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 16.1731,
+      "The Rift (Southeast)": 3.8269,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.1404
+      "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "potion_batches": {
-      "Poison of Damage Health": 34.0849,
-      "Poison of Paralysis": 24.769,
-      "Potion of Fortify Block": 52.9204,
-      "Potion of Fortify Health": 39.4435,
-      "Potion of Fortify Heavy Armor": 52.9204,
-      "Potion of Fortify One-handed": 14.9305,
-      "Potion of Fortify Two-handed": 49.9172,
-      "Potion of Restore Health": 39.4435,
-      "Potion of Restore Stamina": 57.4894
+      "Poison of Damage Health": 2.8255,
+      "Poison of Paralysis": 3.0335,
+      "Potion of Fortify Block": 2.5723,
+      "Potion of Fortify Health": 29.8687,
+      "Potion of Fortify Heavy Armor": 1.0289,
+      "Potion of Fortify One-handed": 6.0,
+      "Potion of Fortify Two-handed": 1.0289,
+      "Potion of Restore Health": 4.416,
+      "Potion of Restore Stamina": 6.0
     }
   },
   {
     "build_name": "Stealth Archer",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 826.8507,
-    "shadow_price_time": 41.3425,
+    "objective_value": 88.0747,
+    "shadow_price_time": 4.4037,
     "region_hours": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.2921,
-      "The Reach / Haafingar (West)": 3.3061,
-      "The Rift (Southeast)": 6.7594,
-      "Whiterun Hold (Central Plains)": 3.4269,
-      "Winterhold / Eastmarch (Northeast)": 2.2155
+      "Hjaalmarch / The Pale (North)": 5.8649,
+      "The Reach / Haafingar (West)": 12.0327,
+      "The Rift (Southeast)": 2.1024,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "potion_batches": {
-      "Poison of Damage Health": 47.1138,
-      "Poison of Slow": 24.305,
-      "Potion of Fortify Light Armor": 33.8913,
-      "Potion of Fortify Marksman": 29.2915,
-      "Potion of Fortify Sneak": 52.7757,
-      "Potion of Invisibility": 55.4909,
-      "Potion of Restore Stamina": 52.7757
+      "Poison of Damage Health": 8.5539,
+      "Poison of Slow": 6.0,
+      "Potion of Fortify Light Armor": 0.4246,
+      "Potion of Fortify Marksman": 4.8198,
+      "Potion of Fortify Sneak": 5.3693,
+      "Potion of Invisibility": 0.6503,
+      "Potion of Restore Stamina": 6.0
     }
   },
   {
     "build_name": "Pure Mage",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 896.8674,
-    "shadow_price_time": 44.8434,
+    "objective_value": 99.5359,
+    "shadow_price_time": 4.9768,
     "region_hours": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 8.813,
-      "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 11.187,
-      "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.0
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 2.89,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 10.6948,
+      "Winterhold / Eastmarch (Northeast)": 6.4152
     },
     "potion_batches": {
-      "Poison of Damage Health": 38.4174,
-      "Potion of Fortify Conjuration": 45.1146,
-      "Potion of Fortify Destruction": 48.5107,
-      "Potion of Fortify Magicka": 13.4244,
-      "Potion of Fortify Restoration": 44.7479,
-      "Potion of Invisibility": 64.9806,
-      "Potion of Regenerate Magicka": 53.1513,
-      "Potion of Restore Magicka": 68.813
+      "Poison of Damage Health": 1.7004,
+      "Potion of Fortify Conjuration": 5.089,
+      "Potion of Fortify Destruction": 2.7879,
+      "Potion of Fortify Magicka": 16.9589,
+      "Potion of Fortify Restoration": 0.867,
+      "Potion of Invisibility": 1.5137,
+      "Potion of Regenerate Magicka": 1.9697,
+      "Potion of Restore Magicka": 6.4047
     }
   },
   {
     "build_name": "Illusion Assassin",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 976.54,
-    "shadow_price_time": 48.827,
+    "objective_value": 82.2841,
+    "shadow_price_time": 4.1142,
     "region_hours": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.6804,
-      "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 16.701,
+      "Hjaalmarch / The Pale (North)": 7.5827,
+      "The Reach / Haafingar (West)": 1.1845,
+      "The Rift (Southeast)": 11.1023,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.6186
+      "Winterhold / Eastmarch (Northeast)": 0.1305
     },
     "potion_batches": {
-      "Poison of Damage Health": 31.89,
-      "Poison of Lingering Damage Health": 45.6357,
-      "Poison of Paralysis": 35.3756,
-      "Potion of Fortify Illusion": 45.3608,
-      "Potion of Fortify Sneak": 67.9701,
-      "Potion of Invisibility": 67.2482,
-      "Potion of Restore Health": 29.1252
+      "Poison of Damage Health": 10.5206,
+      "Poison of Lingering Damage Health": 0.9327,
+      "Poison of Paralysis": 8.0565,
+      "Potion of Fortify Illusion": 0.5975,
+      "Potion of Fortify Sneak": 2.6302,
+      "Potion of Invisibility": 1.5877,
+      "Potion of Restore Health": 8.0565
     }
   },
   {
     "build_name": "Paladin",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 945.5238,
-    "shadow_price_time": 47.2762,
+    "objective_value": 94.6517,
+    "shadow_price_time": 4.7326,
     "region_hours": {
-      "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": -0.0,
-      "The Rift (Southeast)": 20.0,
-      "Whiterun Hold (Central Plains)": 0.0,
+      "Falkreath (South)": 6.0256,
+      "Hjaalmarch / The Pale (North)": 7.8841,
+      "The Reach / Haafingar (West)": 1.4724,
+      "The Rift (Southeast)": 4.0015,
+      "Whiterun Hold (Central Plains)": 0.6164,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "potion_batches": {
-      "Potion of Cure Disease": 80.0,
-      "Potion of Fortify Block": 53.3333,
-      "Potion of Fortify Heavy Armor": 53.3333,
-      "Potion of Fortify One-handed": 0.0,
-      "Potion of Fortify Restoration": 80.0,
-      "Potion of Resist Magic": 53.3333,
-      "Potion of Restore Health": 29.7143
+      "Potion of Cure Disease": 0.8027,
+      "Potion of Fortify Block": 6.1041,
+      "Potion of Fortify Heavy Armor": 6.6738,
+      "Potion of Fortify One-handed": 5.8151,
+      "Potion of Fortify Restoration": 1.503,
+      "Potion of Resist Magic": 4.1083,
+      "Potion of Restore Health": 7.7643
     }
   },
   {
     "build_name": "Necromancer",
     "time_budget": 20.0,
     "status": "Optimal",
-    "objective_value": 918.3126,
-    "shadow_price_time": 45.9156,
+    "objective_value": 107.0116,
+    "shadow_price_time": 5.3506,
     "region_hours": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 20.0,
-      "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.0
+      "Hjaalmarch / The Pale (North)": 4.9334,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 4.4649,
+      "Whiterun Hold (Central Plains)": 6.156,
+      "Winterhold / Eastmarch (Northeast)": 4.4457
     },
     "potion_batches": {
-      "Poison of Damage Health": 41.4815,
-      "Poison of Frenzy": 80.0,
-      "Potion of Fortify Conjuration": 80.0,
-      "Potion of Fortify Destruction": 33.2584,
-      "Potion of Fortify Magicka": 50.4505,
-      "Potion of Invisibility": 0.0,
-      "Potion of Regenerate Magicka": 32.0
+      "Poison of Damage Health": 7.0551,
+      "Poison of Frenzy": 4.3554,
+      "Potion of Fortify Conjuration": 7.6993,
+      "Potion of Fortify Destruction": 2.8527,
+      "Potion of Fortify Magicka": 11.6156,
+      "Potion of Invisibility": 0.8969,
+      "Potion of Regenerate Magicka": 1.6298
     }
   }
 ]

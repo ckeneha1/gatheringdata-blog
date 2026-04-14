@@ -186,8 +186,8 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 2.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Beehive_Husk"
@@ -229,11 +229,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.4426229508196722,
-      "The Rift (Southeast)": 3.9344262295081966,
-      "Whiterun Hold (Central Plains)": 1.5081967213114753,
-      "Winterhold / Eastmarch (Northeast)": 0.19672131147540983
+      "Hjaalmarch / The Pale (North)": 0.4850894632206759,
+      "The Reach / Haafingar (West)": 0.1749502982107356,
+      "The Rift (Southeast)": 0.47713717693836977,
+      "Whiterun Hold (Central Plains)": 0.18290258449304175,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Bleeding_Crown"
   },
@@ -273,12 +273,12 @@
       "Falkreath Hold": 10
     },
     "region_yields": {
-      "Falkreath (South)": 0.5555555555555556,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 0.6111111111111112,
-      "The Rift (Southeast)": 1.8333333333333333,
-      "Whiterun Hold (Central Plains)": 0.16666666666666666,
-      "Winterhold / Eastmarch (Northeast)": 0.3333333333333333
+      "Falkreath (South)": 0.07952286282306163,
+      "Hjaalmarch / The Pale (North)": 0.5725646123260437,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.2624254473161034,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Blisterwort"
   },
@@ -315,11 +315,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Butterfly_Wing"
   },
@@ -359,10 +359,10 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 1.3333333333333333,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 4.0,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Whiterun Hold (Central Plains)": 0.04771371769383698,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Dartwing"
   },
@@ -403,11 +403,11 @@
       "Falkreath Hold": 36
     },
     "region_yields": {
-      "Falkreath (South)": 1.2857142857142858,
-      "Hjaalmarch / The Pale (North)": 1.0714285714285714,
-      "The Reach / Haafingar (West)": 1.0357142857142858,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 1.8571428571428572,
+      "Falkreath (South)": 0.28628230616302186,
+      "Hjaalmarch / The Pale (North)": 0.23856858846918488,
+      "The Reach / Haafingar (West)": 0.23061630218687873,
+      "The Rift (Southeast)": 0.8906560636182903,
+      "Whiterun Hold (Central Plains)": 0.4135188866799205,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Mountain_Flower"
@@ -448,10 +448,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 3.272727272727273,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.4545454545454546,
-      "Whiterun Hold (Central Plains)": 3.272727272727273,
+      "Hjaalmarch / The Pale (North)": 0.07157057654075547,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.07157057654075547,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Bone_Meal"
@@ -491,12 +491,12 @@
       "The Reach": 1
     },
     "region_yields": {
-      "Falkreath (South)": 1.0,
+      "Falkreath (South)": 0.007952286282306162,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 1.0,
+      "The Reach / Haafingar (West)": 0.007952286282306162,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 1.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Briar_Heart"
   },
@@ -573,11 +573,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 1.3333333333333333,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Butterfly_Wing"
   },
@@ -617,11 +617,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 3.0344827586206895,
-      "The Reach / Haafingar (West)": 0.13793103448275862,
-      "The Rift (Southeast)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.5248508946322068,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.6918489065606361,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.27586206896551724
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Canis_Root"
   },
@@ -660,11 +660,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 3.5555555555555554,
+      "Hjaalmarch / The Pale (North)": 0.0636182902584493,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 1.3333333333333333,
-      "Winterhold / Eastmarch (Northeast)": 2.6666666666666665
+      "The Rift (Southeast)": 0.07157057654075547,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Charred_Skeever_Hide"
   },
@@ -703,11 +703,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 3.076923076923077,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 3.3846153846153846,
-      "Whiterun Hold (Central Plains)": 3.076923076923077,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "The Rift (Southeast)": 0.0874751491053678,
+      "Whiterun Hold (Central Plains)": 0.07952286282306163,
+      "Winterhold / Eastmarch (Northeast)": 0.10337972166998012
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Chaurus_Eggs"
   },
@@ -784,12 +784,12 @@
       "The Reach": 4
     },
     "region_yields": {
-      "Falkreath (South)": 2.0,
-      "Hjaalmarch / The Pale (North)": 1.3333333333333333,
-      "The Reach / Haafingar (West)": 4.0,
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.09542743538767395,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 2.0
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Chicken's_Egg"
   },
@@ -829,11 +829,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.06808510638297872,
-      "The Reach / Haafingar (West)": 0.03404255319148936,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 0.0851063829787234,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 1.8687872763419484
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Creep_Cluster"
   },
@@ -870,10 +870,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 2.0,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Daedra_Heart"
@@ -915,12 +915,12 @@
       "Hjaalmarch": 134
     },
     "region_yields": {
-      "Falkreath (South)": 0.1702127659574468,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 0.48226950354609927,
-      "The Rift (Southeast)": 0.5957446808510638,
-      "Whiterun Hold (Central Plains)": 0.36879432624113473,
-      "Winterhold / Eastmarch (Northeast)": 0.11347517730496454
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 1.121272365805169,
+      "The Reach / Haafingar (West)": 0.13518886679920478,
+      "The Rift (Southeast)": 0.16699801192842942,
+      "Whiterun Hold (Central Plains)": 0.10337972166998012,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Deathbell"
   },
@@ -1000,11 +1000,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.4
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Dwarven_Oil"
   },
@@ -1043,11 +1043,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 2.6666666666666665
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Ectoplasm"
   },
@@ -1089,12 +1089,12 @@
       "The Rift": 14
     },
     "region_yields": {
-      "Falkreath (South)": 0.26666666666666666,
-      "Hjaalmarch / The Pale (North)": 0.5333333333333333,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.2444444444444445,
-      "Whiterun Hold (Central Plains)": 1.6,
-      "Winterhold / Eastmarch (Northeast)": 0.5333333333333333
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.35785288270377735,
+      "The Rift (Southeast)": 0.11133200795228629,
+      "Whiterun Hold (Central Plains)": 0.14314115308151093,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Elves_Ear"
   },
@@ -1132,7 +1132,7 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -1174,11 +1174,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.1538461538461537,
-      "The Reach / Haafingar (West)": 0.9230769230769231,
-      "The Rift (Southeast)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.10337972166998012,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 2.769230769230769
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Falmer_Ear"
   },
@@ -1220,12 +1220,12 @@
       "The Reach": 2
     },
     "region_yields": {
-      "Falkreath (South)": 1.2,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.6,
-      "The Rift (Southeast)": 1.6,
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.03180914512922465,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 3.6
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Fire_Salts"
   },
@@ -1267,11 +1267,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.585858585858586,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.4646464646464645,
+      "Hjaalmarch / The Pale (North)": 0.5089463220675944,
+      "The Reach / Haafingar (West)": 0.7872763419483101,
+      "The Rift (Southeast)": 0.4850894632206759,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.0505050505050506
+      "Winterhold / Eastmarch (Northeast)": 0.20675944333996024
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Fly_Amanita"
   },
@@ -1309,11 +1309,11 @@
       "The Reach": 10
     },
     "region_yields": {
-      "Falkreath (South)": 0.7272727272727273,
+      "Falkreath (South)": 0.015904572564612324,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 3.6363636363636362,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 0.7272727272727273,
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.0874751491053678,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Mirriam"
@@ -1354,12 +1354,12 @@
       "The Pale": 2
     },
     "region_yields": {
-      "Falkreath (South)": 3.3333333333333335,
-      "Hjaalmarch / The Pale (North)": 1.3333333333333333,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 3.3333333333333335,
+      "Falkreath (South)": 0.039761431411530816,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.039761431411530816,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Salts"
   },
@@ -1398,10 +1398,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.6222222222222222,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.0444444444444443,
-      "Whiterun Hold (Central Plains)": 0.9777777777777777,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.35785288270377735,
+      "The Rift (Southeast)": 0.18290258449304175,
+      "Whiterun Hold (Central Plains)": 0.0874751491053678,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Garlic"
@@ -1443,11 +1443,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 0.26666666666666666,
-      "The Rift (Southeast)": 0.0761904761904762,
+      "Hjaalmarch / The Pale (North)": 0.8349900596421471,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.0761904761904762
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Giant_Lichen"
   },
@@ -1486,11 +1486,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 3.3333333333333335,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.3333333333333333,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Giant's_Toe"
   },
@@ -1530,11 +1530,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 1.1428571428571428,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.1428571428571428,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.1428571428571428
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Glow_Dust"
   },
@@ -1576,11 +1576,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.42696629213483145,
-      "The Reach / Haafingar (West)": 1.6629213483146068,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 1.0337078651685394,
-      "Winterhold / Eastmarch (Northeast)": 1.0786516853932584
+      "Hjaalmarch / The Pale (North)": 0.30218687872763417,
+      "The Reach / Haafingar (West)": 1.176938369781312,
+      "The Rift (Southeast)": 2.831013916500994,
+      "Whiterun Hold (Central Plains)": 0.731610337972167,
+      "Winterhold / Eastmarch (Northeast)": 0.7634194831013916
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Glowing_Mushroom"
   },
@@ -1620,10 +1620,10 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
+      "The Reach / Haafingar (West)": 1.0099403578528827,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 0.031496062992125984,
-      "Winterhold / Eastmarch (Northeast)": 1.4803149606299213
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.37375745526838966
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Grass_Pod"
   },
@@ -1663,12 +1663,12 @@
       "Eastmarch": 2
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
-      "Hjaalmarch / The Pale (North)": 3.3333333333333335,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.6666666666666665,
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.03180914512922465,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Hagraven_Claw"
   },
@@ -1707,12 +1707,12 @@
       "Falkreath Hold": 3
     },
     "region_yields": {
-      "Falkreath (South)": 0.631578947368421,
-      "Hjaalmarch / The Pale (North)": 0.631578947368421,
-      "The Reach / Haafingar (West)": 4.0,
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.02385685884691849,
+      "The Reach / Haafingar (West)": 0.15109343936381708,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 1.0526315789473684,
-      "Winterhold / Eastmarch (Northeast)": 1.4736842105263157
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 0.055666003976143144
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Hagraven_Feathers"
   },
@@ -1751,12 +1751,12 @@
       "The Reach": 230
     },
     "region_yields": {
-      "Falkreath (South)": 1.103448275862069,
+      "Falkreath (South)": 0.5089463220675944,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 0.017241379310344827,
+      "The Reach / Haafingar (West)": 1.8449304174950298,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.034482758620689655
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Hanging_Moss"
   },
@@ -1796,7 +1796,7 @@
       "The Reach / Haafingar (West)": 0.0,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Hawk_Feathers"
   },
@@ -1873,8 +1873,8 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 2.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Honeycomb"
@@ -1915,11 +1915,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 2.0,
-      "The Rift (Southeast)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.03180914512922465,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Human_Flesh"
   },
@@ -1957,7 +1957,7 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -1997,10 +1997,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.1428571428571428,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 2.857142857142857,
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Ice_Wraith_Teeth"
@@ -2042,11 +2042,11 @@
       "The Pale": 14
     },
     "region_yields": {
-      "Falkreath (South)": 1.0952380952380953,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.2857142857142858,
-      "The Rift (Southeast)": 1.4761904761904763,
-      "Whiterun Hold (Central Plains)": 0.9047619047619048,
+      "Falkreath (South)": 0.18290258449304175,
+      "Hjaalmarch / The Pale (North)": 0.6679920477137177,
+      "The Reach / Haafingar (West)": 0.2147117296222664,
+      "The Rift (Southeast)": 0.24652087475149106,
+      "Whiterun Hold (Central Plains)": 0.15109343936381708,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Imp_Stool"
@@ -2087,10 +2087,10 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 0.18808777429467086,
-      "The Rift (Southeast)": 0.050156739811912224,
-      "Whiterun Hold (Central Plains)": 0.050156739811912224,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "The Reach / Haafingar (West)": 0.11928429423459244,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.03180914512922465,
+      "Winterhold / Eastmarch (Northeast)": 2.536779324055666
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Jazbay_Grapes"
   },
@@ -2128,10 +2128,10 @@
       "The Rift": 2
     },
     "region_yields": {
-      "Falkreath (South)": 0.03896103896103896,
+      "Falkreath (South)": 0.02385685884691849,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 0.025974025974025976,
+      "The Reach / Haafingar (West)": 2.4493041749502984,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -2248,10 +2248,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 1.894736842105263,
-      "The Reach / Haafingar (West)": 0.49122807017543857,
+      "Hjaalmarch / The Pale (North)": 0.4294234592445328,
+      "The Reach / Haafingar (West)": 0.11133200795228629,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 4.0,
+      "Whiterun Hold (Central Plains)": 0.9065606361829026,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Lavender"
@@ -2289,8 +2289,8 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.6,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
@@ -2330,12 +2330,12 @@
       "Falkreath Hold": 1
     },
     "region_yields": {
-      "Falkreath (South)": 0.6666666666666666,
+      "Falkreath (South)": 0.007952286282306162,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.04771371769383698,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.3333333333333333
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Moon_Sugar"
   },
@@ -2374,11 +2374,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 1.3333333333333333,
+      "Hjaalmarch / The Pale (North)": 0.007952286282306162,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 1.3333333333333333,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Mudcrab_Chitin"
   },
@@ -2419,12 +2419,12 @@
       "The Reach": 26
     },
     "region_yields": {
-      "Falkreath (South)": 1.0632911392405062,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.4177215189873418,
-      "The Rift (Southeast)": 1.4683544303797469,
+      "Falkreath (South)": 0.16699801192842942,
+      "Hjaalmarch / The Pale (North)": 0.6282306163021869,
+      "The Reach / Haafingar (West)": 0.22266401590457258,
+      "The Rift (Southeast)": 0.23061630218687873,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 0.5569620253164557
+      "Winterhold / Eastmarch (Northeast)": 0.0874751491053678
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Namira's_Rot"
   },
@@ -2504,12 +2504,12 @@
       "The Rift": 8
     },
     "region_yields": {
-      "Falkreath (South)": 3.4074074074074074,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 2.074074074074074,
-      "The Rift (Southeast)": 1.1851851851851851,
-      "Whiterun Hold (Central Plains)": 2.962962962962963,
-      "Winterhold / Eastmarch (Northeast)": 2.2222222222222223
+      "Falkreath (South)": 0.18290258449304175,
+      "Hjaalmarch / The Pale (North)": 0.2147117296222664,
+      "The Reach / Haafingar (West)": 0.11133200795228629,
+      "The Rift (Southeast)": 0.0636182902584493,
+      "Whiterun Hold (Central Plains)": 0.15904572564612326,
+      "Winterhold / Eastmarch (Northeast)": 0.11928429423459244
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Nightshade"
   },
@@ -2549,12 +2549,12 @@
       "Whiterun Hold": 6
     },
     "region_yields": {
-      "Falkreath (South)": 0.43243243243243246,
+      "Falkreath (South)": 0.03180914512922465,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.5135135135135136,
-      "Whiterun Hold (Central Plains)": 0.6486486486486487,
-      "Winterhold / Eastmarch (Northeast)": 0.32432432432432434
+      "The Reach / Haafingar (West)": 0.294234592445328,
+      "The Rift (Southeast)": 0.11133200795228629,
+      "Whiterun Hold (Central Plains)": 0.04771371769383698,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Nirnroot"
   },
@@ -2592,9 +2592,9 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 3.0,
-      "The Rift (Southeast)": 3.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.02385685884691849,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -2635,10 +2635,10 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 1.0526315789473684,
-      "The Reach / Haafingar (West)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.15109343936381708,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 0.42105263157894735,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Orange_Dartwing"
@@ -2677,7 +2677,7 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -2717,12 +2717,12 @@
       "Eastmarch": 4
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
-      "Hjaalmarch / The Pale (North)": 2.2222222222222223,
-      "The Reach / Haafingar (West)": 1.7777777777777777,
+      "Falkreath (South)": 0.07157057654075547,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.7777777777777777
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Pine_Thrush_Egg"
   },
@@ -2763,12 +2763,12 @@
       "The Reach": 24
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
+      "Falkreath (South)": 0.6918489065606361,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 2.8045977011494254,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 3.586206896551724,
-      "Winterhold / Eastmarch (Northeast)": 1.8850574712643677
+      "The Reach / Haafingar (West)": 0.4850894632206759,
+      "The Rift (Southeast)": 0.6918489065606361,
+      "Whiterun Hold (Central Plains)": 0.6202783300198808,
+      "Winterhold / Eastmarch (Northeast)": 0.3260437375745527
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Purple_Mountain_Flower"
   },
@@ -2809,12 +2809,12 @@
       "Whiterun Hold": 21
     },
     "region_yields": {
-      "Falkreath (South)": 0.9369369369369369,
+      "Falkreath (South)": 0.20675944333996024,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 2.5225225225225225,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 0.7567567567567568,
-      "Winterhold / Eastmarch (Northeast)": 2.126126126126126
+      "The Reach / Haafingar (West)": 0.5566600397614314,
+      "The Rift (Southeast)": 0.882703777335984,
+      "Whiterun Hold (Central Plains)": 0.16699801192842942,
+      "Winterhold / Eastmarch (Northeast)": 0.4691848906560636
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Red_Mountain_Flower"
   },
@@ -2850,10 +2850,10 @@
       "The Rift": 1
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
+      "Falkreath (South)": 0.007952286282306162,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -2892,12 +2892,12 @@
       "Eastmarch": 4
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
+      "Falkreath (South)": 0.07952286282306163,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 2.0,
+      "The Reach / Haafingar (West)": 0.039761431411530816,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.6
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Rock_Warbler_Egg"
   },
@@ -2935,9 +2935,9 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 1.3333333333333333,
+      "The Reach / Haafingar (West)": 0.007952286282306162,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 4.0,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Sabre_Cat_Tooth"
@@ -2978,9 +2978,9 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 0.6956521739130435,
-      "Winterhold / Eastmarch (Northeast)": 0.782608695652174
+      "The Rift (Southeast)": 0.3658051689860835,
+      "Whiterun Hold (Central Plains)": 0.0636182902584493,
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Salt_Pile"
   },
@@ -3019,11 +3019,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.2857142857142856,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 2.2857142857142856,
-      "Whiterun Hold (Central Plains)": 4.0,
-      "Winterhold / Eastmarch (Northeast)": 1.7142857142857142
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Scaly_Pholiota"
   },
@@ -3063,11 +3063,11 @@
       "The Rift": 3
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
-      "Hjaalmarch / The Pale (North)": 3.0,
-      "The Reach / Haafingar (West)": 2.75,
-      "The Rift (Southeast)": 0.75,
-      "Whiterun Hold (Central Plains)": 2.0,
+      "Falkreath (South)": 0.1272365805168986,
+      "Hjaalmarch / The Pale (North)": 0.09542743538767395,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.02385685884691849,
+      "Whiterun Hold (Central Plains)": 0.0636182902584493,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Skeever_Tail"
@@ -3108,11 +3108,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.4,
-      "Whiterun Hold (Central Plains)": 2.8,
-      "Winterhold / Eastmarch (Northeast)": 2.8
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.04771371769383698,
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.055666003976143144
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Slaughterfish_Egg"
   },
@@ -3150,12 +3150,12 @@
       "Winterhold": 4
     },
     "region_yields": {
-      "Falkreath (South)": 2.6666666666666665,
+      "Falkreath (South)": 0.04771371769383698,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.6666666666666665,
+      "The Reach / Haafingar (West)": 0.07157057654075547,
+      "The Rift (Southeast)": 0.04771371769383698,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 1.7777777777777777
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Slaughterfish_Scales"
   },
@@ -3194,9 +3194,9 @@
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
+      "The Rift (Southeast)": 0.007952286282306162,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Small_Pearl"
   },
@@ -3236,12 +3236,12 @@
       "Hjaalmarch": 28
     },
     "region_yields": {
-      "Falkreath (South)": 3.0793650793650795,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 0.2222222222222222,
+      "Falkreath (South)": 0.7713717693836978,
+      "Hjaalmarch / The Pale (North)": 1.0019880715705765,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 2.507936507936508
+      "Winterhold / Eastmarch (Northeast)": 0.6282306163021869
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Snowberries"
   },
@@ -3281,12 +3281,12 @@
       "Whiterun Hold": 7
     },
     "region_yields": {
-      "Falkreath (South)": 2.08,
-      "Hjaalmarch / The Pale (North)": 1.28,
-      "The Reach / Haafingar (West)": 4.0,
+      "Falkreath (South)": 0.10337972166998012,
+      "Hjaalmarch / The Pale (North)": 0.0636182902584493,
+      "The Reach / Haafingar (West)": 0.1988071570576541,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 1.12,
-      "Winterhold / Eastmarch (Northeast)": 3.04
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.15109343936381708
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Spider_Egg"
   },
@@ -3327,12 +3327,12 @@
       "The Reach": 1
     },
     "region_yields": {
-      "Falkreath (South)": 0.8,
-      "Hjaalmarch / The Pale (North)": 0.8,
-      "The Reach / Haafingar (West)": 3.2,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 0.8,
-      "Winterhold / Eastmarch (Northeast)": 0.8
+      "Falkreath (South)": 0.007952286282306162,
+      "Hjaalmarch / The Pale (North)": 0.007952286282306162,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.039761431411530816,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Spriggan_Sap"
   },
@@ -3372,9 +3372,9 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 0.14285714285714285,
-      "The Rift (Southeast)": 0.21428571428571427,
+      "Hjaalmarch / The Pale (North)": 0.8906560636182903,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.04771371769383698,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
@@ -3416,11 +3416,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 2.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.015904572564612324,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 2.0
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Taproot"
   },
@@ -3460,12 +3460,12 @@
       "Eastmarch": 34
     },
     "region_yields": {
-      "Falkreath (South)": 4.0,
-      "Hjaalmarch / The Pale (North)": 0.06153846153846154,
-      "The Reach / Haafingar (West)": 0.24615384615384617,
+      "Falkreath (South)": 1.0337972166998013,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.0636182902584493,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 1.4153846153846155,
-      "Winterhold / Eastmarch (Northeast)": 1.0461538461538462
+      "Whiterun Hold (Central Plains)": 0.3658051689860835,
+      "Winterhold / Eastmarch (Northeast)": 0.27037773359840955
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Thistle_Branch"
   },
@@ -3504,11 +3504,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 2.769230769230769,
-      "The Reach / Haafingar (West)": 0.9230769230769231,
+      "Hjaalmarch / The Pale (North)": 0.07157057654075547,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Winterhold / Eastmarch (Northeast)": 0.10337972166998012
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Torchbug_Thorax"
   },
@@ -3549,12 +3549,12 @@
       "The Reach": 4
     },
     "region_yields": {
-      "Falkreath (South)": 1.3333333333333333,
-      "Hjaalmarch / The Pale (North)": 2.6666666666666665,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.3333333333333333,
-      "Whiterun Hold (Central Plains)": 1.3333333333333333,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Falkreath (South)": 0.015904572564612324,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Troll_Fat"
   },
@@ -3593,11 +3593,11 @@
       "Hjaalmarch": 23
     },
     "region_yields": {
-      "Falkreath (South)": 0.6597938144329897,
-      "Hjaalmarch / The Pale (North)": 1.1134020618556701,
-      "The Reach / Haafingar (West)": 0.41237113402061853,
+      "Falkreath (South)": 0.2544731610337972,
+      "Hjaalmarch / The Pale (North)": 0.4294234592445328,
+      "The Reach / Haafingar (West)": 0.15904572564612326,
       "The Rift (Southeast)": 0.0,
-      "Whiterun Hold (Central Plains)": 4.0,
+      "Whiterun Hold (Central Plains)": 1.5427435387673956,
       "Winterhold / Eastmarch (Northeast)": 0.0
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Tundra_Cotton"
@@ -3637,11 +3637,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 4.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
       "The Reach / Haafingar (West)": 0.0,
-      "The Rift (Southeast)": 4.0,
-      "Whiterun Hold (Central Plains)": 2.0,
-      "Winterhold / Eastmarch (Northeast)": 2.0
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Vampire_Dust"
   },
@@ -3681,10 +3681,10 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
-      "The Rift (Southeast)": 1.2,
-      "Whiterun Hold (Central Plains)": 0.8,
-      "Winterhold / Eastmarch (Northeast)": 1.2
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.02385685884691849,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Void_Salts"
   },
@@ -3725,11 +3725,11 @@
     },
     "region_yields": {
       "Falkreath (South)": 0.0,
-      "Hjaalmarch / The Pale (North)": 0.6857142857142857,
-      "The Reach / Haafingar (West)": 1.4857142857142858,
-      "The Rift (Southeast)": 1.4857142857142858,
-      "Whiterun Hold (Central Plains)": 1.9428571428571428,
-      "Winterhold / Eastmarch (Northeast)": 4.0
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.10337972166998012,
+      "The Rift (Southeast)": 0.10337972166998012,
+      "Whiterun Hold (Central Plains)": 0.13518886679920478,
+      "Winterhold / Eastmarch (Northeast)": 0.2783300198807157
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:Wheat"
   },
@@ -3770,12 +3770,12 @@
       "The Pale": 17
     },
     "region_yields": {
-      "Falkreath (South)": 1.4666666666666666,
-      "Hjaalmarch / The Pale (North)": 4.0,
-      "The Reach / Haafingar (West)": 1.8666666666666667,
-      "The Rift (Southeast)": 3.0,
-      "Whiterun Hold (Central Plains)": 1.3333333333333333,
-      "Winterhold / Eastmarch (Northeast)": 2.4
+      "Falkreath (South)": 0.1749502982107356,
+      "Hjaalmarch / The Pale (North)": 0.47713717693836977,
+      "The Reach / Haafingar (West)": 0.22266401590457258,
+      "The Rift (Southeast)": 0.35785288270377735,
+      "Whiterun Hold (Central Plains)": 0.15904572564612326,
+      "Winterhold / Eastmarch (Northeast)": 0.28628230616302186
     },
     "source_url": "https://en.uesp.net/wiki/Skyrim:White_Cap"
   },
@@ -3812,7 +3812,7 @@
     "region_yields": {
       "Falkreath (South)": 0.0,
       "Hjaalmarch / The Pale (North)": 0.0,
-      "The Reach / Haafingar (West)": 4.0,
+      "The Reach / Haafingar (West)": 1.5904572564612327,
       "The Rift (Southeast)": 0.0,
       "Whiterun Hold (Central Plains)": 0.0,
       "Winterhold / Eastmarch (Northeast)": 0.0

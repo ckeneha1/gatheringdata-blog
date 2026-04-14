@@ -18,10 +18,14 @@ Hold → Region mapping (9 Skyrim holds → 6 model regions):
     Winterhold + Eastmarch        → Winterhold / Eastmarch (Northeast)
     The Reach + Haafingar         → The Reach / Haafingar (West)
 
-Yield rate derivation:
-    yield[region][ingredient] = spawn_count_in_region / max_spawn_count_across_all_regions
-    Scaled to 0–4 range. Monster-drop ingredients (no plant spawns) get a
-    difficulty-adjusted yield of 0.3 per region where the creature is present.
+Yield rate derivation (global normalization):
+    global_max = max single-region spawn count of any ingredient (503: Dragon's Tongue NE)
+    yield[ingredient][region] = region_spawn_count / global_max * 4.0
+
+    All ingredients share the same denominator, so yield rates are comparable across
+    ingredients. A rare item like Human Flesh (14 total spawns) scores ~0.03 per region;
+    an abundant plant like Dragon's Tongue scores up to 4.0. Monster-drop ingredients
+    with no UESP spawn data get a fixed yield of 0.3 in documented creature regions.
 
 Potion derivation:
     Two ingredients sharing at least one effect → a valid potion of that effect.
@@ -271,16 +275,27 @@ def load_ingredients() -> list[dict]:
 def build_region_yields(ingredients: list[dict]) -> dict[str, dict[str, float]]:
     """
     Returns {ingredient_name: {region: yield_rate}} for all ingredients.
-    Yield rate = spawn_count_in_region / max_spawn_count_in_any_region * 4.0
-    Monster drops get a fixed small yield in regions where their creature is present.
+
+    Yield rate uses GLOBAL normalization:
+        yield = region_count / global_max_count * 4.0
+
+    where global_max_count is the highest single-region count of ANY ingredient
+    across all ingredients and all regions.
+
+    This means yield rates are comparable across ingredients — a rare ingredient
+    with few spawn points (e.g. Human Flesh, 14 total) will score much lower than
+    a common plant (e.g. Dragon's Tongue, 503 spawns in one region).
+
+    Monster drops with no UESP plant-spawn data get a fixed small yield in regions
+    where their creature is documented to appear.
     """
-    yields: dict[str, dict[str, float]] = {}
+    # --- Pass 1: aggregate all region counts ---
+    all_region_counts: dict[str, dict[str, int]] = {}
 
     for ing in ingredients:
         name = ing["name"]
         hold_counts: dict[str, int] = ing.get("hold_counts", {})
 
-        # Aggregate holds → regions
         region_counts: dict[str, int] = defaultdict(int)
         for hold, count in hold_counts.items():
             region = HOLD_TO_REGION.get(hold)
@@ -288,15 +303,34 @@ def build_region_yields(ingredients: list[dict]) -> dict[str, dict[str, float]]:
                 region_counts[region] += count
 
         if sum(region_counts.values()) > 0:
-            max_count = max(region_counts.values())
-            region_yield = {r: (region_counts.get(r, 0) / max_count) * 4.0 for r in REGIONS}
+            all_region_counts[name] = dict(region_counts)
+
+    # --- Global max: highest single-region count across all ingredients ---
+    global_max = max(
+        count
+        for region_counts in all_region_counts.values()
+        for count in region_counts.values()
+    )
+
+    # --- Pass 2: compute scaled yields ---
+    yields: dict[str, dict[str, float]] = {}
+
+    for ing in ingredients:
+        name = ing["name"]
+
+        if name in all_region_counts:
+            region_counts = all_region_counts[name]
+            region_yield = {
+                r: (region_counts.get(r, 0) / global_max) * 4.0
+                for r in REGIONS
+            }
         elif name in MONSTER_DROP_REGIONS:
-            # Monster drop with no plant spawn data
+            # Monster drop with no UESP spawn data — use fixed difficulty-adjusted yield
             region_yield = {r: 0.0 for r in REGIONS}
             for r in MONSTER_DROP_REGIONS[name]:
                 region_yield[r] = MONSTER_DROP_YIELD
         else:
-            # No spawn data at all — skip (DLC-only items, quest items, etc.)
+            # No spawn data — skip
             continue
 
         yields[name] = region_yield

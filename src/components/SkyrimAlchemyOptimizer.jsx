@@ -2,47 +2,74 @@ import { useState, useEffect } from "react";
 
 // ---------------------------------------------------------------------------
 // Data — derived from UESP scrape via fetch_data.py + build_dataset.py
-// Yield rates: spawn_count_in_region / max_spawn_count × 4.0 (scaled 0–4)
+// Yield rates: spawn_count_in_region / global_max_spawn_count × 4.0 (scaled 0–4)
+// global_max = 503 (Dragon's Tongue in Winterhold/Eastmarch). Only ingredients
+// that appear in at least one canonical potion pair are included.
 // ---------------------------------------------------------------------------
 
 const REGIONS = {
-  "The Rift (Southeast)": { "Beehive Husk": 4.0, "Bleeding Crown": 3.934, "Bone Meal": 1.455, "Charred Skeever Hide": 4.0, "Chaurus Eggs": 3.385, "Deathbell": 0.596, "Elves Ear": 1.244, "Fire Salts": 1.6, "Fly Amanita": 2.465, "Frost Salts": 3.333, "Giant's Toe": 1.333, "Glowing Mushroom": 4.0, "Hagraven Claw": 2.667, "Human Flesh": 4.0, "Imp Stool": 1.476, "Nightshade": 1.185, "Purple Mountain Flower": 4.0, "Red Mountain Flower": 4.0, "River Betty": 4.0, "Rock Warbler Egg": 0.0, "Salt Pile": 4.0, "Scaly Pholiota": 2.286, "Skeever Tail": 0.75, "Slaughterfish Egg": 2.4, "Slaughterfish Scales": 2.667, "Small Pearl": 4.0, "Spider Egg": 0.0, "Taproot": 2.0, "Troll Fat": 1.333, "Vampire Dust": 4.0, "Void Salts": 1.2, "Wheat": 1.486, "White Cap": 3.0 },
-  "Hjaalmarch / The Pale (North)": { "Beehive Husk": 0.0, "Bleeding Crown": 4.0, "Bone Meal": 3.273, "Charred Skeever Hide": 3.556, "Chaurus Eggs": 3.077, "Deathbell": 4.0, "Elves Ear": 0.533, "Fire Salts": 4.0, "Fly Amanita": 2.586, "Frost Salts": 1.333, "Giant's Toe": 3.333, "Glowing Mushroom": 0.427, "Hagraven Claw": 3.333, "Human Flesh": 4.0, "Imp Stool": 4.0, "Nightshade": 4.0, "Purple Mountain Flower": 0.0, "Red Mountain Flower": 0.0, "River Betty": 0.0, "Rock Warbler Egg": 0.0, "Salt Pile": 0.0, "Scaly Pholiota": 2.286, "Skeever Tail": 3.0, "Slaughterfish Egg": 2.0, "Slaughterfish Scales": 0.0, "Small Pearl": 0.0, "Spider Egg": 1.28, "Taproot": 4.0, "Troll Fat": 2.667, "Vampire Dust": 4.0, "Void Salts": 0.0, "Wheat": 0.686, "White Cap": 4.0 },
-  "The Reach / Haafingar (West)": { "Beehive Husk": 0.0, "Bleeding Crown": 1.443, "Bone Meal": 4.0, "Charred Skeever Hide": 0.0, "Chaurus Eggs": 0.0, "Deathbell": 0.482, "Elves Ear": 4.0, "Fire Salts": 1.6, "Fly Amanita": 4.0, "Frost Salts": 4.0, "Giant's Toe": 4.0, "Glowing Mushroom": 1.663, "Hagraven Claw": 4.0, "Human Flesh": 2.0, "Imp Stool": 1.286, "Nightshade": 2.074, "Purple Mountain Flower": 2.805, "Red Mountain Flower": 2.523, "River Betty": 0.0, "Rock Warbler Egg": 2.0, "Salt Pile": 0.0, "Scaly Pholiota": 0.0, "Skeever Tail": 2.75, "Slaughterfish Egg": 4.0, "Slaughterfish Scales": 4.0, "Small Pearl": 0.0, "Spider Egg": 4.0, "Taproot": 4.0, "Troll Fat": 4.0, "Vampire Dust": 0.0, "Void Salts": 4.0, "Wheat": 1.486, "White Cap": 1.867 },
-  "Whiterun Hold (Central Plains)": { "Beehive Husk": 2.0, "Bleeding Crown": 1.508, "Bone Meal": 3.273, "Charred Skeever Hide": 1.333, "Chaurus Eggs": 3.077, "Deathbell": 0.369, "Elves Ear": 1.6, "Fire Salts": 0.0, "Fly Amanita": 0.0, "Frost Salts": 0.0, "Giant's Toe": 0.0, "Glowing Mushroom": 1.034, "Hagraven Claw": 0.0, "Human Flesh": 0.0, "Imp Stool": 0.905, "Nightshade": 2.963, "Purple Mountain Flower": 3.586, "Red Mountain Flower": 0.757, "River Betty": 0.0, "Rock Warbler Egg": 0.0, "Salt Pile": 0.696, "Scaly Pholiota": 4.0, "Skeever Tail": 2.0, "Slaughterfish Egg": 2.8, "Slaughterfish Scales": 0.0, "Small Pearl": 0.0, "Spider Egg": 1.12, "Taproot": 0.0, "Troll Fat": 1.333, "Vampire Dust": 2.0, "Void Salts": 0.8, "Wheat": 1.943, "White Cap": 1.333 },
-  "Winterhold / Eastmarch (Northeast)": { "Beehive Husk": 0.0, "Bleeding Crown": 0.197, "Bone Meal": 0.0, "Charred Skeever Hide": 2.667, "Chaurus Eggs": 4.0, "Deathbell": 0.113, "Elves Ear": 0.533, "Fire Salts": 3.6, "Fly Amanita": 1.051, "Frost Salts": 1.333, "Giant's Toe": 1.333, "Glowing Mushroom": 1.079, "Hagraven Claw": 1.333, "Human Flesh": 4.0, "Imp Stool": 0.0, "Nightshade": 2.222, "Purple Mountain Flower": 1.885, "Red Mountain Flower": 2.126, "River Betty": 0.0, "Rock Warbler Egg": 1.6, "Salt Pile": 0.783, "Scaly Pholiota": 1.714, "Skeever Tail": 0.0, "Slaughterfish Egg": 2.8, "Slaughterfish Scales": 1.778, "Small Pearl": 4.0, "Spider Egg": 3.04, "Taproot": 2.0, "Troll Fat": 4.0, "Vampire Dust": 2.0, "Void Salts": 1.2, "Wheat": 4.0, "White Cap": 2.4 },
-  "Falkreath (South)": { "Beehive Husk": 0.0, "Bleeding Crown": 0.0, "Bone Meal": 0.0, "Charred Skeever Hide": 0.0, "Chaurus Eggs": 0.0, "Deathbell": 0.17, "Elves Ear": 0.267, "Fire Salts": 1.2, "Fly Amanita": 0.0, "Frost Salts": 3.333, "Giant's Toe": 0.0, "Glowing Mushroom": 0.0, "Hagraven Claw": 4.0, "Human Flesh": 0.0, "Imp Stool": 1.095, "Nightshade": 3.407, "Purple Mountain Flower": 4.0, "Red Mountain Flower": 0.937, "River Betty": 4.0, "Rock Warbler Egg": 4.0, "Salt Pile": 0.0, "Scaly Pholiota": 0.0, "Skeever Tail": 4.0, "Slaughterfish Egg": 0.0, "Slaughterfish Scales": 2.667, "Small Pearl": 0.0, "Spider Egg": 2.08, "Taproot": 0.0, "Troll Fat": 1.333, "Vampire Dust": 0.0, "Void Salts": 0.0, "Wheat": 0.0, "White Cap": 1.467 },
+  "The Rift (Southeast)": { "Ancestor Moth Wing": 0.3, "Bear Claws": 0.3, "Bleeding Crown": 0.477, "Blisterwort": 0.262, "Blue Mountain Flower": 0.891, "Canis Root": 0.692, "Charred Skeever Hide": 0.072, "Chaurus Eggs": 0.087, "Deathbell": 0.167, "Elves Ear": 0.111, "Fly Amanita": 0.485, "Garlic": 0.183, "Giant Lichen": 0.016, "Glowing Mushroom": 2.831, "Hanging Moss": 0.008, "Imp Stool": 0.247, "Jazbay Grapes": 0.032, "Juniper Berries": 0.016, "Large Antlers": 0.3, "Namira's Rot": 0.231, "Nightshade": 0.064, "Nirnroot": 0.111, "Purple Mountain Flower": 0.692, "Red Mountain Flower": 0.883, "Salt Pile": 0.366, "Scaly Pholiota": 0.032, "Skeever Tail": 0.024, "Slaughterfish Egg": 0.048, "Swamp Fungal Pod": 0.048, "White Cap": 0.358 },
+  "Hjaalmarch / The Pale (North)": { "Abecean Longfin": 0.3, "Bear Claws": 0.3, "Bleeding Crown": 0.485, "Blisterwort": 0.573, "Blue Mountain Flower": 0.239, "Canis Root": 0.525, "Charred Skeever Hide": 0.064, "Chaurus Eggs": 0.08, "Chicken's Egg": 0.032, "Creep Cluster": 0.032, "Deathbell": 1.121, "Elves Ear": 0.048, "Fly Amanita": 0.509, "Garlic": 0.056, "Giant Lichen": 0.835, "Glowing Mushroom": 0.302, "Hagraven Feathers": 0.024, "Imp Stool": 0.668, "Juvenile Mudcrab": 0.3, "Large Antlers": 0.3, "Lavender": 0.429, "Luna Moth Wing": 0.04, "Namira's Rot": 0.628, "Nightshade": 0.215, "Scaly Pholiota": 0.032, "Skeever Tail": 0.095, "Slaughterfish Egg": 0.04, "Snowberries": 1.002, "Swamp Fungal Pod": 0.891, "Thistle Branch": 0.016, "Tundra Cotton": 0.429, "White Cap": 0.477 },
+  "The Reach / Haafingar (West)": { "Abecean Longfin": 0.3, "Bear Claws": 0.3, "Bleeding Crown": 0.175, "Blisterwort": 0.087, "Blue Dartwing": 0.016, "Blue Mountain Flower": 0.231, "Canis Root": 0.024, "Chicken's Egg": 0.095, "Creep Cluster": 0.016, "Deathbell": 0.135, "Dragon's Tongue": 0.064, "Elves Ear": 0.358, "Fly Amanita": 0.787, "Garlic": 0.358, "Giant Lichen": 0.056, "Glowing Mushroom": 1.177, "Grass Pod": 1.01, "Hagraven Feathers": 0.151, "Hanging Moss": 1.845, "Hawk's Egg": 0.3, "Imp Stool": 0.215, "Jazbay Grapes": 0.119, "Juniper Berries": 2.449, "Juvenile Mudcrab": 0.3, "Large Antlers": 0.3, "Lavender": 0.111, "Luna Moth Wing": 0.016, "Namira's Rot": 0.223, "Nightshade": 0.111, "Nirnroot": 0.294, "Purple Mountain Flower": 0.485, "Red Mountain Flower": 0.557, "Skeever Tail": 0.087, "Slaughterfish Egg": 0.08, "Snowberries": 0.056, "Swamp Fungal Pod": 0.032, "Thistle Branch": 0.064, "Tundra Cotton": 0.159, "White Cap": 0.223, "Wild Grass Pod": 1.59 },
+  "Whiterun Hold (Central Plains)": { "Bleeding Crown": 0.183, "Blisterwort": 0.024, "Blue Dartwing": 0.048, "Blue Mountain Flower": 0.414, "Charred Skeever Hide": 0.024, "Chaurus Eggs": 0.08, "Creep Cluster": 0.04, "Deathbell": 0.103, "Dragon's Tongue": 0.04, "Elves Ear": 0.143, "Garlic": 0.087, "Glowing Mushroom": 0.732, "Grass Pod": 0.008, "Hagraven Feathers": 0.04, "Hawk's Egg": 0.3, "Imp Stool": 0.151, "Jazbay Grapes": 0.032, "Large Antlers": 0.3, "Lavender": 0.907, "Nightshade": 0.159, "Nirnroot": 0.048, "Purple Mountain Flower": 0.62, "Red Mountain Flower": 0.167, "Salt Pile": 0.064, "Scaly Pholiota": 0.056, "Skeever Tail": 0.064, "Slaughterfish Egg": 0.056, "Thistle Branch": 0.366, "Tundra Cotton": 1.543, "White Cap": 0.159 },
+  "Winterhold / Eastmarch (Northeast)": { "Bear Claws": 0.3, "Bleeding Crown": 0.024, "Blisterwort": 0.048, "Blue Dartwing": 0.016, "Canis Root": 0.048, "Charred Skeever Hide": 0.048, "Chaurus Eggs": 0.103, "Chicken's Egg": 0.048, "Creep Cluster": 1.869, "Deathbell": 0.032, "Dragon's Tongue": 4.0, "Elves Ear": 0.048, "Fly Amanita": 0.207, "Giant Lichen": 0.016, "Glowing Mushroom": 0.763, "Grass Pod": 0.374, "Hagraven Feathers": 0.056, "Hanging Moss": 0.016, "Jazbay Grapes": 2.537, "Juvenile Mudcrab": 0.3, "Namira's Rot": 0.087, "Nightshade": 0.119, "Nirnroot": 0.024, "Purple Mountain Flower": 0.326, "Red Mountain Flower": 0.469, "Salt Pile": 0.072, "Scaly Pholiota": 0.024, "Slaughterfish Egg": 0.056, "Snowberries": 0.628, "Thistle Branch": 0.27, "White Cap": 0.286 },
+  "Falkreath (South)": { "Bear Claws": 0.3, "Blisterwort": 0.08, "Blue Mountain Flower": 0.286, "Chicken's Egg": 0.048, "Deathbell": 0.048, "Elves Ear": 0.024, "Hagraven Feathers": 0.024, "Hanging Moss": 0.509, "Imp Stool": 0.183, "Juniper Berries": 0.024, "Large Antlers": 0.3, "Namira's Rot": 0.167, "Nightshade": 0.183, "Nirnroot": 0.032, "Purple Mountain Flower": 0.692, "Red Mountain Flower": 0.207, "Skeever Tail": 0.127, "Snowberries": 0.771, "Thistle Branch": 1.034, "Tundra Cotton": 0.254, "White Cap": 0.175 },
 };
 
-const INGREDIENTS = ["Beehive Husk","Bleeding Crown","Bone Meal","Charred Skeever Hide","Chaurus Eggs","Deathbell","Elves Ear","Fire Salts","Fly Amanita","Frost Salts","Giant's Toe","Glowing Mushroom","Hagraven Claw","Human Flesh","Imp Stool","Nightshade","Purple Mountain Flower","Red Mountain Flower","River Betty","Rock Warbler Egg","Salt Pile","Scaly Pholiota","Skeever Tail","Slaughterfish Egg","Slaughterfish Scales","Small Pearl","Spider Egg","Taproot","Troll Fat","Vampire Dust","Void Salts","Wheat","White Cap"];
+const INGREDIENTS = ["Abecean Longfin", "Ancestor Moth Wing", "Bear Claws", "Bleeding Crown", "Blisterwort", "Blue Dartwing", "Blue Mountain Flower", "Canis Root", "Charred Skeever Hide", "Chaurus Eggs", "Chicken's Egg", "Creep Cluster", "Deathbell", "Dragon's Tongue", "Elves Ear", "Fly Amanita", "Garlic", "Giant Lichen", "Glowing Mushroom", "Grass Pod", "Hagraven Feathers", "Hanging Moss", "Hawk's Egg", "Imp Stool", "Jazbay Grapes", "Juniper Berries", "Juvenile Mudcrab", "Large Antlers", "Lavender", "Luna Moth Wing", "Namira's Rot", "Nightshade", "Nirnroot", "Purple Mountain Flower", "Red Mountain Flower", "Salt Pile", "Scaly Pholiota", "Skeever Tail", "Slaughterfish Egg", "Snowberries", "Swamp Fungal Pod", "Thistle Branch", "Tundra Cotton", "White Cap", "Wild Grass Pod"];
 
 // One canonical ingredient pair per potion (highest combined yield across all regions)
 const POTIONS = {
-  "Poison of Damage Health":           { "Nightshade": 1, "Troll Fat": 1 },
-  "Poison of Frenzy":                  { "Fly Amanita": 1, "Troll Fat": 1 },
-  "Poison of Lingering Damage Health": { "Slaughterfish Egg": 1, "Slaughterfish Scales": 1 },
-  "Poison of Paralysis":               { "Human Flesh": 1, "Imp Stool": 1 },
-  "Poison of Slow":                    { "Deathbell": 1, "River Betty": 1 },
-  "Potion of Cure Disease":            { "Charred Skeever Hide": 1, "Vampire Dust": 1 },
-  "Potion of Fortify Block":           { "Bleeding Crown": 1, "Slaughterfish Scales": 1 },
-  "Potion of Fortify Conjuration":     { "Bone Meal": 1, "Frost Salts": 1 },
-  "Potion of Fortify Destruction":     { "Glowing Mushroom": 1, "Nightshade": 1 },
-  "Potion of Fortify Health":          { "Giant's Toe": 1, "Wheat": 1 },
-  "Potion of Fortify Heavy Armor":     { "Slaughterfish Scales": 1, "White Cap": 1 },
-  "Potion of Fortify Illusion":        { "Scaly Pholiota": 1, "Taproot": 1 },
-  "Potion of Fortify Light Armor":     { "Beehive Husk": 1, "Skeever Tail": 1 },
-  "Potion of Fortify Magicka":         { "Red Mountain Flower": 1, "Void Salts": 1 },
-  "Potion of Fortify Marksman":        { "Elves Ear": 1, "Spider Egg": 1 },
-  "Potion of Fortify One-handed":      { "Rock Warbler Egg": 1, "Small Pearl": 1 },
-  "Potion of Fortify Restoration":     { "Salt Pile": 1, "Small Pearl": 1 },
-  "Potion of Fortify Sneak":           { "Human Flesh": 1, "Purple Mountain Flower": 1 },
-  "Potion of Fortify Two-handed":      { "Fly Amanita": 1, "Troll Fat": 1 },
-  "Potion of Invisibility":            { "Chaurus Eggs": 1, "Vampire Dust": 1 },
-  "Potion of Regenerate Magicka":      { "Fire Salts": 1, "Taproot": 1 },
-  "Potion of Resist Magic":            { "Bleeding Crown": 1, "Hagraven Claw": 1 },
-  "Potion of Restore Health":          { "Charred Skeever Hide": 1, "Wheat": 1 },
-  "Potion of Restore Magicka":         { "Human Flesh": 1, "White Cap": 1 },
-  "Potion of Restore Stamina":         { "Charred Skeever Hide": 1, "Purple Mountain Flower": 1 },
+  "Poison of Damage Health":              { "Deathbell": 1, "Red Mountain Flower": 1 },
+  "Poison of Damage Magicka":             { "Hanging Moss": 1, "Namira's Rot": 1 },
+  "Poison of Damage Magicka Regen":       { "Blue Mountain Flower": 1, "Hanging Moss": 1 },
+  "Poison of Damage Stamina":             { "Blisterwort": 1, "Canis Root": 1 },
+  "Poison of Damage Stamina Regen":       { "Creep Cluster": 1, "Juniper Berries": 1 },
+  "Poison of Fear":                       { "Blue Dartwing": 1, "Namira's Rot": 1 },
+  "Poison of Frenzy":                     { "Blisterwort": 1, "Fly Amanita": 1 },
+  "Poison of Lingering Damage Health":    { "Imp Stool": 1, "Slaughterfish Egg": 1 },
+  "Poison of Lingering Damage Magicka":   { "Purple Mountain Flower": 1, "Swamp Fungal Pod": 1 },
+  "Poison of Lingering Damage Stamina":   { "Hawk's Egg": 1, "Nightshade": 1 },
+  "Poison of Paralysis":                  { "Canis Root": 1, "Imp Stool": 1 },
+  "Poison of Slow":                       { "Deathbell": 1, "Large Antlers": 1 },
+  "Poison of Weakness to Fire":           { "Bleeding Crown": 1, "Juniper Berries": 1 },
+  "Poison of Weakness to Frost":          { "Elves Ear": 1, "White Cap": 1 },
+  "Poison of Weakness to Magic":          { "Creep Cluster": 1, "Jazbay Grapes": 1 },
+  "Poison of Weakness to Poison":         { "Bleeding Crown": 1, "Deathbell": 1 },
+  "Poison of Weakness to Shock":          { "Giant Lichen": 1, "Hagraven Feathers": 1 },
+  "Potion of Cure Disease":               { "Charred Skeever Hide": 1, "Juvenile Mudcrab": 1 },
+  "Potion of Fortify Alteration":         { "Grass Pod": 1, "Wild Grass Pod": 1 },
+  "Potion of Fortify Barter":             { "Dragon's Tongue": 1, "Tundra Cotton": 1 },
+  "Potion of Fortify Block":              { "Bleeding Crown": 1, "Tundra Cotton": 1 },
+  "Potion of Fortify Carry Weight":       { "Creep Cluster": 1, "Juvenile Mudcrab": 1 },
+  "Potion of Fortify Conjuration":        { "Blue Mountain Flower": 1, "Lavender": 1 },
+  "Potion of Fortify Destruction":        { "Glowing Mushroom": 1, "Nightshade": 1 },
+  "Potion of Fortify Enchanting":         { "Ancestor Moth Wing": 1, "Snowberries": 1 },
+  "Potion of Fortify Health":             { "Glowing Mushroom": 1, "Hanging Moss": 1 },
+  "Potion of Fortify Heavy Armor":        { "Thistle Branch": 1, "White Cap": 1 },
+  "Potion of Fortify Illusion":           { "Dragon's Tongue": 1, "Scaly Pholiota": 1 },
+  "Potion of Fortify Light Armor":        { "Luna Moth Wing": 1, "Skeever Tail": 1 },
+  "Potion of Fortify Magicka":            { "Jazbay Grapes": 1, "Tundra Cotton": 1 },
+  "Potion of Fortify Marksman":           { "Canis Root": 1, "Elves Ear": 1 },
+  "Potion of Fortify One-handed":         { "Bear Claws": 1, "Hanging Moss": 1 },
+  "Potion of Fortify Restoration":        { "Abecean Longfin": 1, "Salt Pile": 1 },
+  "Potion of Fortify Smithing":           { "Blisterwort": 1, "Glowing Mushroom": 1 },
+  "Potion of Fortify Sneak":              { "Abecean Longfin": 1, "Purple Mountain Flower": 1 },
+  "Potion of Fortify Stamina":            { "Large Antlers": 1, "Lavender": 1 },
+  "Potion of Fortify Two-handed":         { "Dragon's Tongue": 1, "Fly Amanita": 1 },
+  "Potion of Invisibility":               { "Chaurus Eggs": 1, "Nirnroot": 1 },
+  "Potion of Regenerate Health":          { "Juniper Berries": 1, "Namira's Rot": 1 },
+  "Potion of Regenerate Magicka":         { "Garlic": 1, "Jazbay Grapes": 1 },
+  "Potion of Regenerate Stamina":         { "Fly Amanita": 1, "Juvenile Mudcrab": 1 },
+  "Potion of Resist Fire":                { "Dragon's Tongue": 1, "Snowberries": 1 },
+  "Potion of Resist Frost":               { "Purple Mountain Flower": 1, "Snowberries": 1 },
+  "Potion of Resist Magic":               { "Lavender": 1, "Tundra Cotton": 1 },
+  "Potion of Resist Poison":              { "Thistle Branch": 1, "Wild Grass Pod": 1 },
+  "Potion of Resist Shock":               { "Glowing Mushroom": 1, "Snowberries": 1 },
+  "Potion of Restore Health":             { "Blue Mountain Flower": 1, "Imp Stool": 1 },
+  "Potion of Restore Magicka":            { "Creep Cluster": 1, "Red Mountain Flower": 1 },
+  "Potion of Restore Stamina":            { "Bear Claws": 1, "Purple Mountain Flower": 1 },
+  "Potion of Waterbreathing":             { "Chicken's Egg": 1, "Hawk's Egg": 1 },
 };
 
 const BUILDS = {
