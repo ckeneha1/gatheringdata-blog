@@ -6,6 +6,14 @@ pubDate: "2026-04-14"
 
 import SkyrimAlchemyOptimizer from "../../components/SkyrimAlchemyOptimizer.jsx";
 
+---
+
+## The interactive model
+
+The tool below runs the linear programming model in your browser using an inline simplex implementation. Adjust the time budget or swap to a custom build to see how your optimal foraging allocation changes in real time!
+
+<SkyrimAlchemyOptimizer client:load />
+
 I never recovered from the release of the video game Skyrim in 2011. My Xbox's red ring of death means I'll never know exactly how many hours I spent on Skyrim across high school, college, and the years since — but it's my favorite game by a comfortable margin, and I keep coming back.
 
 My latest playthrough is my first time taking alchemy seriously. For the uninitiated: Skyrim is a medieval fantasy RPG where you survive a harsh landscape by mastering combat skills like archery, swordplay, or magic. Alchemy sits alongside those as a support craft: you forage ingredients from the world, and combine them into potions that strengthen your skills or weaken your enemies'.
@@ -15,14 +23,6 @@ The alchemy system in Skyrim has a structure most players sense but never lean i
 The implicit, million-[Septim](https://elderscrolls.fandom.com/wiki/Septim_(Coin)) question every Skyrim alchemist has faced: **which regions are actually worth your time, given how you play?**
 
 Skyrim DLC allows you to grow your own ingredients, but that's no fun. What's *fun* is linear programming!
-
----
-
-## The interactive model
-
-The tool below runs the same LP in your browser using an inline simplex implementation. Adjust the time budget or swap to a custom build to see how the optimal allocation changes in real time.
-
-<SkyrimAlchemyOptimizer client:load />
 
 ---
 
