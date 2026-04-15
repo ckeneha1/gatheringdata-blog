@@ -20,6 +20,8 @@ Skyrim DLC allows you to grow your own ingredients, but that's no fun. What's *f
 
 ## Getting the data right
 
+![A dungeon wall inscribed with "Extract Transform Load"](/images/skyrim-alchemy/etl_wall.png)
+
 Before any modeling, I needed verifiably correct data on Skyrim's 100+ ingredients. The [Unofficial Elder Scrolls Pages (UESP)](https://en.uesp.net) maintains a comprehensive wiki of Skyrim game content including every ingredient, that ingredient's four alchemy effects, and its spawn locations by hold, with specific counts. That's authoritative and auditable, so I scraped my ingredient data from there.
 
 Every ingredient's page exposes a wikitext template (`{{Ingredient Summary}}`) with the four effects, and location sections (`==Plants==`, `==Ingredients==`) listing bullet-pointed spawn entries in the format `* N in [[Location]] ([[Hold]])`. The scraper parses those counts, aggregates them by hold, and caches each ingredient as a JSON file. 191 ingredients total (base game plus all DLC), 0.6 seconds between requests to be polite.
