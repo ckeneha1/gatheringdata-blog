@@ -1,34 +1,30 @@
 ---
-title: "Where Should You Forage in Skyrim? I Built a Linear Program to Find Out."
-description: "Using UESP spawn data and a linear programming model to optimize alchemy ingredient collection by character build."
-pubDate: "2026-04-13"
+title: "I Built a Linear Program to Decide Where to Forage in Skyrim."
+description: "Using linear programming and UESP spawn data to optimize alchemy ingredient collection by character build."
+pubDate: "2026-04-14"
 ---
 
 import SkyrimAlchemyOptimizer from "../../components/SkyrimAlchemyOptimizer.jsx";
 
-*[Connor's personal hook goes here — the thing that made this feel worth doing, probably the first time you realized you were mentally optimizing foraging routes and wanted to know if math agreed with your instinct.]*
+I never recovered from the release of the video game Skyrim in 2011. My Xbox's red ring of death means I'll never know exactly how many hours I logged across high school, college, and the years since — but it's my favorite game by a comfortable margin, and I keep coming back.
+                                                                                                        
+My latest playthrough is my first time taking alchemy seriously. For the uninitiated: Skyrim is a medieval fantasy RPG where you survive a harsh landscape by mastering combat skills like archery, swordplay, or magic. Alchemy sits alongside those as a support craft: you forage ingredients from the world, and combine them into potions that strengthen your skills or weaken your enemies'.     
 
-The alchemy system in Skyrim has a structure most players sense but never formalize. Ingredients grow in different regions. Potions require specific combinations. Different builds care about completely different potions. And you have finite time — or at least finite patience — before you need to get back to doing something that actually advances the main quest.
+The alchemy system in Skyrim has a structure most players sense but never lean into. Ingredients grow in different regions. Potions require specific ingredient combinations. Different character skillsets care about completely different potions. And you have finite time — or at least finite patience — before you need to get back to doing something that actually advances the main quest.
 
-The implicit question every Skyrim player has faced: **which regions are actually worth your time, given how you play?**
+The implicit, million-[Septim](https://elderscrolls.fandom.com/wiki/Septim_(Coin)) question every Skyrim alchemist has faced: **which regions are actually worth your time, given how you play?**
 
-I wanted a real answer. So I built a linear programming model.
+Skyrim DLC allows you to plant your own ingredients, but that's no fun. What's **fun** is linear programming!
 
 ---
 
-## Getting the data right first
+## Getting the data right
 
-The obvious approach — just make up yield rates for each region — is what the first prototype of this model did. I'd call Deathbell "abundant in Hjaalmarch" and assign it a yield rate of 4.0, then work backward from the story I wanted to tell.
+Before any modeling, I needed verifiably correct ingredient data. The [Unofficial Elder Scrolls Pages (UESP)](https://en.uesp.net) maintains a comprehensive wiki of Skyrim game content including every ingredient, that ingredient's four alchemy effects, and its spawn locations by hold, with specific counts. That's authoritative and auditable, so I scraped my ingredient data from there.
 
-That's not analysis. That's illustration.
+Every ingredient's page exposes a wikitext template (`{{Ingredient Summary}}`) with the four effects, and location sections (`==Plants==`, `==Ingredients==`) listing bullet-pointed spawn entries in the format `* N in [[Location]] ([[Hold]])`. The scraper parses those counts, aggregates them by hold, and caches each ingredient as a JSON file. 191 ingredients total (base game plus all DLC), 0.6 seconds between requests to be polite.
 
-Before any model, I needed verifiably correct ingredient data. The [Unofficial Elder Scrolls Pages (UESP)](https://en.uesp.net) maintains a comprehensive wiki of Skyrim game content — including every ingredient, its exact four alchemy effects, and its spawn locations by hold, with specific counts. It's authoritative. It's auditable. Anyone can check any number.
-
-I scraped it. Every ingredient's page exposes a wikitext template (`{{Ingredient Summary}}`) with the four effects, and location sections (`==Plants==`, `==Ingredients==`) listing bullet-pointed spawn entries in the format `* N in [[Location]] ([[Hold]])`. The scraper parses those counts, aggregates them by hold, and caches each ingredient as a JSON file. 191 ingredients total (base game plus all DLC), 0.6 seconds between requests to be polite.
-
-From there: aggregate Skyrim's nine holds into six foraging regions, scale spawn counts to a 0–4 yield rate (raw spawn count ÷ max spawn count in any region, times 4), derive potion recipes by finding ingredient pairs that share alchemy effects, and define build profiles from the major character archetypes.
-
-The model now has a data lineage you can follow all the way back to the game itself.
+Then I aggregated Skyrim's nine holds into six foraging regions, scaled spawn counts to a 0–4 yield rate (raw spawn count ÷ max spawn count in any region, times 4), derived potion recipes by finding ingredient pairs that share alchemy effects, and defined character skillsets from the character archetypes listed [here](https://www.thegamer.com/skyrim-most-powerful-builds-fun/).
 
 ---
 
@@ -72,13 +68,13 @@ The Rift (Riften's surrounding territory) shows up as a major allocation for eve
 
 ### Two builds go all-in on one region
 
-The Paladin and the Necromancer both hit a corner solution — the LP allocates all 20 hours to a single region. For the Paladin, that's The Rift: Cure Disease (Charred Skeever Hide + Vampire Dust) and Fortify Restoration (Salt Pile + Small Pearl) both peak there. For the Necromancer, it's The Reach / Haafingar: Fortify Conjuration (Bone Meal + Frost Salts) and Poison of Frenzy (Fly Amanita + Troll Fat) share the same region optimum.
+The Paladin and the Necromancer both hit a corner solution: the LP allocates all 20 hours to a single region. For the Paladin, that's The Rift: Cure Disease (Charred Skeever Hide + Vampire Dust) and Fortify Restoration (Salt Pile + Small Pearl) both peak there. For the Necromancer, it's The Reach / Haafingar: Fortify Conjuration (Bone Meal + Frost Salts) and Poison of Frenzy (Fly Amanita + Troll Fat) share the same region optimum.
 
-This isn't a modeling artifact — it means those builds' priority potions happen to share a geographic concentration. If you're playing Necromancer, The Reach is genuinely your one-stop shop.
+This isn't a modeling artifact: it means those builds' priority potions happen to share a geographic concentration. If you're playing Necromancer, The Reach is genuinely your one-stop shop.
 
 ### The Stealth Archer spreads the most
 
-The Stealth Archer's top potions — Invisibility (Chaurus Eggs + Vampire Dust), Fortify Sneak (Human Flesh + Purple Mountain Flower), Fortify Marksman (Elves Ear + Spider Egg) — pull in different directions. Chaurus Eggs are abundant in Winterhold / Eastmarch. Human Flesh and Vampire Dust concentrate in The Rift and Hjaalmarch. Spider Egg peaks in The Reach. The LP spreads hours across four regions to balance these competing demands.
+The Stealth Archer's top potions (Invisibility (Chaurus Eggs + Vampire Dust), Fortify Sneak (Human Flesh + Purple Mountain Flower), Fortify Marksman (Elves Ear + Spider Egg)) pull in different directions. Chaurus Eggs are abundant in Winterhold / Eastmarch. Human Flesh and Vampire Dust concentrate in The Rift and Hjaalmarch. Spider Egg peaks in The Reach. The LP spreads hours across four regions to balance these competing demands.
 
 This is the build that most resembles the "tour of Skyrim" style of play where you spend time all over the map.
 
