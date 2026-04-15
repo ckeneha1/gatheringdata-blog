@@ -14,7 +14,7 @@ The alchemy system in Skyrim has a structure most players sense but never lean i
 
 The implicit, million-[Septim](https://elderscrolls.fandom.com/wiki/Septim_(Coin)) question every Skyrim alchemist has faced: **which regions are actually worth your time, given how you play?**
 
-Skyrim DLC allows you to plant your own ingredients, but that's no fun. What's **fun** is linear programming!
+Skyrim DLC allows you to plant your own ingredients, but that's no fun. What's *fun* is linear programming!
 
 ---
 
@@ -68,13 +68,13 @@ The Reach / Haafingar (West) shows up as the top allocation for four of six buil
 
 ### Two builds concentrate in one region
 
-The Heavy Armor Warrior and Illusion Assassin both hit near-corner solutions — the LP allocates over 80% of the budget to a single region. For the Heavy Armor Warrior, that's The Reach / Haafingar: Fortify Health (Glowing Mushroom + Hanging Moss) and Fortify One-handed (Bear Claws + Hanging Moss) both peak there. For the Illusion Assassin, it's The Rift: Restore Health (Blue Mountain Flower + Imp Stool) and Poison of Paralysis (Canis Root + Imp Stool) concentrate there.
+The Heavy Armor Warrior and Illusion Assassin both hit near-corner solutions: the LP allocates over 80% of the budget to a single region. For the Heavy Armor Warrior, that's The Reach / Haafingar: Fortify Health (Glowing Mushroom + Hanging Moss) and Fortify One-handed (Bear Claws + Hanging Moss) both peak there. For the Illusion Assassin, it's The Rift: Restore Health (Blue Mountain Flower + Imp Stool) and Poison of Paralysis (Canis Root + Imp Stool) concentrate there.
 
-This isn't a modeling artifact — it means those builds' priority potions happen to share a geographic concentration.
+This isn't a modeling artifact: it means those builds' priority potions happen to share a geographic concentration.
 
 ### The Stealth Archer and Necromancer spread the most
 
-The Stealth Archer splits time across three regions: The Reach (12 hrs), Hjaalmarch (5.9 hrs), and The Rift (2.1 hrs). Its top potions pull in different directions — Poison of Damage Health needs Deathbell (peaks in Hjaalmarch), Fortify Marksman needs Canis Root + Elves Ear (spread across The Reach), and Fortify Sneak needs Abecean Longfin (monster drop, present in several regions). The LP has to balance these competing demands.
+The Stealth Archer splits time across three regions: The Reach (12 hrs), Hjaalmarch (5.9 hrs), and The Rift (2.1 hrs). Its top potions pull in different directions: Poison of Damage Health needs Deathbell (peaks in Hjaalmarch), Fortify Marksman needs Canis Root + Elves Ear (spread across The Reach), and Fortify Sneak needs Abecean Longfin (monster drop, present in several regions). The LP has to balance these competing demands.
 
 The Necromancer spreads across four regions roughly evenly (Whiterun, Hjaalmarch, The Rift, Winterhold/Eastmarch) because Fortify Magicka needs Jazbay Grapes + Tundra Cotton (peaks in Winterhold and Whiterun respectively) while Fortify Conjuration needs Blue Mountain Flower + Lavender (The Rift and Whiterun). No single region dominates.
 
@@ -82,7 +82,7 @@ The Necromancer spreads across four regions roughly evenly (Whiterun, Hjaalmarch
 
 ![Sensitivity curve: weighted potion output vs. foraging hours for three builds](/images/skyrim-alchemy/sensitivity_curve.png)
 
-The slope of each curve is the shadow price of the time constraint — how much additional objective value you gain per additional hour. All three builds show roughly linear returns up to ~20 hours, then the curves start bending as the model runs into ingredient scarcity that more time can't fix. At that point, you're not time-constrained; you're ingredient-constrained, and adding more foraging hours doesn't help.
+The slope of each curve is the shadow price of the time constraint: how much additional objective value you gain per additional hour. All three builds show roughly linear returns up to ~20 hours, then the curves start bending as the model runs into ingredient scarcity that more time can't fix. At that point, you're not time-constrained; you're ingredient-constrained, and adding more foraging hours doesn't help.
 
 ### What if you could only go to one place?
 
@@ -90,7 +90,7 @@ For the Heavy Armor Warrior (the build with the most region-specific priority po
 
 ![Single-region counterfactual for Heavy Armor Warrior](/images/skyrim-alchemy/single_region_heavy_armor_warrior.png)
 
-The Rift and Hjaalmarch compete for first place. The spread between top and bottom is about 3:1 — going to the worst region instead of the best roughly triples your deficit. The lesson: region choice matters more than most players probably think.
+The Rift and Hjaalmarch compete for first place. The spread between top and bottom is about 3:1 — going to the worst region instead of the best roughly triples your deficit! That's a lot of time spent farming ingredients instead of power attacking.
 
 ---
 
@@ -102,10 +102,10 @@ Before this project, I had only impressionistic knowledge of where ingredients g
 
 A few things jump out:
 - **Deathbell** is almost entirely Hjaalmarch / The Pale. 66% of all UESP-documented spawns are there. It's one of the most geographically concentrated ingredients in the game.
-- **Dragon's Tongue** peaks overwhelmingly in Winterhold / Eastmarch — the single highest regional count for any ingredient (503 spawns, setting the global scale). It's what makes the Tundra region viable for Fortify Barter and Resist Fire builds.
+- **Dragon's Tongue** peaks overwhelmingly in Winterhold / Eastmarch with the single highest regional count for any ingredient (503 spawns, setting the global scale).
 - **Juniper Berries** peaks sharply in The Reach / Haafingar, which explains why Poison of Slow (Deathbell + Large Antlers) and Poison of Damage Stamina Regen builds route there despite Deathbell being a Hjaalmarch ingredient.
 - **Falkreath** has a sparse profile for most canonical ingredients, but Thistle Branch peaks there — making it specifically valuable for Fortify Heavy Armor (Thistle Branch + White Cap) builds like the Paladin.
-- **Winterhold / Eastmarch** is leaner than you'd expect for most ingredients — the frozen tundra geography limits what grows there — but it's uniquely dominant for Dragon's Tongue and Jazbay Grapes.
+- **Winterhold / Eastmarch** is leaner than you'd expect for most ingredients, but it's uniquely dominant for Dragon's Tongue and Jazbay Grapes.
 
 ---
 
@@ -123,9 +123,9 @@ This model is useful and I believe its directional conclusions, but three simpli
 
 **One recipe per potion.** For each potion, I selected one canonical ingredient pair — the combination with the highest combined yield across all regions. Skyrim actually allows many combinations per potion type (any two ingredients sharing an effect). A more complex model could optimize over all pairs, but it would be harder to explain and the difference in practical advice is likely small.
 
-**Spawn counts ≠ farming rates.** Yield rates are proportional to UESP spawn counts. A region with 100 plants has twice the yield rate of a region with 50. This treats all spawn locations equivalently — a dungeon with a placed ingredient is worth the same as an outdoor harvestable plant. In practice, harvesting outdoor respawning plants is usually faster than clearing dungeons. Monster drops (Bear Claws, Chaurus Eggs, Juvenile Mudcrab) are especially overrepresented relative to actual farming rate since they appear in the UESP spawn lists at documented encounter locations but require combat.
+**Spawn counts ≠ farming rates.** Yield rates are proportional to UESP spawn counts. A region with 100 plants has twice the yield rate of a region with 50. This treats all spawn locations equivalently — a dungeon with a placed ingredient is worth the same as an outdoor harvestable plant. In practice, harvesting outdoor respawning plants is usually faster than clearing dungeons. Monster drops (Bear Claws, Chaurus Eggs) are especially overrepresented relative to actual farming rate since they appear in the UESP spawn lists at documented encounter locations but require combat.
 
-**No travel time.** The model doesn't account for the time it takes to travel between regions. In practice, spreading across four regions has a real cost that doesn't appear in these numbers. If you account for fast-travel as essentially free, the multi-region allocations are valid. If you're playing without fast travel, the single-region corner solutions become more attractive.
+**No travel time.** The model doesn't account for the time it takes to travel between regions. In practice, spreading across four regions has a real cost that doesn't appear in these numbers. If you account for fast-travel as essentially free, the multi-region allocations are valid. If you're playing without fast travel, or get tired of that loading screen, the single-region corner solutions become more attractive.
 
 ---
 
