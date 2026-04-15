@@ -2,27 +2,32 @@
 const FEATURED_CHARTS = [
   {
     image: "/images/skyrim-alchemy/region_allocation.png",
-    alt: "Bar chart: optimal foraging hours per region for six Skyrim character builds",
+    caption: "How each Skyrim build allocates its foraging budget",
+    alt: "Stacked bar chart: foraging budget allocation by region for six Skyrim character builds",
     href: "/blog/skyrim-alchemy/",
   },
   {
     image: "/images/skyrim-alchemy/ingredient_heatmap.png",
+    caption: "Where Skyrim's top ingredients actually grow",
     alt: "Heatmap of ingredient yield rates across six Skyrim regions",
     href: "/blog/skyrim-alchemy/",
     objectPosition: "center top",
   },
   {
     image: "/images/skyrim-alchemy/sensitivity_curve.png",
+    caption: "Potion output vs. foraging hours, by build",
     alt: "Weighted potion output vs. foraging hours for three Skyrim builds",
     href: "/blog/skyrim-alchemy/",
   },
   {
     image: "/images/mtg-distributions/complexity_creep.png",
+    caption: "Magic cards are getting wordier",
     alt: "Growth in Magic: The Gathering card complexity over time",
     href: "/blog/mtg-distributions/",
   },
   {
     image: "/images/mtg-distributions/legendary_over_time.png",
+    caption: "Legendary is no longer a mark of rarity",
     alt: "Prevalence of legendary cards in Magic: The Gathering over time",
     href: "/blog/mtg-distributions/",
   },
@@ -43,6 +48,7 @@ const FEATURED_CHARTS = [
               />
             </div>
             <div class="card-footer">
+              <span class="card-caption">{chart.caption}</span>
               <span class="read-more">Read more →</span>
             </div>
           </a>
@@ -120,6 +126,22 @@ const FEATURED_CHARTS = [
   .card-footer {
     padding: 9px 14px;
     border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1em;
+  }
+
+  .card-caption {
+    font-size: 0.85em;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .carousel-card:hover .card-caption {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
   }
 
   .read-more {
@@ -127,6 +149,8 @@ const FEATURED_CHARTS = [
     color: var(--text-secondary);
     font-family: 'SF Mono', 'Fira Code', monospace;
     letter-spacing: 0.01em;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .carousel-card:hover .read-more {
