@@ -2,19 +2,27 @@
 
 ## 1. Problem Statement
 
-Post 2 scored every Magic card by a static metric: keyword density, semantic complexity, and raw stat efficiency relative to mana cost. That metric tells you what a card *says*. This post asks what a card *does* in the highest-stakes version of the game.
+Post 2 scored every Magic card by a static metric: keyword density, semantic complexity, and raw stat efficiency relative to mana cost. That metric captures what a card *says*. This post introduces a second, independent signal: what the competitive community *reveals* it values through actual tournament play.
 
-The claim: **our power metric systematically over- and under-values specific classes of cards, and the pattern of those gaps reveals what Legacy specifically rewards.**
+**These are two different things, and we don't assume one is more correct than the other.** Our metric is derived from card text. Tournament prevalence is derived from revealed player preference under real stakes. Where they agree, confidence in both is higher. Where they diverge, the divergence is the finding — and it could mean several different things:
 
-Legacy is the right format for this. The card pool is enormous (~27K cards) but the tournament meta is narrow (~200–300 distinct cards in regular play). The cards that make the cut are there for specific reasons — alternative costs, cantrip efficiency, mana disruption — that static text analysis reliably misses. The gap between "what the text implies" and "what the format demands" is widest here of any Constructed format.
+- The static metric is missing something (e.g., alternative costs, mana denial, cantrip consistency are hard to score from text alone)
+- The community has a blind spot or is running a suboptimal consensus (groupthink in established archetypes is well-documented in competitive Magic)
+- The card is genuinely powerful but outclassed by Legacy's specific power ceiling
+- The card's value is format-specific and our metric, which scores across all ~27K cards, can't capture that context
+
+The research question is: **where do our text-derived power scores and competitive Legacy prevalence diverge, and what does the pattern of divergence suggest about where each methodology has room to improve?**
+
+Legacy is the right starting format. The card pool is enormous (~27K cards) but the tournament meta is narrow (~200–300 cards in regular play). That concentration means signal is dense — the gaps that appear are meaningful, not noise from a scattered field.
 
 ---
 
 ## 2. Decision It Unlocks
 
-- **For the post:** A ranked gap leaderboard — the cards most undervalued and most overvalued by our metric relative to Legacy tournament prevalence. The interesting ones (high play, low score) reveal what makes Legacy different from other formats.
-- **For future posts:** This pipeline is reusable for Modern, Pioneer, Standard with format ID changes. The banlist-aware filtering is portable across formats.
-- **Methodological:** Determines whether prestige/placement weighting changes the card rankings meaningfully, or whether the meta is a self-reinforcing echo chamber where all tiers converge.
+- **For the post:** A comparison of two valuation methodologies — static text analysis vs. competitive revealed preference — with honest characterization of where they agree, where they diverge, and what might explain the divergence in each direction.
+- **Metric improvement:** Where divergence is systematic (e.g., all alternative-cost spells score lower than their tournament prevalence predicts), that's a specific, testable hypothesis about a gap in the Post 2 methodology worth addressing in a future iteration.
+- **Community insight:** Where our metric scores a card higher than the community plays it, that's either a genuine overlooked card or evidence of meta groupthink — both worth naming.
+- **For future posts:** Pipeline is reusable for Modern, Pioneer, Standard by changing the format ID. Banlist-aware filtering is portable across formats.
 
 ---
 
@@ -172,8 +180,8 @@ The site doesn't publish rate limits. 0.5s between requests is conservative. If 
 
 | Chart | What it shows |
 |---|---|
-| **Scatter: power score vs. prevalence** | One dot per card. X = power score percentile, Y = flat mainboard prevalence. Quadrant labels: "Legacy-specific value" (high Y, low X), "Paper tiger" (high X, low Y). Label top 20 outliers. |
-| **Gap leaderboard** | Two-panel bar chart: top 15 undervalued by metric (high tournament play, low power score) and top 15 overvalued (high power score, low play). Cards labeled. |
+| **Scatter: power score vs. prevalence** | One dot per card. X = power score percentile, Y = flat mainboard prevalence. Quadrant labels: "High community value, lower text score" (high Y, low X) and "High text score, lower community value" (high X, low Y). Label top 20 outliers in each quadrant. |
+| **Divergence leaderboard** | Two-panel bar chart: top 15 cards where community prevalence exceeds text score (possible metric gap or format-specific value), and top 15 where text score exceeds prevalence (possible community blind spot or outclassed by power ceiling). Cards labeled, no predetermined verdict on which signal is "right." |
 | **Weighting sensitivity** | For the top 20 cards by combined-weighted prevalence: grouped bars showing their rank under each of the 4 weighting schemes. Reveals whether weighting changes the story. |
 | **Mainboard vs. sideboard** | Scatter: mainboard prevalence vs. sideboard prevalence. Labels cards that are primarily sideboard-only (graveyard hate, combo hate) vs. mainboard-only vs. both. |
 
