@@ -305,15 +305,15 @@ def chart_region_allocation(results: list[LPResult]):
     ax.set_ylim(0, 105)
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
 
-    apply_blog_style(
-        ax,
-        title=f"How each build allocates its foraging budget ({budget:.0f} hours)",
-        xlabel="Build",
-        ylabel="% of budget",
+    apply_blog_style(ax, xlabel="Build", ylabel="% of budget")
+    fig.subplots_adjust(top=0.78)
+    fig.suptitle(
+        f"How each build allocates its foraging budget ({budget:.0f} hours)",
+        color=TEXT, fontsize=12, fontweight="bold", y=1.0,
     )
     ax.legend(
         fontsize=8, frameon=False, title="Region", title_fontsize=8,
-        loc="lower center", bbox_to_anchor=(0.5, 1.14), ncol=len(regions),
+        loc="lower center", bbox_to_anchor=(0.5, 1.04), ncol=len(regions),
     )
 
     save(fig, "region_allocation.png")
