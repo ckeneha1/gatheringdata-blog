@@ -60,33 +60,39 @@ The only other constraint is the time budget: `Σ x[r] ≤ T`.
 
 I ran the model at a 20-hour foraging budget for six character archetypes. The results are more differentiated than I expected.
 
-### The Reach dominates most builds
+### Hjaalmarch is the dominant region for most builds
 
-The Reach / Haafingar (West) shows up as the top allocation for four of six builds. It has an unusually broad ingredient profile: Hanging Moss, Juniper Berries, Fly Amanita, Glowing Mushroom, Elves Ear, and Wild Grass Pod all peak or near-peak there. If you don't have a specific priority that anchors you elsewhere, The Reach is where the LP sends you.
+Hjaalmarch / The Pale turns out to be the top foraging destination for four of six builds. The Illusion Assassin allocates 14.9 hours there; the Paladin, 18.1; the Necromancer, 15.1. The Stealth Archer splits between The Reach and Hjaalmarch but still puts 7.6 hours there — more than anywhere else.
 
 ![Region allocation bar chart showing hours per region for each of the six builds](/images/skyrim-alchemy/region_allocation.png)
 
-### Two builds concentrate in one region
+The driver is poison-ingredient density. Deathbell and Imp Stool — the two most versatile poison ingredients in the game — both peak in Hjaalmarch. Canis Root and Swamp Fungal Pod grow abundantly there too. Once the LP has access to all valid ingredient pair combinations (not just one canonical recipe per potion), it keeps finding Hjaalmarch ingredients at the core of its highest-value brews across almost every build.
 
-The Heavy Armor Warrior and Illusion Assassin both hit near-corner solutions: the LP allocates over 80% of the budget to a single region. For the Heavy Armor Warrior, that's The Reach / Haafingar: Fortify Health (Glowing Mushroom + Hanging Moss) and Fortify One-handed (Bear Claws + Hanging Moss) both peak there. For the Illusion Assassin, it's The Rift: Restore Health (Blue Mountain Flower + Imp Stool) and Poison of Paralysis (Canis Root + Imp Stool) concentrate there.
+### Two builds hit near-corner solutions
 
-This isn't a modeling artifact: it means those builds' priority potions happen to share a geographic concentration.
+The Paladin allocates 18.1 of 20 hours to Hjaalmarch — a 90% concentration. Imp Stool and Swamp Fungal Pod (Restore Health), Canis Root variants (Fortify One-handed), and Lavender (Resist Magic) all cluster there. No other region comes close.
 
-### The Stealth Archer and Necromancer spread the most
+The Heavy Armor Warrior puts 15 of 20 hours into The Reach / Haafingar (75%). Glowing Mushroom + Hanging Moss (Fortify Health) both peak there; the Rift handles the Rift-specific ingredients for the remaining 5 hours.
 
-The Stealth Archer splits time across three regions: The Reach (12 hrs), Hjaalmarch (5.9 hrs), and The Rift (2.1 hrs). Its top potions pull in different directions: Poison of Damage Health needs Deathbell (peaks in Hjaalmarch), Fortify Marksman needs Canis Root + Elves Ear (spread across The Reach), and Fortify Sneak needs Abecean Longfin (monster drop, present in several regions). The LP has to balance these competing demands.
+Both are genuine geographic concentrations, not artifacts — the LP has access to all possible ingredient pairs and still routes decisively.
 
-The Necromancer spreads across four regions roughly evenly (Whiterun, Hjaalmarch, The Rift, Winterhold/Eastmarch) because Fortify Magicka needs Jazbay Grapes + Tundra Cotton (peaks in Winterhold and Whiterun respectively) while Fortify Conjuration needs Blue Mountain Flower + Lavender (The Rift and Whiterun). No single region dominates.
+### The Stealth Archer spreads the most
+
+The Stealth Archer splits across three regions: The Reach (9.3 hrs), Hjaalmarch (7.6 hrs), and The Rift (3.1 hrs). Its top potions genuinely pull in different directions — Damage Health wants Deathbell (Hjaalmarch), Fortify Marksman wants Canis Root + Elves Ear (The Reach), and Invisibility needs Chaurus Eggs or Nirnroot variants (dispersed). The LP has to balance all three.
+
+### The Pure Mage finds The Reach, not Whiterun
+
+The Pure Mage allocates 12.5 hours to The Reach and 7.5 to Winterhold. This is counterintuitive — Whiterun is where Jazbay Grapes grow (canonical Fortify Magicka ingredient), and the frozen tundra makes more intuitive sense for a caster build. But the LP found Grass Pod and Wild Grass Pod in The Reach, which share the Restore Magicka effect and are abundant enough to outcompete the Jazbay-based route. The canonical pair selection was hiding this — it had locked in a Whiterun-anchored recipe and never considered The Reach alternative.
 
 ### More time doesn't always help equally
 
 ![Sensitivity curve: weighted potion output vs. foraging hours for three builds](/images/skyrim-alchemy/sensitivity_curve.png)
 
-The slope of each curve is the shadow price of the time constraint: how much additional objective value you gain per additional hour. All three builds show roughly linear returns up to ~20 hours, then the curves start bending as the model runs into ingredient scarcity that more time can't fix. At that point, you're not time-constrained; you're ingredient-constrained, and adding more foraging hours doesn't help.
+The slope of each curve is the shadow price of the time constraint: how much additional weighted objective you gain per additional foraging hour. All three builds show roughly linear returns up to ~20 hours, then the curves flatten as the model runs into ingredient scarcity that more time alone can't fix. At that point, you're not time-constrained; you're ingredient-constrained, and the only fix is a better route, not more hours.
 
 ### What if you could only go to one place?
 
-For the Heavy Armor Warrior (the build with the most region-specific priority potions), here's what you'd get if forced to spend all 20 hours in one region:
+For the Heavy Armor Warrior (the build with the sharpest geographic concentration), here's what you'd get if forced to spend all 20 hours in one region:
 
 ![Single-region counterfactual for Heavy Armor Warrior](/images/skyrim-alchemy/single_region_heavy_armor_warrior.png)
 
@@ -104,7 +110,7 @@ A few things jump out:
 - **Deathbell** is almost entirely Hjaalmarch / The Pale. 66% of all UESP-documented spawns are there. It's one of the most geographically concentrated ingredients in the game.
 - **Dragon's Tongue** peaks overwhelmingly in Winterhold / Eastmarch with the single highest regional count for any ingredient (503 spawns, setting the global scale).
 - **Juniper Berries** peaks sharply in The Reach / Haafingar, which explains why Poison of Slow (Deathbell + Large Antlers) and Poison of Damage Stamina Regen builds route there despite Deathbell being a Hjaalmarch ingredient.
-- **Falkreath** has a sparse profile for most canonical ingredients, but Thistle Branch peaks there — making it specifically valuable for Fortify Heavy Armor (Thistle Branch + White Cap) builds like the Paladin.
+- **Falkreath** has a sparse profile for most ingredients, but Thistle Branch peaks there. It's the most geographically isolated high-value ingredient in the dataset — hard to justify a dedicated trip unless Fortify Heavy Armor is a top priority.
 - **Winterhold / Eastmarch** is leaner than you'd expect for most ingredients, but it's uniquely dominant for Dragon's Tongue and Jazbay Grapes.
 
 ---
@@ -117,11 +123,31 @@ The tool below runs the same LP in your browser using an inline simplex implemen
 
 ---
 
+## Three-ingredient brewing: a hidden second optimization
+
+Everything above assumes you're brewing with two ingredients per potion. But Skyrim's alchemy bench actually accepts up to three — and the interaction rule is interesting: an effect activates if it appears on **at least two** of the three ingredients you combine. A third ingredient can unlock an entirely new effect without replacing either of the first two.
+
+There's a catch, though. Mixing positive and negative effects in the same brew is a trap. A potion's type — beneficial or harmful — is determined by whichever effect has the highest base gold value. If you accidentally brew a negative effect into a potion, it applies to **you** when you drink it. If a positive effect sneaks into a poison, it applies to your **enemy** when they're hit. Either way, you've buffed the wrong side. The analysis only considers "pure" three-ingredient combinations where every activated effect shares the same polarity.
+
+With that filter in place, this becomes a secondary optimization problem. The primary LP already told you how many total units of each ingredient you'll collect from foraging. A second LP then asks: given that ingredient stockpile, what's the optimal mix of two-ingredient and three-ingredient brews?
+
+![Bar chart comparing weighted brewing objective for two-ingredient-only vs. optimal mix, by build](/images/skyrim-alchemy/three_ingredient_synergy.png)
+
+The gains are real but more modest than they would appear in a simpler model — the **Stealth Archer** gains the most at **+11%**, the **Pure Mage** the least at **+2%**.
+
+Why modest? Because the foraging LP already captures ingredient flexibility by choosing among all valid ingredient pairs, not just one canonical recipe per potion. By the time you've foraged optimally, your stockpile is diverse enough that the additional freedom to combine three ingredients at once adds relatively little on the margin. The Stealth Archer's top triple (Beehive Husk + Honeycomb + Purple Mountain Flower for Fortify Light Armor + Fortify Sneak + Restore Stamina) still packs three relevant effects into one brew — but the foraging LP already routes to The Reach and Hjaalmarch where those ingredients grow, so the secondary gain is incremental rather than transformative.
+
+The single most valuable three-ingredient combo on a per-batch basis remains the Pure Mage's Magicka triple — Briar Heart + Jazbay Grapes + Moon Sugar or Fire Salts, activating Fortify Magicka + Regenerate Magicka + Restore Magicka simultaneously. The synergy score is 9 versus a best-pair score of 3. But at only +2% overall, the constraint isn't the brew mechanic — it's that the foraging LP collects limited quantities of the required ingredients and can't easily increase them without redirecting hours away from other priorities.
+
+The practical upshot: in a well-specified foraging model, three-ingredient brewing is a refinement, not a strategy shift.
+
+---
+
 ## What the model doesn't know
 
 This model is useful and I believe its directional conclusions, but three simplifications are worth naming:
 
-**One recipe per potion.** For each potion, I selected one canonical ingredient pair — the combination with the highest combined yield across all regions. Skyrim actually allows many combinations per potion type (any two ingredients sharing an effect). A more complex model could optimize over all pairs, but it would be harder to explain and the difference in practical advice is likely small.
+**All valid pairs, no pair weighting.** The foraging LP considers every ingredient pair that shares a potion effect and has yield data — 1,175 pairs across 50 potion types. The solver is free to use any combination. This is more flexible than locking in one recipe per potion, but it treats all pairs as equally accessible in the field. In practice, some ingredients are much easier to farm than others (outdoor respawning plants versus dungeon-placed items or monster drops), so a build that looks regionally concentrated might require more grinding than the model implies if its optimal pairs rely on rare or combat-gated ingredients.
 
 **Spawn counts ≠ farming rates.** Yield rates are proportional to UESP spawn counts. A region with 100 plants has twice the yield rate of a region with 50. This treats all spawn locations equivalently — a dungeon with a placed ingredient is worth the same as an outdoor harvestable plant. In practice, harvesting outdoor respawning plants is usually faster than clearing dungeons. Monster drops (Bear Claws, Chaurus Eggs) are especially overrepresented relative to actual farming rate since they appear in the UESP spawn lists at documented encounter locations but require combat.
 
@@ -133,7 +159,7 @@ This model is useful and I believe its directional conclusions, but three simpli
 
 - **Scraper:** Python + BeautifulSoup + UESP MediaWiki API. Ingredient pages parsed for the `{{Ingredient Summary}}` template (effects) and location sections (spawn counts). ~2 minutes for all 191 ingredients with rate limiting.
 - **Dataset:** Hold spawn counts aggregated to 6 model regions, yield rates normalized, potion recipes derived from shared effects.
-- **LP model:** `scipy.optimize.linprog` with HiGHS backend. 6 region variables + up to 50 active potion variables per solve. Runs in milliseconds.
+- **LP model:** `scipy.optimize.linprog` with HiGHS backend. 6 region variables + up to ~300 active ingredient-pair variables per solve (all valid pairs for a given build's priority potions). Ingredient conservation constraints ensure each unit of an ingredient can only be used once across all recipes. Runs in milliseconds. A secondary brewing LP uses the ingredient totals from the primary solve to find the optimal mix of two- and three-ingredient brews.
 - **Interactive component:** Inline simplex solver (no external LP library) in a React component. All data embedded — no backend needed.
 - **Data source:** [UESP](https://en.uesp.net) (Unofficial Elder Scrolls Pages). Spawn counts verified against the game wiki for spot-checked ingredients.
 

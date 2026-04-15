@@ -18,6 +18,7 @@ Usage:
 from __future__ import annotations
 import argparse
 import json
+from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -101,8 +102,6 @@ def select_canonical_pairs(potions_raw: list[dict], ing_yields: dict[str, dict[s
     combined total yield across all regions. This gives the "most obtainable" pair
     and keeps the LP tractable (one recipe per potion).
     """
-    from collections import defaultdict
-
     def pair_total_yield(ing1: str, ing2: str) -> float:
         y1 = sum(ing_yields.get(ing1, {}).values())
         y2 = sum(ing_yields.get(ing2, {}).values())
@@ -195,18 +194,25 @@ def build_and_solve(
     rows_A.append(row)
     rows_b.append(time_budget)
 
-    # 2) Supply constraints: z_p <= Σ_r x_r * yield[r][i]  for each ingredient i in recipe[p]
-    #    Rewritten: z_p - Σ_r x_r * yield[r][i] <= 0
+    # 2) Ingredient conservation: Σ_{p using i} z[p] <= Σ_r x[r] * yield[r][i]
+    #    One constraint per unique ingredient across all active recipes.
+    #    This correctly prevents the same unit of ingredient i from being used
+    #    simultaneously by multiple potions.
+    #    Rewritten: Σ z[p] - Σ_r x[r] * yield[r][i] <= 0
+    ing_to_potion_indices: dict[str, list[int]] = defaultdict(list)
     for j, potion in enumerate(active_potions):
         for ing_name in potion["ingredients"]:
-            if ing_name not in ing_yields:
-                continue
-            row = np.zeros(n_vars)
-            row[R + j] = 1.0  # z_p coefficient
-            for r_idx, region in enumerate(regions):
-                row[r_idx] = -ing_yields[ing_name].get(region, 0.0)  # -yield[r][i]
-            rows_A.append(row)
-            rows_b.append(0.0)
+            if ing_name in ing_yields:
+                ing_to_potion_indices[ing_name].append(j)
+
+    for ing_name, potion_indices in ing_to_potion_indices.items():
+        row = np.zeros(n_vars)
+        for j in potion_indices:
+            row[R + j] = 1.0                                          # Σ z[p] coefficients
+        for r_idx, region in enumerate(regions):
+            row[r_idx] = -ing_yields[ing_name].get(region, 0.0)      # -Σ yield[r][i]
+        rows_A.append(row)
+        rows_b.append(0.0)
 
     A_ub = np.array(rows_A)
     b_ub = np.array(rows_b)
@@ -225,8 +231,13 @@ def build_and_solve(
         )
 
     x = result.x
-    region_hours  = {regions[r]: round(x[r], 4) for r in range(R)}
-    potion_batches = {active_potions[j]["name"]: round(x[R + j], 4) for j in range(P)}
+    region_hours = {regions[r]: round(x[r], 4) for r in range(R)}
+
+    # Aggregate batches by potion name (multiple pairs may share the same potion name)
+    batches_by_name: dict[str, float] = defaultdict(float)
+    for j, p in enumerate(active_potions):
+        batches_by_name[p["name"]] += x[R + j]
+    potion_batches = {name: round(v, 4) for name, v in batches_by_name.items()}
 
     # Compute ingredient totals
     ingredient_totals: dict[str, float] = {}
@@ -457,6 +468,362 @@ def chart_potion_comparison(results: list[LPResult]):
 
 
 # ---------------------------------------------------------------------------
+# Stress test: full pair enumeration vs. canonical pair selection
+# ---------------------------------------------------------------------------
+
+def stress_test_pair_selection(
+    build_name: str,
+    weights: dict[str, float],
+    potions_raw: list[dict],
+    canonical_potions: list[dict],
+    ing_yields: dict[str, dict[str, float]],
+    regions: list[str],
+    time_budget: float = 20.0,
+) -> dict:
+    """
+    Test A: run the foraging LP with ALL valid ingredient pairs (not just the
+    canonical highest-yield pair per potion type).  Each pair gets its own
+    decision variable z[pair_idx]; the build weight is shared across all pairs
+    for the same potion name, so the solver can freely pick whichever pair (or
+    mix of pairs) maximises the weighted objective.
+
+    Compares against the canonical-pair LP on:
+      - objective value improvement (%)
+      - L1 distance between regional allocations
+    """
+    # All valid pairs: both ingredients have yield data, potion has non-zero weight
+    valid_pairs = [
+        p for p in potions_raw
+        if weights.get(p["name"], 0.0) > 0
+        and p["ingredients"][0] in ing_yields
+        and p["ingredients"][1] in ing_yields
+    ]
+    if not valid_pairs:
+        return {"error": "no valid pairs"}
+
+    canonical_result = build_and_solve(
+        build_name, weights, canonical_potions, ing_yields, regions, time_budget
+    )
+
+    # --- Full-enumeration LP ------------------------------------------------
+    R = len(regions)
+    P = len(valid_pairs)
+    n_vars = R + P
+
+    c = np.zeros(n_vars)
+    for j, p in enumerate(valid_pairs):
+        c[R + j] = -weights.get(p["name"], 0.0)
+
+    rows_A: list[np.ndarray] = []
+    rows_b: list[float] = []
+
+    # Time budget
+    row = np.zeros(n_vars)
+    row[:R] = 1.0
+    rows_A.append(row)
+    rows_b.append(time_budget)
+
+    # Ingredient conservation (same fix as build_and_solve)
+    ing_to_pair_indices: dict[str, list[int]] = defaultdict(list)
+    for j, potion in enumerate(valid_pairs):
+        for ing_name in potion["ingredients"]:
+            ing_to_pair_indices[ing_name].append(j)
+
+    for ing_name, pair_indices in ing_to_pair_indices.items():
+        row = np.zeros(n_vars)
+        for j in pair_indices:
+            row[R + j] = 1.0
+        for r_idx, region in enumerate(regions):
+            row[r_idx] = -ing_yields[ing_name].get(region, 0.0)
+        rows_A.append(row)
+        rows_b.append(0.0)
+
+    A_ub = np.array(rows_A)
+    b_ub = np.array(rows_b)
+    result = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=[(0.0, None)] * n_vars, method="highs")
+
+    if result.status != 0:
+        return {"error": result.message}
+
+    x = result.x
+    full_region_hours = {regions[r]: round(x[r], 4) for r in range(R)}
+    full_obj = round(-result.fun, 4)
+
+    # Which pairs does the full-enum LP actually use (z > 0.01)?
+    active_pairs_used = [
+        {"name": valid_pairs[j]["name"], "ingredients": valid_pairs[j]["ingredients"],
+         "batches": round(x[R + j], 3)}
+        for j in range(P) if x[R + j] > 0.01
+    ]
+
+    canonical_vec = np.array([canonical_result.region_hours.get(r, 0.0) for r in regions])
+    full_vec      = np.array([full_region_hours.get(r, 0.0) for r in regions])
+    l1_dist = float(np.sum(np.abs(canonical_vec - full_vec)))
+
+    obj_improvement_pct = round(
+        100.0 * (full_obj - canonical_result.objective_value) / canonical_result.objective_value, 2
+    ) if canonical_result.objective_value > 0 else 0.0
+
+    return {
+        "build_name":              build_name,
+        "canonical_obj":           canonical_result.objective_value,
+        "full_enum_obj":           full_obj,
+        "obj_improvement_pct":     obj_improvement_pct,
+        "canonical_region_hours":  canonical_result.region_hours,
+        "full_region_hours":       full_region_hours,
+        "l1_distance":             round(l1_dist, 4),
+        "n_canonical_pairs":       len([p for p in canonical_potions if weights.get(p["name"], 0.0) > 0]),
+        "n_valid_pairs":           P,
+        "active_pairs_used":       active_pairs_used,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Three-ingredient analysis
+# ---------------------------------------------------------------------------
+
+def effect_weights_from_build(build_weights: dict[str, float]) -> dict[str, float]:
+    """
+    Build profiles are keyed by full potion name ("Potion of Fortify Health").
+    Ingredient effects use the bare name ("Fortify Health").
+    Strip the prefix to get a per-effect weight dict.
+    """
+    return {
+        name.replace("Potion of ", "").replace("Poison of ", ""): w
+        for name, w in build_weights.items()
+    }
+
+
+def enumerate_pure_triples(
+    ingredients: list[dict],
+    ing_yields: dict[str, dict[str, float]],
+    effect_weights: dict[str, float],
+) -> list[dict]:
+    """
+    Enumerate all three-ingredient combinations where:
+      - All three ingredients have region-yield data
+      - The activated effects (shared by 2+ of the 3 ingredients) are all the same polarity
+      - At least one activated effect has non-zero weight for this build
+
+    Returns list of dicts sorted by synergy_gain (triple_weight - best_pair_weight) descending.
+    """
+    # Build per-ingredient effect list: {name: [(effect, polarity), ...]}
+    ing_effects: dict[str, list[tuple[str, str]]] = {}
+    for ing in ingredients:
+        if ing["name"] in ing_yields:
+            ing_effects[ing["name"]] = [
+                (e["effect"], e["polarity"]) for e in ing.get("effects", [])
+            ]
+
+    names = list(ing_effects.keys())
+    n = len(names)
+
+    # Pre-build sets for fast intersection
+    effect_sets: dict[str, set[str]] = {nm: {e for e, _ in ing_effects[nm]} for nm in names}
+    polarity_map: dict[str, dict[str, str]] = {
+        nm: {e: p for e, p in ing_effects[nm]} for nm in names
+    }
+
+    pure_triples: list[dict] = []
+
+    for i in range(n):
+        a = names[i]
+        for j in range(i + 1, n):
+            b = names[j]
+            # Quick pre-check: do a and b share any effects at all?
+            ab_shared = effect_sets[a] & effect_sets[b]
+            for k in range(j + 1, n):
+                c = names[k]
+                # Activated effects: shared by 2+ of the 3
+                ac_shared = effect_sets[a] & effect_sets[c]
+                bc_shared = effect_sets[b] & effect_sets[c]
+                activated = ab_shared | ac_shared | bc_shared
+
+                if not activated:
+                    continue
+
+                # Polarity purity check — collect polarity for each activated effect
+                # (use first ingredient that carries the effect as the authoritative source)
+                polarities: set[str] = set()
+                for eff in activated:
+                    if eff in polarity_map[a]:
+                        polarities.add(polarity_map[a][eff])
+                    elif eff in polarity_map[b]:
+                        polarities.add(polarity_map[b][eff])
+                    elif eff in polarity_map[c]:
+                        polarities.add(polarity_map[c][eff])
+
+                if len(polarities) > 1:
+                    continue  # mixed polarity — unsafe brew
+
+                # Build-specific score
+                triple_weight = sum(effect_weights.get(eff, 0.0) for eff in activated)
+                if triple_weight <= 0.0:
+                    continue
+
+                # Best pure pair weight from the 3 possible pairs
+                best_pair_w = 0.0
+                for pa, pb, shared in [(a, b, ab_shared), (a, c, ac_shared), (b, c, bc_shared)]:
+                    if not shared:
+                        continue
+                    pair_pols = {
+                        polarity_map[pa].get(e) or polarity_map[pb].get(e)
+                        for e in shared
+                    }
+                    if len(pair_pols) <= 1:  # pure pair
+                        pw = sum(effect_weights.get(e, 0.0) for e in shared)
+                        best_pair_w = max(best_pair_w, pw)
+
+                synergy_gain = triple_weight - best_pair_w
+
+                pure_triples.append({
+                    "ingredients": [a, b, c],
+                    "effects": sorted(activated),
+                    "polarity": next(iter(polarities)),
+                    "total_weight": triple_weight,
+                    "best_pair_weight": best_pair_w,
+                    "synergy_gain": round(synergy_gain, 4),
+                })
+
+    return sorted(pure_triples, key=lambda x: -x["synergy_gain"])
+
+
+def brewing_allocation_lp(
+    ingredient_totals: dict[str, float],
+    canonical_pairs: list[dict],
+    pure_triples: list[dict],
+    build_weights: dict[str, float],
+    top_triples: int = 50,
+) -> dict:
+    """
+    Secondary LP: given ingredient_totals from the primary (foraging) LP,
+    find the optimal mix of two-ingredient and three-ingredient brews.
+
+    Returns dict with objective values for 2-ingredient-only and mixed strategies.
+    """
+    # Limit triples to top N by synergy gain to keep LP tractable
+    triples = pure_triples[:top_triples]
+
+    # Only include canonical pairs with non-zero weight
+    active_pairs = [p for p in canonical_pairs if build_weights.get(p["name"], 0.0) > 0]
+
+    def _solve(include_triples: bool) -> float:
+        n_pairs = len(active_pairs)
+        n_triples = len(triples) if include_triples else 0
+        n_vars = n_pairs + n_triples
+
+        if n_vars == 0:
+            return 0.0
+
+        # Objective: maximize Σ_p w_p*z2[p] + Σ_c w_c*z3[c]
+        c_obj = np.zeros(n_vars)
+        for j, p in enumerate(active_pairs):
+            c_obj[j] = -build_weights.get(p["name"], 0.0)
+        for k, t in enumerate(triples if include_triples else []):
+            c_obj[n_pairs + k] = -t["total_weight"]
+
+        # Ingredient constraints: for each ingredient i,
+        # Σ_p (1 if i in pair[p]) * z2[p] + Σ_c (1 if i in triple[c]) * z3[c] <= totals[i]
+        rows_A: list[np.ndarray] = []
+        rows_b: list[float] = []
+
+        # Collect all ingredients that appear in any recipe
+        all_ings: set[str] = set()
+        for p in active_pairs:
+            all_ings.update(p["ingredients"])
+        if include_triples:
+            for t in triples:
+                all_ings.update(t["ingredients"])
+
+        for ing in all_ings:
+            total = ingredient_totals.get(ing, 0.0)
+            row = np.zeros(n_vars)
+            for j, p in enumerate(active_pairs):
+                if ing in p["ingredients"]:
+                    row[j] = 1.0
+            if include_triples:
+                for k, t in enumerate(triples):
+                    if ing in t["ingredients"]:
+                        row[n_pairs + k] = 1.0
+            rows_A.append(row)
+            rows_b.append(total)
+
+        if not rows_A:
+            return 0.0
+
+        A_ub = np.array(rows_A)
+        b_ub = np.array(rows_b)
+        bounds = [(0.0, None)] * n_vars
+
+        result = linprog(c_obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+        return round(-result.fun, 4) if result.status == 0 else 0.0
+
+    obj_2only = _solve(include_triples=False)
+    obj_mixed = _solve(include_triples=True)
+    gain_abs = round(obj_mixed - obj_2only, 4)
+    gain_pct = round(100.0 * gain_abs / obj_2only, 1) if obj_2only > 0 else 0.0
+
+    return {
+        "obj_2only": obj_2only,
+        "obj_mixed": obj_mixed,
+        "gain_abs": gain_abs,
+        "gain_pct": gain_pct,
+        "n_triples_considered": len(triples),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Chart 6: Three-ingredient synergy gain
+# ---------------------------------------------------------------------------
+
+def chart_three_ingredient_synergy(
+    brew_results: list[dict],
+    build_names: list[str],
+):
+    """
+    Grouped bar chart: for each build, show the weighted objective value
+    from two-ingredient-only brewing vs. optimal mixed brewing.
+    The gain is the value unlocked by three-ingredient combos.
+    """
+    n = len(build_names)
+    x = np.arange(n)
+    width = 0.35
+
+    obj_2only = [brew_results[i]["obj_2only"] for i in range(n)]
+    obj_mixed  = [brew_results[i]["obj_mixed"]  for i in range(n)]
+    gains      = [brew_results[i]["gain_abs"]   for i in range(n)]
+
+    fig, ax = plt.subplots(figsize=(11, 5))
+
+    bars_2 = ax.bar(x - width / 2, obj_2only, width, label="Two-ingredient only",
+                    color=ACCENT, alpha=0.9)
+    bars_m = ax.bar(x + width / 2, obj_mixed,  width, label="Optimal mix (2- and 3-ingredient)",
+                    color=ACCENT_DARK, alpha=0.9)
+
+    # Annotate each mixed bar with "+X.X%" gain
+    for i, (bar, gain, pct) in enumerate(zip(bars_m, gains, [r["gain_pct"] for r in brew_results])):
+        if gain > 0:
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                bar.get_height() + 0.3,
+                f"+{pct:.1f}%",
+                ha="center", va="bottom", fontsize=8, color=TEXT,
+            )
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(build_names, rotation=15, ha="right", fontsize=9)
+
+    apply_blog_style(
+        ax,
+        title="Brewing objective: two-ingredient only vs. optimal mix",
+        ylabel="Weighted objective (Σ weight × batches)",
+    )
+    ax.legend(fontsize=9, frameon=False)
+
+    save(fig, "three_ingredient_synergy.png")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -465,6 +832,7 @@ def main():
     parser.add_argument("--build", help="Run only this build")
     parser.add_argument("--budget", type=float, default=20.0, help="Time budget in hours")
     parser.add_argument("--no-charts", action="store_true", help="Skip chart generation")
+    parser.add_argument("--stress-test", action="store_true", help="Run pair-selection stress test (Test A)")
     args = parser.parse_args()
 
     ingredients, potions_raw, build_profiles = load_data()
@@ -474,9 +842,17 @@ def main():
     regions    = sorted(next(iter(ing_yields.values())).keys())
 
     print(f"Loaded {len(ingredients)} ingredients, {len(potions_raw)} potion combinations")
-    print(f"Selecting canonical ingredient pair per potion...")
+
+    # All valid pairs: both ingredients in the yield dataset.
+    # The LP solver will choose the optimal mix of pairs for each build.
+    valid_potions = [
+        p for p in potions_raw
+        if p["ingredients"][0] in ing_yields and p["ingredients"][1] in ing_yields
+    ]
+    print(f"  {len(valid_potions)} valid ingredient pairs with yield data")
+
+    # Keep canonical selection available for the stress test only
     canonical_potions = select_canonical_pairs(potions_raw, ing_yields)
-    print(f"  {len(canonical_potions)} canonical potion recipes")
 
     # Builds to run
     if args.build:
@@ -492,7 +868,7 @@ def main():
     results: list[LPResult] = []
     for build_name in builds_to_run:
         weights = build_profiles[build_name]
-        res = build_and_solve(build_name, weights, canonical_potions, ing_yields, regions, args.budget)
+        res = build_and_solve(build_name, weights, valid_potions, ing_yields, regions, args.budget)
         results.append(res)
         print(f"\n=== {build_name} ===")
         print(f"  Status: {res.status}  |  Objective: {res.objective_value:.2f}")
@@ -507,6 +883,60 @@ def main():
         if res.shadow_price_time > 0:
             print(f"  Shadow price (time): {res.shadow_price_time:.3f} obj/hr")
 
+    # Stress test: full pair enumeration (optional)
+    if args.stress_test:
+        print("\n=== Stress Test A: Full Pair Enumeration ===")
+        print(f"{'Build':<25} {'Canon obj':>10} {'Full obj':>10} {'Δobj%':>7} {'L1 dist':>9} {'N pairs':>8}")
+        print("-" * 75)
+        for res in results:
+            st = stress_test_pair_selection(
+                res.build_name, build_profiles[res.build_name],
+                potions_raw, canonical_potions, ing_yields, regions, args.budget
+            )
+            if "error" in st:
+                print(f"  {res.build_name}: ERROR — {st['error']}")
+                continue
+            print(
+                f"  {st['build_name']:<23} {st['canonical_obj']:>10.2f} {st['full_enum_obj']:>10.2f}"
+                f" {st['obj_improvement_pct']:>6.2f}% {st['l1_distance']:>9.3f}"
+                f"  {st['n_canonical_pairs']}→{st['n_valid_pairs']}"
+            )
+            # Show allocation shifts > 0.5 hrs
+            print("    Regional allocation changes (full-enum − canonical, hours):")
+            for region in regions:
+                delta = st["full_region_hours"].get(region, 0.0) - st["canonical_region_hours"].get(region, 0.0)
+                if abs(delta) > 0.5:
+                    print(f"      {region}: {delta:+.2f} hrs")
+            # Show which alternative pairs the full-enum LP chose
+            print("    Active pairs in full-enum solve (non-canonical pairs starred):")
+            canonical_sigs = {
+                (p["name"], tuple(sorted(p["ingredients"])))
+                for p in canonical_potions
+                if build_profiles[res.build_name].get(p["name"], 0.0) > 0
+            }
+            for ap in sorted(st["active_pairs_used"], key=lambda x: -x["batches"]):
+                sig = (ap["name"], tuple(sorted(ap["ingredients"])))
+                marker = " *" if sig not in canonical_sigs else "  "
+                print(f"    {marker} {ap['name']}: {ap['ingredients']} ({ap['batches']:.2f} batches)")
+
+    # Three-ingredient analysis (per-build)
+    print("\nEnumerating pure three-ingredient combos and solving secondary brewing LP...")
+    brew_results: list[dict] = []
+    for res in results:
+        ew = effect_weights_from_build(build_profiles[res.build_name])
+        triples = enumerate_pure_triples(ingredients, ing_yields, ew)
+        brew = brewing_allocation_lp(
+            res.ingredient_totals, valid_potions, triples, build_profiles[res.build_name]
+        )
+        brew["build_name"] = res.build_name
+        brew["top_triples"] = triples[:5]  # store top 5 for JSON output
+        brew_results.append(brew)
+        print(
+            f"  {res.build_name}: 2-only={brew['obj_2only']:.2f}  "
+            f"mixed={brew['obj_mixed']:.2f}  gain=+{brew['gain_pct']:.1f}%  "
+            f"({brew['n_triples_considered']} triples considered)"
+        )
+
     if not args.no_charts:
         print("\nGenerating charts...")
 
@@ -517,13 +947,13 @@ def main():
         plot_builds = builds_to_run[:3]
         budgets = [5, 8, 10, 12, 15, 17, 20, 25, 30]
         chart_sensitivity(
-            plot_builds, build_profiles, canonical_potions, ing_yields, regions, budgets
+            plot_builds, build_profiles, valid_potions, ing_yields, regions, budgets
         )
 
         # Chart 3: Single-region counterfactual for first build
         chart_single_region_counterfactual(
             results[0].build_name, build_profiles[results[0].build_name],
-            canonical_potions, ing_yields, regions, args.budget
+            valid_potions, ing_yields, regions, args.budget
         )
 
         # Chart 4: Ingredient yield heatmap
@@ -531,6 +961,9 @@ def main():
 
         # Chart 5: Potion comparison (up to 3 builds)
         chart_potion_comparison(results[:3])
+
+        # Chart 6: Three-ingredient synergy gain
+        chart_three_ingredient_synergy(brew_results, [r.build_name for r in results])
 
     # Write results JSON for the React component
     results_json = []
@@ -549,6 +982,12 @@ def main():
     with open(out_path, "w") as f:
         json.dump(results_json, f, indent=2)
     print(f"\nWrote {out_path}")
+
+    # Write three-ingredient analysis JSON
+    brew_out_path = DATA_DIR / "three_ingredient_analysis.json"
+    with open(brew_out_path, "w") as f:
+        json.dump(brew_results, f, indent=2)
+    print(f"Wrote {brew_out_path}")
 
 
 if __name__ == "__main__":
