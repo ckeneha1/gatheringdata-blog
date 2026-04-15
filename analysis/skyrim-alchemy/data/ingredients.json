@@ -1,0 +1,3822 @@
+[
+  {
+    "name": "Abecean Longfin",
+    "game_id": "00106e1b",
+    "value": "15",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Restoration",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.3,
+      "The Reach / Haafingar (West)": 0.3,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Abecean_Longfin"
+  },
+  {
+    "name": "Ancestor Moth Wing",
+    "game_id": "xx0059ba",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.3,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Ancestor_Moth_Wing"
+  },
+  {
+    "name": "Ash Hopper Jelly",
+    "game_id": "xx01cd71",
+    "value": "20",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Ash_Hopper_Jelly"
+  },
+  {
+    "name": "Bear Claws",
+    "game_id": "0006bc02",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.3,
+      "Hjaalmarch / The Pale (North)": 0.3,
+      "The Reach / Haafingar (West)": 0.3,
+      "The Rift (Southeast)": 0.3,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.3
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Bear_Claws"
+  },
+  {
+    "name": "Beehive Husk",
+    "game_id": "000a9191",
+    "value": "5",
+    "weight": "1",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Destruction",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 4,
+      "Whiterun Hold": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Beehive_Husk"
+  },
+  {
+    "name": "Bleeding Crown",
+    "game_id": "0004da20",
+    "value": "10",
+    "weight": "0.3",
+    "effects": [
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 3,
+      "The Rift": 60,
+      "Hjaalmarch": 42,
+      "The Reach": 22,
+      "The Pale": 19,
+      "Whiterun Hold": 23
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.4850894632206759,
+      "The Reach / Haafingar (West)": 0.1749502982107356,
+      "The Rift (Southeast)": 0.47713717693836977,
+      "Whiterun Hold (Central Plains)": 0.18290258449304175,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Bleeding_Crown"
+  },
+  {
+    "name": "Blisterwort",
+    "game_id": "0004da25",
+    "value": "12",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Smithing",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 3,
+      "Hjaalmarch": 72,
+      "Winterhold": 6,
+      "The Rift": 33,
+      "The Reach": 11,
+      "Falkreath Hold": 10
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.07952286282306163,
+      "Hjaalmarch / The Pale (North)": 0.5725646123260437,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.2624254473161034,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Blisterwort"
+  },
+  {
+    "name": "Blue Butterfly Wing",
+    "game_id": "000727de",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Hjaalmarch": 2,
+      "Eastmarch": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Butterfly_Wing"
+  },
+  {
+    "name": "Blue Dartwing",
+    "game_id": "000e4f0c",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Pickpocket",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fear (effect)",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 6,
+      "Eastmarch": 1,
+      "The Reach": 2,
+      "Winterhold": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.04771371769383698,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Dartwing"
+  },
+  {
+    "name": "Blue Mountain Flower",
+    "game_id": "00077e1c",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 11,
+      "The Pale": 4,
+      "Whiterun Hold": 52,
+      "Hjaalmarch": 26,
+      "The Rift": 112,
+      "The Reach": 18,
+      "Falkreath Hold": 36
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.28628230616302186,
+      "Hjaalmarch / The Pale (North)": 0.23856858846918488,
+      "The Reach / Haafingar (West)": 0.23061630218687873,
+      "The Rift (Southeast)": 0.8906560636182903,
+      "Whiterun Hold (Central Plains)": 0.4135188866799205,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Blue_Mountain_Flower"
+  },
+  {
+    "name": "Bone Meal",
+    "game_id": "00034cdd",
+    "value": "5",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Ravage Stamina",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 11,
+      "Whiterun Hold": 9,
+      "The Pale": 5,
+      "The Rift": 4,
+      "Hjaalmarch": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.07157057654075547,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.07157057654075547,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Bone_Meal"
+  },
+  {
+    "name": "Briar Heart",
+    "game_id": "0003ad61",
+    "value": "20",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 2,
+      "Winterhold": 2,
+      "Whiterun Hold": 1,
+      "Falkreath Hold": 1,
+      "The Reach": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.007952286282306162,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.007952286282306162,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Briar_Heart"
+  },
+  {
+    "name": "Burnt Spriggan Wood",
+    "game_id": "xx01cd6e",
+    "value": "20",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Alteration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Slow",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Burnt_Spriggan_Wood"
+  },
+  {
+    "name": "Butterfly Wing",
+    "game_id": "000727e0",
+    "value": "3",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Barter",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Lingering Damage Stamina",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 4,
+      "Hjaalmarch": 2,
+      "Whiterun Hold": 2,
+      "Eastmarch": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Butterfly_Wing"
+  },
+  {
+    "name": "Canis Root",
+    "game_id": "0006abcb",
+    "value": "5",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Marksman",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 3,
+      "Eastmarch": 3,
+      "Hjaalmarch": 66,
+      "Winterhold": 3,
+      "The Rift": 87
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.5248508946322068,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.6918489065606361,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Canis_Root"
+  },
+  {
+    "name": "Charred Skeever Hide",
+    "game_id": "00052695",
+    "value": "1",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Cure Disease",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 6,
+      "The Rift": 9,
+      "The Pale": 8,
+      "Whiterun Hold": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0636182902584493,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.07157057654075547,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Charred_Skeever_Hide"
+  },
+  {
+    "name": "Chaurus Eggs",
+    "game_id": "0003ad56",
+    "value": "10",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Invisibility (effect)",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 13,
+      "The Rift": 11,
+      "The Pale": 10,
+      "Whiterun Hold": 10
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0874751491053678,
+      "Whiterun Hold (Central Plains)": 0.07952286282306163,
+      "Winterhold / Eastmarch (Northeast)": 0.10337972166998012
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Chaurus_Eggs"
+  },
+  {
+    "name": "Chaurus Hunter Antennae",
+    "game_id": "xx0183b7",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.3
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Chaurus_Hunter_Antennae"
+  },
+  {
+    "name": "Chicken's Egg",
+    "game_id": "00023d77",
+    "value": "2",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Waterbreathing (effect)",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Lingering Damage Stamina",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 8,
+      "Falkreath Hold": 6,
+      "Eastmarch": 6,
+      "The Pale": 4,
+      "The Reach": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.09542743538767395,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Chicken's_Egg"
+  },
+  {
+    "name": "Creep Cluster",
+    "game_id": "000b2183",
+    "value": "1",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 5,
+      "The Pale": 4,
+      "The Reach": 2,
+      "Winterhold": 2,
+      "Eastmarch": 233
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 1.8687872763419484
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Creep_Cluster"
+  },
+  {
+    "name": "Daedra Heart",
+    "game_id": "0003ad5b",
+    "value": "250",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fear (effect)",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 2,
+      "Whiterun Hold": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Daedra_Heart"
+  },
+  {
+    "name": "Deathbell",
+    "game_id": "000516c8",
+    "value": "4",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Stamina",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Slow",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 21,
+      "Haafingar": 17,
+      "Whiterun Hold": 13,
+      "The Pale": 7,
+      "Falkreath Hold": 6,
+      "Eastmarch": 4,
+      "Hjaalmarch": 134
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 1.121272365805169,
+      "The Reach / Haafingar (West)": 0.13518886679920478,
+      "The Rift (Southeast)": 0.16699801192842942,
+      "Whiterun Hold (Central Plains)": 0.10337972166998012,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Deathbell"
+  },
+  {
+    "name": "Dragon's Tongue",
+    "game_id": "000889a2",
+    "value": "5",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Barter",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Illusion",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Two-handed",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 5,
+      "The Reach": 8,
+      "Eastmarch": 503
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0636182902584493,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 4.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Dragon's_Tongue"
+  },
+  {
+    "name": "Dwarven Oil",
+    "game_id": "000f11c0",
+    "value": "15",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Illusion",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Hjaalmarch": 8,
+      "The Pale": 2,
+      "Winterhold": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Dwarven_Oil"
+  },
+  {
+    "name": "Ectoplasm",
+    "game_id": "0003ad63",
+    "value": "25",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Destruction",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 4,
+      "Hjaalmarch": 2,
+      "Eastmarch": 2,
+      "Winterhold": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Ectoplasm"
+  },
+  {
+    "name": "Elves Ear",
+    "game_id": "00034d31",
+    "value": "10",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Marksman",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 13,
+      "Haafingar": 32,
+      "Eastmarch": 3,
+      "Falkreath Hold": 3,
+      "Winterhold": 3,
+      "The Pale": 6,
+      "Whiterun Hold": 18,
+      "The Rift": 14
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.35785288270377735,
+      "The Rift (Southeast)": 0.11133200795228629,
+      "Whiterun Hold (Central Plains)": 0.14314115308151093,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Elves_Ear"
+  },
+  {
+    "name": "Eye of Sabre Cat",
+    "game_id": "0006bc07",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Health",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Eye_of_Sabre_Cat"
+  },
+  {
+    "name": "Falmer Ear",
+    "game_id": "0003ad5d",
+    "value": "10",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Lockpicking",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 7,
+      "The Rift": 13,
+      "The Pale": 7,
+      "The Reach": 3,
+      "Eastmarch": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.10337972166998012,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Falmer_Ear"
+  },
+  {
+    "name": "Fire Salts",
+    "game_id": "0003ad5e",
+    "value": "50",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 3,
+      "Winterhold": 6,
+      "The Pale": 8,
+      "Haafingar": 2,
+      "Falkreath Hold": 3,
+      "The Rift": 4,
+      "Hjaalmarch": 2,
+      "The Reach": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.07952286282306163,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Fire_Salts"
+  },
+  {
+    "name": "Fly Amanita",
+    "game_id": "0004da00",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Two-handed",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Stamina",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 61,
+      "Winterhold": 2,
+      "Eastmarch": 24,
+      "The Pale": 17,
+      "Haafingar": 74,
+      "Hjaalmarch": 47,
+      "The Reach": 25
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.5089463220675944,
+      "The Reach / Haafingar (West)": 0.7872763419483101,
+      "The Rift (Southeast)": 0.4850894632206759,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.20675944333996024
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Fly_Amanita"
+  },
+  {
+    "name": "Frost Mirriam",
+    "game_id": "00034d32",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 11,
+      "Whiterun Hold": 2,
+      "Falkreath Hold": 2,
+      "The Reach": 10
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.015904572564612324,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.0874751491053678,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Mirriam"
+  },
+  {
+    "name": "Frost Salts",
+    "game_id": "0003ad5f",
+    "value": "100",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Falkreath Hold": 5,
+      "The Rift": 5,
+      "Eastmarch": 2,
+      "The Reach": 4,
+      "Haafingar": 2,
+      "The Pale": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.039761431411530816,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.039761431411530816,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Frost_Salts"
+  },
+  {
+    "name": "Garlic",
+    "game_id": "00034d22",
+    "value": "1",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 23,
+      "Whiterun Hold": 11,
+      "Haafingar": 45,
+      "The Pale": 7
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.35785288270377735,
+      "The Rift (Southeast)": 0.18290258449304175,
+      "Whiterun Hold (Central Plains)": 0.0874751491053678,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Garlic"
+  },
+  {
+    "name": "Giant Lichen",
+    "game_id": "0007e8c1",
+    "value": "5",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Shock",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Health",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 5,
+      "The Pale": 6,
+      "The Reach": 2,
+      "The Rift": 2,
+      "Eastmarch": 2,
+      "Hjaalmarch": 99
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.8349900596421471,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Giant_Lichen"
+  },
+  {
+    "name": "Giant's Toe",
+    "game_id": "0003ad64",
+    "value": "20",
+    "weight": "1",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 5,
+      "Eastmarch": 2,
+      "Haafingar": 6,
+      "The Rift": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Giant's_Toe"
+  },
+  {
+    "name": "Glow Dust",
+    "game_id": "0003ad73",
+    "value": "20",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Destruction",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 5,
+      "Eastmarch": 2,
+      "The Rift": 2,
+      "The Reach": 2,
+      "The Pale": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Glow_Dust"
+  },
+  {
+    "name": "Glowing Mushroom",
+    "game_id": "0007ee01",
+    "value": "5",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Destruction",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Smithing",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 67,
+      "The Rift": 356,
+      "The Reach": 81,
+      "Winterhold": 96,
+      "The Pale": 3,
+      "Whiterun Hold": 92,
+      "Hjaalmarch": 35
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.30218687872763417,
+      "The Reach / Haafingar (West)": 1.176938369781312,
+      "The Rift (Southeast)": 2.831013916500994,
+      "Whiterun Hold (Central Plains)": 0.731610337972167,
+      "Winterhold / Eastmarch (Northeast)": 0.7634194831013916
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Glowing_Mushroom"
+  },
+  {
+    "name": "Grass Pod",
+    "game_id": "00083e64",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Alteration",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 45,
+      "Eastmarch": 2,
+      "Whiterun Hold": 1,
+      "Haafingar": 127
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 1.0099403578528827,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.37375745526838966
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Grass_Pod"
+  },
+  {
+    "name": "Hagraven Claw",
+    "game_id": "0006b689",
+    "value": "20",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Lingering Damage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Barter",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Falkreath Hold": 6,
+      "The Pale": 5,
+      "Haafingar": 2,
+      "The Rift": 4,
+      "The Reach": 4,
+      "Eastmarch": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Hagraven_Claw"
+  },
+  {
+    "name": "Hagraven Feathers",
+    "game_id": "0003ad66",
+    "value": "20",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Shock",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 19,
+      "Eastmarch": 7,
+      "Whiterun Hold": 5,
+      "The Pale": 3,
+      "Falkreath Hold": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.02385685884691849,
+      "The Reach / Haafingar (West)": 0.15109343936381708,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 0.055666003976143144
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Hagraven_Feathers"
+  },
+  {
+    "name": "Hanging Moss",
+    "game_id": "00057f91",
+    "value": "1",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 2,
+      "Falkreath Hold": 64,
+      "The Rift": 1,
+      "Haafingar": 2,
+      "The Reach": 230
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.5089463220675944,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 1.8449304174950298,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Hanging_Moss"
+  },
+  {
+    "name": "Hawk Feathers",
+    "game_id": "000e7ed0",
+    "value": "15",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Cure Disease",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Hawk_Feathers"
+  },
+  {
+    "name": "Hawk's Egg",
+    "game_id": "xx00f1cc",
+    "value": "5",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Waterbreathing (effect)",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Lingering Damage Stamina",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.3,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.3,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Hawk's_Egg"
+  },
+  {
+    "name": "Honeycomb",
+    "game_id": "000b08c5",
+    "value": "5",
+    "weight": "1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Ravage Stamina",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 4,
+      "Whiterun Hold": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Honeycomb"
+  },
+  {
+    "name": "Human Flesh",
+    "game_id": "001016b3",
+    "value": "1",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 3,
+      "The Rift": 4,
+      "The Pale": 4,
+      "The Reach": 2,
+      "Eastmarch": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Human_Flesh"
+  },
+  {
+    "name": "Human Heart",
+    "game_id": "000b18cd",
+    "value": "0",
+    "weight": "1",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Human_Heart"
+  },
+  {
+    "name": "Ice Wraith Teeth",
+    "game_id": "0003ad6a",
+    "value": "30",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Heavy Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Invisibility (effect)",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 5,
+      "The Pale": 7,
+      "The Reach": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.055666003976143144,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.039761431411530816,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Ice_Wraith_Teeth"
+  },
+  {
+    "name": "Imp Stool",
+    "game_id": "0004da23",
+    "value": "0",
+    "weight": "0.3",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Lingering Damage Health",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 2,
+      "Hjaalmarch": 70,
+      "The Reach": 25,
+      "The Rift": 31,
+      "Falkreath Hold": 23,
+      "Whiterun Hold": 19,
+      "The Pale": 14
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.18290258449304175,
+      "Hjaalmarch / The Pale (North)": 0.6679920477137177,
+      "The Reach / Haafingar (West)": 0.2147117296222664,
+      "The Rift (Southeast)": 0.24652087475149106,
+      "Whiterun Hold (Central Plains)": 0.15109343936381708,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Imp_Stool"
+  },
+  {
+    "name": "Jazbay Grapes",
+    "game_id": "0006ac4a",
+    "value": "1",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Ravage Health",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 15,
+      "Whiterun Hold": 4,
+      "The Rift": 4,
+      "Eastmarch": 319
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.11928429423459244,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.03180914512922465,
+      "Winterhold / Eastmarch (Northeast)": 2.536779324055666
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Jazbay_Grapes"
+  },
+  {
+    "name": "Juniper Berries",
+    "game_id": "0005076e",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Archery",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 304,
+      "Falkreath Hold": 3,
+      "Haafingar": 4,
+      "The Rift": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.02385685884691849,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 2.4493041749502984,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Juniper_Berries"
+  },
+  {
+    "name": "Juvenile Mudcrab",
+    "game_id": "xx0008F2",
+    "value": "10",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Regenerate Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Cure Disease",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Two-handed",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.3,
+      "The Reach / Haafingar (West)": 0.3,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.3
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Juvenile_Mudcrab"
+  },
+  {
+    "name": "Large Antlers",
+    "game_id": "0006bc0a",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Slow",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.3,
+      "Hjaalmarch / The Pale (North)": 0.3,
+      "The Reach / Haafingar (West)": 0.3,
+      "The Rift (Southeast)": 0.3,
+      "Whiterun Hold (Central Plains)": 0.3,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Large_Antlers"
+  },
+  {
+    "name": "Lavender",
+    "game_id": "00045c28",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Conjuration",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 14,
+      "Whiterun Hold": 114,
+      "Hjaalmarch": 37,
+      "The Pale": 17
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.4294234592445328,
+      "The Reach / Haafingar (West)": 0.11133200795228629,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.9065606361829026,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Lavender"
+  },
+  {
+    "name": "Luna Moth Wing",
+    "game_id": "000727df",
+    "value": "5",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Invisibility (effect)",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 5,
+      "The Reach": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.015904572564612324,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Luna_Moth_Wing"
+  },
+  {
+    "name": "Moon Sugar",
+    "game_id": "000d8e3f",
+    "value": "50",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Fire",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 6,
+      "Eastmarch": 2,
+      "Falkreath Hold": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.007952286282306162,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.04771371769383698,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Moon_Sugar"
+  },
+  {
+    "name": "Mudcrab Chitin",
+    "game_id": "0006bc00",
+    "value": "2",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Cure Disease",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 2,
+      "Winterhold": 1,
+      "Hjaalmarch": 1,
+      "The Rift": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.007952286282306162,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Mudcrab_Chitin"
+  },
+  {
+    "name": "Namira's Rot",
+    "game_id": "0004da24",
+    "value": "0",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Lockpicking",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fear (effect)",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 29,
+      "Winterhold": 11,
+      "Haafingar": 2,
+      "Hjaalmarch": 65,
+      "The Pale": 14,
+      "Falkreath Hold": 21,
+      "The Reach": 26
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.16699801192842942,
+      "Hjaalmarch / The Pale (North)": 0.6282306163021869,
+      "The Reach / Haafingar (West)": 0.22266401590457258,
+      "The Rift (Southeast)": 0.23061630218687873,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0874751491053678
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Namira's_Rot"
+  },
+  {
+    "name": "Netch Jelly",
+    "game_id": "xx01cd72",
+    "value": "20",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fear (effect)",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {},
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Netch_Jelly"
+  },
+  {
+    "name": "Nightshade",
+    "game_id": "0002f44c",
+    "value": "8",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Lingering Damage Stamina",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Destruction",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 15,
+      "Falkreath Hold": 23,
+      "The Pale": 3,
+      "The Reach": 3,
+      "Haafingar": 11,
+      "Hjaalmarch": 24,
+      "Whiterun Hold": 20,
+      "The Rift": 8
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.18290258449304175,
+      "Hjaalmarch / The Pale (North)": 0.2147117296222664,
+      "The Reach / Haafingar (West)": 0.11133200795228629,
+      "The Rift (Southeast)": 0.0636182902584493,
+      "Whiterun Hold (Central Plains)": 0.15904572564612326,
+      "Winterhold / Eastmarch (Northeast)": 0.11928429423459244
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Nightshade"
+  },
+  {
+    "name": "Nirnroot",
+    "game_id": "00059b86",
+    "value": "10",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Invisibility (effect)",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 30,
+      "The Rift": 14,
+      "The Reach": 7,
+      "Falkreath Hold": 4,
+      "Winterhold": 3,
+      "Whiterun Hold": 6
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.03180914512922465,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.294234592445328,
+      "The Rift (Southeast)": 0.11133200795228629,
+      "Whiterun Hold (Central Plains)": 0.04771371769383698,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Nirnroot"
+  },
+  {
+    "name": "Nordic Barnacle",
+    "game_id": "0007edf5",
+    "value": "5",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Magicka",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Waterbreathing (effect)",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Pickpocket",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 4,
+      "The Rift": 3,
+      "Haafingar": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.02385685884691849,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Nordic_Barnacle"
+  },
+  {
+    "name": "Orange Dartwing",
+    "game_id": "000bb956",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Pickpocket",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Lingering Damage Health",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 17,
+      "The Pale": 5,
+      "The Reach": 2,
+      "Whiterun Hold": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.15109343936381708,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Orange_Dartwing"
+  },
+  {
+    "name": "Pearl",
+    "game_id": "000854fe",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Pearl"
+  },
+  {
+    "name": "Pine Thrush Egg",
+    "game_id": "00023d6f",
+    "value": "2",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Lockpicking",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Hjaalmarch": 5,
+      "Falkreath Hold": 9,
+      "Haafingar": 4,
+      "Eastmarch": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.07157057654075547,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Pine_Thrush_Egg"
+  },
+  {
+    "name": "Purple Mountain Flower",
+    "game_id": "00077e1e",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Sneak",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Lingering Damage Magicka",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 11,
+      "Haafingar": 37,
+      "Falkreath Hold": 87,
+      "The Rift": 87,
+      "Eastmarch": 30,
+      "Whiterun Hold": 78,
+      "The Reach": 24
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.6918489065606361,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.4850894632206759,
+      "The Rift (Southeast)": 0.6918489065606361,
+      "Whiterun Hold (Central Plains)": 0.6202783300198808,
+      "Winterhold / Eastmarch (Northeast)": 0.3260437375745527
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Purple_Mountain_Flower"
+  },
+  {
+    "name": "Red Mountain Flower",
+    "game_id": "00077e1d",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 16,
+      "The Reach": 29,
+      "Haafingar": 41,
+      "The Rift": 111,
+      "Falkreath Hold": 26,
+      "Eastmarch": 43,
+      "Whiterun Hold": 21
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.20675944333996024,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.5566600397614314,
+      "The Rift (Southeast)": 0.882703777335984,
+      "Whiterun Hold (Central Plains)": 0.16699801192842942,
+      "Winterhold / Eastmarch (Northeast)": 0.4691848906560636
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Red_Mountain_Flower"
+  },
+  {
+    "name": "River Betty",
+    "game_id": "00106e1a",
+    "value": "15",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Alteration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Slow",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Falkreath Hold": 1,
+      "The Rift": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.007952286282306162,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:River_Betty"
+  },
+  {
+    "name": "Rock Warbler Egg",
+    "game_id": "0007e8c8",
+    "value": "2",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Falkreath Hold": 10,
+      "The Reach": 5,
+      "Eastmarch": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.07952286282306163,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.039761431411530816,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Rock_Warbler_Egg"
+  },
+  {
+    "name": "Sabre Cat Tooth",
+    "game_id": "0006bc04",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Heavy Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Smithing",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Weakness to Poison",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 3,
+      "The Reach": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.007952286282306162,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.02385685884691849,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Sabre_Cat_Tooth"
+  },
+  {
+    "name": "Salt Pile",
+    "game_id": "00034cdf",
+    "value": "2",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Restoration",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Slow",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 46,
+      "Winterhold": 9,
+      "Whiterun Hold": 8
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.3658051689860835,
+      "Whiterun Hold (Central Plains)": 0.0636182902584493,
+      "Winterhold / Eastmarch (Northeast)": 0.07157057654075547
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Salt_Pile"
+  },
+  {
+    "name": "Scaly Pholiota",
+    "game_id": "0006f950",
+    "value": "4",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Illusion",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Stamina",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Carry Weight",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 7,
+      "The Rift": 4,
+      "The Pale": 4,
+      "Eastmarch": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Scaly_Pholiota"
+  },
+  {
+    "name": "Skeever Tail",
+    "game_id": "0003ad6f",
+    "value": "3",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Health",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Light Armor",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 12,
+      "Whiterun Hold": 8,
+      "The Reach": 4,
+      "Haafingar": 7,
+      "Falkreath Hold": 16,
+      "The Rift": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.1272365805168986,
+      "Hjaalmarch / The Pale (North)": 0.09542743538767395,
+      "The Reach / Haafingar (West)": 0.0874751491053678,
+      "The Rift (Southeast)": 0.02385685884691849,
+      "Whiterun Hold (Central Plains)": 0.0636182902584493,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Skeever_Tail"
+  },
+  {
+    "name": "Slaughterfish Egg",
+    "game_id": "0007e8c5",
+    "value": "3",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Pickpocket",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Lingering Damage Health",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 7,
+      "Eastmarch": 7,
+      "The Rift": 6,
+      "The Reach": 10,
+      "The Pale": 5
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.039761431411530816,
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.04771371769383698,
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.055666003976143144
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Slaughterfish_Egg"
+  },
+  {
+    "name": "Slaughterfish Scales",
+    "game_id": "0003ad70",
+    "value": "3",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Lingering Damage Health",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Heavy Armor",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Falkreath Hold": 6,
+      "The Rift": 6,
+      "Haafingar": 9,
+      "Winterhold": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.04771371769383698,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.07157057654075547,
+      "The Rift (Southeast)": 0.04771371769383698,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.03180914512922465
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Slaughterfish_Scales"
+  },
+  {
+    "name": "Small Pearl",
+    "game_id": "00085500",
+    "value": "2",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify One-handed",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Restoration",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 1,
+      "The Rift": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.007952286282306162,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Small_Pearl"
+  },
+  {
+    "name": "Snowberries",
+    "game_id": "0001b3bd",
+    "value": "4",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Fire",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 46,
+      "The Reach": 7,
+      "The Pale": 98,
+      "Eastmarch": 33,
+      "Falkreath Hold": 97,
+      "Hjaalmarch": 28
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.7713717693836978,
+      "Hjaalmarch / The Pale (North)": 1.0019880715705765,
+      "The Reach / Haafingar (West)": 0.055666003976143144,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.6282306163021869
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Snowberries"
+  },
+  {
+    "name": "Spider Egg",
+    "game_id": "0009151b",
+    "value": "5",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Stamina",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Lockpicking",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Marksman",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 18,
+      "Winterhold": 19,
+      "Hjaalmarch": 8,
+      "Falkreath Hold": 13,
+      "Haafingar": 7,
+      "Whiterun Hold": 7
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.10337972166998012,
+      "Hjaalmarch / The Pale (North)": 0.0636182902584493,
+      "The Reach / Haafingar (West)": 0.1988071570576541,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.055666003976143144,
+      "Winterhold / Eastmarch (Northeast)": 0.15109343936381708
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Spider_Egg"
+  },
+  {
+    "name": "Spriggan Sap",
+    "game_id": "00063b5f",
+    "value": "15",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Damage Magicka Regen",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Enchanting",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Smithing",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Alteration",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 5,
+      "Haafingar": 3,
+      "Eastmarch": 1,
+      "Whiterun Hold": 1,
+      "Falkreath Hold": 1,
+      "The Pale": 1,
+      "The Reach": 1
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.007952286282306162,
+      "Hjaalmarch / The Pale (North)": 0.007952286282306162,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.039761431411530816,
+      "Whiterun Hold (Central Plains)": 0.007952286282306162,
+      "Winterhold / Eastmarch (Northeast)": 0.007952286282306162
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Spriggan_Sap"
+  },
+  {
+    "name": "Swamp Fungal Pod",
+    "game_id": "0007e8b7",
+    "value": "5",
+    "weight": "0.25",
+    "effects": [
+      {
+        "effect": "Resist Shock",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Lingering Damage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Paralysis",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Pale": 3,
+      "The Rift": 6,
+      "Haafingar": 2,
+      "The Reach": 2,
+      "Hjaalmarch": 109
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.8906560636182903,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.04771371769383698,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Swamp_Fungal_Pod"
+  },
+  {
+    "name": "Taproot",
+    "game_id": "0003ad71",
+    "value": "15",
+    "weight": "0.5",
+    "effects": [
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Illusion",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 2,
+      "Haafingar": 4,
+      "Hjaalmarch": 2,
+      "The Rift": 2,
+      "The Pale": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.03180914512922465,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Taproot"
+  },
+  {
+    "name": "Thistle Branch",
+    "game_id": "000134aa",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Frost",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Stamina",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Heavy Armor",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 46,
+      "Haafingar": 6,
+      "The Pale": 2,
+      "The Reach": 2,
+      "Falkreath Hold": 130,
+      "Eastmarch": 34
+    },
+    "region_yields": {
+      "Falkreath (South)": 1.0337972166998013,
+      "Hjaalmarch / The Pale (North)": 0.015904572564612324,
+      "The Reach / Haafingar (West)": 0.0636182902584493,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.3658051689860835,
+      "Winterhold / Eastmarch (Northeast)": 0.27037773359840955
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Thistle_Branch"
+  },
+  {
+    "name": "Torchbug Thorax",
+    "game_id": "0004da73",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Stamina",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Lingering Damage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Weakness to Magic",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Stamina",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Winterhold": 9,
+      "The Pale": 9,
+      "Haafingar": 3,
+      "Eastmarch": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.07157057654075547,
+      "The Reach / Haafingar (West)": 0.02385685884691849,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.10337972166998012
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Torchbug_Thorax"
+  },
+  {
+    "name": "Troll Fat",
+    "game_id": "0003ad72",
+    "value": "15",
+    "weight": "1",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Two-handed",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Frenzy (effect)",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Eastmarch": 6,
+      "The Rift": 2,
+      "Whiterun Hold": 2,
+      "Falkreath Hold": 2,
+      "The Pale": 4,
+      "Haafingar": 2,
+      "The Reach": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.015904572564612324,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.04771371769383698,
+      "The Rift (Southeast)": 0.015904572564612324,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.04771371769383698
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Troll_Fat"
+  },
+  {
+    "name": "Tundra Cotton",
+    "game_id": "0003f7f8",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Block",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Barter",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 20,
+      "Whiterun Hold": 194,
+      "Falkreath Hold": 32,
+      "The Pale": 31,
+      "Hjaalmarch": 23
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.2544731610337972,
+      "Hjaalmarch / The Pale (North)": 0.4294234592445328,
+      "The Reach / Haafingar (West)": 0.15904572564612326,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 1.5427435387673956,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Tundra_Cotton"
+  },
+  {
+    "name": "Vampire Dust",
+    "game_id": "0003ad76",
+    "value": "25",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Invisibility (effect)",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Regenerate Health",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Cure Disease",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Rift": 4,
+      "Whiterun Hold": 2,
+      "Eastmarch": 2,
+      "The Pale": 4
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.03180914512922465,
+      "The Reach / Haafingar (West)": 0.0,
+      "The Rift (Southeast)": 0.03180914512922465,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.015904572564612324
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Vampire_Dust"
+  },
+  {
+    "name": "Void Salts",
+    "game_id": "0003ad60",
+    "value": "125",
+    "weight": "0.2",
+    "effects": [
+      {
+        "effect": "Weakness to Shock",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Resist Magic",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Health",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Fortify Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Haafingar": 10,
+      "Eastmarch": 3,
+      "The Rift": 3,
+      "Whiterun Hold": 2
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 0.07952286282306163,
+      "The Rift (Southeast)": 0.02385685884691849,
+      "Whiterun Hold (Central Plains)": 0.015904572564612324,
+      "Winterhold / Eastmarch (Northeast)": 0.02385685884691849
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Void_Salts"
+  },
+  {
+    "name": "Wheat",
+    "game_id": "0004b0ba",
+    "value": "5",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Restore Health",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Health",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Damage Stamina Regen",
+        "polarity": "negative",
+        "slot": 3
+      },
+      {
+        "effect": "Lingering Damage Magicka",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "Whiterun Hold": 17,
+      "Eastmarch": 35,
+      "The Reach": 10,
+      "The Rift": 13,
+      "The Pale": 6,
+      "Haafingar": 3
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.04771371769383698,
+      "The Reach / Haafingar (West)": 0.10337972166998012,
+      "The Rift (Southeast)": 0.10337972166998012,
+      "Whiterun Hold (Central Plains)": 0.13518886679920478,
+      "Winterhold / Eastmarch (Northeast)": 0.2783300198807157
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Wheat"
+  },
+  {
+    "name": "White Cap",
+    "game_id": "0004da22",
+    "value": "0",
+    "weight": "0.3",
+    "effects": [
+      {
+        "effect": "Weakness to Frost",
+        "polarity": "negative",
+        "slot": 1
+      },
+      {
+        "effect": "Fortify Heavy Armor",
+        "polarity": "positive",
+        "slot": 2
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 28,
+      "Whiterun Hold": 20,
+      "Winterhold": 36,
+      "The Rift": 45,
+      "Hjaalmarch": 43,
+      "Falkreath Hold": 22,
+      "The Pale": 17
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.1749502982107356,
+      "Hjaalmarch / The Pale (North)": 0.47713717693836977,
+      "The Reach / Haafingar (West)": 0.22266401590457258,
+      "The Rift (Southeast)": 0.35785288270377735,
+      "Whiterun Hold (Central Plains)": 0.15904572564612326,
+      "Winterhold / Eastmarch (Northeast)": 0.28628230616302186
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:White_Cap"
+  },
+  {
+    "name": "Wild Grass Pod",
+    "game_id": "xx019D3A",
+    "value": "1",
+    "weight": "0.1",
+    "effects": [
+      {
+        "effect": "Resist Poison",
+        "polarity": "positive",
+        "slot": 1
+      },
+      {
+        "effect": "Ravage Magicka",
+        "polarity": "negative",
+        "slot": 2
+      },
+      {
+        "effect": "Fortify Alteration",
+        "polarity": "positive",
+        "slot": 3
+      },
+      {
+        "effect": "Restore Magicka",
+        "polarity": "positive",
+        "slot": 4
+      }
+    ],
+    "hold_counts": {
+      "The Reach": 200
+    },
+    "region_yields": {
+      "Falkreath (South)": 0.0,
+      "Hjaalmarch / The Pale (North)": 0.0,
+      "The Reach / Haafingar (West)": 1.5904572564612327,
+      "The Rift (Southeast)": 0.0,
+      "Whiterun Hold (Central Plains)": 0.0,
+      "Winterhold / Eastmarch (Northeast)": 0.0
+    },
+    "source_url": "https://en.uesp.net/wiki/Skyrim:Wild_Grass_Pod"
+  }
+]

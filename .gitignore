@@ -20,5 +20,12 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Python
+__pycache__/
+*.pyc
+
+# Skyrim scraper cache — reproducible, not worth tracking
+analysis/skyrim-alchemy/data/raw/
+
 # jetbrains setting folder
 .idea/

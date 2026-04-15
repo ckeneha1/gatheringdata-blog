@@ -1,0 +1,531 @@
+[
+  {
+    "obj_2only": 235.8225,
+    "obj_mixed": 253.4553,
+    "gain_abs": 17.6328,
+    "gain_pct": 7.5,
+    "n_triples_considered": 50,
+    "build_name": "Heavy Armor Warrior",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Bear Claws",
+          "Charred Skeever Hide",
+          "Wheat"
+        ],
+        "effects": [
+          "Fortify Health",
+          "Restore Health",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 5.0
+      },
+      {
+        "ingredients": [
+          "Bear Claws",
+          "Eye of Sabre Cat",
+          "Wheat"
+        ],
+        "effects": [
+          "Fortify Health",
+          "Restore Health",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 5.0
+      },
+      {
+        "ingredients": [
+          "Bear Claws",
+          "Rock Warbler Egg",
+          "Wheat"
+        ],
+        "effects": [
+          "Fortify Health",
+          "Fortify One-handed",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 5.0
+      },
+      {
+        "ingredients": [
+          "Hanging Moss",
+          "Rock Warbler Egg",
+          "Wheat"
+        ],
+        "effects": [
+          "Fortify Health",
+          "Fortify One-handed",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 5.0
+      },
+      {
+        "ingredients": [
+          "Honeycomb",
+          "Sabre Cat Tooth",
+          "Slaughterfish Scales"
+        ],
+        "effects": [
+          "Fortify Block",
+          "Fortify Heavy Armor",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 8.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 5.0
+      }
+    ]
+  },
+  {
+    "obj_2only": 123.1038,
+    "obj_mixed": 137.0074,
+    "gain_abs": 13.9036,
+    "gain_pct": 11.3,
+    "n_triples_considered": 50,
+    "build_name": "Stealth Archer",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Beehive Husk",
+          "Honeycomb",
+          "Purple Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Light Armor",
+          "Fortify Sneak",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Hawk Feathers",
+          "Honeycomb",
+          "Purple Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Light Armor",
+          "Fortify Sneak",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Abecean Longfin",
+          "Bear Claws",
+          "Purple Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Sneak",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 5.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 2.0
+      },
+      {
+        "ingredients": [
+          "Abecean Longfin",
+          "Charred Skeever Hide",
+          "Purple Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Sneak",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 5.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 2.0
+      },
+      {
+        "ingredients": [
+          "Abecean Longfin",
+          "Eye of Sabre Cat",
+          "Purple Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Sneak",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 5.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 2.0
+      }
+    ]
+  },
+  {
+    "obj_2only": 184.7646,
+    "obj_mixed": 188.7987,
+    "gain_abs": 4.0341,
+    "gain_pct": 2.2,
+    "n_triples_considered": 50,
+    "build_name": "Pure Mage",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Fire Salts",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 6.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Jazbay Grapes",
+          "Moon Sugar"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 6.0
+      },
+      {
+        "ingredients": [
+          "Ectoplasm",
+          "Fire Salts",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 6.0
+      },
+      {
+        "ingredients": [
+          "Ectoplasm",
+          "Jazbay Grapes",
+          "Moon Sugar"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 6.0
+      },
+      {
+        "ingredients": [
+          "Fire Salts",
+          "Jazbay Grapes",
+          "Red Mountain Flower"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 6.0
+      }
+    ]
+  },
+  {
+    "obj_2only": 141.3085,
+    "obj_mixed": 148.1436,
+    "gain_abs": 6.8351,
+    "gain_pct": 4.8,
+    "n_triples_considered": 50,
+    "build_name": "Illusion Assassin",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Deathbell",
+          "Imp Stool"
+        ],
+        "effects": [
+          "Damage Health",
+          "Paralysis"
+        ],
+        "polarity": "negative",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Falmer Ear",
+          "Imp Stool"
+        ],
+        "effects": [
+          "Damage Health",
+          "Paralysis"
+        ],
+        "polarity": "negative",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Human Heart",
+          "Imp Stool"
+        ],
+        "effects": [
+          "Damage Health",
+          "Paralysis"
+        ],
+        "polarity": "negative",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Imp Stool",
+          "Nightshade"
+        ],
+        "effects": [
+          "Damage Health",
+          "Paralysis"
+        ],
+        "polarity": "negative",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Imp Stool",
+          "Nirnroot"
+        ],
+        "effects": [
+          "Damage Health",
+          "Paralysis"
+        ],
+        "polarity": "negative",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      }
+    ]
+  },
+  {
+    "obj_2only": 156.0537,
+    "obj_mixed": 158.5602,
+    "gain_abs": 2.5065,
+    "gain_pct": 1.6,
+    "n_triples_considered": 50,
+    "build_name": "Paladin",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Charred Skeever Hide",
+          "Hawk Feathers",
+          "Rock Warbler Egg"
+        ],
+        "effects": [
+          "Cure Disease",
+          "Fortify One-handed",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 9.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 5.0
+      },
+      {
+        "ingredients": [
+          "Ash Hopper Jelly",
+          "Charred Skeever Hide",
+          "Hawk Feathers"
+        ],
+        "effects": [
+          "Cure Disease",
+          "Fortify Light Armor",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 7.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Ash Hopper Jelly",
+          "Charred Skeever Hide",
+          "Juvenile Mudcrab"
+        ],
+        "effects": [
+          "Cure Disease",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 7.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Ash Hopper Jelly",
+          "Charred Skeever Hide",
+          "Mudcrab Chitin"
+        ],
+        "effects": [
+          "Cure Disease",
+          "Resist Poison",
+          "Restore Health",
+          "Restore Stamina"
+        ],
+        "polarity": "positive",
+        "total_weight": 7.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Ash Hopper Jelly",
+          "Charred Skeever Hide",
+          "Vampire Dust"
+        ],
+        "effects": [
+          "Cure Disease",
+          "Restore Health"
+        ],
+        "polarity": "positive",
+        "total_weight": 7.0,
+        "best_pair_weight": 4.0,
+        "synergy_gain": 3.0
+      }
+    ]
+  },
+  {
+    "obj_2only": 144.5472,
+    "obj_mixed": 150.1984,
+    "gain_abs": 5.6512,
+    "gain_pct": 3.9,
+    "n_triples_considered": 50,
+    "build_name": "Necromancer",
+    "top_triples": [
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Fire Salts",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Garlic",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Briar Heart",
+          "Jazbay Grapes",
+          "Moon Sugar"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Ectoplasm",
+          "Fire Salts",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka",
+          "Restore Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      },
+      {
+        "ingredients": [
+          "Ectoplasm",
+          "Garlic",
+          "Jazbay Grapes"
+        ],
+        "effects": [
+          "Fortify Magicka",
+          "Regenerate Magicka"
+        ],
+        "polarity": "positive",
+        "total_weight": 6.0,
+        "best_pair_weight": 3.0,
+        "synergy_gain": 3.0
+      }
+    ]
+  }
+]

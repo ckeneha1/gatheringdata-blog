@@ -1,0 +1,59 @@
+{
+  "Heavy Armor Warrior": {
+    "Potion of Fortify Health": 4.0,
+    "Potion of Fortify Heavy Armor": 3.0,
+    "Potion of Fortify Block": 3.0,
+    "Potion of Restore Health": 3.0,
+    "Potion of Restore Stamina": 2.0,
+    "Potion of Fortify One-handed": 2.0,
+    "Potion of Fortify Two-handed": 1.0,
+    "Poison of Damage Health": 2.0,
+    "Poison of Paralysis": 2.0
+  },
+  "Stealth Archer": {
+    "Potion of Fortify Marksman": 4.0,
+    "Potion of Invisibility": 4.0,
+    "Potion of Fortify Sneak": 3.0,
+    "Poison of Damage Health": 3.0,
+    "Poison of Slow": 2.0,
+    "Potion of Restore Stamina": 2.0,
+    "Potion of Fortify Light Armor": 1.0
+  },
+  "Pure Mage": {
+    "Potion of Fortify Destruction": 4.0,
+    "Potion of Fortify Magicka": 3.0,
+    "Potion of Regenerate Magicka": 3.0,
+    "Potion of Restore Magicka": 3.0,
+    "Potion of Invisibility": 2.0,
+    "Poison of Damage Health": 2.0,
+    "Potion of Fortify Restoration": 1.0,
+    "Potion of Fortify Conjuration": 1.0
+  },
+  "Illusion Assassin": {
+    "Potion of Invisibility": 4.0,
+    "Potion of Fortify Illusion": 4.0,
+    "Potion of Fortify Sneak": 3.0,
+    "Poison of Damage Health": 3.0,
+    "Poison of Paralysis": 3.0,
+    "Poison of Lingering Damage Health": 2.0,
+    "Potion of Restore Health": 1.0
+  },
+  "Paladin": {
+    "Potion of Restore Health": 4.0,
+    "Potion of Fortify Heavy Armor": 3.0,
+    "Potion of Fortify Block": 3.0,
+    "Potion of Cure Disease": 3.0,
+    "Potion of Fortify Restoration": 2.0,
+    "Potion of Resist Magic": 2.0,
+    "Potion of Fortify One-handed": 2.0
+  },
+  "Necromancer": {
+    "Potion of Fortify Conjuration": 4.0,
+    "Potion of Fortify Magicka": 3.0,
+    "Potion of Regenerate Magicka": 3.0,
+    "Poison of Damage Health": 3.0,
+    "Poison of Frenzy": 2.0,
+    "Potion of Fortify Destruction": 2.0,
+    "Potion of Invisibility": 1.0
+  }
+}
