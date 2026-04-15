@@ -311,7 +311,10 @@ def chart_region_allocation(results: list[LPResult]):
         xlabel="Build",
         ylabel="% of budget",
     )
-    ax.legend(fontsize=8, frameon=False, loc="upper right", title="Region", title_fontsize=8)
+    ax.legend(
+        fontsize=8, frameon=False, title="Region", title_fontsize=8,
+        loc="lower center", bbox_to_anchor=(0.5, 1.14), ncol=len(regions),
+    )
 
     save(fig, "region_allocation.png")
 
