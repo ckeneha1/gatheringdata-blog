@@ -269,36 +269,49 @@ def build_and_solve(
 # Chart 1: Region allocation bar chart (grouped by build)
 # ---------------------------------------------------------------------------
 
+REGION_COLORS = {
+    "Falkreath":               "#a8c5a0",
+    "Hjaalmarch / The Pale":   "#7aafc9",
+    "The Reach / Haafingar":   "#c8906a",
+    "The Rift":                "#9a8fa0",
+    "Whiterun Hold":           "#e8d080",
+    "Winterhold / Eastmarch":  "#a07878",
+}
+
+
 def chart_region_allocation(results: list[LPResult]):
-    """Grouped bar chart: hours per region, one group per region, one bar per build."""
+    """Stacked bar chart: % of budget per region, one bar per build, regions as colors."""
     regions = results[0].regions
     builds  = [r.build_name for r in results]
-    n_builds = len(builds)
-    n_regions = len(regions)
-
-    x = np.arange(n_regions)
-    width = 0.8 / n_builds
+    budget  = results[0].time_budget
+    x = np.arange(len(builds))
+    width = 0.55
 
     fig, ax = plt.subplots(figsize=(11, 5))
 
-    for i, res in enumerate(results):
-        hours = [res.region_hours.get(region, 0.0) for region in regions]
-        offset = (i - n_builds / 2 + 0.5) * width
-        color = BUILD_COLORS.get(res.build_name, ACCENT)
-        ax.bar(x + offset, hours, width, label=res.build_name, color=color, alpha=0.85)
+    bottoms = np.zeros(len(builds))
+    for region in regions:
+        pcts = [
+            res.region_hours.get(region, 0.0) / budget * 100
+            for res in results
+        ]
+        short = region.split(" (")[0]
+        color = REGION_COLORS.get(short, ACCENT)
+        ax.bar(x, pcts, width, bottom=bottoms, label=short, color=color, alpha=0.88)
+        bottoms += np.array(pcts)
 
-    # Short region labels
-    short_labels = [r.split(" (")[0] for r in regions]
     ax.set_xticks(x)
-    ax.set_xticklabels(short_labels, rotation=20, ha="right")
+    ax.set_xticklabels(builds, rotation=15, ha="right")
+    ax.set_ylim(0, 105)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
 
     apply_blog_style(
         ax,
-        title=f"Optimal foraging time by region ({results[0].time_budget:.0f}-hour budget)",
-        xlabel="Region",
-        ylabel="Hours allocated",
+        title=f"How each build allocates its foraging budget ({budget:.0f} hours)",
+        xlabel="Build",
+        ylabel="% of budget",
     )
-    ax.legend(fontsize=8, frameon=False, loc="upper right")
+    ax.legend(fontsize=8, frameon=False, loc="upper right", title="Region", title_fontsize=8)
 
     save(fig, "region_allocation.png")
 
