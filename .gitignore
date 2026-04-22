@@ -30,5 +30,8 @@ analysis/skyrim-alchemy/data/raw/
 analysis/mtg-legacy-tournament/data/
 analysis/tobins-q/.cache/
 
+# MTG Legacy scraper cache — reproducible, not worth tracking
+analysis/mtg-legacy-tournament/data/
+
 # jetbrains setting folder
 .idea/
