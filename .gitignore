@@ -27,5 +27,8 @@ __pycache__/
 # Skyrim scraper cache — reproducible, not worth tracking
 analysis/skyrim-alchemy/data/raw/
 
+# MTG Legacy scraper cache — reproducible, not worth tracking
+analysis/mtg-legacy-tournament/data/
+
 # jetbrains setting folder
 .idea/
