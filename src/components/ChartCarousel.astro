@@ -92,20 +92,26 @@ const FEATURED_CHARTS = [
     flex-shrink: 0;
     width: 460px;
     scroll-snap-align: start;
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 16px;
     overflow: hidden;
-    transition: border-color 0.15s;
+    transition: box-shadow 0.2s, border-color 0.2s;
   }
 
   .carousel-card:hover {
-    border-color: var(--accent-dark);
+    border-color: rgba(47, 91, 79, 0.18);
+    box-shadow: 0 2px 16px rgba(28, 26, 23, 0.06);
   }
 
   .card-link {
     display: block;
     text-decoration: none;
     color: var(--text);
+  }
+
+  .card-link:hover {
+    background: none;
   }
 
   .card-image-wrapper {
@@ -124,7 +130,7 @@ const FEATURED_CHARTS = [
   }
 
   .card-footer {
-    padding: 9px 14px;
+    padding: 14px 20px 18px;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -136,25 +142,16 @@ const FEATURED_CHARTS = [
     font-size: 0.85em;
     color: var(--text);
     font-weight: 500;
-  }
-
-  .carousel-card:hover .card-caption {
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-underline-offset: 3px;
+    line-height: 1.45;
   }
 
   .read-more {
     font-size: 0.75em;
-    color: var(--text-secondary);
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    letter-spacing: 0.01em;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    letter-spacing: 0.02em;
     white-space: nowrap;
     flex-shrink: 0;
-  }
-
-  .carousel-card:hover .read-more {
-    color: var(--accent-dark);
   }
 
   /* Arrow buttons */
@@ -162,9 +159,9 @@ const FEATURED_CHARTS = [
     position: absolute;
     top: 120px; /* vertical center of the 240px image area */
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: var(--bg);
+    width: 32px;
+    height: 32px;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 50%;
     cursor: pointer;
@@ -174,13 +171,14 @@ const FEATURED_CHARTS = [
     align-items: center;
     justify-content: center;
     transition: all 0.15s;
+    box-shadow: 0 1px 4px rgba(28, 26, 23, 0.08);
     z-index: 2;
     opacity: 1;
   }
 
   .carousel-btn:hover {
-    border-color: var(--accent-dark);
-    color: var(--accent-dark);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .carousel-btn.hidden {
