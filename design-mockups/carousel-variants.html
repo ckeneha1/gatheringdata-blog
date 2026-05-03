@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chart Carousel — Design System Variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;600&family=Open+Sans:wght@300;400;600&family=Oswald:wght@400;600&family=Space+Mono:wght@400;700&family=Ubuntu+Mono&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f0ede8;
+    font-family: system-ui, sans-serif;
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .variant-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     PLACEHOLDER IMAGE (grey box standing in for actual chart PNGs)
+     ───────────────────────────────────────────────────────────── */
+  .chart-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     1. WARM-EDITORIAL
+     Background: #FAF7F2  Foreground: #1C1A17  Accent: #C0512F
+     Display: GT Sectra (→ Gelasio fallback)  Body: Söhne (→ system-ui)
+     ═══════════════════════════════════════════════════════════════ */
+  .we-wrap {
+    background: #FAF7F2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    border-radius: 4px;
+  }
+
+  .we-section-tag {
+    display: inline-block;
+    font-family: 'Söhne', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2F5B4F;
+    margin-bottom: 20px;
+  }
+
+  .we-heading {
+    font-family: 'Gelasio', 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #1C1A17;
+    margin-bottom: 12px;
+  }
+
+  .we-sub {
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #8A817A;
+    margin-bottom: 40px;
+    max-width: 540px;
+  }
+
+  .we-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .we-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(47, 91, 79, 0.08);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .we-card:hover {
+    box-shadow: 0 2px 16px rgba(28, 26, 23, 0.06);
+  }
+
+  .we-card .chart-img {
+    background: #F0ECE5;
+    color: #8A817A;
+  }
+
+  .we-card-body {
+    padding: 20px 24px 24px;
+  }
+
+  .we-card-caption {
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1C1A17;
+    margin-bottom: 12px;
+  }
+
+  .we-card-link {
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #C0512F;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192, 81, 47, 0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+
+  .we-card-link:hover {
+    border-color: transparent;
+    background: rgba(192, 81, 47, 0.08);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     2. EDITORIAL
+     Surface: #FFFFFF  Text: #111827  Primary: #111111
+     Display: Gelasio  Mono: Ubuntu Mono
+     ═══════════════════════════════════════════════════════════════ */
+  .ed-wrap {
+    background: #FFFFFF;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    border-radius: 4px;
+    border-top: 4px solid #111111;
+  }
+
+  .ed-eyebrow {
+    font-family: 'Gelasio', Georgia, serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ed-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #E5E5E5;
+  }
+
+  .ed-heading {
+    font-family: 'Gelasio', Georgia, serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #111111;
+    margin-bottom: 40px;
+  }
+
+  .ed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid #E5E5E5;
+  }
+
+  .ed-card {
+    border-right: 1px solid #E5E5E5;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .ed-card:last-child { border-right: none; }
+
+  .ed-card:hover { background: #F9F9F9; }
+
+  .ed-card .chart-img {
+    background: #F1F1F1;
+    color: #999;
+    border-bottom: 1px solid #E5E5E5;
+  }
+
+  .ed-card-body {
+    padding: 20px 24px;
+  }
+
+  .ed-issue {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .ed-card-caption {
+    font-family: 'Gelasio', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #111827;
+    margin-bottom: 16px;
+  }
+
+  .ed-card-link {
+    font-family: 'Gelasio', Georgia, serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #111111;
+    text-decoration: none;
+    border-bottom: 2px solid #111111;
+    padding-bottom: 1px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     3. MINIMAL
+     Surface: #F4F4F1  Text: #0C0C09  Secondary: #312C85
+     Display: Inter  Body: Open Sans
+     ═══════════════════════════════════════════════════════════════ */
+  .min-wrap {
+    background: #F4F4F1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    border-radius: 4px;
+  }
+
+  .min-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #0C0C09;
+    padding-bottom: 20px;
+  }
+
+  .min-heading {
+    font-family: 'Open Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0C0C09;
+  }
+
+  .min-count {
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.06em;
+  }
+
+  .min-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: #0C0C09;
+  }
+
+  .min-card {
+    background: #F4F4F1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .min-card:hover { background: #ECEEE9; }
+
+  .min-card .chart-img {
+    background: #E8E8E4;
+    color: #AAA;
+  }
+
+  .min-card-body {
+    padding: 16px 20px 20px;
+  }
+
+  .min-card-caption {
+    font-family: 'Open Sans', system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #0C0C09;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .min-card-link {
+    font-family: 'Open Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #312C85;
+    text-decoration: none;
+  }
+
+  .min-card-link:hover { text-decoration: underline; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     4. MONO
+     Surface: dark #0D1117  Text: #37F712 (green primary)
+     Secondary: #00A6F4  All: Space Mono
+     ═══════════════════════════════════════════════════════════════ */
+  .mono-wrap {
+    background: #0D1117;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px;
+    border-radius: 4px;
+    border: 1px solid #37F71240;
+  }
+
+  .mono-terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #37F71220;
+  }
+
+  .mono-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .mono-terminal-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #37F71280;
+    margin-left: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .mono-prompt {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #37F712;
+    margin-bottom: 4px;
+  }
+
+  .mono-heading {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 32px;
+    line-height: 1.3;
+  }
+
+  .mono-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .mono-card {
+    border: 1px solid #37F71230;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: #161B22;
+  }
+
+  .mono-card:hover {
+    border-color: #37F71270;
+    background: #1C2330;
+  }
+
+  .mono-card .chart-img {
+    background: #0D1117;
+    color: #37F71260;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #37F71220;
+  }
+
+  .mono-card-body {
+    padding: 12px 14px 16px;
+  }
+
+  .mono-card-index {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: #37F71260;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .mono-card-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #C9D1D9;
+    margin-bottom: 12px;
+  }
+
+  .mono-card-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #00A6F4;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .mono-card-link::before { content: '→ '; }
+  .mono-card-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ──────────────────────────────────────────── -->
+<div>
+  <p class="variant-label">1 — warm-editorial &nbsp;·&nbsp; terracotta / serif / long-form magazine</p>
+  <div class="we-wrap">
+    <span class="we-section-tag">From the analysis</span>
+    <h2 class="we-heading">Recent findings</h2>
+    <p class="we-sub">Charts and analysis from our ongoing series on Magic: The Gathering and Skyrim data.</p>
+    <div class="we-grid">
+      <div class="we-card">
+        <div class="chart-img">chart image</div>
+        <div class="we-card-body">
+          <p class="we-card-caption">How each Skyrim build allocates its foraging budget</p>
+          <a href="#" class="we-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="we-card">
+        <div class="chart-img">chart image</div>
+        <div class="we-card-body">
+          <p class="we-card-caption">Where Skyrim's top ingredients actually grow</p>
+          <a href="#" class="we-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="we-card">
+        <div class="chart-img">chart image</div>
+        <div class="we-card-body">
+          <p class="we-card-caption">Magic cards are getting wordier</p>
+          <a href="#" class="we-card-link">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────── -->
+<div>
+  <p class="variant-label">2 — editorial &nbsp;·&nbsp; black / white / Gelasio serif / grid lines</p>
+  <div class="ed-wrap">
+    <div class="ed-eyebrow">From the analysis</div>
+    <h2 class="ed-heading">Recent findings</h2>
+    <div class="ed-grid">
+      <div class="ed-card">
+        <div class="chart-img">chart image</div>
+        <div class="ed-card-body">
+          <p class="ed-issue">Skyrim · Alchemy</p>
+          <p class="ed-card-caption">How each Skyrim build allocates its foraging budget</p>
+          <a href="#" class="ed-card-link">Read →</a>
+        </div>
+      </div>
+      <div class="ed-card">
+        <div class="chart-img">chart image</div>
+        <div class="ed-card-body">
+          <p class="ed-issue">Skyrim · Alchemy</p>
+          <p class="ed-card-caption">Where Skyrim's top ingredients actually grow</p>
+          <a href="#" class="ed-card-link">Read →</a>
+        </div>
+      </div>
+      <div class="ed-card">
+        <div class="chart-img">chart image</div>
+        <div class="ed-card-body">
+          <p class="ed-issue">MTG · Distributions</p>
+          <p class="ed-card-caption">Magic cards are getting wordier</p>
+          <a href="#" class="ed-card-link">Read →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────── -->
+<div>
+  <p class="variant-label">3 — minimal &nbsp;·&nbsp; off-white / near-black / Open Sans / grid lines as separators</p>
+  <div class="min-wrap">
+    <div class="min-header">
+      <span class="min-heading">From the analysis</span>
+      <span class="min-count">05 charts</span>
+    </div>
+    <div class="min-grid">
+      <div class="min-card">
+        <div class="chart-img">chart image</div>
+        <div class="min-card-body">
+          <p class="min-card-caption">How each Skyrim build allocates its foraging budget</p>
+          <a href="#" class="min-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="min-card">
+        <div class="chart-img">chart image</div>
+        <div class="min-card-body">
+          <p class="min-card-caption">Where Skyrim's top ingredients actually grow</p>
+          <a href="#" class="min-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="min-card">
+        <div class="chart-img">chart image</div>
+        <div class="min-card-body">
+          <p class="min-card-caption">Magic cards are getting wordier</p>
+          <a href="#" class="min-card-link">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────── -->
+<div>
+  <p class="variant-label">4 — mono &nbsp;·&nbsp; dark / matrix green / Space Mono / terminal chrome</p>
+  <div class="mono-wrap">
+    <div class="mono-terminal-bar">
+      <div class="mono-dot" style="background:#FF5F57"></div>
+      <div class="mono-dot" style="background:#FEBC2E"></div>
+      <div class="mono-dot" style="background:#28C840"></div>
+      <span class="mono-terminal-title">gatheringdata.blog — analysis output</span>
+    </div>
+    <p class="mono-prompt">$ ls ./charts --recent</p>
+    <h2 class="mono-heading">Recent findings</h2>
+    <div class="mono-grid">
+      <div class="mono-card">
+        <div class="chart-img">chart image</div>
+        <div class="mono-card-body">
+          <p class="mono-card-index">[01/05]</p>
+          <p class="mono-card-caption">How each Skyrim build allocates its foraging budget</p>
+          <a href="#" class="mono-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="mono-card">
+        <div class="chart-img">chart image</div>
+        <div class="mono-card-body">
+          <p class="mono-card-index">[02/05]</p>
+          <p class="mono-card-caption">Where Skyrim's top ingredients actually grow</p>
+          <a href="#" class="mono-card-link">Read more</a>
+        </div>
+      </div>
+      <div class="mono-card">
+        <div class="chart-img">chart image</div>
+        <div class="mono-card-body">
+          <p class="mono-card-index">[03/05]</p>
+          <p class="mono-card-caption">Magic cards are getting wordier</p>
+          <a href="#" class="mono-card-link">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
