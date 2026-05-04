@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curlicue Background — Variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Warm-editorial tokens ── */
+    :root {
+      --accent:           #C0512F;
+      --accent-secondary: #2F5B4F;
+      --text:             #1C1A17;
+      --text-secondary:   #8A817A;
+      --border:           rgba(47, 91, 79, 0.1);
+      --bg:               #FAF7F2;
+      --surface:          #FFFFFF;
+      --content-width:    680px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Variant switcher ── */
+    .switcher {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.78em;
+      box-shadow: 0 2px 12px rgba(28,26,23,0.08);
+    }
+    .switcher p {
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .switcher label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px 0;
+      color: var(--text);
+    }
+    .switcher input[type=radio] { accent-color: var(--accent); }
+    .switcher .swatch {
+      width: 28px;
+      height: 2px;
+      border-radius: 1px;
+    }
+
+    /* ── The curlicue SVG — fixed in viewport ── */
+    .curlicue {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .curlicue path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: opacity 0.3s, stroke 0.3s, stroke-width 0.3s;
+    }
+
+    /* ── Page chrome ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    nav {
+      width: var(--content-width);
+      max-width: calc(100% - 2em);
+      margin: auto;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-title {
+      font-family: 'Gelasio', serif;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.75em;
+    }
+    .nav-links a {
+      font-size: 0.875em;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    main {
+      width: var(--content-width);
+      max-width: calc(100% - 2em);
+      margin: auto;
+      padding: 3em 1em;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Gelasio', serif;
+      font-size: 2.25em;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.4em;
+      line-height: 1.2;
+    }
+    h2 {
+      font-family: 'Gelasio', serif;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.5em 0 0.5em;
+      line-height: 1.2;
+    }
+    .post-meta {
+      font-size: 0.875em;
+      color: var(--text-secondary);
+      margin-bottom: 0.5em;
+    }
+    .post-description {
+      font-size: 1.05em;
+      color: var(--text-secondary);
+      margin: 0.5em 0 1em;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2em 0;
+    }
+    p {
+      margin-bottom: 1.5em;
+      line-height: 1.8;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(192,81,47,0.4);
+      text-underline-offset: 3px;
+    }
+    code {
+      font-size: 0.875em;
+      padding: 2px 6px;
+      background: rgba(47,91,79,0.07);
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent-secondary);
+      padding: 0 0 0 1.25em;
+      margin: 1.5em 0;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75em;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      color: var(--accent-secondary);
+      background: rgba(47,91,79,0.07);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       The single curlicue SVG (fixed background)
+       Path spans full viewport width, positioned
+       roughly 35–65% down the viewport height.
+       ══════════════════════════════════════════ -->
+  <svg class="curlicue" viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <!--
+      Single continuous path:
+      - Enters from off-screen left at ~55% height
+      - Gentle rise toward first loop
+      - First loop: pen circles back counterclockwise (like a cursive 'e')
+      - Flowing S-curve through the middle
+      - Second loop, slightly higher
+      - Trails off screen right with a gentle curl
+    -->
+    <path id="curl-path"
+      d="
+        M -30,340
+        C  80,338  180,320  255,298
+        C  282,290  298,280  306,270
+        C  314,260  316,250  310,243
+        C  304,236  293,235  285,241
+        C  276,248  273,260  280,270
+        C  287,280  300,284  318,278
+        C  360,262  430,240  520,238
+        C  600,236  665,244  720,252
+        C  762,258  790,266  808,272
+        C  824,277  836,280  842,273
+        C  850,264  848,251  837,245
+        C  826,239  813,242  810,253
+        C  807,263  817,274  832,276
+        C  870,282  940,280 1040,268
+        C  1130,257 1250,242 1380,248
+        C  1410,249 1430,252 1450,258
+      "
+    />
+  </svg>
+
+  <!-- ── Variant Switcher ── -->
+  <div class="switcher">
+    <p>Variant</p>
+    <label>
+      <input type="radio" name="variant" value="terracotta-whisper" checked />
+      <span class="swatch" style="background:#C0512F;opacity:0.18;"></span>
+      Terracotta · whisper <em style="color:var(--text-secondary);font-style:normal;">(posts)</em>
+    </label>
+    <label>
+      <input type="radio" name="variant" value="terracotta-soft" />
+      <span class="swatch" style="background:#C0512F;opacity:0.38;"></span>
+      Terracotta · soft <em style="color:var(--text-secondary);font-style:normal;">(homepage)</em>
+    </label>
+    <label>
+      <input type="radio" name="variant" value="forest-whisper" />
+      <span class="swatch" style="background:#2F5B4F;opacity:0.18;"></span>
+      Forest · whisper
+    </label>
+    <label>
+      <input type="radio" name="variant" value="forest-soft" />
+      <span class="swatch" style="background:#2F5B4F;opacity:0.38;"></span>
+      Forest · soft
+    </label>
+    <label>
+      <input type="radio" name="variant" value="ink-whisper" />
+      <span class="swatch" style="background:#1C1A17;opacity:0.10;"></span>
+      Near-black · whisper
+    </label>
+    <label>
+      <input type="radio" name="variant" value="ink-soft" />
+      <span class="swatch" style="background:#1C1A17;opacity:0.22;"></span>
+      Near-black · soft
+    </label>
+    <hr style="border:none;border-top:1px solid var(--border);margin:10px 0;" />
+    <label>
+      <input type="radio" name="variant" value="none" />
+      <span class="swatch" style="background:transparent;border:1px solid var(--border);"></span>
+      None (baseline)
+    </label>
+  </div>
+
+  <!-- ── Blog chrome ── -->
+  <header>
+    <nav>
+      <a href="#" class="site-title">Gathering Data</a>
+      <div class="nav-links">
+        <a href="#">Blog</a>
+        <a href="#">Charts</a>
+        <a href="#">About</a>
+        <a href="#">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Mock blog post -->
+    <article>
+      <header>
+        <p class="post-meta">April 14, 2025</p>
+        <h1>Power Rankings vs. Tournament Results: A Legacy Gap Analysis</h1>
+        <p class="post-description">Two independent signals — card power scores and tournament prevalence — rarely agree. The divergence is the finding.</p>
+        <p style="margin-bottom:0.75em;">
+          <span class="tag">MTG</span>
+          <span class="tag">Legacy</span>
+          <span class="tag">data</span>
+        </p>
+        <hr />
+      </header>
+
+      <div class="prose">
+        <p>
+          There are two ways to ask how good a Magic card is. The first is analytical:
+          read the text, evaluate the effect, assign a score. The second is empirical:
+          count how often it shows up in the decks that actually win tournaments.
+          These two signals are <a href="#">not the same thing</a>, and the gap between them
+          is more interesting than either one alone.
+        </p>
+
+        <p>
+          The correlation between power score and Legacy prevalence in this dataset
+          is <code>r = 0.137</code>. That is not a typo. Knowing a card's power ranking
+          tells you almost nothing about whether it will show up in a competitive Legacy
+          deck. Force of Will is ranked #26,269 on the Modern power list and appears
+          in 55% of Legacy decks. Brainstorm is unranked entirely and defines the format.
+        </p>
+
+        <blockquote>
+          The ranking system was built on Modern. Legacy has different rules —
+          different mana, different threats, different answers. It should surprise
+          no one that the scores don't transfer.
+        </blockquote>
+
+        <h2>The alternative-cost gap</h2>
+        <p>
+          Of the 330 mainboard cards that the power ranking system left unscored,
+          roughly 160 are lands (CMC = 0, excluded by design), 59 are zero-or-X-cost
+          spells like <code>Chalice of the Void</code> and <code>Chrome Mox</code>,
+          and 111 are a more interesting category: cards whose effects are expressed
+          in very short oracle text but whose impact on board state is enormous.
+        </p>
+
+        <p>
+          Blood Moon. Trinisphere. Reanimate. Each has fewer than twelve words in its
+          rules text and each warps a game around its axis. A system trained to
+          count keywords and abilities per mana spent doesn't know what to do with them.
+          That's not a flaw in the data — it's a signal about what makes Legacy, Legacy.
+        </p>
+
+        <h2>Methodology</h2>
+        <p>
+          Tournament data was scraped from MTGTop8 covering the Legacy metagame
+          (meta ID 64) from 2023–2025, yielding 1,847 deck lists across 312 events.
+          Prevalence was computed under four weighting schemes: flat count, placement
+          weight (9 − rank), prestige weight (event star rating), and a combined
+          placement × prestige scheme. Top-5 cards were identical across all four.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    const path = document.getElementById('curl-path');
+    const variants = {
+      'terracotta-whisper': { stroke: '#C0512F', opacity: '0.11', width: '1.4' },
+      'terracotta-soft':    { stroke: '#C0512F', opacity: '0.25', width: '1.6' },
+      'forest-whisper':     { stroke: '#2F5B4F', opacity: '0.11', width: '1.4' },
+      'forest-soft':        { stroke: '#2F5B4F', opacity: '0.25', width: '1.6' },
+      'ink-whisper':        { stroke: '#1C1A17', opacity: '0.07', width: '1.4' },
+      'ink-soft':           { stroke: '#1C1A17', opacity: '0.17', width: '1.6' },
+      'none':               { stroke: 'transparent', opacity: '0',  width: '0'  },
+    };
+
+    function applyVariant(name) {
+      const v = variants[name];
+      path.style.stroke = v.stroke;
+      path.style.opacity = v.opacity;
+      path.style.strokeWidth = v.width;
+    }
+
+    // Apply default on load
+    applyVariant('terracotta-whisper');
+
+    document.querySelectorAll('input[name=variant]').forEach(radio => {
+      radio.addEventListener('change', e => applyVariant(e.target.value));
+    });
+  </script>
+</body>
+</html>

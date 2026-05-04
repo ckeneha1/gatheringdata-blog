@@ -19,6 +19,8 @@ import HeaderLink from './HeaderLink.astro';
 	header {
 		border-bottom: 1px solid var(--border);
 		background: var(--bg);
+		position: relative;
+		z-index: 1;
 	}
 	nav {
 		width: var(--content-width);
@@ -30,7 +32,8 @@ import HeaderLink from './HeaderLink.astro';
 		justify-content: space-between;
 	}
 	.site-title {
-		font-size: 1.05em;
+		font-family: 'Gelasio', 'Times New Roman', serif;
+		font-size: 1.1em;
 		font-weight: 600;
 		text-decoration: none;
 		color: var(--text);
@@ -38,6 +41,7 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	.site-title:hover {
 		color: var(--text);
+		background: none;
 	}
 	.nav-links {
 		display: flex;
@@ -45,12 +49,13 @@ import HeaderLink from './HeaderLink.astro';
 		align-items: center;
 	}
 	.nav-links a {
-		font-size: 0.9em;
+		font-size: 0.875em;
 		color: var(--text-secondary);
 		text-decoration: none;
 	}
 	.nav-links a:hover,
 	.nav-links a.active {
-		color: var(--text);
+		color: var(--accent);
+		background: none;
 	}
 </style>
