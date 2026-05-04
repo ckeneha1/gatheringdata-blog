@@ -23,9 +23,12 @@ pnpm-debug.log*
 # Python
 __pycache__/
 *.pyc
+.venv/
 
-# Skyrim scraper cache — reproducible, not worth tracking
+# Analysis caches and scraped raw data — reproducible, not worth tracking
 analysis/skyrim-alchemy/data/raw/
+analysis/mtg-legacy-tournament/data/
+analysis/tobins-q/.cache/
 
 # jetbrains setting folder
 .idea/
