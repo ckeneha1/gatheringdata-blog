@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
+import Curlicue from '../../components/Curlicue.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
@@ -17,6 +18,7 @@ const posts = (await getCollection('blog')).sort(
 		<BaseHead title={`Blog | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
+		<Curlicue intensity="soft" />
 		<Header />
 		<main>
 			<h1>Blog</h1>

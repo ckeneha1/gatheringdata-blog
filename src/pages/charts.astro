@@ -1,5 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import Curlicue from '../components/Curlicue.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import chartUpdates from '../data/chart-updates.json';
@@ -55,6 +56,7 @@ const charts = [
     <BaseHead title="Live Charts" description="Auto-updating charts from gatheringdata.blog analyses." />
   </head>
   <body>
+    <Curlicue intensity="soft" />
     <Header />
     <main>
       <section class="page-header">

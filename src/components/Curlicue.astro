@@ -1,0 +1,57 @@
+---
+interface Props {
+  intensity?: 'whisper' | 'soft';
+}
+const { intensity = 'whisper' } = Astro.props;
+
+const opacity     = intensity === 'soft' ? '0.25' : '0.11';
+const strokeWidth = intensity === 'soft' ? '1.6'  : '1.4';
+---
+
+<svg
+  class="curlicue"
+  viewBox="0 0 1400 600"
+  preserveAspectRatio="xMidYMid meet"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <path
+    d="
+      M -30,340
+      C  80,338  180,320  255,298
+      C  282,290  298,280  306,270
+      C  314,260  316,250  310,243
+      C  304,236  293,235  285,241
+      C  276,248  273,260  280,270
+      C  287,280  300,284  318,278
+      C  360,262  430,240  520,238
+      C  600,236  665,244  720,252
+      C  762,258  790,266  808,272
+      C  824,277  836,280  842,273
+      C  850,264  848,251  837,245
+      C  826,239  813,242  810,253
+      C  807,263  817,274  832,276
+      C  870,282  940,280 1040,268
+      C 1130,257 1250,242 1380,248
+      C 1410,249 1430,252 1450,258
+    "
+    fill="none"
+    stroke="#C0512F"
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity={opacity}
+  />
+</svg>
+
+<style>
+  .curlicue {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
