@@ -43,7 +43,7 @@ Spoiler: they mostly aren't. The top 5 cards by flat weighting (Force of Will, B
 
 For each scored card, we computed percentile rank on both dimensions — power score (from Post 2) and flat mainboard prevalence (from tournament data) — and plotted one against the other.
 
-![Scatter: power score percentile vs. tournament prevalence percentile](../../images/mtg-legacy-tournament/scatter_power_vs_prevalence.png)
+![Scatter: power score percentile vs. tournament prevalence percentile](/images/mtg-legacy-tournament/scatter_power_vs_prevalence.png)
 
 The Pearson correlation between the two signals is **0.137**.
 
@@ -59,7 +59,7 @@ The more useful question is not "why is the correlation low" but "what is the sh
 
 The divergence leaderboard shows the cards where community prevalence most exceeds the text-derived score.
 
-![Divergence leaderboard](../../images/mtg-legacy-tournament/divergence_leaderboard.png)
+![Divergence leaderboard](/images/mtg-legacy-tournament/divergence_leaderboard.png)
 
 Force of Will leads by a wide margin. But look at the cards around it: Simian Spirit Guide, Force of Negation, Elvish Spirit Guide, Daze, Once Upon a Time, Unmask, Snuff Out. Every single one of these has an alternative or free casting option. You pitch a card, discard your hand, or spend zero mana to cast them.
 
@@ -97,7 +97,7 @@ The through-line across most of these: they are **rule modification effects**, e
 
 The other direction is quieter but worth naming.
 
-![Weighting sensitivity](../../images/mtg-legacy-tournament/weighting_sensitivity.png)
+![Weighting sensitivity](/images/mtg-legacy-tournament/weighting_sensitivity.png)
 
 The cards where the metric scores far above Legacy prevalence are almost uniformly Modern powerhouses: Hexdrinker, Scavenging Ooze, Malevolent Hermit. High keyword counts, efficient mana costs, strong effects by most formats' standards.
 
@@ -119,7 +119,7 @@ What we can say is that the divergence is not random. The positive gap is domina
 
 The chart that makes this clearest is the mainboard-vs-sideboard view:
 
-![Mainboard vs. sideboard prevalence](../../images/mtg-legacy-tournament/mb_vs_sb.png)
+![Mainboard vs. sideboard prevalence](/images/mtg-legacy-tournament/mb_vs_sb.png)
 
 Cards split cleanly: most are either predominantly mainboard or predominantly sideboard. The sideboard-dominant cards (graveyard hate, artifact removal, narrow answers) cluster in the bottom right. The mainboard-dominant cards (cantrips, counterspells, threats) cluster along the top. The two-signal divergence mostly lives in the mainboard cluster, which is where format-specific power ceiling effects are strongest.
 
