@@ -2,6 +2,7 @@
 title: "What Competitive Legacy Thinks of Our Power Metric"
 description: "Comparing a text-derived card power score against revealed player preference in 1,231 Legacy decks."
 pubDate: "2026-04-17"
+draft: true
 ---
 
 Our metric ranked Force of Will 26,269th out of 27,743 cards. Bottom 5%.
