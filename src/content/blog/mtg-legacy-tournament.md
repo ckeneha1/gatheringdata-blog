@@ -1,6 +1,6 @@
 ---
-title: "What Competitive Legacy Thinks of My Power Metric"
-description: "Comparing a text-derived card power score against 1,231 Legacy players' decks."
+title: "Tell Us About a Time When You Failed"
+description: "Grading my text-derived card power score against 1,231 competitive Legacy decks."
 pubDate: "2026-05-11"
 draft: false
 ---
@@ -54,7 +54,7 @@ To understand why this happened, the most useful question is not "why is the cor
 
 ## What the community values that the metric doesn't
 
-The divergence leaderboard shows the cards where community prevalence most exceeds my text-derived score.
+The divergence leaderboard shows the cards where community prevalence most exceeds my text-derived metric.
 
 ![Divergence leaderboard](/images/mtg-legacy-tournament/divergence_leaderboard.png)
 
@@ -62,7 +62,7 @@ Force of Will leads by a wide margin. But look at the cards around it: Simian Sp
 
 This is not a coincidence. It is a systematic blind spot in my scoring methodology.
 
-My score treats mana cost as the total cost of a card. For most cards, that is approximately correct. For these cards, it is completely wrong. Force of Will costs 5 mana if you pay full retail, and zero mana if you exile a blue card from your hand. The metric scores it on the 5-mana version: a 5-CMC spell with one keyword and a conditional effect. That is a terrible card by that standard, which is why it sits at rank 26,269.
+My metric treats mana cost as the total cost of a card. For most cards, that is approximately correct. For these cards, it is completely wrong. Force of Will costs 5 mana if you pay full retail, and zero mana if you exile a blue card from your hand. The metric scores it on the 5-mana version: a 5-CMC spell with one keyword and a conditional effect. That is a terrible card by that standard, which is why it sits at rank 26,269.
 
 Legacy plays Force of Will in 55% of decks because the zero-mana version is the card you actually cast. The mana cost is a red herring.
 
