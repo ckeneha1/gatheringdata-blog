@@ -460,7 +460,7 @@ def chart_legendary_over_time(df: pd.DataFrame):
     ax2.text(2011.2, by_year["pct_legendary"].max() * 0.85, "Commander\nlaunches",
              color=TEXT_SECONDARY, fontsize=8.5)
 
-    apply_blog_style(ax1, title="Legendary card designs per year", xlabel="Year", ylabel="Legendary cards")
+    apply_blog_style(ax1, title="Annual legendary Magic: the Gathering cards released", xlabel="Year", ylabel="Legendary cards")
     ax2.set_ylabel("% of new designs", color=TEXT_SECONDARY, fontsize=10)
     ax2.tick_params(colors=TEXT_SECONDARY, labelsize=10)
     ax2.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
