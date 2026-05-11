@@ -182,7 +182,7 @@ We'll do that evaluation in Post 3. I'll pull historical tournament results and 
 
 Coming back to this post, I thought of a couple of other ways to slice the same dataset that tell a slightly different story.
 
-The first looks at ability efficiency broken down by both **color identity and mana cost** — a heatmap where each cell is the average abilities-per-CMC for cards of that color at that cost. The main finding: color barely matters. Blue edges out the other colors at CMC 1 and 2 (cheap cantrips and counterspells pack a lot of text), but the spread within any given CMC column is narrow. The dominant pattern is the left-to-right gradient — mana cost swamps color as a predictor of efficiency.
+The first looks at ability efficiency broken down by both **color identity and mana cost** — a heatmap where each cell is the average abilities-per-CMC for cards of that color at that cost. The dominant pattern is the left-to-right gradient — mana cost is a far stronger predictor of efficiency than color. But color isn't irrelevant: Blue edges ahead consistently at low CMC, where cheap cantrips and interaction pack the most text per mana. At CMC 1, Blue averages 1.97 abilities per mana versus Green's 1.74 — a 13% gap that's meaningful in a game where margins like that shape the meta.
 
 ![Heatmap of ability efficiency by color identity and CMC](/images/mtg-card-power/color_cmc_heatmap.png)
 
