@@ -40,29 +40,31 @@ SCHEMES = ["flat", "placement", "prestige", "combined"]
 # ---------------------------------------------------------------------------
 
 plt.rcParams.update({
-    "figure.facecolor":  "#1a1a2e",
-    "axes.facecolor":    "#16213e",
-    "axes.edgecolor":    "#444466",
-    "axes.labelcolor":   "#ccccdd",
-    "text.color":        "#ccccdd",
-    "xtick.color":       "#aaaacc",
-    "ytick.color":       "#aaaacc",
-    "grid.color":        "#2a2a4a",
+    "figure.facecolor":  "#f8f7f4",
+    "axes.facecolor":    "#f8f7f4",
+    "axes.edgecolor":    "#ccc8c0",
+    "axes.labelcolor":   "#444",
+    "text.color":        "#1a1a1a",
+    "xtick.color":       "#666",
+    "ytick.color":       "#666",
+    "grid.color":        "#e2ddd6",
     "grid.linestyle":    "--",
-    "grid.alpha":        0.5,
+    "grid.alpha":        0.8,
     "font.family":       "monospace",
     "axes.titlesize":    13,
     "axes.labelsize":    11,
     "xtick.labelsize":   9,
     "ytick.labelsize":   9,
     "legend.fontsize":   9,
-    "legend.framealpha": 0.3,
+    "legend.framealpha": 0.6,
+    "legend.facecolor":  "#f8f7f4",
+    "legend.edgecolor":  "#ccc8c0",
 })
 
-ACCENT   = "#7ecce0"
-ACCENT2  = "#e07ecc"
-NEUTRAL  = "#ccccdd"
-GRID_COL = "#2a2a4a"
+ACCENT   = "#3b82c4"
+ACCENT2  = "#c45c3b"
+NEUTRAL  = "#555"
+GRID_COL = "#e2ddd6"
 
 
 # ---------------------------------------------------------------------------
@@ -300,7 +302,7 @@ def chart_scatter(df: pd.DataFrame) -> None:
 
     plt.tight_layout()
     out = IMAGES_DIR / "scatter_power_vs_prevalence.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
+    plt.savefig(out, dpi=150, bbox_inches="tight", facecolor="#f8f7f4")
     plt.close()
     print(f"  Saved → {out}")
 
@@ -342,7 +344,7 @@ def chart_divergence(df: pd.DataFrame) -> None:
     fig.suptitle("MTG Legacy: Where Text Score and Tournament Prevalence Diverge Most\n2022–2025, Flat Weighting", y=1.01)
     plt.tight_layout()
     out = IMAGES_DIR / "divergence_leaderboard.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
+    plt.savefig(out, dpi=150, bbox_inches="tight", facecolor="#f8f7f4")
     plt.close()
     print(f"  Saved → {out}")
 
@@ -377,7 +379,7 @@ def chart_weighting_sensitivity(df: pd.DataFrame) -> None:
 
     plt.tight_layout()
     out = IMAGES_DIR / "weighting_sensitivity.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
+    plt.savefig(out, dpi=150, bbox_inches="tight", facecolor="#f8f7f4")
     plt.close()
     print(f"  Saved → {out}")
 
@@ -424,7 +426,7 @@ def chart_mb_vs_sb(df: pd.DataFrame, metrics: dict) -> None:
 
     plt.tight_layout()
     out = IMAGES_DIR / "mb_vs_sb.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
+    plt.savefig(out, dpi=150, bbox_inches="tight", facecolor="#f8f7f4")
     plt.close()
     print(f"  Saved → {out}")
 
