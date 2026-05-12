@@ -5,6 +5,8 @@ pubDate: "2026-05-11"
 draft: false
 ---
 
+import ScatterChart from '../../components/ScatterChart.jsx';
+
 In [post 2](./mtg-card-power), my power score ranked Force of Will 26,269th out of 27,743 cards. Bottom 5%.
 
 From 2022-2025, Force of Will was the single most played nonland card in the Legacy format.
@@ -40,7 +42,7 @@ Spoiler: they mostly aren't. The top 5 cards by flat weighting (Force of Will, B
 
 For each scored card, I computed percentile rank on both dimensions — power score (from Post 2) and flat mainboard prevalence (from tournament data) — and plotted one against the other.
 
-![Scatter: power score percentile vs. tournament prevalence percentile](/images/mtg-legacy-tournament/scatter_power_vs_prevalence.png)
+<ScatterChart client:load />
 
 The Pearson correlation between the two signals is **0.137**.
 
