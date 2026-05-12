@@ -38,6 +38,10 @@ The idea: flat weighting treats every registered deck equally. The other three a
 
 Spoiler: they mostly aren't. The top 5 cards by flat weighting (Force of Will, Brainstorm, Ponder, Daze, Swords to Plowshares) are identical across all four schemes. Legacy's tier-one staples are so dominant that how you weight the tournament results doesn't change who sits at the top.
 
+![Weighting sensitivity](/images/mtg-legacy-tournament/weighting_sensitivity.png)
+
+The top 20 cards by combined prevalence all land between the 95th and 100th percentile under every scheme — the bars barely move. Since the choice of weighting scheme has almost no effect on which cards surface, the rest of this analysis uses flat weighting for simplicity.
+
 ## The scatter
 
 For each scored card, I computed percentile rank on both dimensions — power score (from Post 2) and flat mainboard prevalence (from tournament data) — and plotted one against the other.
@@ -95,8 +99,6 @@ The through-line across most of these: they are **rule modification effects**, e
 ## What the metric scores that the community doesn't
 
 The other direction is quieter but worth naming.
-
-![Weighting sensitivity](/images/mtg-legacy-tournament/weighting_sensitivity.png)
 
 The cards where the metric scores far above Legacy prevalence are almost uniformly Modern powerhouses: Hexdrinker, Scavenging Ooze, Malevolent Hermit. High keyword counts, efficient mana costs, strong effects by most formats' standards.
 
