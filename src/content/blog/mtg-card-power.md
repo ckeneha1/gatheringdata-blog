@@ -178,6 +178,20 @@ We'll do that evaluation in Post 3. I'll pull historical tournament results and 
 
 ---
 
+## Revisiting the data
+
+Coming back to this post, I thought of a couple of other ways to slice the same dataset that tell a slightly different story.
+
+The first looks at ability efficiency broken down by both **color identity and mana cost** via a heatmap where each cell is the average abilities-per-CMC for cards of that color at that cost. The dominant pattern is the left-to-right gradient: mana cost is a far stronger predictor of efficiency than color. However, color isn't irrelevant! Blue edges ahead consistently at low CMC, where cheap cantrips and interaction pack the most text per mana. At CMC 1, Blue averages 1.97 abilities per mana versus Green's 1.74 — a 13% gap that's meaningful in a game where slim margins shape the competitive meta.
+
+![Heatmap of ability efficiency by color identity and CMC](/images/mtg-card-power/color_cmc_heatmap.png)
+
+The second cuts by **release decade instead of color**, which makes the power creep story visceral. Each row of bars is a decade; the dotted lines connect bar tops across eras with the era-over-era % change labeled. The 2020s jump at CMC 1 (+25% over the 2010s) is the steepest single-step increase in the dataset, and the pattern holds across almost every cost band — recent cards are simply denser with effects than older ones at the same mana investment.
+
+![3D bar chart of ability efficiency by CMC and release decade](/images/mtg-card-power/decade_cmc_3d.png)
+
+---
+
 ## Methodology notes
 
 **<sup>1</sup> X-cost spells and alternative costs.** Cards with X in their mana cost (e.g., `{X}{R}`) have CMC that treats X as 0, matching Scryfall's convention. I track X-count separately — a card costing `{X}{X}{G}` scales at twice the rate of one costing `{X}{G}`. X-cost cards are included in the analysis but marked distinctly. Cards with alternative casting costs (Force of Will, Force of Negation) present a harder problem: they have two real costs, and which is "cheaper" depends on game state. I record both but defer the "which cost matters?" question to Post 3 where tournament data will ground it.
