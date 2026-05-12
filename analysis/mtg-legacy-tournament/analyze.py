@@ -375,7 +375,7 @@ def chart_weighting_sensitivity(df: pd.DataFrame) -> None:
     ax.set_title("Top 20 Cards by Combined Prevalence: Rank Stability Across Weighting Schemes\nMTG Legacy 2022–2025")
     ax.legend(title="Scheme")
     ax.grid(True, axis="y")
-    ax.set_ylim(0, 105)
+    ax.set_ylim(80, 105)
 
     plt.tight_layout()
     out = IMAGES_DIR / "weighting_sensitivity.png"
