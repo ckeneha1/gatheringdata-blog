@@ -18,7 +18,7 @@ from scipy import stats
 np.random.seed(42)
 N_PERM = 10_000
 
-CSV = Path("/Users/connorkenehan/Documents/Documents - Connor's MacBook Air/GitHub/gatheringdata-blog/public/data/mtg-card-power-rankings.csv")
+CSV = Path(__file__).parent.parent.parent / "public/data/mtg-card-power-rankings.csv"
 df = pd.read_csv(CSV)
 df = df[df["cmc_bin"].notna() if "cmc_bin" in df.columns else df["cmc"].notna()].copy()
 df["cmc_bin"] = df["cmc"].clip(upper=7).astype(int)

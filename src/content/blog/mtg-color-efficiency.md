@@ -17,7 +17,7 @@ That approach works. But it answers a narrower question than the one we actually
 
 Think of it this way. Imagine you have 27,000 Magic cards laid out on a table, each with a color tag. You want to know: **does the color tag carry information about how efficient the card is?** A bootstrap Z-score for Blue vs. non-Blue is like asking "does this one specific tag tell me something?" You'd have to run the same test six more times — once for each other color pair — and then figure out how to combine the results.
 
-A permutation test asks the question once, across all seven colors simultaneously: *if I randomly scrambled every card's color tag, how often would I see color groups as different from each other as the real ones are?* Run that shuffle 5,000 times and you get a full picture of what "color doesn't matter" looks like. Compare the real observed difference to that picture. If the real value sits way out in the tail — far past every random shuffle — that's your answer.
+A permutation test asks the question once, across all seven colors simultaneously: *if I randomly scrambled every card's color tag, how often would I see color groups as different from each other as the real ones are?* Run that shuffle 10,000 times and you get a full picture of what "color doesn't matter" looks like. Compare the real observed difference to that picture. If the real value sits way out in the tail — far past every random shuffle — that's your answer.
 
 The other thing the permutation test gives you is **η² (eta-squared)**: a single number for how much of the total variance in efficiency is explained by color. That's the quantity we actually want. A Z-score tells you whether a gap is distinguishable from noise. η² tells you how big that gap is relative to everything else going on. Both matter; we want both.
 
@@ -27,13 +27,13 @@ The other thing the permutation test gives you is **η² (eta-squared)**: a sing
 
 The analysis uses the 27,742 non-land cards from the [Post 2 dataset](/data/mtg-card-power-rankings.csv), scored by abilities-per-CMC. Before testing color, we remove CMC's dominant effect by replacing each card's raw efficiency with its **residual**: the difference between its abilities-per-CMC and the average for cards at the same CMC. This isolates the color signal from the mana-cost signal, which would otherwise swamp everything.
 
-We then compute η² for the real color assignments and compare it to 5,000 permuted versions where color labels are randomly shuffled. The permutation p-value is the fraction of shuffles that produce η² as large or larger than the observed value.
+We then compute η² for the real color assignments and compare it to 10,000 permuted versions where color labels are randomly shuffled. The permutation p-value is the fraction of shuffles that produce η² as large or larger than the observed value.
 
 ## Results
 
 ### Color's effect is statistically real — and genuinely small
 
-Zero of 5,000 random shuffles produced as much color-group variance as the real color assignments.
+Zero of 10,000 random shuffles produced as much color-group variance as the real color assignments.
 
 ![Histogram of permuted eta² values with observed value far to the right](/images/mtg-color-efficiency/color_null_distribution.png)
 
@@ -47,9 +47,13 @@ Here's the part that didn't appear in the heatmap:
 
 ![Lollipop chart of per-color residual means](/images/mtg-color-efficiency/color_residual_means.png)
 
-Multicolor cards punch further above their CMC average than any other color — including Blue. Their mean residual is **+0.091**, more than twice Blue's **+0.035**. Every mono-color except Colorless sits below zero.
+Multicolor cards punch further above their CMC average than any other color — including Blue. Their mean residual is **+0.091**, more than twice Blue's **+0.035**. Every other color sits below zero.
 
-The explanation is structural, not accidental. Multicolor cards require you to produce two or more colors of mana, which is a real cost the raw CMC number doesn't capture. Designers compensate by making multicolor cards more text-dense: if a gold card and a mono-blue card both cost three mana, the gold card usually does more, because it has to justify the added constraint of its second color pip. Our metric sees the extra text and calls it efficiency. Whether it actually *is* more efficient — or just more complex to compensate for a real casting cost the model ignores — is a fair challenge to the methodology. It's the same limitation flagged in [Post 2's footnote 4](./mtg-card-power#methodology-notes).
+Here's what that number does *not* mean: Multicolor is not the most efficient color to play. On the raw metric — abilities-per-CMC with no adjustment — Multicolor sits at **0.674**, the lowest of all seven colors. Blue is at 0.781. Red is at 0.726. Multicolor is last. The high residual and the low raw mean are not a contradiction; they're the same thing described from two angles.
+
+The explanation is structural. Multicolor cards require you to produce two or more colors of mana, a real cost that the CMC number ignores entirely. Designers compensate by making Multicolor cards more text-dense: a three-mana gold card usually does more than a three-mana mono-blue card, because it has to justify the added constraint of its second color pip. What this means in practice is that Multicolor cards tend to cluster at higher CMC tiers where the average efficiency is already lower, and within those tiers they overperform the bucket average. Our metric sees the extra text and calls it efficiency. Whether it actually *is* more efficient — or just more complex to compensate for a constraint the model doesn't measure — is the right question to ask, and the answer is: mostly the latter.
+
+**The practical implication:** if you're choosing a color to maximize text per mana, the +0.091 Multicolor residual is not evidence that Multicolor is the right pick. It's evidence that Multicolor cards are internally consistent with the design logic of needing to earn their pip cost. Blue is still the mono-color leader (+0.035), and it doesn't carry the hidden cost. This limitation is the same one flagged in [Post 2's footnote 4](./mtg-card-power#methodology-notes): the metric treats all mana as equivalent when it isn't.
 
 ### What "1% of variance" looks like
 
@@ -57,7 +61,7 @@ To make the effect size tangible:
 
 ![Density curves for Blue, Red, and Multicolor efficiency distributions](/images/mtg-color-efficiency/color_density_curves.png)
 
-The three distributions are nearly identical in shape. The peaks overlap almost perfectly. What differs is where each mean sits — by a few hundredths of a unit on a scale that runs from 0 to 7. That's the 1%.
+The three distributions are nearly identical in shape. The peaks overlap almost perfectly. What differs is where each mean sits — by a few hundredths on the residual axis, well within a single standard deviation of any group. That's the 1%.
 
 Red has a slightly fatter left tail, meaning more Red cards with zero abilities relative to their CMC — creature-heavy sets where vanilla or French vanilla cards (no abilities beyond basic keyword(s)) are more common in the color. That's a real design pattern, but it shows up as a shape difference rather than a mean difference.
 
@@ -71,6 +75,6 @@ Red has a slightly fatter left tail, meaning more Red cards with zero abilities 
 | Blue vs. Red Cohen's d | 0.159 (small) |
 | Blue vs. Green Cohen's d | 0.144 (small) |
 
-Color identity predicts card efficiency. The signal is statistically unambiguous across 27,000 cards and survives 5,000 attempts to destroy it with random shuffles. The effect size is small — about 1% of remaining variance once CMC is accounted for. Blue leads among mono-colors; Multicolor leads overall for structural reasons the model doesn't fully capture.
+Color identity predicts card efficiency. The signal is statistically unambiguous across 27,000 cards and survives 10,000 attempts to destroy it with random shuffles. The effect size is small — about 1% of remaining variance once CMC is accounted for. Blue leads among mono-colors. Multicolor's residual is highest, but that reflects a design compensation for color pip costs the model doesn't measure — not an argument for playing gold cards.
 
 The Post 2 heuristic holds up: mana cost is what drives efficiency. Color is a real but secondary signal. Blue is the right color to play if you want to maximize text per mana, and now there's math behind that.

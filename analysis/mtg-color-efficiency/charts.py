@@ -13,7 +13,7 @@ from scipy.stats import gaussian_kde
 from pathlib import Path
 
 np.random.seed(42)
-N_PERM = 5_000
+N_PERM = 10_000
 
 # --- Style ---
 ACCENT       = "#b2d4e5"
@@ -22,8 +22,10 @@ TEXT         = "#363737"
 TEXT_SECONDARY = "#868787"
 BORDER       = "#dddddd"
 
-CSV = Path("/Users/connorkenehan/Documents/Documents - Connor's MacBook Air/GitHub/gatheringdata-blog/public/data/mtg-card-power-rankings.csv")
-OUT = Path("/tmp")
+REPO_ROOT = Path(__file__).parent.parent.parent
+CSV = REPO_ROOT / "public/data/mtg-card-power-rankings.csv"
+OUT = REPO_ROOT / "public/images/mtg-color-efficiency"
+OUT.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
 # Data
