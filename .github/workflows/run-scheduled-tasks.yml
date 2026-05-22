@@ -33,6 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     strategy:
       matrix: ${{ fromJson(needs.load-tasks.outputs.matrix) }}
       # Don't cancel other tasks if one fails
@@ -97,12 +98,28 @@ jobs:
           "
 
       - name: Commit and push updated charts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ${{ matrix.output_dir }} src/data/chart-updates.json
-          # Only commit if something actually changed
-          git diff --staged --quiet && echo "No changes to commit" || (
-            git commit -m "chore: update live charts (${{ matrix.name }}) [skip ci]" &&
-            git push
-          )
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            BRANCH="chore/chart-updates-${{ matrix.name }}"
+            git checkout -b "$BRANCH"
+            git commit -m "chore: update live charts (${{ matrix.name }})"
+            git push origin "$BRANCH" --force
+            # Open a PR if one isn't already open for this branch
+            if gh pr view "$BRANCH" --json state -q .state 2>/dev/null | grep -q "OPEN"; then
+              echo "PR already open for $BRANCH"
+            else
+              gh pr create \
+                --base main \
+                --head "$BRANCH" \
+                --title "chore: update live charts (${{ matrix.name }})" \
+                --body "Automated weekly chart update for \`${{ matrix.name }}\`."
+            fi
+            gh pr merge "$BRANCH" --auto --squash
+          fi
