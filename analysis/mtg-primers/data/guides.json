@@ -1,0 +1,23 @@
+{
+  "control_legacy_guide": {
+    "file": "data/guides/control_legacy_guide.txt",
+    "url": "https://www.youtube.com/watch?v=xuNrT_0oDlo&t=74s",
+    "source": "youtube-transcript",
+    "title": "How to Play Control in Legacy",
+    "author": "Teddy (James Kazawan MTGO)",
+    "scope": "general",
+    "relevant_archetypes": [
+      "UWx Control",
+      "Grixis Control",
+      "BUG Control",
+      "4/5c Control",
+      "Bant Control",
+      "Stoneblade",
+      "Pox",
+      "Nic Fit"
+    ],
+    "notes": "Czech Pile / Miracles walkthrough; covers resource development, reposture, threat assessment, format knowledge. Speech-to-text transcript.",
+    "fetched_at": "2026-05-12T00:40:30.043336+00:00",
+    "char_count": 240251
+  }
+}
