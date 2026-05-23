@@ -59,9 +59,9 @@ The explanation is structural. Multicolor cards require you to produce two or mo
 
 To make the effect size tangible:
 
-![Density curves for Blue, Red, and Multicolor efficiency distributions](/images/mtg-color-efficiency/color_density_curves.png)
+![Density curves for all seven color identity groups showing heavily overlapping efficiency distributions](/images/mtg-color-efficiency/color_density_curves.png)
 
-The three distributions are nearly identical in shape. The peaks overlap almost perfectly. What differs is where each mean sits — by a few hundredths on the residual axis, well within a single standard deviation of any group. That's the 1%.
+All seven distributions are nearly identical in shape. The peaks overlap almost perfectly. What differs is where each mean sits — by a few hundredths on the residual axis, well within a single standard deviation of any group. That's the 1%.
 
 Red has a slightly fatter left tail, meaning more Red cards with zero abilities relative to their CMC — creature-heavy sets where vanilla or French vanilla cards (no abilities beyond basic keyword(s)) are more common in the color. That's a real design pattern, but it shows up as a shape difference rather than a mean difference.
 

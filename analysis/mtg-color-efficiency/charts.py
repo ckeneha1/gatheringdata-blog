@@ -176,16 +176,30 @@ plt.close(fig)
 print(f"Saved: {OUT / 'color_residual_means.png'}")
 
 # ---------------------------------------------------------------------------
-# Chart 3 — Density curves: Blue vs others
+# Chart 3 — Density curves: all seven color identities
 # ---------------------------------------------------------------------------
-# Show Blue + the two most different colors (Red = lowest, Multicolor = highest non-Blue)
-SHOW_COLORS = ["Blue", "Red", "Multicolor"]
+SHOW_COLORS = COLOR_ORDER  # all seven
 
 # MTG-adjacent colors that read well on white
 CURVE_COLORS = {
+    "White":      "#B8A050",
     "Blue":       ACCENT_DARK,
+    "Black":      "#555555",
     "Red":        "#E07060",
+    "Green":      "#4A8A4A",
     "Multicolor": "#C9A227",
+    "Colorless":  "#999999",
+}
+
+# Stagger mean labels vertically to reduce overlap
+LABEL_Y_OFFSETS = {
+    "White":      0.30,
+    "Blue":       0.22,
+    "Black":      0.10,
+    "Red":        0.04,
+    "Green":      0.16,
+    "Multicolor": 0.36,
+    "Colorless":  0.44,
 }
 
 fig, ax = plt.subplots(figsize=(8.5, 4.5), facecolor="white")
@@ -200,14 +214,12 @@ for color_name in SHOW_COLORS:
     c = CURVE_COLORS[color_name]
     mean_val = sub.mean()
 
-    ax.plot(x_range, density, color=c, linewidth=2.2, label=color_name)
-    ax.fill_between(x_range, density, alpha=0.10, color=c)
+    ax.plot(x_range, density, color=c, linewidth=2.0, label=color_name)
+    ax.fill_between(x_range, density, alpha=0.07, color=c)
 
-    # Mean tick — stagger label heights to avoid overlap
-    label_y_offsets = {"Blue": 0.22, "Red": 0.08, "Multicolor": 0.15}
-    ax.axvline(mean_val, color=c, linewidth=1.2, linestyle="--", alpha=0.7)
-    ax.text(mean_val, kde(np.array([mean_val]))[0] + label_y_offsets[color_name],
-            f"μ={mean_val:+.3f}", fontsize=8, color=c, ha="center", va="bottom")
+    ax.axvline(mean_val, color=c, linewidth=1.0, linestyle="--", alpha=0.6)
+    ax.text(mean_val, kde(np.array([mean_val]))[0] + LABEL_Y_OFFSETS[color_name],
+            f"μ={mean_val:+.3f}", fontsize=7.5, color=c, ha="center", va="bottom")
 
 ax.axvline(0, color=BORDER, linewidth=1.0)
 ax.set_xlabel("Efficiency residual (after removing CMC effect)", labelpad=8,
