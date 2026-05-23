@@ -32,12 +32,24 @@ DATA_DIR = Path(__file__).parent / "data"
 RAW_DIR  = DATA_DIR / "raw"
 RAW_DIR.mkdir(parents=True, exist_ok=True)
 
-# MTGTop8 meta IDs for Legacy by year
+# MTGTop8 meta IDs for Legacy by year (from metagame_sel[LE] dropdown)
 YEAR_META = {
+    2011: 61,
+    2012: 6,
+    2013: 80,
+    2014: 81,
+    2015: 100,
+    2016: 117,
+    2017: 143,
+    2018: 164,
+    2019: 182,
+    2020: 199,
+    2021: 219,
     2022: 237,
     2023: 245,
     2024: 275,
     2025: 316,
+    2026: 338,
 }
 
 # ---------------------------------------------------------------------------
