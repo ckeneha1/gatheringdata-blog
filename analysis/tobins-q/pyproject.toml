@@ -1,0 +1,16 @@
+[project]
+name = "tobins-q"
+version = "0.1.0"
+description = "Analysis for 'A More Current Tobin's Q'"
+requires-python = ">=3.11"
+dependencies = [
+    "gatheringdata",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "fredapi>=0.5",
+    "yfinance>=0.2",
+]
+
+[tool.uv.sources]
+gatheringdata = { path = "../../../toolkit/python", editable = true }
