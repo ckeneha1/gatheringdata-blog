@@ -1,0 +1,17 @@
+[project]
+name = "mtg-color-efficiency"
+version = "0.1.0"
+description = "Analysis for 'Does Color Identity Actually Predict Efficiency?' — permutation test on MTG card efficiency"
+requires-python = ">=3.11"
+dependencies = [
+    "gatheringdata",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "scipy>=1.12",
+    "Pillow>=10.0",
+    "plotly>=5.0",
+    "kaleido>=0.2",
+]
+
+[tool.uv.sources]
+gatheringdata = { path = "../../../toolkit/python", editable = true }
