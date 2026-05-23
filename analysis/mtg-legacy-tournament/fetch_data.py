@@ -18,6 +18,7 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
+from tqdm import tqdm
 from urllib3.util.retry import Retry
 
 # ---------------------------------------------------------------------------
@@ -235,8 +236,8 @@ def parse_event_listing_page(html: str) -> tuple[list[int], bool]:
         if m:
             event_ids.add(int(m.group(1)))
 
-    # Pagination: look for a "Next" nav link that isn't disabled
-    has_next = bool(soup.find("a", class_="Nav_norm", string=re.compile(r"Next")))
+    # Pagination: look for any "Next" anchor (the link has no fixed class)
+    has_next = bool(soup.find("a", string=re.compile(r"^Next$")))
 
     return sorted(event_ids), has_next
 
@@ -348,20 +349,19 @@ def fetch_events(years: list[int] | None = None) -> None:
 
         print(f"  events {year}: scraping {len(all_event_ids)} event pages...")
         events = []
-        for i, eid in enumerate(sorted(all_event_ids), 1):
+        for eid in tqdm(sorted(all_event_ids), desc=f"  {year} events", unit="event"):
             event_cache = RAW_DIR / f"event_{eid}.json"
             if load_cache(event_cache) is not None:
-                cached = load_cache(event_cache)
-                events.append(cached)
+                events.append(load_cache(event_cache))
                 continue
 
-            r = get(f"{BASE_URL}/event", params={"e": eid, "f": "LE"})
-            event_data = parse_event_page(r.text, eid)
-            save_cache(event_cache, event_data)
-            events.append(event_data)
-
-            if i % 50 == 0:
-                print(f"    {i}/{len(all_event_ids)} events scraped")
+            try:
+                r = get(f"{BASE_URL}/event", params={"e": eid, "f": "LE"})
+                event_data = parse_event_page(r.text, eid)
+                save_cache(event_cache, event_data)
+                events.append(event_data)
+            except Exception as e:
+                tqdm.write(f"    skipping event {eid}: {e}")
 
         save_cache(events_out, events)
         n_decks = sum(len(e["decks"]) for e in events)
@@ -432,12 +432,13 @@ def fetch_decks(years: list[int] | None = None) -> None:
     to_fetch = sorted(all_deck_ids - {did for did in all_deck_ids if (RAW_DIR / f"deck_{did}.json").exists()})
     print(f"  decks: {len(all_deck_ids)} total, {already_cached} cached, {len(to_fetch)} to fetch")
 
-    for i, deck_id in enumerate(to_fetch, 1):
-        r = get(f"{BASE_URL}/event", params={"d": deck_id, "f": "LE"})
-        deck_data = parse_deck_page(r.text, deck_id)
-        save_cache(RAW_DIR / f"deck_{deck_id}.json", deck_data)
-        if i % 100 == 0:
-            print(f"    {i}/{len(to_fetch)} decks fetched")
+    for deck_id in tqdm(to_fetch, desc="  decks", unit="deck"):
+        try:
+            r = get(f"{BASE_URL}/event", params={"d": deck_id, "f": "LE"})
+            deck_data = parse_deck_page(r.text, deck_id)
+            save_cache(RAW_DIR / f"deck_{deck_id}.json", deck_data)
+        except Exception as e:
+            tqdm.write(f"    skipping deck {deck_id}: {e}")
 
     print(f"  decks: done ({len(all_deck_ids)} total deck files in cache)")
 

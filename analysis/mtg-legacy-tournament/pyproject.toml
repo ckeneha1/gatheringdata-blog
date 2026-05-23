@@ -8,5 +8,6 @@ dependencies = [
     "matplotlib>=3.10.8",
     "pandas>=3.0.2",
     "requests>=2.33.1",
+    "tqdm>=4.66",
     "scipy>=1.17.1",
 ]
