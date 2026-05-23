@@ -26,6 +26,7 @@ Subcommands:
 """
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -594,11 +595,20 @@ def _oracle_key_from_path(oracle_path: Path) -> str:
     return oracle_path.stem.split("--", 1)[1]
 
 
+def _patterns_hash() -> str:
+    """Short hash of _PATTERNS so the parquet cache auto-invalidates on any pattern change."""
+    key = str([(name, [p.pattern for p in pats]) for name, pats in _PATTERNS])
+    return hashlib.sha256(key.encode()).hexdigest()[:8]
+
+
 def _parquet_path(oracle_key: str) -> Path:
-    return LOCAL_CACHE_DIR / f"cards--{oracle_key}.parquet"
+    return LOCAL_CACHE_DIR / f"cards--{oracle_key}--{_patterns_hash()}.parquet"
 
 
 def _save_df(df: pd.DataFrame, oracle_key: str) -> None:
+    # Remove stale parquets for this oracle_key (different pattern hash)
+    for stale in LOCAL_CACHE_DIR.glob(f"cards--{oracle_key}--*.parquet"):
+        stale.unlink()
     path = _parquet_path(oracle_key)
     df.to_parquet(path, index=False)
     print(f"  DataFrame cached → {path.name}")
