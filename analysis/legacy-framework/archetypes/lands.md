@@ -70,3 +70,20 @@ One of:
 - Additional mana denial axes (the current suite hits lands and creatures; a new axis would be valuable)
 
 Cards providing incremental card advantage, reactive permission with costs, or speed-optimized threats are not what this archetype needs — it already wins the long game and just needs to not die before that.
+
+## Within-archetype win log-OR (from `archetype_card_stats.csv`)
+
+Among the 3,239 classified Lands decks (baseline win rate 14.4%):
+
+| Card | within_log_or | n with |
+|---|---|---|
+| Prismatic Ending | +0.813 | 101 |
+| Retrofitter Foundry | +0.579 | 71 |
+| Grist, the Hunger Tide | +0.525 | 42 |
+| Force of Will | **−0.992** | 41 |
+| Island | −1.088 | 63 |
+| Noble Hierarch | −0.936 | 23 |
+
+**Force of Will at −0.992** is direct empirical confirmation of the framework: the 41 Lands builds that added reactive permission had a meaningfully lower win rate than those that didn't. The archetype's permission is the land base — reactive counterspells consume slots that should be recursive land engines.
+
+Island (−1.088) tells the same story from the mana base angle: Lands builds splashing blue for interaction are losing builds. Noble Hierarch (−0.936) and Elvish Spirit Guide (−0.890) confirm that speed-optimized mana is anti-synergistic here — the archetype doesn't need to accelerate, it needs to grind.

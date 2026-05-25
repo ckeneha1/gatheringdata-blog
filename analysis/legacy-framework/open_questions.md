@@ -52,9 +52,18 @@ Not yet resolved. Check whether filtering to "large fast combo" vs "slow/grind c
 
 **Q: Can we compute win log-OR within archetype rather than across the whole format?**
 
-This is the right metric for evaluating a card's contribution to its specific deck. Requires first clustering decks by archetype (co-occurrence-based clustering or using the archetype_name field from event data), then computing win rates within each cluster.
+**Resolved.** See `archetype_cluster.py` and `data/archetype_card_stats.csv`.
 
-Not yet done. Would meaningfully improve the precision of win log-OR for cross-archetype staples.
+Used anchor-card assignment (not co-occurrence clustering — the `archetype_name` field from MTGTop8 events was essentially empty). Each archetype defined by a required card set plus at least one discriminator card. Priority order handles decks matching multiple rules. 12 named archetypes + Other.
+
+Key findings from within-archetype win log-OR:
+- Force of Will in Lands: −0.992 (empirical confirmation that reactive permission is anti-synergistic with the archetype's land-recursion permission structure)
+- Chrome Mox in Red Prison: −0.804 (the card-disadvantage cost of fast mana is a real drag)
+- Ponder in Delver: +0.713 across 15,404 decks (the 94 Delver builds without it win significantly less)
+- Dig Through Time in Delver/Miracles: +1.014/+1.339 (explains the ban)
+- Wild Cantor/Summoner's Pact in Oops: +0.629/+0.583 (consistency > resilience in pure speed)
+
+Limitation: ~51.5% of ranked decks fall into "Other" — archetypes with broader or more heterogeneous card pools (Stoneblade, 4-Color Control, various creature builds) aren't cleanly captured by the anchor rules. Within-archetype results are most reliable for the archetypes with tight, stable card pools (Elves, Oops, Miracles, Lands).
 
 ---
 

@@ -61,3 +61,19 @@ One of:
 - A card that reduces the land-light tension (enables fewer lands without losing consistency)
 
 Cards that provide late-game value, cost multiple mana, or slow the clock are anti-synergistic with the core resource structure.
+
+## Within-archetype win log-OR (from `archetype_card_stats.csv`)
+
+Top signals among the 15,498 classified Delver decks (baseline win rate 14.8%):
+
+| Card | within_log_or | n with |
+|---|---|---|
+| Dig Through Time | +1.014 | 131 |
+| Ponder | +0.713 | 15,404 |
+| Treasure Cruise | +0.676 | 135 |
+
+**Ponder's entry is the most important**: 15,404 of 15,498 Delver decks run it; the 94 that don't win significantly less. Ponder is not optional in this archetype. The two banned delve cards (+1.014, +0.676) show the highest within-archetype signals of any non-banned card — direct evidence of why they were removed.
+
+Negative signals:
+- Seal of Removal (−1.200, n=49): defensive insurance that conflicts with the clock imperative
+- Moonshadow (−1.968, n=20): at the minimum threshold, but directionally consistent

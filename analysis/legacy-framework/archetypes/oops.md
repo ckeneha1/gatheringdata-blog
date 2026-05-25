@@ -90,6 +90,28 @@ Everything else is irrelevant:
 
 This is the sharpest application of the "signal type vs magnitude" principle: the signal type list has two items. Magnitude then determines whether the specific card clears the threshold. A mana-producing card that generates 1 mana but costs 1 card at sorcery speed (net 0 at slow speed) is worse than Lotus Petal (net +1 at instant speed, free). The difference is magnitude.
 
+## Within-archetype win log-OR (from `archetype_card_stats.csv`)
+
+Among the 1,191 classified Oops All Spells decks (baseline win rate 11.9%):
+
+| Card | within_log_or | n with |
+|---|---|---|
+| Wild Cantor | +0.629 | 313 |
+| Summoner's Pact | +0.583 | 336 |
+| Turntimber Symbiosis | +0.547 | 222 |
+| Grief | +0.397 | 32 |
+| Jack-o'-Lantern | −0.479 | 758 |
+| Fell the Profane | −0.519 | 870 |
+| Lion's Eye Diamond | −1.785 | 21 |
+
+Wild Cantor, Summoner's Pact, and Turntimber Symbiosis all serve the same function: making the combo more consistent by providing additional mana sources or redundancy. Their positive signals confirm the "does it make the combo faster/more consistent?" evaluation.
+
+Grief (+0.397) is the protection signal: the 32 builds running it won meaningfully more, consistent with the Chancellor of the Annex model (free protection from hand).
+
+Lion's Eye Diamond (−1.785) is at the minimum threshold (n=21) and should be read cautiously, but the direction is notable — LED is high-variance fast mana that commits cards in a way that could strand the hand.
+
+Jack-o'-Lantern (−0.479) and Fell the Profane (−0.519) are both utility cards that appear in many Oops builds. Their negative within-archetype signals suggest that building toward consistency (Wild Cantor, Pact) outperforms building toward resilience (graveyard interaction). In a pure speed deck, slots spent on anything other than speed are a net loss.
+
 ## Note on raw power relevance
 
 Even for Oops, raw numbers matter at the margin. A fast mana card generating 0.5 mana instead of 1 mana doesn't enable a turn-1 combo. The threshold here is exact: you need exactly enough mana to cast the mill creature by turn 1. Cards that hit that threshold are valuable; cards that fall short are not, regardless of how "close" they are.

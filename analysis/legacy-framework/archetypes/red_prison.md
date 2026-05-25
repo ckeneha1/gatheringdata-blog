@@ -65,3 +65,16 @@ One of:
 - A lock piece that hits a new axis the current suite doesn't cover
 
 Cards providing reactive permission, card advantage for long games, or requiring turns of setup are not what this archetype needs — it's already solved those problems with the lock.
+
+## Within-archetype win log-OR (from `archetype_card_stats.csv`)
+
+Among the 1,430 classified Red Prison decks (baseline win rate 13.2%):
+
+| Card | within_log_or | n with |
+|---|---|---|
+| Mountain | +0.642 | 1,333 |
+| Chrome Mox | **−0.804** | 1,405 |
+
+**Mountain (+0.642)** confirms that basic land resilience is a real win condition: the 97 Red Prison builds that skipped basics — leaving themselves fully exposed to their own Blood Moon — won significantly less than the 1,333 that ran them.
+
+**Chrome Mox (−0.804)** is the more striking result: 1,405 of 1,430 Red Prison decks run Chrome Mox, and those builds underperform the 25 that don't. The card-disadvantage cost of imprinting is a real drag in a strategy that's already burning life with Ancient Tomb. This doesn't mean Chrome Mox should be cut — the fast mana is necessary to deploy the lock on turn 1 — but it means the fast mana has a real cost that limits the ceiling of the archetype. Any new fast mana that doesn't cost a card (like the Holy Grail of "lands that tap for 2") would be a structural improvement, not just an incremental one.
