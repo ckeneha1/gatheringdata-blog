@@ -47,28 +47,128 @@ aetherhub.com/Metagame/Legacy (accessed 2026-06-12).
 
 ---
 
-## Method
+## Method (corrected 2026-06-12 — see brief §Phase 0.3)
 
-1. Candidate list compiled from full-spoiler community discussion (the remote
-   environment cannot ingest the full 600+ card spoiler; the systematic
-   14-signal screen over all eternal-legal cards runs locally as a completeness
-   check before lock — any additions get evaluated the same way).
-2. Each candidate evaluated with the `evaluation.md` staged checklist
-   (signal type → archetype fit → magnitude vs. named incumbent).
-3. For each candidate, two registered verdicts:
-   - **Framework verdict** (this document's prediction)
-   - **Abilities-per-mana baseline verdict** (Post 2 heuristic, registered for
-     honest comparison)
-4. Each prediction states its falsification condition and grading window.
+Three predictors, all registered before outcomes, graded together:
+
+1. **Abilities-per-mana baseline** (Post 2 heuristic). Mechanical: ability
+   count (keywords + semantic categories) ÷ CMC, mapped to verdicts by the
+   declared rule below. No discretion.
+2. **Expert framework** (`evaluation.md` staged checklist). Produced **blind**:
+   the evaluator saw only `candidates-msh.md` (sentiment-free card specs +
+   field snapshot) and the framework files. No web access, no community
+   commentary. Knowledge cutoff precedes the set's spoiler season, so no
+   training-data leakage of community opinion is possible.
+3. **Community consensus** (`community-consensus-msh.md`, HELD OUT from the
+   framework evaluator). The competitive community's early-spoiler judgment,
+   registered as a predictor in its own right.
+
+Candidate generation: interim list is community-sourced (provenance tagged) —
+an acknowledged recall limitation. **Lock gate:** the empirical 14-signal
+screen over the full eternal-legal spoiler runs before registration; any
+screen-only candidates get the same blind evaluation, and every community card
+the screen misses is logged as a screen defect. Oracle texts marked
+[UNVERIFIED] in `candidates-msh.md` must be verified against Scryfall before
+lock.
 
 **Grading window:** 2026-08-15 (≈7 weeks of paper + MTGO results), graded
 against MTGTop8 adoption and within-clump win log-OR where n permits.
 
 ---
 
-## Predictions
+## Predictor 1 — Abilities-per-mana baseline (registered)
 
-*(Pending candidate research — to be filled and locked before 2026-06-19.)*
+Declared mapping, fixed before grading: ratio ≥1.5× a same-CMC contemporary
+average ≈ 1.0 abilities/CMC → PLAYED-leaning; ≈1.0 → FRINGE; <1.0 → NOT
+PLAYED. (Exact same-CMC percentile placement recomputes locally pre-lock; the
+counts below are the registered inputs.)
+
+| Card | CMC | Ability count | Ratio | Baseline verdict |
+|---|---|---|---|---|
+| The Fantasticar | 3 | 3 (flying, animation, tokens) | 1.00 | FRINGE |
+| Namor the Sub-Mariner | 3 | 3 (flying, CDA power, tokens) | 1.00 | FRINGE |
+| Attuma, Atlantean Warlord | 4 | 2 (lord pump, draw) | 0.50 | NOT PLAYED |
+| King T'Challa // Black Panther | 3 | 3 front (flash, draw, transform); ~7 both faces | 1.00 / 2.33 | FRINGE / PLAYED† |
+| Mole Man, Moloid Master | 3 | 2 (graveyard lands, tokens) | 0.67 | NOT PLAYED |
+| Hex Magic | 3 | 2 (draw, impulse-play) | 0.67 | NOT PLAYED |
+| Avengers Disassembled | 3 | 2 (sweep, land destruction) | 0.67 | NOT PLAYED |
+| World War Hulk | 5 | 3 (cost cheat, counters, pump) | 0.60 | NOT PLAYED |
+| Mjölnir, Hammer of Thor | 4 | 3–4 (ETB damage, doubling, equip[, sweep]) | 0.75–1.00 | NOT PLAYED–FRINGE |
+| Hawkeye's Bow | 1 | 3 (pump, reach, ping) | 3.00 | PLAYED |
+| Elektra, Daughter of the Hand | 4 | 2 (sneak alt-cost, removal) | 0.50 | NOT PLAYED |
+| Thanos, the Mad Titan | 3 | 4 (deathtouch, lifelink, counters, parity wrath) | 1.33 | PLAYED-leaning |
+| Cosmic Cube | 5 | 2 (ward, attack-cast) | 0.40 | NOT PLAYED |
+| The Coming of Galactus | 4 | ≥1 (token; text incomplete) | n/a | NO VERDICT (insufficient text) |
+
+† Post 2's methodology has no settled DFC convention; both counts registered.
+The baseline's top picks are Hawkeye's Bow, Thanos, and double-faced
+T'Challa — registered as-is. The baseline is a real predictor here, not a
+straw man: it gets graded on these calls.
+
+---
+
+## Predictions — three predictors compared
+
+Full registered entries: baseline above; framework in
+`framework-verdicts-msh.md` (verbatim blind report, includes per-card
+falsification conditions and PLAYED/FRINGE/NOT PLAYED operational
+definitions); community in `community-consensus-msh.md`.
+
+| Card | Baseline (Post 2) | Framework (blind) | Community |
+|---|---|---|---|
+| The Fantasticar | FRINGE | **FRINGE** (8-Cast, 1–2x) | PLAYED |
+| Namor the Sub-Mariner | FRINGE | **FRINGE** (Merfolk, 1–3x) | PLAYED |
+| Attuma, Atlantean Warlord | NOT PLAYED | NOT PLAYED | FRINGE-to-PLAYED |
+| King T'Challa // Black Panther | FRINGE / PLAYED† | **NOT PLAYED** | FRINGE |
+| Mole Man, Moloid Master | NOT PLAYED | **PLAYED** (Lands, 1–2 MD) | FRINGE |
+| Hex Magic | NOT PLAYED | NOT PLAYED | NOT PLAYED |
+| Avengers Disassembled | NOT PLAYED | NOT PLAYED | NOT PLAYED |
+| World War Hulk | NOT PLAYED | NOT PLAYED | NOT PLAYED |
+| Mjölnir, Hammer of Thor | NOT PLAYED–FRINGE | NOT PLAYED | NOT PLAYED |
+| Hawkeye's Bow | **PLAYED** | NOT PLAYED | NOT PLAYED |
+| Elektra, Daughter of the Hand | NOT PLAYED | NOT PLAYED | NOT PLAYED |
+| Thanos, the Mad Titan | **PLAYED-leaning** | NOT PLAYED | NOT PLAYED |
+| Cosmic Cube | NOT PLAYED | NOT PLAYED | NOT PLAYED |
+| The Coming of Galactus | NO VERDICT | NOT PLAYED | NOT PLAYED |
+
+**The discriminating disagreements** (where grading separates the predictors):
+
+1. **Mole Man** — three-way split: framework PLAYED (clean displacement case
+   vs. Crucible of Worlds in Lands), community FRINGE (speculative), baseline
+   NOT PLAYED (0.67 abilities/CMC). The single most informative card in the
+   experiment.
+2. **The Fantasticar & Namor** — community PLAYED vs. framework FRINGE: the
+   framework's threshold rule (Kappa Cannoneer and Svyelun/Hexcatcher hold the
+   slots) against community hype. Tests whether "roughly equivalent to the
+   incumbent defaults to NOT PLAYED" survives contact with tribal/synergy
+   enthusiasm.
+3. **Hawkeye's Bow & Thanos** — baseline PLAYED vs. both others NOT PLAYED:
+   the abilities-per-mana failure mode (rate without a home), registered
+   honestly.
+4. **King T'Challa** — baseline (DFC counting) PLAYED vs. framework NOT
+   PLAYED on the Faerie Mastermind precedent. Framework flags this its
+   "closest miss" candidate.
+
+**Set-level registered claims** (framework; see verdicts file for
+operationalization): no MSH/MSC card in ≥5% of all decklists in the window;
+no tier-1 maindeck change; exactly one PLAYED card (Mole Man), 1–3 FRINGE.
+
+---
+
+## Lock checklist (gates before status → LOCKED, deadline 2026-06-19)
+
+- [ ] **Verify [UNVERIFIED] oracle texts** against Scryfall (local or
+      allowlisted session): Cosmic Cube (entire text — verdict explicitly
+      conditional), Mjölnir discard mode, T'Challa back face, Hawkeye's Bow
+      cost, Fantasticar animation clause, Galactus chapters I–III.
+      Re-evaluate (blind) any card whose verified text differs materially.
+- [ ] **Run the empirical 14-signal screen** over the full eternal-legal
+      MSH/MSC spoiler. Blind-evaluate any screen-only candidates; log every
+      community card the screen misses as a screen defect (recall audit).
+- [ ] **Refresh the MTGTop8 panel** through June 2026; recompute the canonical
+      field snapshot and update the conditioning table above.
+- [ ] **Lock**: set status to LOCKED, commit. After that commit this file is
+      append-only.
 
 ---
 
