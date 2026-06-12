@@ -83,6 +83,12 @@ For a truer baseline, we'd need the total player counts from events. The `player
 
 ---
 
+**Q: Card value is conditional on the field — but the field responds to new cards. When does first-order conditioning break?**
+
+The framework evaluates a new card against the field composition at evaluation time. But a strong new card shifts the equilibrium it's being evaluated against (second-order effect). In Legacy this is acceptable: the field is near-stationary and shifts slowly even for format-warping printings. For faster formats (Phase 4 scaling), the endogenous field response needs explicit modeling — a card's predicted adoption should account for the meta that forms *because of* the card, not just the meta that preceded it. Known omission, accepted for Legacy, logged 2026-06-12. See `.agent/briefs/legacy-value-model-rebuild.md` §2.2.
+
+---
+
 ## On new card evaluation
 
 **Q: How do you evaluate a card that creates a new archetype rather than fitting an existing one?**
