@@ -132,9 +132,23 @@ not the rebuilt model. The discipline that matters is the timestamp.
 - [ ] **0.2 Ingest Marvel Super Heroes spoiler** from Scryfall (check set codes —
       MAR and MSC are the eternal-legal codes per WPN; filter to Legacy-legal
       cards). 600+ cards.
-- [ ] **0.3 Triage** to ~15–30 Legacy-plausible candidates: signal-type screen
-      using the 14-signal taxonomy + Post 2 feature extraction; cross-check
-      community shortlists.
+- [ ] **0.3 Triage** to ~15–30 Legacy-plausible candidates. **Protocol
+      (corrected 2026-06-12 — community lists must not generate candidates):**
+      - *Generation* is empirical only: signal-type screen (14-signal taxonomy
+        + Post 2 features) over the full eternal-legal spoiler. A pipeline
+        whose recall depends on community attention cannot scale to illiquid
+        formats and cannot detect what the community missed — which is the
+        thesis.
+      - *Framework verdicts are produced blind*: evaluator sees card text,
+        framework files, and field snapshot only. No community commentary,
+        no web access. Sentiment-exposed contexts may not write verdicts
+        (anchoring).
+      - *Community shortlists* have exactly two post-hoc uses: (a) recall
+        audit on the screen — every community-flagged card the screen missed
+        is a screen bug, logged and fixed; (b) **registered third comparator
+        predictor** (baseline vs. framework vs. community consensus, all
+        graded). This mirrors §2.3: community judgment is benchmark, not input.
+      - Every candidate carries provenance: which generator(s) produced it.
 - [ ] **0.4 Write and commit `analysis/legacy-framework/predictions/marvel-super-heroes.md`**
       before 2026-06-19. Per candidate: signal type, archetype/clump fit, slot,
       current occupant, threshold verdict, expected adoption (copies,
