@@ -137,6 +137,58 @@ Flat mainboard from the `topcards` endpoint is computed independently as a cross
 5. Generate charts (see §7).
 6. Write `gap_analysis.csv`.
 
+### Phase 1 model modules (rebuild — see `.agent/briefs/legacy-value-model-rebuild.md`)
+
+Two modules added for the conditional value model. Both consume the same
+`data/raw/` cache produced by `fetch_data.py`; neither hits the network.
+
+```
+infer_archetypes.py  → data/deck_clusters.csv        (Phase 1.2)
+                     → data/cluster_summary.csv
+                     → data/cluster_card_stats.csv
+                     → data/cluster_validation.csv   (with --validate)
+backtest.py          → data/backtest_grades.csv      (Phase 1.5)
+                     → data/backtest_example.csv      (with --write-example)
+```
+
+**`infer_archetypes.py`** — replaces hand-authored anchor rules
+(`archetype_cluster.py`) with archetypes *inferred* from mainboard
+co-occurrence (brief §2.1: archetypes are outputs, not inputs). Pipeline:
+load decks → build similarity vocab (drop cards below `--min-df` or above
+`--max-df` — format staples carry no archetype signal) → pass-1 greedy leader
+clustering on a `--sample` subsample (inverted-index candidate filtering,
+core refreshed on a doubling schedule) → union-find merge of near-duplicate
+cores → pass-2 assignment of every deck (below `--assign-threshold` → Other) →
+label clusters by top cards by lift. `--validate` cross-tabulates inferred
+clusters against the anchor rules and reports per-archetype recovery and the
+Other-share drop (target: 12 named archetypes fall out, Other << 51.5%).
+Scales to ~87.6K decks via the subsample-then-assign split.
+
+**`backtest.py`** — temporal-holdout grader (brief §2.5). Input: a predictions
+file (CSV or JSON) with columns `card_name, predicted_verdict, archetype,
+as_of_date` (optional `window_end`); `predicted_verdict ∈ {PLAYED, FRINGE,
+NOT_PLAYED}`. For each prediction it computes window field share, within-
+archetype share (resolved via inferred clusters, then anchor rules, then raw
+MTGTop8 names), and within-context win log-OR (0.5 Laplace, n≥`--min-with`/
+`--min-without`), then maps to a graded verdict using the operational
+definitions in `../legacy-framework/predictions/framework-verdicts-msh.md`
+(PLAYED = ≥25% of archetype lists or ≥2% of field; NOT_PLAYED = ≤2 lists).
+`--holdout T` lists cards first printed after year T (printing dates from the
+`mtg-card-power-rankings.csv` / Scryfall cache) for retrospective scoring;
+`EXAMPLE_ROSTER` carries the brief's worked cases (Wrenn and Six, Uro,
+Expressive Iteration, Murktide, Initiative, Flow State). **This is the same
+grader that will score the Marvel predictions in August** — the prediction-file
+format is shared.
+
+**Run order (local, against real data):**
+```
+uv run python fetch_data.py            # one-time scrape (gitignored cache)
+uv run python build_dataset.py         # decks.csv
+uv run python infer_archetypes.py --validate     # deck_clusters.csv (+ validation)
+uv run python backtest.py --holdout 2018          # historical calibration
+uv run python backtest.py --predictions <file> --clusters data/deck_clusters.csv
+```
+
 ---
 
 ## 5. Testing Plan
@@ -155,6 +207,16 @@ Run the top-20 cards ranked by `combined` weighting and compare to the top-20 by
 
 **Name normalization check:**
 After the join, log the count of tournament cards that failed to match any power score entry. Expect <5% miss rate on mainboard staples (some will legitimately be unscored if they postdate Post 2's dataset).
+
+**Phase 1 module tests (`tests/`, fixture-only — no real data needed):**
+`uv run pytest` from this directory. `test_infer_archetypes.py` generates a
+synthetic 200-deck panel from 4 archetype templates plus noise and asserts the
+pipeline recovers all four as distinct cohesive clusters, noise lands in Other,
+and `--validate` runs. `test_backtest.py` covers the verdict mapper, within-
+log-OR sign/symmetry, prediction-file loading/validation, and an end-to-end
+grade over an in-memory panel (PLAYED-by-archetype-share, NOT_PLAYED floor,
+out-of-window exclusion). These exercise all logic; the real-data runs above
+are the owner's.
 
 ---
 

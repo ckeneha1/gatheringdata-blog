@@ -10,3 +10,8 @@ dependencies = [
     "requests>=2.33.1",
     "scipy>=1.17.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
