@@ -1,5 +1,9 @@
 # Archetype: Red Prison (Stompy / Prison)
 
+> **Rendered view** — canonical claims in `../claims.md`. Data-validated
+> content: fast-mana card-cost drag →C4 (Chrome Mox −0.804); self-resilience
+> to own lock →C5 (Mountain +0.642).
+
 ## Strategic constraints
 
 1. Produce 3+ mana on turn 1 using fast mana enablers

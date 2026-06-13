@@ -3,19 +3,31 @@
 A working knowledge base for evaluating Legacy Magic cards and archetypes.
 Built iteratively from data analysis and analytical reasoning. Treat as a living document.
 
+**Structure (provenance refactor, 2026-06-13 — brief §2.1/§2.3):** the
+canonical knowledge store is `claims.md` — card-level interaction claims with
+provenance tags (`data` / `primer` / `analytical`) and graduation status
+(HYPOTHESIS → VALIDATED, or REFUTED). `framework.md` and the archetype files
+are **rendered views**: readable narrative over the registry, citing claim IDs
+(C1–C10, H1–H5). If a view and the registry disagree, the registry wins.
+Primer-derived content may enter only as hypothesis or exclusion label, never
+directly as validated knowledge — this keeps primers clean for their future
+role as benchmark data.
+
 ---
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `framework.md` | Core principles: archetypes as constraints, permission taxonomy, signal type vs magnitude |
+| `claims.md` | **Canonical claims registry** — provenance-tagged, graduated card-level interaction claims |
+| `framework.md` | View: core principles — archetypes as constraints, permission taxonomy, signal type vs magnitude |
 | `evaluation.md` | **The toolkit** — ordered questions to work through when assessing a card or archetype |
 | `data_interpretation.md` | What the empirical metrics mean, where they break down, known biases |
-| `archetypes/delver.md` | Worked example: Delver |
-| `archetypes/red_prison.md` | Worked example: Red Prison |
-| `archetypes/lands.md` | Worked example: Lands |
-| `archetypes/oops.md` | Worked example: Oops All Spells |
+| `archetypes/delver.md` | View: worked example — Delver |
+| `archetypes/red_prison.md` | View: worked example — Red Prison |
+| `archetypes/lands.md` | View: worked example — Lands |
+| `archetypes/oops.md` | View: worked example — Oops All Spells |
+| `predictions/` | Registered prediction experiments (per set): candidates, predictor entries, lock protocol |
 | `open_questions.md` | Unresolved tensions, things to investigate |
 
 ---

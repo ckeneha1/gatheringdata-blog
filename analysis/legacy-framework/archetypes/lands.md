@@ -1,5 +1,11 @@
 # Archetype: Lands
 
+> **Rendered view** — canonical claims in `../claims.md`. Data-validated
+> content: reactive-permission anti-synergy with recursion →C1 (FoW −0.992);
+> speed-mana anti-synergy →C8. The splash interpretation (spells, not
+> colors) →H3 is a HYPOTHESIS — the log-OR observations are validated,
+> the causal reading is not.
+
 ## Strategic constraints
 
 1. Establish the Life from the Loam recursion engine

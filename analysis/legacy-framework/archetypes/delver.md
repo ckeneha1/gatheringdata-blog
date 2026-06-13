@@ -1,5 +1,10 @@
 # Archetype: Delver (Tempo)
 
+> **Rendered view** — canonical claims in `../claims.md`. Data-validated
+> content: cantrip compensation →C2 (Ponder +0.713); delve-engine ban
+> trajectory →C3; insurance-vs-clock conflict →C9. The FoW time-profile
+> framing →H1 is a HYPOTHESIS (analytical+primer), not validated.
+
 ## Strategic constraints
 
 1. Deploy a cheap threat on turn 1 that demands an answer

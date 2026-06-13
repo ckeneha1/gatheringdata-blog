@@ -1,5 +1,11 @@
 # Core Framework
 
+> **Rendered view** — canonical claims live in `claims.md`. This file's
+> load-bearing content maps to: permission taxonomy →H4; FoW
+> time-profile correction →H1; threshold nonlinearity →H2;
+> cross-archetype staple convergence →C10. Narrative here that is not
+> backed by a registry claim is `analytical` provenance, untested.
+
 ## 1. Archetypes as strategic constraints
 
 An archetype is not a card list. It is a recurring **set of strategic constraints** that a deck imposes on the game state, implemented through whatever cards best satisfy those constraints at a given time.

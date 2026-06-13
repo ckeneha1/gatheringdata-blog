@@ -1,5 +1,10 @@
 # Archetype: Oops All Spells (Necrotic Ooze / All-In Combo)
 
+> **Rendered view** — canonical claims in `../claims.md`. Data-validated
+> content: consistency-over-resilience →C6 (Wild Cantor +0.629 vs.
+> Jack-o'-Lantern −0.479); zero-cost protection shape →C7 (Grief +0.397,
+> low n).
+
 ## Strategic constraints
 
 1. Assemble fast mana sufficient to cast the mill creature on turn 1

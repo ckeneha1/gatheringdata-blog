@@ -33,7 +33,7 @@ Historical win log-OR by signal (from 87K-deck tournament dataset):
 | free_spell | −0.007 | 44 |
 | combo_piece | −0.040 | 89 |
 
-Caveats: these are averages across all cards with that signal, including narrow and broad ones. Use as a prior, not a verdict. See `data_interpretation.md` for limitations.
+Caveats: these are averages across all cards with that signal, including narrow and broad ones. Use as a prior, not a verdict. See `data_interpretation.md` for limitations. Provenance note (→H5 in `claims.md`): the log-OR values are `data`, but the signal labels are primer-extracted (`primer`, via LLM) — the averages inherit the labeling's quality and are mixed-provenance.
 
 **Q2. Does it serve multiple signals?**
 
