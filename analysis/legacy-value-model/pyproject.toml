@@ -1,0 +1,11 @@
+[project]
+name = "legacy-value-model"
+version = "0.1.0"
+description = "Conditional value model: learns card slot-threshold clearance from primer inclusion/exclusion preferences"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

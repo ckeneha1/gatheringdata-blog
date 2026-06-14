@@ -168,8 +168,15 @@ not the rebuilt model. The discipline that matters is the timestamp.
 - [ ] **1.3 Exclusion dataset**: date-stamp primers; build function-similarity
       index from Post 2 features; join primer decklists vs. pre-primer-date pool;
       attach pool + field snapshots; assign confidence weights.
-- [ ] **1.4 Conditional value model**: card features + pool + field state →
-      threshold clearance / adoption / within-clump win log-OR.
+- [~] **1.4 Conditional value model**: card features + pool + field state →
+      threshold clearance. SCAFFOLDED + tested (`analysis/legacy-value-model/`):
+      pairwise preference ranker over the exclusion dataset (X played ≻ Y
+      silently omitted), conditional on field via ability×context interactions;
+      verdict mapping reproduces the framework threshold rule (beat the weakest
+      incumbent). 14 fixture tests green. REMAINING (owner, needs real data):
+      train on the real `exclusions.csv`, run `eval` (held-out pairwise accuracy
+      — the does-it-learn-anything gate), wire prediction incumbents from
+      inferred clusters.
 - [ ] **1.5 Backtest harness**: temporal holdouts per §2.5. Produces the
       calibration record that gates Phase 2's authority claims.
 
