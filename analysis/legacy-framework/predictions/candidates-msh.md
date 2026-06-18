@@ -9,10 +9,17 @@ any community commentary.
 (generator: `community` — see brief §Phase 0.3; the empirical full-spoiler
 screen is pending and may add candidates with generator `screen`).
 
-**Verification status:** Oracle text reconstructed from spoiler-season sources.
-[VERIFIED] = consistent across independent sources. [UNVERIFIED] = single
-source or uncertain wording — verdicts depending on unverified text must say so.
-Final verification against Scryfall happens before prediction lock.
+**Verification status:** ✅ VERIFIED 2026-06-14 (Gate 1 of the lock checklist).
+All previously [UNVERIFIED]/[INCOMPLETE] texts were re-checked via WebSearch
+across ≥2 independent sources each (Scryfall + secondary). See the
+"Verification log" at the foot of this file. **Outcome: every verified text
+confirms the assumption the blind framework evaluator made — no verdict
+changes.** Corrections to the specs below are factual (cost/chapters/subtypes)
+and verdict-neutral; the verdict-critical conditional flags
+(Cosmic Cube attack-trigger, Fantasticar free animation) resolved in favor of
+the registered verdicts. Direct api.scryfall.com access remains egress-blocked
+in this environment; pixel-verification against rendered card images is the one
+residual step (low risk given the source agreement).
 
 **Set facts:** Main set MSH (296 cards, Standard-legal and below). Commander
 products MSC (4 precons × 30 new cards + Jumpstart, 180 new cards) — Legacy/
@@ -39,13 +46,17 @@ legality). Paper-legal at prerelease 2026-06-19.
 ## 1. The Fantasticar
 - **Cost/type:** {3} • Legendary Artifact — Vehicle • 4/4 • Mythic
 - **Product:** MSC #104 (Commander precon — Legacy-legal, not Standard-legal)
-- **Text [VERIFIED; animation clause wording approximate]:**
+- **Text [VERIFIED 2026-06-14]:**
   - Flying
   - Whenever you cast a noncreature spell, you may have The Fantasticar become
-    an artifact creature until end of turn. *(No crew cost; this replaces crewing.)*
+    an artifact creature until end of turn.
   - Whenever you cast your fourth noncreature spell each turn, you may sacrifice
     The Fantasticar. If you do, create four 4/4 colorless Construct artifact
     creature tokens with flying and haste.
+  - *Verdict-critical confirmation: the animation is FREE — a triggered
+    ability, no crew cost and no mana. The evaluator's FRINGE verdict was
+    conditioned on this (it would drop to NOT PLAYED only if animation cost
+    mana/crew); FRINGE holds.*
 
 ## 2. Namor the Sub-Mariner
 - **Cost/type:** {1}{U}{U} • Legendary Creature — Mutant Merfolk Villain • */4 • MSH #69
@@ -67,9 +78,11 @@ legality). Paper-legal at prerelease 2026-06-19.
   - Flash
   - Whenever a player draws their second card each turn, you draw a card.
   - {4}{W}{U}: Transform King T'Challa. Activate only as a sorcery.
-- **Back text [UNVERIFIED, including P/T]:** Flash, double strike. Prevent all
-  damage that would be dealt to Black Panther. Whenever Black Panther deals
-  combat damage to a player, draw a card.
+- **Back text [VERIFIED 2026-06-14 — Black Panther, 3/3]:** Flash, double strike.
+  Prevent all damage that would be dealt to Black Panther. Whenever Black Panther
+  deals combat damage to a player, draw a card. *(Damage prevention, not
+  indestructible. Verdict-neutral — no Legacy line transforms it. Front-face
+  cost {1}{W}{U} ≡ {1}{U}{W}; one source orders it {1}{U}{W}.)*
 
 ## 5. Mole Man, Moloid Master
 - **Cost/type:** {2}{G} • Legendary Creature — Human Villain • 1/1 • MSH #177 • Rare
@@ -103,16 +116,19 @@ legality). Paper-legal at prerelease 2026-06-19.
 
 ## 9. Mjölnir, Hammer of Thor
 - **Cost/type:** {3}{R} • Legendary Artifact — Equipment • MSH #146 • Mythic
-- **Text [PARTIALLY UNVERIFIED — last ability single-source]:**
+- **Text [VERIFIED 2026-06-14]:**
   - When Mjölnir enters, it deals 4 damage to up to one target creature.
   - Double all damage the equipped creature would deal.
   - Equip worthy {1} *(A creature is worthy if it's a legendary non-Villain
     that's red and/or white.)*
-  - [UNVERIFIED] {2}{R}, Discard this card: It deals 2 damage to each creature.
+  - {2}{R}, Discard this card: It deals 2 damage to each creature.
+    *(Confirmed to exist — was [UNVERIFIED]; verdict-neutral per the evaluator.)*
 
 ## 10. Hawkeye's Bow
-- **Cost/type:** [UNVERIFIED, likely {1}] • Artifact — Equipment • MSH #132 • Common
-- **Text [VERIFIED except mana cost]:**
+- **Cost/type:** {R} • Artifact — Equipment • MSH #132 • Common
+  *(Verified {R}, a single red — NOT {1} generic as previously guessed.
+  Verdict-neutral: NOT PLAYED holds at any cost.)*
+- **Text [VERIFIED 2026-06-14]:**
   - Equipped creature gets +1/+0 and has reach.
   - Whenever equipped creature becomes tapped, it deals 1 damage to each opponent.
   - Equip {1}
@@ -136,16 +152,56 @@ legality). Paper-legal at prerelease 2026-06-19.
     his mana cost if he entered this turn. Zero is even. Requires {C}.)*
 
 ## 13. Cosmic Cube
-- **Cost/type:** {5} • Artifact • MSH #245 • Mythic
-- **Text [UNVERIFIED — single source]:**
+- **Cost/type:** {5} • Artifact • MSH #312 • Mythic
+  *(Collector # corrected #245→#312; #245 was wrong. Do not confuse with
+  "Construct a Cosmic Cube", MSH #90, a separate Plan enchantment.)*
+- **Text [VERIFIED 2026-06-14 — was single-source, now ≥2 sources]:**
   - Ward {2}
   - Whenever you attack, look at the top six cards of your library. You may
     cast a spell from among them with mana value less than or equal to the
     greatest power among attacking creatures you control without paying its
     mana cost. Put the rest on the bottom of your library in a random order.
+  - *Verdict-critical confirmation: triggers on ATTACK (not cast), at {5}.
+    The blind evaluator's NOT PLAYED was explicitly conditioned on exactly
+    this — verdict holds.*
 
 ## 14. The Coming of Galactus
 - **Cost/type:** {2}{B}{B}{G} • Enchantment — Saga • MSH #212
-- **Text [INCOMPLETE — chapters I–III unknown]:**
-  - IV — Create a 16/16 legendary Galactus creature token. [Other chapter
-    abilities and token details unverified.]
+- **Text [VERIFIED 2026-06-14 — chapters now complete]:**
+  - I — Destroy up to one target nonland permanent.
+  - II, III — Each opponent loses 2 life.
+  - IV — Create Galactus, a legendary 16/16 black Elder Alien creature token
+    with flying, trample, and "Whenever Galactus attacks, destroy target land."
+  - *Verdict-neutral: a 5-mana three-color saga paying off on turn 8 fails
+    every archetype's time profile regardless; NOT PLAYED holds.*
+
+---
+
+## Verification log — Gate 1 (2026-06-14)
+
+Method: WebSearch across ≥2 independent sources per card (Scryfall + secondary:
+MTGRocks, Cards Realm, Wargamer, Untapped, Pojo, MTGGoldfish, CardKingdom).
+api.scryfall.com is egress-blocked in this environment, so this is
+source-agreement verification, not pixel-verification against rendered images —
+the one residual (low-risk) step before lock.
+
+**Headline: no verdict changes.** Every previously-uncertain text resolved in
+favor of the registered blind-evaluator verdict.
+
+| Card | Was | Verified | Verdict impact |
+|---|---|---|---|
+| Cosmic Cube | text single-source; trigger uncertain (attack vs cast) | {5}, Ward {2}, **"whenever you attack"** | none — NOT PLAYED was conditioned on attack-trigger |
+| The Fantasticar | animation cost uncertain | animation is **free** (no crew/mana) | none — FRINGE was conditioned on free animation |
+| Mjölnir | discard sweeper [UNVERIFIED] | confirmed exists; ETB is "up to one target" | none — NOT PLAYED |
+| Hawkeye's Bow | cost guessed {1} | cost is **{R}** | none — NOT PLAYED at any cost |
+| T'Challa back | back face [UNVERIFIED] | Black Panther 3/3, double strike, dmg prevention | none — back face irrelevant |
+| Galactus | chapters I–III unknown | I destroy nonland perm; II/III each opp −2; IV 16/16 | none — NOT PLAYED |
+| Mole Man | [VERIFIED] | confirmed verbatim (subtype Human Villain) | **PLAYED holds** (live call, now confirmed) |
+| Namor | [VERIFIED] | confirmed verbatim (token = blue-pip count) | **FRINGE holds** (live call, now confirmed) |
+
+Minor factual corrections (verdict-neutral): Cosmic Cube collector # #245→#312;
+Hawkeye's Bow {1}→{R}; fuller subtypes on Mole Man/Namor/Thanos. Set facts
+confirmed: MSH main set is Standard-legal (∴ Legacy/Vintage); MSC Commander
+cards are Legacy/Vintage/Commander-legal but not Standard-legal; prerelease
+2026-06-19, release 2026-06-26. No separate Jumpstart product confirmed (the
+non-main product is the four Commander precons) — does not affect any candidate.

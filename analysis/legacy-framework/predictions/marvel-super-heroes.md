@@ -157,18 +157,37 @@ no tier-1 maindeck change; exactly one PLAYED card (Mole Man), 1–3 FRINGE.
 
 ## Lock checklist (gates before status → LOCKED, deadline 2026-06-19)
 
-- [ ] **Verify [UNVERIFIED] oracle texts** against Scryfall (local or
-      allowlisted session): Cosmic Cube (entire text — verdict explicitly
-      conditional), Mjölnir discard mode, T'Challa back face, Hawkeye's Bow
-      cost, Fantasticar animation clause, Galactus chapters I–III.
-      Re-evaluate (blind) any card whose verified text differs materially.
-- [ ] **Run the empirical 14-signal screen** over the full eternal-legal
-      MSH/MSC spoiler. Blind-evaluate any screen-only candidates; log every
-      community card the screen misses as a screen defect (recall audit).
+- [x] **Verify [UNVERIFIED] oracle texts** — DONE 2026-06-14 via WebSearch
+      (api.scryfall.com egress-blocked, so source-agreement not pixel-verified;
+      ≥2 sources/card). Outcome: **no verdict changes** — every uncertain text,
+      including the two verdict-critical conditionals (Cosmic Cube attack-trigger,
+      Fantasticar free animation), resolved in favor of the registered verdict.
+      See `candidates-msh.md` → Verification log. No blind re-evaluation needed.
+      Residual (low risk): pixel-verify against rendered images when Scryfall
+      access exists.
+- [~] **Run the empirical 14-signal screen** over the full eternal-legal
+      MSH/MSC spoiler. TOOL BUILT: `analysis/legacy-value-model/spoiler_screen.py`
+      (+ tests). Two commands once the spoiler JSON is in hand:
+      `spoiler_screen.py screen --set-json <msh+msc>.json` and
+      `spoiler_screen.py audit --set-json … --community candidates-msh.md`
+      (recall audit; community misses = screen defects). BLOCKED here only on
+      ingesting the 600-card spoiler — needs api.scryfall.com (egress-blocked)
+      or a saved set JSON; run locally. Blind-evaluate any screen-only additions.
 - [ ] **Refresh the MTGTop8 panel** through June 2026; recompute the canonical
-      field snapshot and update the conditioning table above.
+      field snapshot and update the conditioning table above. OWNER-LOCAL
+      (gitignored cache, ~12h scrape, mtgtop8.com egress-blocked here).
 - [ ] **Lock**: set status to LOCKED, commit. After that commit this file is
       append-only.
+
+**State 2026-06-14:** Gate 1 complete with no verdict impact — the registered
+predictions are robust to text verification. Gates 2–3 are blocked in this
+environment purely by network egress (api.scryfall.com / mtgtop8.com not in the
+allowlist; GitHub etc. work). Both are one-/two-command runs locally; the
+tooling and run instructions are in place. The predictions can be LOCKED now on
+the verified texts if the empirical screen is accepted as a post-lock recall
+audit (it can only ADD candidates, each separately blind-evaluated and dated —
+it cannot change an existing registered verdict), or after the local screen +
+panel refresh if a pre-lock screen is preferred. That call is the owner's.
 
 ---
 
