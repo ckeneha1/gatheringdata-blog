@@ -166,13 +166,16 @@ no tier-1 maindeck change; exactly one PLAYED card (Mole Man), 1–3 FRINGE.
       Residual (low risk): pixel-verify against rendered images when Scryfall
       access exists.
 - [~] **Run the empirical 14-signal screen** over the full eternal-legal
-      MSH/MSC spoiler. TOOL BUILT: `analysis/legacy-value-model/spoiler_screen.py`
-      (+ tests). Two commands once the spoiler JSON is in hand:
-      `spoiler_screen.py screen --set-json <msh+msc>.json` and
-      `spoiler_screen.py audit --set-json … --community candidates-msh.md`
-      (recall audit; community misses = screen defects). BLOCKED here only on
-      ingesting the 600-card spoiler — needs api.scryfall.com (egress-blocked)
-      or a saved set JSON; run locally. Blind-evaluate any screen-only additions.
+      MSH/MSC spoiler. TOOLS BUILT (+ tests): a Scryfall fetcher and the screen.
+      Three commands in a session WITH api.scryfall.com egress (the allowlist
+      now lists it; needs a container created AFTER that edit):
+        `cd analysis/legacy-value-model`
+        `uv run python fetch_spoiler.py --query "set:msh or set:msc" --out msh.json`
+        `uv run python spoiler_screen.py screen --set-json msh.json`
+        `uv run python spoiler_screen.py audit --set-json msh.json --community ../legacy-framework/predictions/candidates-msh.md`
+      The audit lists community cards the screen missed = screen defects to fix.
+      Blind-evaluate any screen-only additions (new dated entries; can only ADD,
+      never alter a registered verdict).
 - [ ] **Refresh the MTGTop8 panel** through June 2026; recompute the canonical
       field snapshot and update the conditioning table above. OWNER-LOCAL
       (gitignored cache, ~12h scrape, mtgtop8.com egress-blocked here).
