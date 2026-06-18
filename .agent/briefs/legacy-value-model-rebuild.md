@@ -6,6 +6,43 @@
 
 ---
 
+## ▶ RESUME HERE — current state (updated 2026-06-14)
+
+**This is the cross-session anchor. A fresh session has no memory; read this
+block, then the rest of this file, to know exactly where we are.**
+
+Done & pushed (branch `claude/gracious-albattani-smh3xh`):
+- Phase 1.1 provenance refactor; 1.2 clustering, 1.3 exclusions, 1.5 backtest —
+  all built + fixture-tested (61 tests). 1.4 value model scaffolded + tested.
+- Phase 0 registered predictions (3 predictors) committed. **Gate 1
+  (oracle-text verification) DONE 2026-06-14 — no verdict changes.**
+
+Blocked ONLY by container egress (resolved by THIS being a fresh session):
+the allowlist now includes `api.scryfall.com` + `mtgtop8.com`; prior containers
+predated that edit and 403'd. **First thing to do in a new session: confirm
+access** — `curl -s -o /dev/null -w '%{http_code}' https://api.scryfall.com/sets/msh`
+should be 200.
+
+NEXT ACTIONS (in priority order; full detail in §3 + the lock checklist in
+`analysis/legacy-framework/predictions/marvel-super-heroes.md`):
+1. **Gate 2 — empirical screen** (deadline-relevant, fast):
+   `cd analysis/legacy-value-model`
+   `uv run python fetch_spoiler.py --query "set:msh or set:msc" --out msh.json`
+   `uv run python spoiler_screen.py screen --set-json msh.json`
+   `uv run python spoiler_screen.py audit --set-json msh.json --community ../legacy-framework/predictions/candidates-msh.md`
+   → blind-evaluate any screen-only candidates the audit surfaces (dated, additive only).
+2. **Gate 3 — panel refresh** (~12h scrape): `cd analysis/mtg-legacy-tournament`
+   `uv run python fetch_data.py` → `build_dataset.py` → `infer_archetypes.py --validate`.
+   Recompute the field snapshot; update the conditioning table.
+3. **LOCK** the predictions (set status LOCKED, commit) before 2026-06-19.
+   Decision pending (owner's call, see lock checklist): lock now on verified
+   texts with the screen as a post-lock audit, OR after a pre-lock screen.
+4. Then Phase 1.4 real-data: train/eval the value model on real `exclusions.csv`.
+
+Tests anywhere: `uv run --with pytest pytest tests/` in each analysis project.
+
+---
+
 ## 1. What this project is
 
 Build a falsifiable, reusable system for predicting new-card adoption in Legacy,
