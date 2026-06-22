@@ -6,38 +6,49 @@
 
 ---
 
-## ▶ RESUME HERE — current state (updated 2026-06-14)
+## ▶ RESUME HERE — current state (updated 2026-06-22)
 
 **This is the cross-session anchor. A fresh session has no memory; read this
 block, then the rest of this file, to know exactly where we are.**
 
-Done & pushed (branch `claude/gracious-albattani-smh3xh`):
+**Phase 0 is COMPLETE — predictions are LOCKED.** Commit `637a87d` (2026-06-22)
+is the registration; `analysis/legacy-framework/predictions/marvel-super-heroes.md`
+is now append-only (grading notes only; per-card verdicts frozen). Do NOT re-run
+the lock or alter any verdict.
+
+Done (branch `claude/gracious-albattani-smh3xh`):
 - Phase 1.1 provenance refactor; 1.2 clustering, 1.3 exclusions, 1.5 backtest —
-  all built + fixture-tested (61 tests). 1.4 value model scaffolded + tested.
-- Phase 0 registered predictions (3 predictors) committed. **Gate 1
-  (oracle-text verification) DONE 2026-06-14 — no verdict changes.**
+  built + fixture-tested (61 tests). 1.4 value model scaffolded + tested.
+- Phase 0: 3 predictors registered; Gate 1 (texts) DONE 2026-06-14; **Gate 2
+  DONE 2026-06-22** — empirical screen (poor 21.4% recall → logged Phase 1
+  defects) + a full-set blind triage of all 525 new cards as the real recall
+  gate, which added **#15 Jennifer Walters (FRINGE)** and **#16 Doctor Doom
+  (watch)** and flagged that the independent pass did not reproduce the Mole Man
+  PLAYED call (logged; verdict unchanged). **Gate 3 (panel) DEFERRED post-lock.
+  LOCK DONE.**
 
-Blocked ONLY by container egress (resolved by THIS being a fresh session):
-the allowlist now includes `api.scryfall.com` + `mtgtop8.com`; prior containers
-predated that edit and 403'd. **First thing to do in a new session: confirm
-access** — `curl -s -o /dev/null -w '%{http_code}' https://api.scryfall.com/sets/msh`
-should be 200.
+Environment: this is a LOCAL session — network works (no egress allowlist), and
+the gitignored panel + Scryfall caches are on this machine. The old
+container-egress blocker is gone (it was specific to the ephemeral web containers).
 
-NEXT ACTIONS (in priority order; full detail in §3 + the lock checklist in
-`analysis/legacy-framework/predictions/marvel-super-heroes.md`):
-1. **Gate 2 — empirical screen** (deadline-relevant, fast):
-   `cd analysis/legacy-value-model`
-   `uv run python fetch_spoiler.py --query "set:msh or set:msc" --out msh.json`
-   `uv run python spoiler_screen.py screen --set-json msh.json`
-   `uv run python spoiler_screen.py audit --set-json msh.json --community ../legacy-framework/predictions/candidates-msh.md`
-   → blind-evaluate any screen-only candidates the audit surfaces (dated, additive only).
-2. **Gate 3 — panel refresh** (~12h scrape): `cd analysis/mtg-legacy-tournament`
-   `uv run python fetch_data.py` → `build_dataset.py` → `infer_archetypes.py --validate`.
-   Recompute the field snapshot; update the conditioning table.
-3. **LOCK** the predictions (set status LOCKED, commit) before 2026-06-19.
-   Decision pending (owner's call, see lock checklist): lock now on verified
-   texts with the screen as a post-lock audit, OR after a pre-lock screen.
-4. Then Phase 1.4 real-data: train/eval the value model on real `exclusions.csv`.
+NEXT ACTIONS (priority order; full detail in §3):
+1. **Push** if not already pushed — makes the pre-registration tamper-evident on
+   the remote (a local commit timestamp is self-asserted). Owner-gated.
+2. **Phase 1.4 real-data** (the immediate build step): `cd analysis/mtg-primers &&
+   uv run python build_exclusions.py build` against the real panel/primers, then in
+   `analysis/legacy-value-model`: `uv run python value_model.py train` →
+   `uv run python value_model.py eval` (held-out pairwise accuracy = the
+   does-it-learn-anything gate) → wire prediction incumbents from inferred clusters.
+3. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
+   `graveyard` prior ~0 drops Mole Man under min_score; add a new-card/reprint
+   filter (format-aware — see `analysis/legacy-framework/open_questions.md`);
+   recalibrate min_score. Do NOT hand-tune to the community list.
+4. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
+   analysis/mtg-legacy-tournament` → `fetch_data.py` → `build_dataset.py` →
+   `infer_archetypes.py --validate`; recompute the field snapshot (conditioning
+   refinement, append-only — cannot change locked verdicts).
+5. **Phase 2** — model predictions on the same candidate list (target ~2026-07-03).
+6. **Phase 3** — grading: re-scrape and grade all predictors at **2026-08-15**.
 
 Tests anywhere: `uv run --with pytest pytest tests/` in each analysis project.
 
