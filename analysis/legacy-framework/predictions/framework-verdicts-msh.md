@@ -280,3 +280,60 @@ Specifically:
 | 14 | The Coming of Galactus | NOT PLAYED | — |
 
 **Scorecard summary:** 1 PLAYED, 2 FRINGE, 11 NOT PLAYED. The framework's discriminating calls — the ones that will separate it from a naive "nothing from a crossover set matters" baseline — are Mole Man (positive call into Lands over Crucible of Worlds) and T'Challa (negative call despite a reliably-firing draw trigger, on the Faerie Mastermind precedent plus the +1-mana threshold rule).
+
+---
+
+# Additive blind verdicts — full-spoiler screen + triage (2026-06-22)
+
+Registered additively at lock time (Gate 2). The empirical 14-signal screen and a
+**full-set blind triage of all 525 new (non-reprint) Legacy-legal cards** were run
+2026-06-22 to discharge the recall caveat above. The triage was produced by a fresh
+blind evaluator (no community sentiment, no web, `predictions/` off-limits; record:
+`analysis/legacy-value-model/triage_verdicts.md`). These entries ADD candidates;
+per protocol they do **not** alter any of the 14 verdicts above.
+
+## 15. Jennifer Walters // The Sensational She-Hulk — {1}{W} 2/3 DFC — FRINGE
+Front static: "Your opponents can't cast spells during your turn." A mono-white,
+2-mana, splashless **permission-substitute / lock piece** — the rarest, most
+format-relevant function in the set, in a permission-heavy field. Slots as combo
+protection (Sneak-Show / Storm / Doomsday) and as a white hatebear (D&T / tempo).
+Competes with Teferi, Time Raveler ({1}{W}{U}, 3 mana, blue splash) and Thalia.
+**FRINGE, not PLAYED:** a 2/3 dies to every cheap removal/ping in the field and the
+static only bites on your own turn. **Wrong if** it shows zero MD/SB presence in any
+white tempo/hatebears list or combo-protection 75 once data exists.
+
+## 16. Doctor Doom, Unrivaled — {2}{B}{B} 4/4 lifelink — NOT PLAYED (watch)
+"{T}: draw, lose 1; if your library is empty, you win." A new 4-mana win-when-decked
++ self-mill engine; Doomsday-adjacent. Competes with Thassa's Oracle ({U}{U},
+immediate ETB win, no survival needed) and Jace, Wielder of Mysteries. **NOT
+PLAYED:** must survive untapped a full turn cycle, telegraphed, off-color for blue
+combo shells — strictly worse than Thassa's Oracle for the job. Flagged "watch" for
+recall. **Upgrade if** it appears as a Thassa's Oracle alt or a dedicated mill-Doom
+win in any combo list.
+
+**Baseline + community on the additions (three-predictor record):** baseline
+(abilities-per-mana) — Jennifer Walters ~1/CMC2 = 0.5 → NOT PLAYED; Doctor Doom
+1/CMC4 = 0.25 → NOT PLAYED. Community — both unflagged → NOT PLAYED (implicit). So
+**Jennifer Walters is a framework-only FRINGE call** (baseline & community both NOT
+PLAYED) — a clean test of whether the framework's recall sweep adds value.
+
+## Robustness note — Mole Man (registered PLAYED) not reproduced by the independent pass
+The full-set blind triage did **not** surface Mole Man, Moloid Master as
+PLAYED/FRINGE (it was triaged to NOT PLAYED). The registered framework call (#5) is
+**PLAYED**. The disagreement falls exactly on the registered call's own stated main
+uncertainty — "a Bolt-dense meta (Izzet Cutter 7.8–10.7%) may punish the
+creature-ness enough that Lands pilots keep the artifact version or no version" (§5
+above). The registered verdict **stands unchanged** (that is what pre-registration
+means); the split is logged as evaluator-variance data and a natural test of that
+fragility axis at grading. (The sub-agent could not be re-queried for its explicit
+Mole Man rationale — no subagent-continue tool in this environment — so this note is
+grounded in the triage record + the registered call's documented uncertainty, not in
+fabricated agent wording.)
+
+## Set-level claim — status after the recall sweep
+The Set-level caveat above flagged the set-level claim as at risk "if the screen
+surfaces a free spell / fast mana / **lock piece** missed here." The sweep **did**
+surface a lock/permission piece (Jennifer Walters) — but at **FRINGE**, not PLAYED.
+Revised tally incl. additions: **1 PLAYED (Mole Man), 3 FRINGE (Fantasticar, Namor,
+Jennifer Walters), 12 NOT PLAYED.** The "≤1 PLAYED / no tier-1 maindeck change / 1–3
+FRINGE" set-level claims therefore **survive** the recall check.

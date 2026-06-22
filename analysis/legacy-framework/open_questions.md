@@ -102,3 +102,15 @@ The framework handles "fit into existing cluster" well. The "new archetype" case
 The 14 signals from primer extraction were defined before the data analysis. Now that we have 15 years of tournament data, are there patterns in the data that suggest missing signals?
 
 One candidate: **resilience to graveyard hate** — cards that perform well even under active hate. This might be captured by `resilience` already but may warrant its own signal given how prevalent graveyard strategies are.
+
+---
+
+**Q: What counts as a "new" card for candidate generation? (The reprint filter is format-dependent.)**
+
+**Resolved (principle); rotating-format implementation deferred to Phase 4.** Candidate generation must screen the cards *newly entering the format's legal pool* with this set — the pool delta (brief §2.2, "pool snapshot"). How that delta is computed depends on whether the format's legal pool is **monotonic**:
+
+- **Eternal formats (Legacy, Vintage, Modern):** the pool only grows. A reprint of an already-legal card is **not** a new adoption event — the card was always available; nothing about the pool changed. So "new card" ≡ first-ever printing, and filtering `reprint == false` is correct. This is what `analysis/legacy-value-model/_triage_extract.py` does for the Marvel/Legacy run — and it's why Skullclamp and Expressive Iteration are correctly excluded (both were already Legacy-legal).
+
+- **Rotating-window formats (Standard; partly Pioneer):** the pool is **not** monotonic — cards rotate out. A previously-printed card reprinted into a current-window set **re-enters** the legal pool, which *is* a genuine new adoption event for that format. Here `reprint == false` is exactly wrong: it discards the cards that matter. Skullclamp reprinted into Standard would be a top candidate, not a skip.
+
+**Action (Phase 4, cross-format scaling):** replace the `reprint == false` filter with a format-relative pool delta — "legal in format F as of this set AND not legal in F immediately prior." For eternal formats this reduces to first-printing; for rotating formats it must include reprints of cards that had rotated out. Ties directly to the §2.2 pool snapshot. Logged 2026-06-22.

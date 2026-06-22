@@ -5,9 +5,13 @@ facts only — no community sentiment, no adoption signals, no archetype
 suggestions. Evaluators working from this file must not consult web sources or
 any community commentary.
 
-**Provenance:** All candidates below were produced by the interim triage step
-(generator: `community` — see brief §Phase 0.3; the empirical full-spoiler
-screen is pending and may add candidates with generator `screen`).
+**Provenance:** Candidates #1–14 were produced by the interim triage step
+(generator: `community` — see brief §Phase 0.3). The empirical full-spoiler
+screen AND a full-set blind triage were run 2026-06-22 (Gate 2); they added
+candidates #15–16 below (generator: `blind-triage`, dated, additive). The
+screen's recall vs. the community list was poor (21.4%, 3/14) — logged as a
+screen defect for Phase 1, never a reason to alter a registered verdict (see
+`marvel-super-heroes.md` §Gate 2 results).
 
 **Verification status:** ✅ VERIFIED 2026-06-14 (Gate 1 of the lock checklist).
 All previously [UNVERIFIED]/[INCOMPLETE] texts were re-checked via WebSearch
@@ -174,6 +178,23 @@ legality). Paper-legal at prerelease 2026-06-19.
     with flying, trample, and "Whenever Galactus attacks, destroy target land."
   - *Verdict-neutral: a 5-mana three-color saga paying off on turn 8 fails
     every archetype's time profile regardless; NOT PLAYED holds.*
+
+## 15. Jennifer Walters // The Sensational She-Hulk
+- **Cost/type:** {1}{W} • Legendary Creature — Human Advisor Hero • 2/3 •
+  Transforming DFC (back: The Sensational She-Hulk, {3}{G}{W}{W} 6/6, reach/trample)
+- **Provenance:** generator `blind-triage` (full new-card sweep) — added 2026-06-22, additive
+- **Front text:**
+  - Your opponents can't cast spells during your turn.
+  - {3}{G}{W}{W}: Transform Jennifer Walters. Activate only as a sorcery.
+
+## 16. Doctor Doom, Unrivaled
+- **Cost/type:** {2}{B}{B} • Legendary Creature — Human Sorcerer Villain • 4/4
+- **Provenance:** generator `blind-triage` (full new-card sweep) — added 2026-06-22, additive
+- **Text:**
+  - Lifelink
+  - {T}: You draw a card and lose 1 life. Then if your library has no cards in
+    it, you win the game. (You win even if you have 0 life or didn't draw a card.)
+  - *(Distinct from "Doctor Doom, King of Latveria" {1}{U}{B}{R}, a separate card.)*
 
 ---
 
