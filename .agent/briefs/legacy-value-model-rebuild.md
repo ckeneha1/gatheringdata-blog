@@ -6,7 +6,7 @@
 
 ---
 
-## ▶ RESUME HERE — current state (updated 2026-06-28)
+## ▶ RESUME HERE — current state (updated 2026-06-29)
 
 **This is the cross-session anchor. A fresh session has no memory; read this
 block, then the rest of this file, to know exactly where we are.**
@@ -26,6 +26,14 @@ Done (branch `claude/gracious-albattani-smh3xh`; lock + Phase 1.4 pushed):
   ≈ 0.80** (dedup to 17,991 distinct constraints, no overfit gap; reproduce with
   `analysis/legacy-value-model/_eval_dedup.py`). Raw 145k metrics (in-sample 0.655 /
   index-CV 0.760) are distorted by 88% pair duplication — see open_questions.md.
+- **Phase 2 — model predictions REGISTERED (2026-06-29, pre-tournament-data).** Ran
+  the trained model on the same 16 candidates → 4th predictor in
+  `predictions/model-verdicts-msh.md` (+ reproducible `_build_msh_candidates.py` /
+  `msh_candidates.json`). Model is systematically more bullish than the framework
+  (6 PLAYED vs 1): likely-error PLAYED calls on Hex Magic / Avengers Disassembled /
+  Elektra; agrees with the framework on **Mole Man PLAYED** (vs the triage's NOT
+  PLAYED). Incumbents taken from the locked framework verdicts (inferred-cluster
+  incumbents = a later upgrade).
 - Phase 0: 3 predictors registered; Gate 1 (texts) DONE 2026-06-14; **Gate 2
   DONE 2026-06-22** — empirical screen (poor 21.4% recall → logged Phase 1
   defects) + a full-set blind triage of all 525 new cards as the real recall
@@ -43,19 +51,18 @@ NEXT ACTIONS (priority order; full detail in §3):
    `cross_val_accuracy`, and vectorize `train()` — at 865 features the pure-Python
    k-fold is impractically slow. Until then the honest number comes from
    `_eval_dedup.py`. See open_questions.md.
-2. **Phase 2 — model predictions** (target ~2026-07-03; now unblocked — model
-   trains). Run `value_model.py predict` on the 16 Marvel candidates with incumbents
-   named from the registered framework verdicts (`framework-verdicts-msh.md`), and
-   commit as the 4th registered predictor — timestamped, pre-tournament-data.
-3. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
+2. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
    `graveyard` prior ~0 drops Mole Man under min_score; add a new-card/reprint
    filter (format-aware — see open_questions.md); recalibrate min_score. Do NOT
    hand-tune to the community list.
-4. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
+3. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
    analysis/mtg-legacy-tournament` → `fetch_data.py` → `build_dataset.py` →
    `infer_archetypes.py --validate`; recompute the field snapshot (conditioning
    refinement, append-only — cannot change locked verdicts).
-5. **Phase 3** — grading: re-scrape and grade all predictors at **2026-08-15**.
+4. **Phase 3 — grading (2026-08-15):** re-scrape and grade all FOUR registered
+   predictors (baseline, framework, community, model) against MTGTop8 adoption +
+   within-clump win log-OR. Watch the model's over-bullish PLAYED calls (Hex Magic,
+   Avengers Disassembled, Elektra) and the Mole Man crux.
 
 Tests anywhere: `uv run --with pytest pytest tests/` in each analysis project.
 
