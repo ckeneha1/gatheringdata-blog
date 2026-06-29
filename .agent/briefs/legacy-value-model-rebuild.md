@@ -6,7 +6,7 @@
 
 ---
 
-## ▶ RESUME HERE — current state (updated 2026-06-22)
+## ▶ RESUME HERE — current state (updated 2026-06-28)
 
 **This is the cross-session anchor. A fresh session has no memory; read this
 block, then the rest of this file, to know exactly where we are.**
@@ -16,9 +16,16 @@ is the registration; `analysis/legacy-framework/predictions/marvel-super-heroes.
 is now append-only (grading notes only; per-card verdicts frozen). Do NOT re-run
 the lock or alter any verdict.
 
-Done (branch `claude/gracious-albattani-smh3xh`):
+Done (branch `claude/gracious-albattani-smh3xh`; lock + Phase 1.4 pushed):
 - Phase 1.1 provenance refactor; 1.2 clustering, 1.3 exclusions, 1.5 backtest —
-  built + fixture-tested (61 tests). 1.4 value model scaffolded + tested.
+  built + fixture-tested (61 tests).
+- **Phase 1.4 value model — DONE on real data (2026-06-26).** Scryfall bulk cache
+  downloaded (oracle + all-cards, gitignored); 53/55 primer writing-dates curated
+  (`primer_dates.json` via `_extract_primer_dates.py`); `exclusions.csv` built
+  (145,626 pairs). Model learns a real, generalizing signal: **leakage-free held-out
+  ≈ 0.80** (dedup to 17,991 distinct constraints, no overfit gap; reproduce with
+  `analysis/legacy-value-model/_eval_dedup.py`). Raw 145k metrics (in-sample 0.655 /
+  index-CV 0.760) are distorted by 88% pair duplication — see open_questions.md.
 - Phase 0: 3 predictors registered; Gate 1 (texts) DONE 2026-06-14; **Gate 2
   DONE 2026-06-22** — empirical screen (poor 21.4% recall → logged Phase 1
   defects) + a full-set blind triage of all 525 new cards as the real recall
@@ -32,23 +39,23 @@ the gitignored panel + Scryfall caches are on this machine. The old
 container-egress blocker is gone (it was specific to the ephemeral web containers).
 
 NEXT ACTIONS (priority order; full detail in §3):
-1. **Push** if not already pushed — makes the pre-registration tamper-evident on
-   the remote (a local commit timestamp is self-asserted). Owner-gated.
-2. **Phase 1.4 real-data** (the immediate build step): `cd analysis/mtg-primers &&
-   uv run python build_exclusions.py build` against the real panel/primers, then in
-   `analysis/legacy-value-model`: `uv run python value_model.py train` →
-   `uv run python value_model.py eval` (held-out pairwise accuracy = the
-   does-it-learn-anything gate) → wire prediction incumbents from inferred clusters.
+1. **Eval-harness fix** (`value_model.py`): move dedup + group-aware folds into
+   `cross_val_accuracy`, and vectorize `train()` — at 865 features the pure-Python
+   k-fold is impractically slow. Until then the honest number comes from
+   `_eval_dedup.py`. See open_questions.md.
+2. **Phase 2 — model predictions** (target ~2026-07-03; now unblocked — model
+   trains). Run `value_model.py predict` on the 16 Marvel candidates with incumbents
+   named from the registered framework verdicts (`framework-verdicts-msh.md`), and
+   commit as the 4th registered predictor — timestamped, pre-tournament-data.
 3. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
    `graveyard` prior ~0 drops Mole Man under min_score; add a new-card/reprint
-   filter (format-aware — see `analysis/legacy-framework/open_questions.md`);
-   recalibrate min_score. Do NOT hand-tune to the community list.
+   filter (format-aware — see open_questions.md); recalibrate min_score. Do NOT
+   hand-tune to the community list.
 4. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
    analysis/mtg-legacy-tournament` → `fetch_data.py` → `build_dataset.py` →
    `infer_archetypes.py --validate`; recompute the field snapshot (conditioning
    refinement, append-only — cannot change locked verdicts).
-5. **Phase 2** — model predictions on the same candidate list (target ~2026-07-03).
-6. **Phase 3** — grading: re-scrape and grade all predictors at **2026-08-15**.
+5. **Phase 3** — grading: re-scrape and grade all predictors at **2026-08-15**.
 
 Tests anywhere: `uv run --with pytest pytest tests/` in each analysis project.
 

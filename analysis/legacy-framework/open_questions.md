@@ -114,3 +114,13 @@ One candidate: **resilience to graveyard hate** — cards that perform well even
 - **Rotating-window formats (Standard; partly Pioneer):** the pool is **not** monotonic — cards rotate out. A previously-printed card reprinted into a current-window set **re-enters** the legal pool, which *is* a genuine new adoption event for that format. Here `reprint == false` is exactly wrong: it discards the cards that matter. Skullclamp reprinted into Standard would be a top candidate, not a skip.
 
 **Action (Phase 4, cross-format scaling):** replace the `reprint == false` filter with a format-relative pool delta — "legal in format F as of this set AND not legal in F immediately prior." For eternal formats this reduces to first-printing; for rotating formats it must include reprints of cards that had rotated out. Ties directly to the §2.2 pool snapshot. Logged 2026-06-22.
+
+---
+
+**Q: The exclusion dataset is ~88% duplicate pairs — what is the honest eval, and is the signal real?**
+
+**Resolved (Phase 1.4, 2026-06-26).** `build_exclusions.py` produced 145,626 silent-exclusion preference pairs, but only **17,991 are distinct** at the (comparison, excluded, context) feature-signature level — a few preferences recur up to 19× (many primers omit the same card near the same played card). This distorts evaluation two ways: (a) `value_model.py eval` splits k-fold by INDEX, so identical examples straddle train/test (leakage); (b) full-set metrics are dominated by the high-multiplicity duplicates. The naive figures — in-sample 0.655 over all 145,626, index-CV held-out 0.760 — reflect this, and the held-out > in-sample inversion is the tell.
+
+Deduping to the 17,991 distinct constraints and doing a clean 80/20 split gives **held-out ≈ 0.80 with no overfit gap** (0.798 vs 0.801 in-sample, 30 epochs; reproduce with `analysis/legacy-value-model/_eval_dedup.py`). So the exclusion-label approach learns a **real, generalizing threshold signal** — the Phase 1.4 "does it learn anything" gate passes, and more strongly than the raw numbers suggest.
+
+**Fix (eval harness):** move dedup + group-aware folds into `value_model.cross_val_accuracy`, and vectorize `train()` — at 865 features the pure-Python trainer makes full k-fold impractically slow (a single 200-epoch fit on ~14k pairs runs many minutes). Logged 2026-06-26.
