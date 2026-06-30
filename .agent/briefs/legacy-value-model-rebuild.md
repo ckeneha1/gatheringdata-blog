@@ -47,19 +47,19 @@ the gitignored panel + Scryfall caches are on this machine. The old
 container-egress blocker is gone (it was specific to the ephemeral web containers).
 
 NEXT ACTIONS (priority order; full detail in §3):
-1. **Eval-harness fix** (`value_model.py`): move dedup + group-aware folds into
-   `cross_val_accuracy`, and vectorize `train()` — at 865 features the pure-Python
-   k-fold is impractically slow. Until then the honest number comes from
-   `_eval_dedup.py`. See open_questions.md.
-2. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
+   ✅ Eval-harness dedup DONE (2026-06-29): `cross_val_accuracy(dedup=True)` fixes the
+   leakage. Vectorizing `train()` is PARKED until after grading — changing trainer
+   numerics would break the registered Phase 2 predictions' reproducibility, and numpy
+   would break the module's dependency-free design. See open_questions.md.
+1. **Phase 1 screen fixes** so the screen becomes a trustworthy recall tool: the
    `graveyard` prior ~0 drops Mole Man under min_score; add a new-card/reprint
    filter (format-aware — see open_questions.md); recalibrate min_score. Do NOT
    hand-tune to the community list.
-3. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
+2. **Gate 3 panel refresh** (optional, ~12h local scrape): `cd
    analysis/mtg-legacy-tournament` → `fetch_data.py` → `build_dataset.py` →
    `infer_archetypes.py --validate`; recompute the field snapshot (conditioning
    refinement, append-only — cannot change locked verdicts).
-4. **Phase 3 — grading (2026-08-15):** re-scrape and grade all FOUR registered
+3. **Phase 3 — grading (2026-08-15):** re-scrape and grade all FOUR registered
    predictors (baseline, framework, community, model) against MTGTop8 adoption +
    within-clump win log-OR. Watch the model's over-bullish PLAYED calls (Hex Magic,
    Avengers Disassembled, Elektra) and the Mole Man crux.

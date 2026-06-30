@@ -170,7 +170,21 @@ def test_cross_val_separable_high_accuracy():
     cheap = _vec({"cat:card_advantage"}, 1)
     pricey = _vec({"cat:card_advantage"}, 3)
     pairs = [vm.Pair(cheap, pricey, 0.1, 1.0) for _ in range(50)]
-    acc = vm.cross_val_accuracy(pairs, folds=5, epochs=200, seed=6)
+    # dedup=False: this fixture intentionally replicates one separable pair.
+    acc = vm.cross_val_accuracy(pairs, folds=5, epochs=200, seed=6, dedup=False)
+    assert acc > 0.9
+
+
+def test_cross_val_dedup_collapses_duplicates():
+    # Default dedup=True collapses replicated (x, y, ctx) constraints to one vote
+    # each, so identical-pair leakage can't inflate the score. Four distinct
+    # cheaper-is-better constraints, each replicated 10x → 4 after dedup.
+    pairs = []
+    for ab in ("cat:card_advantage", "cat:removal", "cat:counterspell", "cat:tempo"):
+        cheap, pricey = _vec({ab}, 1), _vec({ab}, 3)
+        pairs += [vm.Pair(cheap, pricey, 0.1, 1.0) for _ in range(10)]
+    assert len(pairs) == 40
+    acc = vm.cross_val_accuracy(pairs, folds=2, epochs=200, seed=7)  # dedup=True (default)
     assert acc > 0.9
 
 

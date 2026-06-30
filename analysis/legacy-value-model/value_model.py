@@ -283,10 +283,28 @@ def pairwise_accuracy(model: ValueModel, pairs: list[Pair]) -> float:
 
 
 def cross_val_accuracy(pairs: list[Pair], *, folds: int = 5, seed: int = 0,
-                       **train_kwargs) -> float:
-    """Held-out pairwise accuracy, k-fold. Splits by INDEX (not value): pairs
-    are frequently identical (cards sharing a feature profile), so an
-    equality-based split would wrongly collapse the train set."""
+                       dedup: bool = True, **train_kwargs) -> float:
+    """Held-out pairwise accuracy, k-fold.
+
+    With dedup=True (default) the pairs are first collapsed at the (x, y, ctx)
+    feature-signature level. The real exclusion dataset is ~88% such duplicates
+    (a few preferences recur many times because many primers omit the same card
+    near the same played card). Leaving them in both LEAKS identical examples
+    across the index split and lets high-multiplicity pairs dominate the metric —
+    which inflates held-out accuracy *above* in-sample (the telltale we saw:
+    0.760 held-out vs 0.655 in-sample). Dedup gives each distinct constraint one
+    vote. dedup=False keeps every pair (for fixtures that intentionally replicate
+    a signal). See legacy-framework/open_questions.md.
+    """
+    if dedup:
+        seen: set = set()
+        uniq: list[Pair] = []
+        for p in pairs:
+            key = (p.x, p.y, round(p.ctx_scalar, 6))
+            if key not in seen:
+                seen.add(key)
+                uniq.append(p)
+        pairs = uniq
     if len(pairs) < folds:
         folds = max(2, len(pairs))
     rng = random.Random(seed)
@@ -416,8 +434,10 @@ def cmd_eval(args) -> None:
     pairs = load_pairs_from_exclusions(EXCLUSIONS_CSV, catalog)
     acc = cross_val_accuracy(pairs, folds=args.folds, epochs=args.epochs,
                              lr=args.lr, l2=args.l2, seed=args.seed)
-    print(f"[eval] {args.folds}-fold held-out pairwise accuracy: {acc:.3f}")
-    print("  (0.5 = no signal; the exclusion labels carry no learnable threshold)")
+    print(f"[eval] {args.folds}-fold held-out pairwise accuracy (deduped): {acc:.3f}")
+    print("  (0.5 = no signal. Pairs are first deduped to distinct (x,y,ctx)")
+    print("   constraints — see cross_val_accuracy. Full CV is slow at 865 features;")
+    print("   _eval_dedup.py does a fast single-split for the same estimate.)")
 
 
 def main(argv: list[str] | None = None) -> None:
