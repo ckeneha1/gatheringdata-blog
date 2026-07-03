@@ -1,0 +1,6 @@
+tier,tasker_count,pct_of_supply,metros,categories,monthly_revenue_usd,monthly_invoices,monthly_cancels,cancel_pct,lifetime_invoices,policy_points
+Cohort 1 (Elite),1400,2.4,61,54,580.0,12.9,0.35,2.6,259.0,0.69
+Cohort 1 (Total),6069,10.4,61,54,416.0,9.4,0.32,3.1,190.0,0.8
+Cohort 2,12533,21.4,61,54,141.0,3.5,0.16,4.1,72.0,1.17
+Cohort 3,35916,61.3,61,54,22.0,0.6,0.04,2.0,13.0,1.81
+Cohort 4,4053,6.9,61,54,11.0,0.3,0.43,80.3,7.0,2.28
