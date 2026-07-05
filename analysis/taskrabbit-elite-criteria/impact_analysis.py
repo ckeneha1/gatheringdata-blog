@@ -24,6 +24,9 @@ import seaborn as sns
 from scipy.stats import norm
 
 sns.set_theme(style="whitegrid")
+BG = "#FFFCE4"                          # cream background to match the deck (was white)
+plt.rcParams.update({"figure.facecolor": BG, "savefig.facecolor": BG,
+                     "savefig.edgecolor": BG, "axes.facecolor": BG})
 FIG = "analysis/taskrabbit-elite-criteria/figures"
 PRICE = 135.0
 

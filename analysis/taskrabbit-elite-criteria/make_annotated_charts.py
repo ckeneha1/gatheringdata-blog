@@ -16,6 +16,9 @@ from matplotlib.patches import Ellipse, Rectangle
 import seaborn as sns
 
 sns.set_theme(style="darkgrid")
+BG = "#FFFCE4"                          # cream figure background to match the deck
+plt.rcParams.update({"figure.facecolor": BG, "savefig.facecolor": BG,
+                     "savefig.edgecolor": BG})
 FIG = "analysis/taskrabbit-elite-criteria/figures"
 df = pd.read_csv("analysis/taskrabbit-elite-criteria/taskers_clustered.csv")
 

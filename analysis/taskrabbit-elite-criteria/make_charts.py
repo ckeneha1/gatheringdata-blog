@@ -24,6 +24,9 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
 sns.set_theme(style="darkgrid")
+BG = "#FFFCE4"                          # cream figure background to match the deck
+plt.rcParams.update({"figure.facecolor": BG, "savefig.facecolor": BG,
+                     "savefig.edgecolor": BG})
 FIG = "analysis/taskrabbit-elite-criteria/figures"
 df = pd.read_csv("analysis/taskrabbit-elite-criteria/taskers.csv")
 

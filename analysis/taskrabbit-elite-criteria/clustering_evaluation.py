@@ -28,6 +28,9 @@ from sklearn.metrics import (silhouette_score, davies_bouldin_score,
                              normalized_mutual_info_score)
 
 sns.set_theme(style="whitegrid")
+BG = "#FFFCE4"                          # cream background to match the deck (was white)
+plt.rcParams.update({"figure.facecolor": BG, "savefig.facecolor": BG,
+                     "savefig.edgecolor": BG, "axes.facecolor": BG})
 FIG = "analysis/taskrabbit-elite-criteria/figures"
 RNG = np.random.default_rng(11)
 K = 4                      # target cluster count for the parametric methods

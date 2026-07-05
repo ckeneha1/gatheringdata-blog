@@ -22,6 +22,7 @@ const MUTED = "6B7B70";      // muted caption
 const ORANGE = "E08A3C";     // highlight accent
 const CARD = "F1F4EE";       // light green-grey card tint
 const WHITE = "FFFFFF";
+const CREAM_BG = "FFFCE4";          // content-slide background, matches the charts
 const CHART_RATIO = 1300 / 728;
 
 const pres = new pptxgen();
@@ -54,7 +55,7 @@ function title(slide, text, color = INK) {
 // A full-width chart centred under the title, with an optional caption beneath.
 function chartSlide(n, titleText, img, caption) {
   const slide = pres.addSlide();
-  slide.background = { color: WHITE };
+  slide.background = { color: CREAM_BG };
   title(slide, titleText);
   const h = 3.48, w = h * CHART_RATIO;            // ~6.21 wide
   const x = (W - w) / 2, y = 1.12;
@@ -73,7 +74,7 @@ function chartSlide(n, titleText, img, caption) {
 // Chart slide that preserves an image's own aspect ratio (fits within a box).
 function chartSlideFit(n, titleText, img, ratio, caption) {
   const slide = pres.addSlide();
-  slide.background = { color: WHITE };
+  slide.background = { color: CREAM_BG };
   title(slide, titleText);
   const maxH = 3.5, maxW = 8.9;
   let h = maxH, w = h * ratio;
@@ -126,7 +127,7 @@ s.addText([
 // 2. The question (light, numbered refinement)
 // ===========================================================================
 s = pres.addSlide();
-s.background = { color: WHITE };
+s.background = { color: CREAM_BG };
 title(s, 'Finding a metric for "good"');
 const steps = [
   ["1", "Which Taskers perform well…", "Start from raw performance."],
@@ -164,7 +165,7 @@ chartSlide(6, "…then partition them into tiers?", "fig_15_annotated_tiers.png"
 // 7. Two ways to partition (light, two cards)
 // ===========================================================================
 s = pres.addSlide();
-s.background = { color: WHITE };
+s.background = { color: CREAM_BG };
 title(s, "Two ways to partition");
 const cards = [
   ["Visual inspection", "“eyeball it”", [["Pro", "Quick to do once"], ["Con", "Not iterable; human bias"]]],
@@ -196,7 +197,7 @@ chartSlide(8, "A quick pass at k-means doesn't seem helpful", "fig_17_annotated_
   "Clustering on {close rate, rolling invoices, rolling revenue} just re-discovers the volume axis → vertical stripes.");
 
 s = pres.addSlide();
-s.background = { color: WHITE };
+s.background = { color: CREAM_BG };
 title(s, "…and adding clusters doesn't fix it");
 const trip = ["fig_17_naive_k4.png", "fig_18_naive_k5.png", "fig_19_naive_k6.png"];
 const labs = ["K = 4", "K = 5", "K = 6"];
@@ -240,7 +241,7 @@ chartSlide(14, "Cohorts hold up across feature pairs", "fig_29_annotated_circle.
 // 15. Results table (light)
 // ===========================================================================
 s = pres.addSlide();
-s.background = { color: WHITE };
+s.background = { color: CREAM_BG };
 title(s, "Resulting US Tasker quality tiers");
 const hdr = (t) => ({ text: t, options: { bold: true, color: CREAM, fill: { color: GREEN }, fontSize: 12, align: "center", valign: "middle" } });
 const cell = (t, b = false, c = INK) => ({ text: t, options: { color: c, bold: b, fontSize: 12, align: "center", valign: "middle" } });
