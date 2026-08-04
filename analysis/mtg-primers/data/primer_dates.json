@@ -1,0 +1,341 @@
+{
+  "_format": {
+    "description": "Manual primer writing/last-updated dates. primers.json only records fetched_at (when WE scraped the page), which is NOT the conditioning date for \u00a72.4 \u2014 fill primer_date from the source page (first-post date of the forum thread, article byline, or last-edited stamp).",
+    "fields": {
+      "primer_date": "ISO yyyy-mm-dd, or null if genuinely undatable. Undated primers are NOT dropped: their pool snapshot falls back to the fetched_at date (an upper bound) and their exclusion rows carry the 'undated_primer' flag and a reduced confidence weight.",
+      "date_basis": "Where the date came from, e.g. 'thread first post', 'article byline', 'last edited stamp'. null until filled.",
+      "notes": "Free text (e.g. 'thread spans 2012-2019; dated to last substantive primer edit').",
+      "url": "Copied from primers.json for fill-in convenience; not read back."
+    }
+  },
+  "Dimir Tempo": {
+    "primer_date": "2011-05-25",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/180605-ub-tempo"
+  },
+  "UR Tempo": {
+    "primer_date": "2014-05-30",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/modern/deck-creation-modern/559917-ur-tempo"
+  },
+  "Eldrazi Aggro": {
+    "primer_date": "2016-03-09",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/677242-primer-tentacle-smash-eldrazi-aggro-feat-10-post"
+  },
+  "Boros Aggro": {
+    "primer_date": "2011-02-16",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/standard-type-2/standard-archives/108263-boros-aggro-primer"
+  },
+  "Artifacts Blue": {
+    "primer_date": "2008-10-14",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/184571-primer-for-legacy-sideboarding-and-sideboard"
+  },
+  "Death & Taxes": {
+    "primer_date": "2011-03-03",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/control/179856-deck-death-and-taxes"
+  },
+  "Mardu Aggro": {
+    "primer_date": "2014-12-01",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/standard-type-2/standard-archives/580219-mardu-aggro-revamped"
+  },
+  "Maverick": {
+    "primer_date": "2011-05-30",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/midrange/179841-deck-maverick"
+  },
+  "Mono Black Aggro": {
+    "primer_date": "2007-05-20",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/183356-mono-black-aggro"
+  },
+  "Death's Shadow": {
+    "primer_date": "2015-04-09",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/602716-honing-ub-deaths-shadow"
+  },
+  "Initiative Stompy": {
+    "primer_date": "2022-12-15",
+    "date_basis": "earliest dated token near top of minmaxblog article (byline)",
+    "notes": "",
+    "url": "https://minmaxblog.com/a-new-legacy-deck-innit/"
+  },
+  "Dragon Stompy": {
+    "primer_date": "2013-10-05",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/509020-dragon-stompy-am-i-crazy"
+  },
+  "Goblins": {
+    "primer_date": "2010-10-15",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/casual-multiplayer-formats/casual-primers/175640-primer-decks-goblins"
+  },
+  "Esper Aggro": {
+    "primer_date": "2010-05-11",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/179888-esper-aggro-top"
+  },
+  "BUG Midrange": {
+    "primer_date": "2015-10-05",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "scrape is page 2; earliest post on that page, not thread start",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/midrange/631169-deck-shardless-bug?page=2"
+  },
+  "Merfolk": {
+    "primer_date": "2011-03-27",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/aggro-tempo/179828-deck-merfolk"
+  },
+  "MUD": {
+    "primer_date": "2011-03-02",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/combo/179813-primer-mud-aka-forgemaster-metalworker"
+  },
+  "Grixis Aggro": {
+    "primer_date": "2015-09-19",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/standard-type-2/standard-archives/633948-colorless-grixis-aggro"
+  },
+  "Delver (Other)": {
+    "primer_date": "2015-05-18",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/607477-primer-deck-liechtenstein-delver"
+  },
+  "Canadian Threshold": {
+    "primer_date": "2009-11-05",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/184171-what-is-canadian-threshhold-and-team-america"
+  },
+  "Bant Aggro": {
+    "primer_date": "2013-02-18",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/179837-primer-bant-aggro-midrange"
+  },
+  "Humans": {
+    "primer_date": "2017-02-03",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/modern/established-modern/aggro-tempo/769652-modern-humans"
+  },
+  "Other - Aggro": {
+    "primer_date": "2013-03-15",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/modern/established-modern/aggro-tempo/565682-zoo-video-primer"
+  },
+  "Artifacts Prison": {
+    "primer_date": "2014-07-17",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/pauper-peasant-discussion/565434-azorius-archetypes"
+  },
+  "Lands": {
+    "primer_date": "2014-01-12",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/control/535484-primer-lands"
+  },
+  "UWx Control": {
+    "primer_date": "2011-10-08",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/180935-archetype-uw-x-control"
+  },
+  "Pox": {
+    "primer_date": "2014-10-03",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/574535-deck-primer-rack-pox-mono-black-tempo"
+  },
+  "4/5c Control": {
+    "primer_date": "2023-05-14",
+    "date_basis": "earliest dated token near top of cardsrealm article (byline)",
+    "notes": "",
+    "url": "https://mtg.cardsrealm.com/en-us/articles/legacy-4-color-natural-order-control-deck-tech-sideboard-guide"
+  },
+  "Cradle Control": {
+    "primer_date": "2025-12-03",
+    "date_basis": "earliest dated token near top of cardsrealm article (byline)",
+    "notes": "",
+    "url": "https://mtg.cardsrealm.com/en-us/articles/legacy-badgermole-cradle-control-deck-tech-and-sideboard-guide"
+  },
+  "Stoneblade": {
+    "primer_date": "2011-07-12",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/midrange/179855-deck-uw-x-stoneblade"
+  },
+  "Cloudpost / Tron Ramp": {
+    "primer_date": "2012-10-15",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/181890-primer-12-post"
+  },
+  "Bant Control": {
+    "primer_date": "2010-09-04",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/184529-deck-bant"
+  },
+  "Stiflenought": {
+    "primer_date": "2011-10-08",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "scrape is page 2; earliest post on that page, not thread start",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/180969-deck-dreadcaster-stiflenought-w-snapcaster?page=2"
+  },
+  "BUG Control": {
+    "primer_date": "2014-02-25",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/modern/deck-creation-modern/546205-bug-control"
+  },
+  "Grixis Control": {
+    "primer_date": "2015-12-15",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/pauper/mtgo-pauper/developing/653340-primer-grixis-control"
+  },
+  "Nic Fit": {
+    "primer_date": "2011-12-18",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/midrange/179838-deck-nic-fit"
+  },
+  "Other - Control": {
+    "primer_date": null,
+    "date_basis": "only ~scrape-time dates found -> null (undated)",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/articles/16434-legacy-a-survival-guide"
+  },
+  "Show and Tell": {
+    "primer_date": "2010-07-01",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/combo/179810-deck-sneak-show"
+  },
+  "Doomsday": {
+    "primer_date": "2023-03-01",
+    "date_basis": "earliest dated token near top of ddft.wiki article (byline)",
+    "notes": "",
+    "url": "https://ddft.wiki/"
+  },
+  "Oops, All Spells!": {
+    "primer_date": "2013-11-21",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/budget-legacy/526479-primer-oops-all-spells"
+  },
+  "Reanimator": {
+    "primer_date": "2011-06-29",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/184494-deck-reanimator"
+  },
+  "Storm": {
+    "primer_date": "2006-10-26",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/legacy-archives/181990-the-epic-storm-primer"
+  },
+  "Aluren": {
+    "primer_date": "2012-09-06",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/combo/181886-primer-aluren"
+  },
+  "Dark Depths": {
+    "primer_date": "2013-05-23",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/476825-new-dark-depths"
+  },
+  "Painter": {
+    "primer_date": "2014-05-01",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "scrape is page 9; earliest post on that page, not thread start",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/combo/179814-deck-imperial-painter?page=9"
+  },
+  "Dredge": {
+    "primer_date": "2016-08-02",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/established-legacy/combo/743301-primer-led-dredge"
+  },
+  "Hogaak": {
+    "primer_date": "2023-10-07",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/830819-vegatables-fetchland-hogaak"
+  },
+  "Mystic Forge": {
+    "primer_date": null,
+    "date_basis": "no date found -> null (degrades to fetched_at)",
+    "notes": "",
+    "url": "https://www.youtube.com/watch?v=sZJ5dd7_k94"
+  },
+  "Ruby Storm": {
+    "primer_date": "2018-07-31",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/budget-legacy/796785-ruby-storm"
+  },
+  "Infect": {
+    "primer_date": "2019-06-15",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "scrape is page 181; earliest post on that page, not thread start",
+    "url": "https://www.mtgsalvation.com/forums/the-game/modern/established-modern/aggro-tempo/557165-infect?page=181"
+  },
+  "Thassa's Oracle": {
+    "primer_date": "2022-01-18",
+    "date_basis": "earliest dated token near top of minmaxblog article (byline)",
+    "notes": "",
+    "url": "https://minmaxblog.com/tainted-pact"
+  },
+  "Food Chain": {
+    "primer_date": "2012-07-08",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/budget-legacy/185969-primer-food-chain-elves-fast-combo-elves"
+  },
+  "Cephalid Breakfast": {
+    "primer_date": "2010-12-22",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/179805-primer-cephalid-breakfast"
+  },
+  "Mono Black Combo": {
+    "primer_date": "2007-01-10",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/vintage-type-1/established-vintage/ritual-based-combo-decks/129882-mono-black-combo"
+  },
+  "Other - Combo": {
+    "primer_date": "2010-08-09",
+    "date_basis": "earliest forum post (Mon DD, YYYY) ~ thread first post",
+    "notes": "",
+    "url": "https://www.mtgsalvation.com/forums/the-game/legacy-type-1-5/developing-legacy/180077-blue-lands-vs-ant-and-other-combo-decks"
+  }
+}

@@ -4,6 +4,17 @@ This repo defines a four-role orchestration framework for blog analysis projects
 
 ---
 
+## ▶ Active work (read before starting)
+
+There is an in-flight multi-session project: the **Legacy card value-model
+rebuild + Marvel Super Heroes registered-prediction test**. Before doing
+anything on it, read **`.agent/briefs/legacy-value-model-rebuild.md`** — its
+top "RESUME HERE" block states current state and the exact next actions. Time-
+sensitive: the prediction lock has a **2026-06-19** deadline. (This pointer is
+stable; the volatile state lives in that brief, not here.)
+
+---
+
 ## How to activate the framework
 
 When a user says "new project" or "start a project" while this framework is active, activate the **Architect** role first. Do not begin analytical work until the Architecture Brief is confirmed.
