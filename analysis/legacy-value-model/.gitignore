@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+# Raw Scryfall dump — regenerable via fetch_spoiler.py. The registered snapshot
+# used at lock is the human-readable triage_input.md, which IS tracked.
+msh.json
+data/

@@ -1,0 +1,375 @@
+[
+  {
+    "name": "The Fantasticar",
+    "archetype": "8-Cast/Affinity",
+    "oracle_text": "Flying\nWhenever you cast a noncreature spell, you may have The Fantasticar become an artifact creature until end of turn.\nWhenever you cast your fourth noncreature spell each turn, you may sacrifice The Fantasticar. If you do, create four 4/4 colorless Construct artifact creature tokens with flying and haste.",
+    "keywords": [
+      "Flying"
+    ],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Kappa Cannoneer",
+        "oracle_text": "Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.)\nWard {4}\nWhenever this creature or another artifact you control enters, put a +1/+1 counter on this creature. It can't be blocked this turn.",
+        "keywords": [
+          "Improvise",
+          "Ward"
+        ],
+        "cmc": 6.0
+      },
+      {
+        "name": "Patchwork Automaton",
+        "oracle_text": "Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)\nWhenever you cast an artifact spell, put a +1/+1 counter on this creature.",
+        "keywords": [
+          "Ward"
+        ],
+        "cmc": 2.0
+      },
+      {
+        "name": "Thought Monitor",
+        "oracle_text": "Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)\nFlying\nWhen this creature enters, draw two cards.",
+        "keywords": [
+          "Flying",
+          "Affinity"
+        ],
+        "cmc": 7.0
+      }
+    ]
+  },
+  {
+    "name": "Namor the Sub-Mariner",
+    "archetype": "Merfolk",
+    "oracle_text": "Flying\nNamor's power is equal to the number of Merfolk you control.\nWhenever you cast a noncreature spell with one or more blue mana symbols in its mana cost, create that many 1/1 blue Merfolk creature tokens.",
+    "keywords": [
+      "Flying"
+    ],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Svyelun of Sea and Sky",
+        "oracle_text": "Svyelun has indestructible as long as you control at least two other Merfolk.\nWhenever Svyelun attacks, draw a card.\nOther Merfolk you control have ward {1}. (Whenever another Merfolk you control becomes the target of a spell or ability an opponent controls, counter it unless that player pays {1}.)",
+        "keywords": [],
+        "cmc": 3.0
+      },
+      {
+        "name": "Vodalian Hexcatcher",
+        "oracle_text": "Flash\nOther Merfolk you control get +1/+1.\nSacrifice a Merfolk: Counter target noncreature spell unless its controller pays {1}.",
+        "keywords": [
+          "Flash"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Attuma, Atlantean Warlord",
+    "archetype": "Merfolk",
+    "oracle_text": "Other Merfolk you control get +1/+1.\nWhenever one or more Merfolk you control attack a player, draw a card.",
+    "keywords": [],
+    "cmc": 4.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Svyelun of Sea and Sky",
+        "oracle_text": "Svyelun has indestructible as long as you control at least two other Merfolk.\nWhenever Svyelun attacks, draw a card.\nOther Merfolk you control have ward {1}. (Whenever another Merfolk you control becomes the target of a spell or ability an opponent controls, counter it unless that player pays {1}.)",
+        "keywords": [],
+        "cmc": 3.0
+      },
+      {
+        "name": "Vodalian Hexcatcher",
+        "oracle_text": "Flash\nOther Merfolk you control get +1/+1.\nSacrifice a Merfolk: Counter target noncreature spell unless its controller pays {1}.",
+        "keywords": [
+          "Flash"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "King T'Challa // Black Panther",
+    "archetype": "UWx/blue midrange",
+    "oracle_text": "Flash\nWhenever a player draws their second card each turn, you draw a card.\n{4}{W}{U}: Transform King T'Challa. Activate only as a sorcery.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Faerie Mastermind",
+        "oracle_text": "Flash\nFlying\nWhenever an opponent draws their second card each turn, you draw a card.\n{3}{U}: Each player draws a card.",
+        "keywords": [
+          "Flying",
+          "Flash"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Mole Man, Moloid Master",
+    "archetype": "Lands",
+    "oracle_text": "You may play lands from your graveyard.\nLandfall \u2014 Whenever a land you control enters, create a 1/1 green Minion creature token named Moloid with \"Whenever this token attacks, you may mill a card.\"",
+    "keywords": [
+      "Mill",
+      "Landfall"
+    ],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Crucible of Worlds",
+        "oracle_text": "You may play lands from your graveyard.",
+        "keywords": [],
+        "cmc": 3.0
+      },
+      {
+        "name": "Life from the Loam",
+        "oracle_text": "Return up to three target land cards from your graveyard to your hand.\nDredge 3 (If you would draw a card, you may mill three cards instead. If you do, return this card from your graveyard to your hand.)",
+        "keywords": [
+          "Dredge",
+          "Mill"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Hex Magic",
+    "archetype": "Red refill",
+    "oracle_text": "Exile all the cards from your hand, then draw that many cards. Until the end of your next turn, you may play cards exiled this way.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Echo of Eons",
+        "oracle_text": "Each player shuffles their hand and graveyard into their library, then draws seven cards.\nFlashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+        "keywords": [
+          "Flashback"
+        ],
+        "cmc": 6.0
+      },
+      {
+        "name": "Wheel of Fortune",
+        "oracle_text": "Each player discards their hand, then draws seven cards.",
+        "keywords": [],
+        "cmc": 3.0
+      }
+    ]
+  },
+  {
+    "name": "Avengers Disassembled",
+    "archetype": "Red sideboard",
+    "oracle_text": "Choose one or both \u2014\n\u2022 Avengers Disassembled deals 3 damage to each creature.\n\u2022 Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Fiery Confluence",
+        "oracle_text": "Choose three. You may choose the same mode more than once.\n\u2022 Fiery Confluence deals 1 damage to each creature.\n\u2022 Fiery Confluence deals 2 damage to each opponent.\n\u2022 Destroy target artifact.",
+        "keywords": [],
+        "cmc": 4.0
+      },
+      {
+        "name": "Pyroclasm",
+        "oracle_text": "Pyroclasm deals 2 damage to each creature.",
+        "keywords": [],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "World War Hulk",
+    "archetype": "Cheat-into-play",
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI \u2014 The next red or green creature spell you cast this turn can be cast without paying its mana cost.\nII \u2014 Put three +1/+1 counters on target creature you control.\nIII \u2014 Choose target creature you control. Until end of turn, double its power and toughness and it gains trample.",
+    "keywords": [
+      "Double"
+    ],
+    "cmc": 5.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Natural Order",
+        "oracle_text": "As an additional cost to cast this spell, sacrifice a green creature.\nSearch your library for a green creature card, put it onto the battlefield, then shuffle.",
+        "keywords": [],
+        "cmc": 4.0
+      },
+      {
+        "name": "Show and Tell",
+        "oracle_text": "Each player may put an artifact, creature, enchantment, or land card from their hand onto the battlefield.",
+        "keywords": [],
+        "cmc": 3.0
+      },
+      {
+        "name": "Sneak Attack",
+        "oracle_text": "{R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.",
+        "keywords": [],
+        "cmc": 4.0
+      }
+    ]
+  },
+  {
+    "name": "Mj\u00f6lnir, Hammer of Thor",
+    "archetype": "Stoneforge packages",
+    "oracle_text": "When Mj\u00f6lnir enters, it deals 4 damage to up to one target creature.\nDouble all damage equipped creature would deal.\nEquip worthy {1} (A creature is worthy if it's a legendary non-Villain that's red and/or white.)\n{2}{R}, Discard this card: It deals 2 damage to each creature.",
+    "keywords": [
+      "Double"
+    ],
+    "cmc": 4.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Kaldra Compleat",
+        "oracle_text": "Living weapon\nIndestructible\nEquipped creature gets +5/+5 and has first strike, trample, indestructible, haste, and \"Whenever this creature deals combat damage to a creature, exile that creature.\"\nEquip {7}",
+        "keywords": [
+          "Indestructible",
+          "Equip",
+          "Living weapon"
+        ],
+        "cmc": 7.0
+      },
+      {
+        "name": "Umezawa's Jitte",
+        "oracle_text": "Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte.\nRemove a charge counter from Umezawa's Jitte: Choose one \u2014\n\u2022 Equipped creature gets +2/+2 until end of turn.\n\u2022 Target creature gets -1/-1 until end of turn.\n\u2022 You gain 2 life.\nEquip {2}",
+        "keywords": [
+          "Equip"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Hawkeye's Bow",
+    "archetype": "(no slot)",
+    "oracle_text": "Equipped creature gets +1/+0 and has reach.\nWhenever equipped creature becomes tapped, it deals 1 damage to each opponent.\nEquip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)",
+    "keywords": [
+      "Equip"
+    ],
+    "cmc": 1.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": []
+  },
+  {
+    "name": "Elektra, Daughter of the Hand",
+    "archetype": "Ninjas/Dimir",
+    "oracle_text": "Sneak {1}{B}{B} (You may cast this spell for {1}{B}{B} if you also return an unblocked attacker you control to hand during the declare blockers step. She enters tapped and attacking.)\nWhen Elektra enters, destroy target creature an opponent controls with power 3 or less.",
+    "keywords": [
+      "Sneak"
+    ],
+    "cmc": 4.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Murktide Regent",
+        "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)\nFlying\nThis creature enters with a +1/+1 counter on it for each instant and sorcery card exiled with it.\nWhenever an instant or sorcery card leaves your graveyard, put a +1/+1 counter on this creature.",
+        "keywords": [
+          "Flying",
+          "Delve"
+        ],
+        "cmc": 7.0
+      },
+      {
+        "name": "Fatal Push",
+        "oracle_text": "Destroy target creature if it has mana value 2 or less.\nRevolt \u2014 Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
+        "keywords": [
+          "Revolt"
+        ],
+        "cmc": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Thanos, the Mad Titan",
+    "archetype": "(no slot)",
+    "oracle_text": "Deathtouch, lifelink\nPower-up \u2014 {C}{W}{U}{B}{R}{G}: Put two +1/+1 counters on Thanos. Choose odd or even. Destroy each other creature with mana value of the chosen quality. (Activate each power-up ability only once. Reduce the cost by his mana cost if he entered this turn. Zero is even.)",
+    "keywords": [
+      "Deathtouch",
+      "Power-up",
+      "Lifelink"
+    ],
+    "cmc": 3.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": []
+  },
+  {
+    "name": "Cosmic Cube",
+    "archetype": "Eldrazi/Tron",
+    "oracle_text": "Ward {2}\nWhenever you attack, look at the top six cards of your library. You may cast a spell from among them with mana value less than or equal to the greatest power among attacking creatures you control without paying its mana cost. Put the rest on the bottom of your library in a random order.",
+    "keywords": [
+      "Ward"
+    ],
+    "cmc": 5.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Karn, the Great Creator",
+        "oracle_text": "Activated abilities of artifacts your opponents control can't be activated.\n+1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value.\n\u22122: You may reveal an artifact card you own from outside the game or choose a face-up artifact card you own in exile. Put that card into your hand.",
+        "keywords": [],
+        "cmc": 4.0
+      }
+    ]
+  },
+  {
+    "name": "The Coming of Galactus",
+    "archetype": "(no slot)",
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)\nI \u2014 Destroy up to one target nonland permanent.\nII, III \u2014 Each opponent loses 2 life.\nIV \u2014 Create Galactus, a legendary 16/16 black Elder Alien creature token with flying, trample, and \"Whenever Galactus attacks, destroy target land.\"",
+    "keywords": [
+      "Trample"
+    ],
+    "cmc": 5.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": []
+  },
+  {
+    "name": "Jennifer Walters // The Sensational She-Hulk",
+    "archetype": "Combo protection/D&T",
+    "oracle_text": "Your opponents can't cast spells during your turn.\n{3}{G}{W}{W}: Transform Jennifer Walters. Activate only as a sorcery.",
+    "keywords": [],
+    "cmc": 2.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Teferi, Time Raveler",
+        "oracle_text": "Each opponent can cast spells only any time they could cast a sorcery.\n+1: Until your next turn, you may cast sorcery spells as though they had flash.\n\u22123: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.",
+        "keywords": [],
+        "cmc": 3.0
+      },
+      {
+        "name": "Thalia, Guardian of Thraben",
+        "oracle_text": "First strike\nNoncreature spells cost {1} more to cast.",
+        "keywords": [
+          "First strike"
+        ],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Doctor Doom, Unrivaled",
+    "archetype": "Doomsday combo",
+    "oracle_text": "Lifelink\n{T}: You draw a card and lose 1 life. Then if your library has no cards in it, you win the game. (You win even if you have 0 life or didn't draw a card.)",
+    "keywords": [
+      "Lifelink"
+    ],
+    "cmc": 4.0,
+    "field_top": "Izzet Delver:0.107|Dimir Tempo:0.089|Sneak and Show:0.069|Tron:0.059|Lands:0.051|Reanimator:0.049|Doomsday:0.039|Eldrazi:0.039|UWx Control:0.030|Death and Taxes:0.027",
+    "incumbents": [
+      {
+        "name": "Thassa's Oracle",
+        "oracle_text": "When this creature enters, look at the top X cards of your library, where X is your devotion to blue. Put up to one of them on top of your library and the rest on the bottom of your library in a random order. If X is greater than or equal to the number of cards in your library, you win the game. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)",
+        "keywords": [],
+        "cmc": 2.0
+      },
+      {
+        "name": "Jace, Wielder of Mysteries",
+        "oracle_text": "If you would draw a card while your library has no cards in it, you win the game instead.\n+1: Target player mills two cards. Draw a card.\n\u22128: Draw seven cards. Then if your library has no cards in it, you win the game.",
+        "keywords": [
+          "Mill"
+        ],
+        "cmc": 4.0
+      }
+    ]
+  }
+]
