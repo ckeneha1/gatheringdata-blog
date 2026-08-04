@@ -252,4 +252,53 @@ predictions committed before outcomes — is intact.
 
 ## Grading notes (append-only, post 2026-08-15)
 
-*(Empty until grading.)*
+### Preliminary grade — 2026-08-03 (formal grade still due 2026-08-15)
+
+**Source:** MTGTop8 2026 Legacy topcards (maindeck + sideboard play frequency), scraped
+2026-08-03 via `fetch_data.py --years 2026`; `pct` = share of 2026 Legacy decks playing the
+card. **Caveats:** (a) the 2026 window includes ~5 pre-Marvel months, so Marvel cards' true
+post-release rates run *higher* than shown (dilution); (b) ~5.5 weeks of data, ahead of the
+declared 08-15 window; (c) within-clump win log-OR (the deeper metric) awaits a larger
+decklist sample. Qualitative calls are robust. Reproduce via
+`analysis/legacy-value-model/_grade_from_topcards.py`.
+
+**Actual new-card adoption** (reprints excluded — Swords to Plowshares, Dark Ritual, Lightning
+Bolt etc. are MSH reprints, not adoption events):
+
+| Card | 2026 Legacy adoption | Verdict |
+|---|---|---|
+| **The Fantasticar** | **3.4% MD (325 decks)** | **PLAYED** — the set's Legacy story (≈ Doomsday's 4.2%; community reports higher + ban-watched) |
+| **Loki, God of Mischief** | **0.8% MD (76 decks)** | **PLAYED — and on nobody's candidate list** |
+| all 16 candidates except Fantasticar | ≤0.1% (≤9 decks) | NOT PLAYED |
+
+**Per-card grade** (registered verdict → ✓/✗ vs actual):
+
+| Card | Actual | Baseline | Framework | Community | Model |
+|---|---|---|---|---|---|
+| The Fantasticar | PLAYED | FRINGE ✗ | FRINGE ✗ | PLAYED ✓ | PLAYED ✓ |
+| Mole Man | NOT (0.1%) | NOT ✓ | **PLAYED ✗** | FRINGE ✗ | **PLAYED ✗** |
+| Namor | NOT | FRINGE ✗ | FRINGE ✗ | PLAYED ✗ | FRINGE ✗ |
+| Hex Magic | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Avengers Disassembled | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Elektra | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Jennifer Walters | NOT | NOT ✓ | FRINGE ✗ | NOT ✓ | **PLAYED ✗** |
+| Hawkeye's Bow | NOT | **PLAYED ✗** | NOT ✓ | NOT ✓ | NOT ✓ |
+| Thanos | NOT | **PLAYED-lean ✗** | NOT ✓ | NOT ✓ | NOT ✓ |
+| King T'Challa | NOT | FRINGE/PLAYED ✗ | NOT ✓ | FRINGE ✗ | NOT ✓ |
+| Mjölnir | NOT | NOT–FRINGE | NOT ✓ | NOT ✓ | FRINGE ✗ |
+| Attuma | NOT | NOT ✓ | NOT ✓ | FRINGE-PLAYED ✗ | NOT ✓ |
+| Cosmic Cube | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| World War Hulk | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| The Coming of Galactus | NOT | NO VERDICT | NOT ✓ | NOT ✓ | NOT ✓ |
+| Doctor Doom | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| *Loki* (unlisted) | PLAYED (0.8%) | missed | missed | missed | missed |
+
+**Findings (all registered before these outcomes):**
+1. **Community** best-called the one card that mattered (Fantasticar PLAYED); modest over-calls (Namor, Attuma).
+2. **Model = high recall, low precision:** caught Fantasticar (P=0.96) but **5 false-positive PLAYEDs**. The three flagged in `model-verdicts-msh.md` as *likely errors* (Hex Magic, Avengers, Elektra) **all flopped** — the registered failure-mode prediction held exactly.
+3. **Framework** was precise on the NOTs (correctly rejected the model's error-cards) but under-called Fantasticar and its lone PLAYED (Mole Man) flopped. **This falsifies the set-level claim** ("no tier-1 change; exactly one PLAYED (Mole Man)") — the real one PLAYED was Fantasticar, which reshaped the field (the new-archetype blind spot, per `open_questions.md`).
+4. **Baseline** worst: missed Fantasticar; its two PLAYEDs (Hawkeye's Bow, Thanos) flopped.
+5. **Blind-triage vindicated on Mole Man** — its independent NOT PLAYED (vs framework + model PLAYED) was correct.
+6. **Shared recall gap = Loki** (0.8%), missed by every predictor **and the empirical screen** — the screen's logged recall defect bit us on a real card. Fix before the next set.
+
+**Net:** no predictor dominated — community caught the winner; the model was boldest (caught it) but noisiest; the framework was most precise but missed the winner and its flagship; the baseline was weakest; everyone missed Loki. Next-set authority (§2.5) weights accordingly.

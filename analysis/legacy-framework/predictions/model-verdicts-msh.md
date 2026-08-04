@@ -94,4 +94,14 @@ types it misjudges — the over-bullish PLAYED calls (Hex Magic / Avengers / Ele
 those three flop (expected), the framework's context reasoning beats the model there; if any sees play,
 the model caught something the experts dismissed.
 
-*(Empty until grading.)*
+### Preliminary grade — 2026-08-03 (full scorecard in `marvel-super-heroes.md`)
+
+Model result on the 16: **caught the one big hit** — The Fantasticar (PLAYED, 3.4% of 2026
+Legacy decks; model P=0.96) — but **5 false-positive PLAYEDs**: Mole Man (0.1%), Hex Magic
+(~0), Avengers Disassembled (~0), Elektra (0), Jennifer Walters (~0). **The registered
+failure-mode prediction held exactly:** Hex Magic / Avengers / Elektra were flagged above as
+likely errors and all flopped. Net = **high recall, low precision** — a bold recall tool, not a
+precise oracle. On the flagship Mole Man the model sided with the framework and both were wrong
+(the blind triage's NOT PLAYED was right). It **beats the abilities-per-mana baseline** (which
+missed Fantasticar and had two false positives of its own). Formal grade + held-out win-log-OR
+pending 08-15.
