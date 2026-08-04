@@ -16,7 +16,16 @@ sys.path.insert(0, str(HERE))
 
 from spoiler_screen import screen_set, EXCLUDED_LAYOUTS  # noqa: E402
 
-cards = json.loads((HERE / "msh.json").read_text())
+# Generalized: `_triage_extract.py [set.json] [out.md] [--prerelease]` (defaults msh.json →
+# triage_input.md), so the blind-triage input reruns on any fetched set with no code edits.
+# --prerelease: the set isn't out yet, so Scryfall still marks its cards legacy:not_legal;
+# accept everything not explicitly banned (a new Standard/eternal set is Legacy-legal on release).
+PRERELEASE = "--prerelease" in sys.argv
+ALL = "--all" in sys.argv  # sweep EVERY new card, not just the cmc<=4/land/screen-flagged subset
+_args = [a for a in sys.argv[1:] if not a.startswith("--")]
+in_path = Path(_args[0]) if len(_args) > 0 else HERE / "msh.json"
+out_path = Path(_args[1]) if len(_args) > 1 else HERE / "triage_input.md"
+cards = json.loads(in_path.read_text())
 
 
 def cmc(c):
@@ -62,11 +71,16 @@ def pt(c):
 # already-legal card is not a new adoption event. In ROTATING formats (Standard),
 # a reprint re-enters the pool and IS a new event, so this filter must become a
 # format-relative pool delta. See legacy-framework/open_questions.md.
+def _legacy_ok(c):
+    lg = (c.get("legalities") or {}).get("legacy")
+    return lg != "banned" if PRERELEASE else lg == "legal"
+
+
 new_legal = [
     c for c in cards
     if not c.get("reprint")
     and c.get("layout") not in EXCLUDED_LAYOUTS
-    and (c.get("legalities") or {}).get("legacy") == "legal"
+    and _legacy_ok(c)
 ]
 
 # names the screen flagged (front face too) — include regardless of cmc
@@ -81,11 +95,11 @@ def keep(c):
     return cmc(c) <= 4 or is_land(c) or nm in screen_names or nm.split(" // ")[0] in screen_names
 
 
-triage = sorted((c for c in new_legal if keep(c)), key=lambda c: (cmc(c), c.get("name", "")))
+triage = sorted((c for c in new_legal if (ALL or keep(c))), key=lambda c: (cmc(c), c.get("name", "")))
 
 # stats
 buckets = Counter(min(int(cmc(c)), 6) for c in new_legal)
-print(f"total cards in msh.json: {len(cards)}")
+print(f"total cards in {in_path.name}: {len(cards)}")
 print(f"new (non-reprint) Legacy-legal, non-token: {len(new_legal)}")
 print("  by cmc: " + ", ".join(
     f"{('5+' if k >= 5 else k)}:{buckets[k]}" for k in sorted(buckets)))
@@ -94,7 +108,7 @@ print(f"triage subset (cmc<=4 OR land OR screen-flagged): {len(triage)}")
 
 # write facts-only file
 out_lines = [
-    "# Blind triage input — NEW Marvel Super Heroes cards (facts only)",
+    f"# Blind triage input — NEW cards from {in_path.stem} (facts only)",
     "",
     "Card facts only. No verdicts, no community sentiment, no scores. Evaluate "
     "each against the framework files and the field snapshot you were given.",
@@ -108,6 +122,6 @@ for c in triage:
     out_lines += [f"## {c.get('name','')}", head,
                   f"- {faces_text(c).strip() or '(no rules text)'}", ""]
 
-out = HERE / "triage_input.md"
+out = out_path
 out.write_text("\n".join(out_lines))
 print(f"wrote {out} ({len(triage)} cards)")
