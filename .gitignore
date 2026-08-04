@@ -24,6 +24,7 @@ pnpm-debug.log*
 __pycache__/
 *.pyc
 .venv/
+.pytest_cache/
 
 # Analysis caches and scraped raw data — reproducible, not worth tracking
 analysis/skyrim-alchemy/data/raw/
@@ -32,6 +33,7 @@ analysis/tobins-q/.cache/
 
 # MTG Legacy scraper cache — reproducible, not worth tracking
 analysis/mtg-legacy-tournament/data/
+analysis/mtg-legacy-tournament/scrape.log
 
 # Taskrabbit Elite: large regenerable data + render artifacts (rebuild via the pipeline)
 analysis/taskrabbit-elite-criteria/taskers.csv
@@ -57,3 +59,6 @@ analysis/mtg-primers/.cache/
 
 # jetbrains setting folder
 .idea/
+
+# Claude Code local session settings — machine-specific, not for the repo
+.claude/settings.local.json
