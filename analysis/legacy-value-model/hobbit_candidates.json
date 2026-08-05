@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Riddles in the Dark",
+    "archetype": "Dimir/delve control",
+    "oracle_text": "Look at the top four cards of your library and separate them into a face-down pile and a face-up pile. An opponent chooses one of the piles. Put that pile into your hand and the other into your graveyard.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Fact or Fiction",
+        "oracle_text": "Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.",
+        "keywords": [],
+        "cmc": 4.0
+      }
+    ]
+  },
+  {
+    "name": "Bilbo, Thief in the Night",
+    "archetype": "Izzet DRC / graveyard tempo",
+    "oracle_text": "Spells you cast from anywhere other than your hand cost {1} less to cast.\nWhenever Bilbo attacks, you may cast an artifact, instant, or sorcery spell from your graveyard. If an instant or sorcery spell cast this way would be put into your graveyard, exile it instead.",
+    "keywords": [],
+    "cmc": 2.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Dragon's Rage Channeler",
+        "oracle_text": "Whenever you cast a noncreature spell, surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)\nDelirium \u2014 As long as there are four or more card types among cards in your graveyard, this creature gets +2/+2, has flying, and attacks each combat if able.",
+        "keywords": [
+          "Delirium",
+          "Surveil"
+        ],
+        "cmc": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Gandalf, Goblins' Bane",
+    "archetype": "Storm / spellslinger",
+    "oracle_text": "Whenever you cast a noncreature spell, Gandalf gets +1/+1 until end of turn and deals 1 damage to each opponent.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Young Pyromancer",
+        "oracle_text": "Whenever you cast an instant or sorcery spell, create a 1/1 red Elemental creature token.",
+        "keywords": [],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Gollum, Riddle Master",
+    "archetype": "Mono-black midrange",
+    "oracle_text": "As Gollum enters, choose odd or even. (Zero is even.)\nWhenever an opponent casts a spell with mana value of the chosen quality, choose one that hasn't been chosen \u2014\n\u2022 Put a +1/+1 counter on Gollum.\n\u2022 Each opponent loses 2 life and you gain 2 life.\n\u2022 Draw a card.",
+    "keywords": [],
+    "cmc": 2.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Dark Confidant",
+        "oracle_text": "At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its mana value.",
+        "keywords": [],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "An Unexpected Party",
+    "archetype": "Boros go-wide",
+    "oracle_text": "As this enchantment enters, choose a creature type.\nCreatures you control of the chosen type get +2/+2.",
+    "keywords": [],
+    "cmc": 4.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": []
+  },
+  {
+    "name": "Plunder the Trollshaws",
+    "archetype": "cantrip slot",
+    "oracle_text": "Draw a card. If this spell was cast from a graveyard, draw two cards instead.\nFlashback {3}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+    "keywords": [
+      "Flashback"
+    ],
+    "cmc": 2.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Brainstorm",
+        "oracle_text": "Draw three cards, then put two cards from your hand on top of your library in any order.",
+        "keywords": [],
+        "cmc": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Confusticate and Bebother",
+    "archetype": "control counter",
+    "oracle_text": "Choose one \u2014\n\u2022 Counter target spell unless its controller pays {4}.\n\u2022 Draw two cards, then discard a card.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Counterspell",
+        "oracle_text": "Counter target spell.",
+        "keywords": [],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "My Precious // Allure of Power",
+    "archetype": "aristocrats card draw",
+    "oracle_text": "Equipped creature has hexproof and can't be blocked.\nEquip\u2014{2}, Pay 2 life.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Night's Whisper",
+        "oracle_text": "You draw two cards and lose 2 life.",
+        "keywords": [],
+        "cmc": 2.0
+      }
+    ]
+  },
+  {
+    "name": "Most Decrepit Old Bird // Speak Secrets",
+    "archetype": "delve / graveyard fuel",
+    "oracle_text": "Flying\nThreshold \u2014 This creature gets +1/+1 as long as there are seven or more cards in your graveyard.",
+    "keywords": [],
+    "cmc": 1.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Brainstorm",
+        "oracle_text": "Draw three cards, then put two cards from your hand on top of your library in any order.",
+        "keywords": [],
+        "cmc": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Bilbo's Deadly Slice",
+    "archetype": "removal",
+    "oracle_text": "Destroy target creature.",
+    "keywords": [],
+    "cmc": 3.0,
+    "field_top": "Dimir Tempo:0.125|Fantasticar:0.063|Izzet Cutter:0.060|Sneak and Show:0.058|Cloudpost:0.054|UWx Control:0.047|Doomsday:0.040|Boros Aggro:0.040|Eldrazi:0.037|Lands:0.034",
+    "incumbents": [
+      {
+        "name": "Fatal Push",
+        "oracle_text": "Destroy target creature if it has mana value 2 or less.\nRevolt \u2014 Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
+        "keywords": [
+          "Revolt"
+        ],
+        "cmc": 1.0
+      }
+    ]
+  }
+]
