@@ -302,3 +302,121 @@ Bolt etc. are MSH reprints, not adoption events):
 6. **Shared recall gap = Loki** (0.8%), missed by every predictor **and the empirical screen** — the screen's logged recall defect bit us on a real card. Fix before the next set.
 
 **Net:** no predictor dominated — community caught the winner; the model was boldest (caught it) but noisiest; the framework was most precise but missed the winner and its flagship; the baseline was weakest; everyone missed Loki. Next-set authority (§2.5) weights accordingly.
+
+### Formal grade (2026-08-15)
+
+**Source/methodology:** this session had no local topcards scrape or Scryfall cache
+(`analysis/mtg-legacy-tournament/data/raw/topcards_2026_*.json`,
+`analysis/mtg-card-power/.cache/oracle_cards--*.json` — both absent; this is a
+remote/ephemeral session, gitignored data doesn't exist here), so
+`_grade_from_topcards.py` could not be run. Graded via WebSearch instead
+(direct WebFetch to mtggoldfish.com, aetherhub.com, mtgdecks.net, and
+mtg.cardsrealm.com is egress-blocked in this environment; aggregator snippets
+and secondary coverage substituted). **Within-clump win log-OR still requires
+a local run** — not computable from search snippets. Quantitative shares below
+should be read as corroborating, not exact-reproducible, given the source.
+
+**Headline development since the 08-03 preliminary: The Fantasticar was
+banned in Legacy**, per the B&R announcement issued 2026-08-10 (also
+restricted in Vintage in the same announcement). Per MTGGoldfish's own
+coverage and community reaction, adoption kept climbing after the prelim's
+3.4%/325-deck snapshot — aetherhub's rolling window had it at **6.30%** of
+the Legacy metagame in early-to-mid August, "running rampant... popping up in
+the most varied decks" (combo, fair blue, and colorless piles), with the
+turn-one-kill line cited as the banning rationale. This is not a marginal
+PLAYED call — it is the strongest possible confirmation of adoption, and it
+sharpens rather than changes the 08-03 verdict.
+
+**Loki, God of Mischief — recall miss, now corroborated from multiple
+independent sources.** Confirmed as genuine competitive Legacy adoption, not
+Commander noise: it slots into **Goblin Welder** and **Cephalid Breakfast**
+combo shells as a card-draw engine off targeted-ability triggers (Shuko,
+Nomads en-Kor). Coverage: mtgrocks ("sees a ton of play... in particular"),
+a dedicated Legacy deck-tech video, and metagame trackers placing it in the
+0.4–0.8% range depending on window (the 08-03 prelim's rigorous topcards
+figure — 0.8% MD, 76 decks — is the trustworthy number; a live-scrape
+snippet's 0.4%/4-deck figure looks like a thinner recent-window slice, not a
+contradiction). **Loki was on nobody's registered candidate list** — not the
+baseline, not the blind framework, not the community consensus, not the
+trained model — and not caught by the empirical 14-signal screen either. It
+is the cleanest recall failure in the experiment.
+
+**The other 14 registered NOT-PLAYED cards: no adoption signal found.**
+Targeted searches for Namor (Merfolk), Mole Man (Lands), King T'Challa,
+Hex Magic, Avengers Disassembled, and Elektra turned up only pre-release set
+reviews and card-mechanics descriptions — no tournament decklists, no
+metagame-share entries, no "sees play" claims from post-release coverage.
+Consistent with the 08-03 topcards read (≤0.1%, ≤9 decks each). No verdict
+changes from the preliminary on any of these 14.
+
+**Per-card scorecard (formal; unchanged from 08-03 except Fantasticar's
+magnitude and the Loki write-up above):**
+
+| Card | Actual (formal) | Baseline | Framework | Community | Model |
+|---|---|---|---|---|---|
+| The Fantasticar | **PLAYED → BANNED 2026-08-10** (6.3%+ pre-ban) | FRINGE ✗ | FRINGE ✗ | PLAYED ✓ | PLAYED ✓ |
+| Mole Man | NOT (≤0.1%) | NOT ✓ | **PLAYED ✗** | FRINGE ✗ | **PLAYED ✗** |
+| Namor | NOT | FRINGE ✗ | FRINGE ✗ | PLAYED ✗ | FRINGE ✗ |
+| Hex Magic | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Avengers Disassembled | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Elektra | NOT | NOT ✓ | NOT ✓ | NOT ✓ | **PLAYED ✗** |
+| Jennifer Walters | NOT | NOT ✓ | FRINGE ✗ | NOT ✓ | **PLAYED ✗** |
+| Hawkeye's Bow | NOT | **PLAYED ✗** | NOT ✓ | NOT ✓ | NOT ✓ |
+| Thanos | NOT | **PLAYED-lean ✗** | NOT ✓ | NOT ✓ | NOT ✓ |
+| King T'Challa | NOT | FRINGE/PLAYED ✗ | NOT ✓ | FRINGE ✗ | NOT ✓ |
+| Mjölnir | NOT | NOT–FRINGE | NOT ✓ | NOT ✓ | FRINGE ✗ |
+| Attuma | NOT | NOT ✓ | NOT ✓ | FRINGE-PLAYED ✗ | NOT ✓ |
+| Cosmic Cube | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| World War Hulk | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| The Coming of Galactus | NOT | NO VERDICT | NOT ✓ | NOT ✓ | NOT ✓ |
+| Doctor Doom | NOT | NOT ✓ | NOT ✓ | NOT ✓ | NOT ✓ |
+| *Loki, God of Mischief* (unlisted) | **PLAYED** (Goblin Welder / Cephalid Breakfast) | missed | missed | missed | missed |
+
+**Findings:**
+
+1. **Community best-called the one card that mattered**, and mattered more
+   than anyone registered for: PLAYED on a card that went on to get banned.
+   Its over-calls (Namor, Attuma) are minor relative to that hit.
+2. **Model: high recall, low precision, confirmed at scale.** It caught the
+   banned card (P=0.96) but posted **5 false-positive PLAYEDs** (Mole Man,
+   Hex Magic, Avengers Disassembled, Elektra, Jennifer Walters), all of which
+   flopped with no adoption signal found at the formal grading window either.
+   Recall on registered-candidate PLAYED calls: 1/1. Precision: 1/6 (16.7%).
+   The three the model itself flagged as likely errors (Hex Magic, Avengers,
+   Elektra) **all flopped exactly as predicted** — the registered
+   failure-mode caveat held.
+3. **Framework was precise on the NOTs but wrong on both calls that mattered
+   most**: it under-called the eventual banned card to FRINGE, and its lone
+   flagship PLAYED call (Mole Man) flopped. **This decisively falsifies the
+   set-level claim** ("no tier-1 maindeck change; exactly one PLAYED card
+   (Mole Man)") — the real PLAYED card was Fantasticar, and it didn't just
+   see tier-1 play, it got **banned** for warping the format. The framework's
+   threshold-rule reasoning (beat the weakest incumbent) has no mechanism for
+   detecting a new archetype-enabling combo piece, which is exactly what
+   Fantasticar was (per the ban rationale: turn-one kills across combo, fair
+   blue, and colorless shells) — this is the concrete instance of the
+   "new-archetype blind spot" flagged in `open_questions.md`.
+4. **Baseline weakest**: missed the banned card entirely (FRINGE) and its two
+   PLAYED calls (Hawkeye's Bow, Thanos) both flopped.
+5. **Blind-triage vindicated on Mole Man** a second time: its independent NOT
+   PLAYED call (against framework + model PLAYED) was correct at both the
+   preliminary and formal grading windows.
+6. **Loki is the shared recall gap**, missed by all four registered
+   predictors *and* the empirical 14-signal screen — the screen's logged
+   recall defect (21.4% at Gate 2) cost a real card twice now. Fix the
+   new-card/reprint filter and recall calibration before the next set
+   (Phase 1 backlog item, brief §NEXT ACTIONS #1).
+
+**Net (formal, supersedes the preliminary's hedge):** community wins this
+round outright — it called the winner cleanly, with no compounding false
+positives. Model is the best *bold* predictor (matches community's recall,
+adds nothing extra correct, costs precision) — useful as a recall net, not
+yet a precise oracle. Framework is the best *conservative* predictor but its
+one affirmative bet (Mole Man) and its set-level claim both failed, and its
+threshold-rule has a demonstrated blind spot for archetype-enabling combo
+pieces. Baseline is weakest across the board. Every predictor and the
+recall screen missed Loki. Authority weighting for the next registered set
+(§2.5): trust community + model for recall, framework for precision on
+rejections, and treat "beats the weakest incumbent" as insufficient alone
+when a candidate could enable a new line rather than displace an existing
+slot.
