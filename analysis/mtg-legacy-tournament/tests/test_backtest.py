@@ -94,6 +94,45 @@ def test_load_predictions_csv(tmp_path):
     assert preds[1]["window_end"] == date(2026, 6, 19) + (date(2026, 8, 15) - date(2026, 6, 19))
 
 
+def test_load_predictions_clips_window_to_legacy_ban(tmp_path):
+    # The Fantasticar was banned 2026-08-10; a window running to 2026-09-30
+    # would count five post-ban weeks in which no deck could play it.
+    p = tmp_path / "ban.csv"
+    _write_pred_csv(p, [
+        {"card_name": "The Fantasticar", "predicted_verdict": "PLAYED",
+         "archetype": "8-Cast/Affinity", "as_of_date": "2026-06-26",
+         "window_end": "2026-09-30"},
+        {"card_name": "Hawkeye's Bow", "predicted_verdict": "NOT PLAYED",
+         "archetype": "", "as_of_date": "2026-06-26", "window_end": "2026-09-30"},
+    ])
+    preds = bt.load_predictions(p, window_days=57)
+    assert preds[0]["window_end"] == bt.LEGACY_BANS["The Fantasticar"]
+    # An unbanned card in the same file keeps its declared window.
+    assert preds[1]["window_end"] == date(2026, 9, 30)
+
+
+def test_load_predictions_window_shorter_than_ban_is_untouched(tmp_path):
+    p = tmp_path / "short.csv"
+    _write_pred_csv(p, [
+        {"card_name": "The Fantasticar", "predicted_verdict": "PLAYED",
+         "archetype": "8-Cast/Affinity", "as_of_date": "2026-06-26",
+         "window_end": "2026-08-01"},
+    ])
+    assert bt.load_predictions(p, window_days=57)[0]["window_end"] == date(2026, 8, 1)
+
+
+def test_load_predictions_rejects_fully_post_ban_window(tmp_path):
+    # as_of_date after the ban means adoption is zero by construction, which
+    # would silently grade as a correct NOT_PLAYED.
+    p = tmp_path / "postban.csv"
+    _write_pred_csv(p, [
+        {"card_name": "The Fantasticar", "predicted_verdict": "NOT_PLAYED",
+         "archetype": "", "as_of_date": "2026-08-20", "window_end": "2026-10-01"},
+    ])
+    with pytest.raises(SystemExit):
+        bt.load_predictions(p, window_days=57)
+
+
 def test_load_predictions_bad_verdict(tmp_path):
     p = tmp_path / "bad.csv"
     _write_pred_csv(p, [

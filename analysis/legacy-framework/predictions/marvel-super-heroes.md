@@ -420,3 +420,16 @@ recall screen missed Loki. Authority weighting for the next registered set
 rejections, and treat "beats the weakest incumbent" as insufficient alone
 when a candidate could enable a new line rather than displace an existing
 slot.
+---
+
+### Window addendum to the formal grade — 2026-08-15
+
+The formal grade above was produced in a remote session with no local panel, and flags that **the within-clump win log-OR still needs a local run**. This note constrains that pending run. Verdicts are unchanged; this is method, not revision.
+
+**The window closes 2026-08-10.** Marvel's clean window is **2026-06-26 → 2026-08-10** (~6.5 weeks), not the ~7 weeks assumed in §Method at registration. A banned card stops accruing adoption on its effective date, so any window running past 2026-08-10 counts decks that *could not* have played it, pulling both `share_*` and `within_log_or` toward zero. `backtest.py` now enforces this: `LEGACY_BANS` clips `window_end` automatically. This is the existing convention (White Plume Adventurer is clipped to its 2023-03-06 ban in `EXAMPLE_ROSTER`), now applied by the code rather than remembered.
+
+This matters for the *next* local run specifically: the panel ends 2026-08-02 as of this writing, so the Phase 3.1 re-scrape is the first to reach past the ban.
+
+**One caution on the aggregator figures above.** The formal grade cites aetherhub's rolling-window 6.30% for early-to-mid August. Any such window that spans 2026-08-10 is already mixing pre- and post-ban days, so treat 6.30% as directional — the grade says as much ("corroborating, not exact-reproducible"). The clipped local run is what settles the magnitude.
+
+**Second labeled case now available.** Candelabra of Tawnos was banned 2026-06-29 ([B&R](https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-29-2026)) and, unlike Fantasticar, has a long pre-ban trajectory in the 2011–2026 panel: 15 decks (2023) → 95 (2024) → 442 (2025) → 263 (2026 partial); as a share of Force-of-Will decks (a scrape-volume proxy), 0.26% → 1.23% → 5.02% → 8.30%. A ~32× rise in share ending in a ban — a retrospective test of whether the pipeline sees bans coming, gradeable now rather than in October. **Caveat before using it:** High Tide itself shows only 4/12/4/3 decks over those years, `card_features.csv` tags Candelabra "Cloudpost / Tron Ramp (12-Post)", and `archetype_card_stats.csv` buckets it under "Other" — the archetype labels need work before this becomes a claim.

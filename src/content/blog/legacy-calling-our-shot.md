@@ -2,6 +2,7 @@
 title: "Calling Our Shot: Registered Predictions for Legacy's Next Two Sets"
 description: "We locked predictions for Marvel Super Heroes and The Hobbit before the results existed — four competing methods, graded in public. Here's the scorecard so far, and the bets we're making next."
 pubDate: "2026-08-06"
+updatedDate: "2026-08-15"
 ---
 
 [The last post](./legacy-card-evaluation) built a framework for evaluating new Legacy cards from first principles — constraint sets instead of card lists, "does it beat the card it would replace?" instead of "is it efficient?" But it tested that framework on *Secrets of Strixhaven*, roughly four weeks after release, when adoption was already visible. That's a calibration exercise, not a prediction. It's easy to look smart about a race you watched finish.
@@ -98,3 +99,25 @@ No moving the goalposts. The predictions are in git, timestamped before the card
 - **October 2** — The Hobbit's grade: ~7 weeks of post-release results against the board above.
 
 The honest state of things, seven weeks in: **the crowd beats the models at spotting what will matter, the framework beats the crowd at precision, and everyone has a recall problem.** None of that would be knowable if we'd waited to see the results first and then explained why we were right. Check back in October — the shots are already fired.
+
+---
+
+## Addendum, August 15: they banned it
+
+Four days after this post went up, [Wizards banned The Fantasticar in Legacy](https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026), effective August 10. It's restricted in Vintage. No written rationale for the Legacy line — just the one-sentence notice.
+
+Start with the sentence that aged worst. Above, in the caveat about the preliminary grade: *"Fantasticar is not going to un-warp the format."* It did not un-warp the format. The format was un-warped for it, by fiat, ninety-six hours later. In context the claim was narrow — that the formal grade wouldn't overturn the qualitative story, which it still won't — but as a standalone prediction about a ban-watched card it's a clean miss, and it stays in the text.
+
+Everything else here got *better*, which is a strange thing to have to report.
+
+**The scorecard's central result is confirmed by the strongest available external referee.** The finding was that community and model called Fantasticar PLAYED while the framework and the baseline said merely FRINGE. A ban is about as emphatic a ruling as exists that PLAYED was the right call — the card wasn't just played, it was format-warping enough that the designers removed it seven weeks after release. The community and model margin over the framework widens.
+
+**The framework's failure diagnosis was right for the reason we said.** The post argued its Fantasticar miss "wasn't bad card evaluation, it was a *category* error: the framework grades cards against the slots that already exist, and Fantasticar made its own slot." WotC skipped the English rationale, but [CoolStuffInc's reporting](https://www.coolstuffinc.com/a/banned-and-restricted-update-08102026) has the substance: the card was banned because a wide variety of *new* archetypes formed around it — Vroomsday, artifact decks, even a fair Dimir build — enabled by Legacy's lands that tap for two, its 0-cost artifacts, and its rituals. That is "it made its own slots," plural, in the format designers' own account. Nice to have the diagnosis corroborated; less nice that the framework needed it.
+
+**The grading window is now 6.5 weeks, not seven.** A banned card stops accruing adoption on its effective date, so any window running past August 10 counts decks that could not have played it and drags both the share numbers and the within-archetype win log-OR toward zero. The harness now enforces the clip rather than trusting us to remember it — a ban-date table that clips the window automatically, which is what the codebase had already been doing by hand for Uro and White Plume Adventurer since the historical roster. Timely: the panel ended August 2 when this was written, so today's re-scrape is the first to reach past the ban.
+
+**And the Hobbit experiment survived — better than survived.** The registered risk was a *mid-window* B&R shock, which would have ended the clean experiment early. Instead the ban landed August 10 and The Hobbit released August 14. The entire grading window sits in one post-ban field. The predictions were locked August 4 against a metagame that included a ~6% Fantasticar axis and no longer exists — that mismatch gets stated, not excused, when we grade — but the field is *stable across the window*, which is the condition the grade actually needs. Two knock-ons for October: the archetype shares in the locked conditioning set are stale as of August 10, and the graveyard-axis read that decides the Bilbo and Riddles bets has to be baselined on post-ban data.
+
+One more thing worth noting for the recall problem, our stated biggest risk: a banned format-definer vacates slots. If The Hobbit produces a card that matters, "it fills a hole the ban just opened" is precisely the kind of card that appears on none of our four lists. We said in advance that a Loki would be invisible to us. We now have a specific reason to expect one.
+
+The predictions are still in git, still timestamped, still ungraded until October 2.

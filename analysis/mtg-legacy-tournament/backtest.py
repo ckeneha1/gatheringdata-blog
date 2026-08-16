@@ -15,7 +15,11 @@ in August 2026:
                      (cross-archetype) claim
   as_of_date         ISO YYYY-MM-DD — first day of the grading window
                      (prediction must have been locked before this date)
-  window_end         optional ISO date; defaults to as_of_date + --window-days
+  window_end         optional ISO date; defaults to as_of_date + --window-days.
+                     Automatically clipped to the card's Legacy ban date if it
+                     has one (see LEGACY_BANS) — a banned card stops accruing
+                     adoption, so a window running past the ban dilutes every
+                     rate with decks that could not have played it.
 
 Grading logic (operational definitions registered in
 analysis/legacy-framework/predictions/framework-verdicts-msh.md)
@@ -99,6 +103,25 @@ PLAYED_FIELD_SHARE     = 0.02   # ≥2% of all decks (cross-archetype claims)
 NOT_PLAYED_MAX_LISTS   = 2      # ≤2 isolated lists format-wide
 
 PREDICTION_COLUMNS = ("card_name", "predicted_verdict", "archetype", "as_of_date")
+
+# Legacy ban dates, keyed by exact MTGTop8 card name. A banned card stops
+# accruing adoption on its effective date, so any grading window that runs past
+# the ban mixes in decks that could not have played it — every share and the
+# within-archetype log-OR get pulled toward zero. load_predictions clips
+# window_end here so the clipping is enforced rather than remembered; the
+# EXAMPLE_ROSTER below has always applied it by hand.
+#
+# Convention: clip *to* the effective date inclusive, matching the committed
+# roster (White Plume Adventurer → 2023-03-06, its effective date). Events on
+# the effective date itself are a one-day boundary ambiguity, immaterial next
+# to a multi-week window; revisit only if a window ever gets that short.
+LEGACY_BANS = {
+    "Uro, Titan of Nature's Wrath": date(2021, 3, 15),
+    "Expressive Iteration":         date(2023, 3, 6),
+    "White Plume Adventurer":       date(2023, 3, 6),
+    "Candelabra of Tawnos":         date(2026, 6, 29),
+    "The Fantasticar":              date(2026, 8, 10),
+}
 
 # Historical roster from the rebuild brief §2.5. predicted_verdict = the known
 # historical outcome (PLAYED), used to calibrate the grader; the model's own
@@ -353,8 +376,20 @@ def load_predictions(path: Path, window_days: int) -> list[dict]:
                else as_of + timedelta(days=window_days))
         if end < as_of:
             raise SystemExit(f"ERROR: {ctx}: window_end {end} precedes as_of_date {as_of}")
+        name = r["card_name"].strip()
+        ban = LEGACY_BANS.get(name)
+        if ban is not None:
+            if ban <= as_of:
+                raise SystemExit(
+                    f"ERROR: {ctx}: {name} was banned in Legacy on {ban}, on or before "
+                    f"as_of_date {as_of} — the whole window is post-ban and gradeable "
+                    "adoption is zero by construction. Fix the window or drop the row.")
+            if end > ban:
+                print(f"  NOTE: {ctx}: clipping window_end {end} → {ban} "
+                      f"({name} banned in Legacy) — post-ban decks cannot play it.")
+                end = ban
         preds.append({
-            "card_name": r["card_name"].strip(),
+            "card_name": name,
             "predicted_verdict": verdict,
             "archetype": (r["archetype"] or "").strip(),
             "as_of_date": as_of,

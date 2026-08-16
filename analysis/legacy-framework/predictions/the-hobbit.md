@@ -98,4 +98,18 @@ tier-1 archetype adopts a Hobbit card as a maindeck regular.
 
 ## Grading notes (append-only, post ~2026-10-02)
 
-*(Empty until grading.)*
+### 2026-08-15 — conditioning set superseded: The Fantasticar banned 2026-08-10
+
+The conditioning set above assumes "**No B&R changes**" and names "**The Fantasticar ~6% (the new axis Marvel created)**" as a live field axis. **The Fantasticar was banned in Legacy effective 2026-08-10** ([B&R, 2026-08-10](https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026)) — six days after this file was locked (2026-08-04) and four days before The Hobbit's paper release (2026-08-14). That axis no longer exists. Per-card verdicts above are frozen and unchanged.
+
+**The window is still clean, and this is the good outcome.** The registered risk was a *mid-window* B&R shock. Instead the ban landed entirely **before** the set was legal, so the whole grading window (2026-08-14 → ~2026-10-02) sits in a single post-ban field. The predictions were made against a field that no longer exists, but the field is stable *across* the window — which is the condition the grade actually needs.
+
+**Three consequences for the October grade:**
+
+1. **State the mismatch, don't relitigate the calls.** Predictions were conditioned on a ~6% Fantasticar axis that was removed before the first legal game. Anything graded wrong in a way traceable to that axis gets flagged, not excused — the "no B&R changes" clause covers it, and inventing per-card retroactive credit would defeat the point of locking.
+
+2. **Re-baseline the field before grading.** Removing a warping artifact deck redistributes ~6% of the metagame. The set-level claim (no card ≥1% of Legacy decks) has a *denominator* that just changed composition, and the archetype shares listed above are stale as of 2026-08-10.
+
+3. **The graveyard axis read needs a post-ban baseline.** The registered plan was to "read it directly off the metagame share of graveyard decks at grading time." That share must be measured on post-2026-08-10 data. Both model/community bets here — Bilbo, Thief in the Night and Riddles in the Dark — are graveyard-engine bets, so a pre-ban baseline would bias the most informative disagreement on the board.
+
+**Unchanged:** the recall watch (the Loki lesson) is if anything sharper. A banned format-definer opens slots, and a Hobbit card filling a newly-vacated slot is exactly the kind of card no predictor listed.
